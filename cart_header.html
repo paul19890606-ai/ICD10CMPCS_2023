@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -118,7 +119,7 @@
     .hint{font-size:12px;color:#6b7280;}
     .code-grid{
       display:grid;
-      grid-template-columns: repeat(5, minmax(120px, 1fr));
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
       gap:8px;
     }
     .code-cell{
@@ -182,6 +183,36 @@
       flex-direction:column;
       gap:6px;
       margin-top:10px;
+    }
+
+    /* ===== Cart list: CM left / PCS right ===== */
+    .added-list-wrapper{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top:10px;
+    }
+    @media (max-width: 980px){
+      .added-list-wrapper{ grid-template-columns: 1fr; }
+    }
+    .added-col{
+      border:1px solid #eef2ff;
+      background:#fafbff;
+      border-radius:12px;
+      padding:10px;
+      min-width:0;
+    }
+    .added-col-title{
+      font-size:12px;
+      font-weight:700;
+      color:#374151;
+      margin:0 0 6px 0;
+    }
+    .added-empty{
+      grid-column: 1 / -1;
+      font-size:12px;
+      color:#6b7280;
+      padding:8px 2px;
     }
     .item{
       display:flex;
@@ -295,8 +326,6 @@
 
     </div>
 
-    <div id="capacityAlert" class="alert"></div>
-
     <div class="panel">
       <div class="row">
         <span class="label">病歷號（MRN）</span>
@@ -341,7 +370,16 @@
           <button class="btn danger" id="clearCartBtn">清空購物車（含格位）</button>
         </div>
       </div>
-      <div id="cartList" class="cartlist"></div>
+      <div id="cartListWrapper" class="added-list-wrapper">
+        <div class="added-col">
+          <div class="added-col-title">CM</div>
+          <div id="cmList" class="cartlist"></div>
+        </div>
+        <div class="added-col">
+          <div class="added-col-title">PCS</div>
+          <div id="pcsList" class="cartlist"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -364,7 +402,9 @@
   const admEl = $("adm");
   const cmGridEl = $("cmGrid");
   const pcsGridEl = $("pcsGrid");
-  const cartListEl = $("cartList");
+  const cartListWrapperEl = $("cartListWrapper");
+  const cmListEl = $("cmList");
+  const pcsListEl = $("pcsList");
   const cmCountEl = document.getElementById("cmCount");
   const pcsCountEl = document.getElementById("pcsCount");
   const cartCMCountEl = document.getElementById("cartCMCount");
@@ -488,6 +528,15 @@ const toastEl = $("toast");
   }
 
   
+  function pickBestDesc(it, type){
+    const t = String(type||"").toUpperCase();
+    if(t === "CM"){
+      return (it?.tabular || it?.tabularDesc || it?.cmTabularDesc || it?.descTabular || it?.desc || "");
+    }
+    // PCS or other
+    return (it?.desc || it?.pcsDesc || "");
+  }
+
   function formatCartDesc(type, desc){
     const t = String(type||"").toUpperCase();
     let d = String(desc||"").trim();
@@ -578,64 +627,69 @@ function loadItems(){
   function renderCart(){
     const items = loadItems();
     updateHeaderCountsAndAlert(items);
-cartListEl.innerHTML = "";
+    cmListEl.innerHTML = "";
+    pcsListEl.innerHTML = "";
+    // remove any previous empty state
+    const prevEmpty = cartListWrapperEl.querySelector(".added-empty");
+    if(prevEmpty) prevEmpty.remove();
     if(!items.length){
       const empty = document.createElement("div");
-      empty.style.fontSize = "12px";
-      empty.style.color = "#6b7280";
+      empty.className = "added-empty";
       empty.textContent = "目前尚未加入代碼。請回到 CM / PCS 搜尋頁面，點選 + 加入。";
-      cartListEl.appendChild(empty);
+      cartListWrapperEl.appendChild(empty);
       return;
     }
 
-    // newest last (stable); you can sort if you prefer
-    items.forEach((it, idx)=>{
-      const code = normalizeCode(it?.code);
-      const desc = String(it?.desc || "");
-      const type = String(it?.type || classifyTypeByCode(code) || "").toUpperCase();
+    // newest last (stable); split into left CM and right PCS (others appended to PCS)
+    const display = items.map((it, i)=>({it, i}));
+    display.forEach(({it, i})=>{
+        const code = normalizeCode(it?.code);
+        const type = String(it?.type || classifyTypeByCode(code) || "").toUpperCase();
+        const rawDesc = pickBestDesc(it, type);
 
-      const row = document.createElement("div");
-      row.className = "item";
+        const row = document.createElement("div");
+        row.className = "item";
 
-      const codeEl = document.createElement("span");
-      codeEl.className = "code";
-      codeEl.textContent = code || "(empty)";
-      codeEl.title = "點擊複製";
-      codeEl.addEventListener("click", async ()=>{
-        if(!code) return;
-        try{
-          await navigator.clipboard.writeText(code);
-          toast("已複製：" + code);
-        }catch(e){
-          toast("複製失敗（瀏覽器限制）");
-        }
-      });
+        const codeEl = document.createElement("span");
+        codeEl.className = "code";
+        codeEl.textContent = code || "(empty)";
+        codeEl.title = "點擊複製";
+        codeEl.addEventListener("click", async ()=>{
+          if(!code) return;
+          try{
+            await navigator.clipboard.writeText(code);
+            toast("已複製：" + code);
+          }catch(e){
+            toast("複製失敗（瀏覽器限制）");
+          }
+        });
 
-      const typeEl = document.createElement("span");
-      typeEl.className = "type";
-      typeEl.textContent = type ? ("[" + type + "]") : "";
+        const typeEl = document.createElement("span");
+        typeEl.className = "type";
+        typeEl.textContent = type ? ("[" + type + "]") : "";
 
-      const descEl = document.createElement("span");
-      descEl.className = "desc";
-      descEl.textContent = formatCartDesc(type, desc);
+        const descEl = document.createElement("span");
+        descEl.className = "desc";
+        descEl.textContent = formatCartDesc(type, rawDesc);
 
-      const rm = document.createElement("button");
-      rm.className = "remove";
-      rm.textContent = "×";
-      rm.title = "移除";
-      rm.addEventListener("click", ()=>{
-        const current = loadItems();
-        const filtered = current.filter((x, i)=> i !== idx);
-        saveItems(filtered);
-        if(code) removeFromSlotsByCode(code);
-        renderCart();
-      });
+        const rm = document.createElement("button");
+        rm.className = "remove";
+        rm.textContent = "×";
+        rm.title = "移除";
+        rm.addEventListener("click", ()=>{
+          const current = loadItems();
+          const filtered = current.filter((x, idx)=> idx !== i);
+          saveItems(filtered);
+          if(code) removeFromSlotsByCode(code);
+          renderCart();
+        });
 
-      row.appendChild(codeEl);
-      row.appendChild(typeEl);
-      row.appendChild(descEl);
-      row.appendChild(rm);
-      cartListEl.appendChild(row);
+        row.appendChild(codeEl);
+        row.appendChild(typeEl);
+        row.appendChild(descEl);
+        row.appendChild(rm);
+        if(type === "CM") cmListEl.appendChild(row);
+        else pcsListEl.appendChild(row);
     });
   }
 
