@@ -969,6 +969,16 @@
       if (saved) cartItems = JSON.parse(saved) || [];
     } catch (e) {}
 
+    function normalizeCode(code){
+      return String(code || "").trim();
+    }
+    function classifyTypeByCode(code){
+      const c = normalizeCode(code).toUpperCase();
+      if(!c) return "";
+      const isPCS = !c.includes(".") && /^[0-9A-HJ-NP-Z]{7}$/.test(c); // PCS excludes I/O
+      return isPCS ? "PCS" : "CM";
+    }
+
     function updateCartCountsFromStorage(){
       let items = [];
       try{
@@ -977,15 +987,15 @@
       }catch(e){}
       let cm = 0, pcs = 0;
       (items||[]).forEach(it=>{
-        const t = String(it?.type||"").toUpperCase();
+        const tRaw = String(it?.type||"");
+        const t = tRaw.toUpperCase().replace(/[\[\]\s]/g,"");
         if(t === "CM") cm++;
         else if(t === "PCS") pcs++;
         else{
-           const code = String(it?.code||"");
-           const c = code.trim().toUpperCase();
-           const isPCS = !c.includes(".") && /^[0-9A-HJ-NP-Z]{7}$/.test(c); // PCS excludes I and O
-           if(isPCS) pcs++; else cm++;
-         }
+          const guess = classifyTypeByCode(it?.code);
+          if(guess === "CM") cm++;
+          else if(guess === "PCS") pcs++;
+        }
       });
       const cmEl = document.getElementById("cartCMCount");
       const pcsEl = document.getElementById("cartPCSCount");
@@ -1202,7 +1212,7 @@ function removeFromSlots(code) {
       const clean = normalizeCodeDash(code);
       if (!clean) return;
       if (cartItems.some((x) => x.code === clean)) return;
-      cartItems.push({ type: "CM", code: clean, desc: (desc || "").trim() });
+      cartItems.push({ code: clean, desc: (desc || "").trim() });
       // Auto-fill into Cart tab slots
       const slotType = classifyCodeToSlot(clean);
       const ok = fillNextEmptySlotStorage(slotType, clean);
