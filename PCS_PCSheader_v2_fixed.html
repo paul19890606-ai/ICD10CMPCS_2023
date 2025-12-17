@@ -1,0 +1,2026 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>ICD-10-PCS 2023 查詢工具（優化版 - 雲端自動載入）</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f7;
+    }
+
+    .app {
+      max-width: 1850px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+      padding: 20px 24px 24px;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 1.6rem;
+      letter-spacing: 0.03em;
+    }
+
+    .subtitle {
+      margin-top: 4px;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+
+    .file-row,
+    .search-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .file-row label,
+    .search-row label {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* 移除 input[type=file] 相關樣式，因為不再使用 */
+
+    #searchInput,
+    #indexSearchInput {
+      flex: 1;
+      min-width: 180px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    #searchInput:focus,
+    #indexSearchInput:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    }
+
+    .hint {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .hint code {
+      background: #eef2ff;
+      padding: 1px 4px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+    }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      margin-bottom: 6px;
+      font-size: 0.82rem;
+      color: #4b5563;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #4338ca;
+      font-size: 0.78rem;
+      gap: 4px;
+      letter-spacing: 0;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #4f46e5;
+    }
+
+    .pcs-summary {
+      margin-top: 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: #f9fafb;
+      font-size: 0.86rem;
+    }
+
+    .pcs-summary-title {
+      font-weight: 1000;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .pcs-summary-row {
+      display: flex;
+      gap: 8px;
+      line-height: 1.4;
+    }
+
+    .pcs-summary-row span:first-child {
+      font-style: italic;
+      min-width: 80px;
+    }
+
+    /* ********** 新增/修改：PCS 代碼高亮樣式 ********** */
+    .highlight-code {
+      font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
+        "Courier New", monospace;
+      font-weight: 700 !important; /* 加粗 */
+      color: #2746ad !important; /* 顏色 */
+      font-size: 1.05rem;
+    }
+    
+    .pcs-summary-code {
+      /* 移除舊的樣式，改用 highlight-code */
+      /* font-weight: 1000;
+      margin-right: 4px; */
+      font-size: 0.95rem; /* 前三碼略小於完整七碼 */
+      margin-right: 4px;
+    }
+    .pcs-summary-code.highlight-code {
+      font-size: 1.1rem; /* 讓前三碼在 summary 區塊中稍微突出 */
+    }
+    
+    .selected-code-box {
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px dashed #d1d5db;
+      font-size: 0.86rem;
+    }
+
+    .selected-code-box code {
+      /* 移除舊的 code 樣式，改用 highlight-code */
+      /* font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
+        "Courier New", monospace; */
+    }
+    /* ********** 突出顯示：完整 7 碼代碼 ********** */
+    .selected-code-box .highlight-code {
+      font-size: 1.3rem !important;
+      margin-right: 8px;
+    }
+    /* ********** 新增/修改：PCS 代碼高亮樣式結束 ********** */
+
+    .table-wrapper {
+      margin-top: 12px;
+      border-radius: 12px;
+      overflow: auto;
+      border: 1px solid #e5e7eb;
+      background: #fafafa;
+      max-height: 200vh;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 1000px;
+      font-size: 0.85rem;
+    }
+
+    thead {
+      background: #f3f4ff;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    th,
+    td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #e5e7eb;
+      border-right: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th:last-child,
+    td:last-child {
+      border-right: none;
+    }
+
+    th {
+      font-weight: 100;
+      font-size: 0.78rem;
+      color: #4b5563;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f9fafb;
+    }
+
+    .no-result {
+      padding: 16px;
+      text-align: center;
+      color: #9ca3af;
+      font-size: 0.9rem;
+    }
+
+    .loading {
+      color: #c05621;
+    }
+
+    .ok {
+      color: #047857;
+    }
+
+    .error {
+      color: #b91c1c;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 4px;
+      font-size: 0.83rem;
+      line-height: 1.3;
+    }
+
+    .option-row input[type="radio"] {
+      margin-top: 2px;
+    }
+
+    /* ********** 突出顯示：四欄選項代碼 ********** */
+    .option-code {
+      /* 移除舊的樣式，改用 highlight-code */
+      /* font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
+        "Courier New", monospace;
+      font-weight: 600;
+      margin-right: 4px; */
+      font-size: 0.95rem; /* 讓單碼代碼在選項中突出 */
+      margin-right: 4px;
+    }
+    /* ********** 突出顯示：四欄選項代碼結束 ********** */
+
+
+    /* Index 查詢結果區塊 */
+    .index-result-box {
+      margin-top: 4px;
+      margin-bottom: 6px;
+      max-height: 220px;
+      overflow: auto;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 6px 8px;
+      font-size: 0.82rem;
+    }
+
+    .index-result-empty {
+      color: #9ca3af;
+      padding: 4px 2px;
+    }
+
+    .index-result-item {
+      padding: 4px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .index-result-item:last-child {
+      border-bottom: none;
+    }
+
+    .index-path {
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .index-codes {
+      margin-top: 2px;
+    }
+
+    /* ********** 突出顯示：Index 代碼膠囊 ********** */
+    .index-code-chip {
+      display: inline-block;
+      margin-right: 6px;
+      margin-top: 3px;
+      padding: 1px 7px;
+      border-radius: 999px;
+      /* 舊樣式 background: #eef2ff; color: #4338ca; border: 1px solid #e0e7ff; */
+      background: #fee2e2; /* 淺紅色背景 */
+      border: 1px solid #fca5a5; /* 略深的紅色邊框 */
+      color: #2746ad; /* 深紅色文字 */
+      cursor: pointer;
+      font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
+        "Courier New", monospace;
+      font-size: 0.78rem;
+      font-weight: 600; /* 加粗 */
+    }
+
+    .index-code-chip:hover {
+      background: #fca5a5;
+    }
+    /* ********** 突出顯示：Index 代碼膠囊結束 ********** */
+
+    .index-tip {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+
+    /* 下拉選單樣式 */
+    .select-slim {
+      min-width: 120px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      font-size: 0.85rem;
+      background: #ffffff;
+      outline: none;
+    }
+    .select-slim:disabled {
+      background: #f3f4f6;
+      color: #9ca3af;
+    }
+
+    
+    .clear-btn {
+      margin-top: 2px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      font-size: 0.7rem;
+      cursor: pointer;
+      color: #374151;
+    }
+    .clear-btn:hover {
+      background: #f3f4f6;
+    }
+@media (max-width: 640px) {
+      .app {
+        margin: 12px;
+        padding: 16px;
+        border-radius: 12px;
+      }
+      h1 {
+        font-size: 1.3rem;
+      }
+    }
+    .custom-tooltip {
+      position: absolute;
+      z-index: 9999;
+      max-width: 500px;
+      max-height: 400px;
+      overflow-y: auto;   /* 明確允許垂直滾輪 */
+      overflow-x: hidden;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: #111827;
+      color: #f9fafb;
+      font-size: 0.78rem;
+      line-height: 1.4;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      white-space: pre-wrap; /* 保留換行 */
+    }
+  
+    .badge.ok .badge-dot {
+      background: #16a34a;
+    }
+    .badge.loading .badge-dot {
+      background: #f59e0b;
+    }
+    .badge.error .badge-dot {
+      background: #b91c1c;
+    }
+
+    /* 加入購物車按鈕（PCS 完整 7 碼） */
+    .add-to-cart-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:20px;
+      height:20px;
+      border-radius:6px;
+      border:1px solid #93c5fd;
+      background:#e7f2ff;
+      color:#1d4ed8;
+      font-weight:800;
+      font-size:14px;
+      cursor:pointer;
+      margin-right:6px;
+      vertical-align:middle;
+      user-select:none;
+    }
+    .add-to-cart-btn:hover{ background:#dbeafe; }
+    .add-to-cart-btn[disabled]{
+      opacity:.4;
+      cursor:not-allowed;
+    }
+    .cart-toast{
+      margin-top: 6px;
+      font-size: 0.82rem;
+      color: #047857;
+    }
+
+
+
+/* ===== Shared header (top-right buttons) ===== */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+.topbar-title{
+  font-size:18px;
+  font-weight:700;
+  white-space:nowrap;
+}
+.topbar-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.linkbtn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid #d1d5db;
+  background:#fff;
+  color:#111827;
+  font-size:12px;
+  line-height:1;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.linkbtn:hover{ background:#f3f4f6; }
+.linkbtn--cart{
+  border-color:#e0e4ef;
+  background:#fafbff;
+  cursor:default;
+}
+.cart-label{
+  font-size:11px;
+  color:#374151;
+  margin-left:2px;
+}
+.count-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:22px;
+  height:22px;
+  padding:0 7px;
+  border-radius:999px;
+  background:#0ea5e9;
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+}
+
+</style>
+</head>
+<body>
+  <div class="app">
+<div class="topbar">
+  <div class="topbar-title">ICD-10-PCS 2023 工具書</div>
+  <div class="topbar-actions">
+    <a class="linkbtn" href="CMtest11_fixed_7thpicker_v9_main_with_cartheader_counts_v1.html" target="_blank" rel="noopener">CM工具書</a>
+    <a class="linkbtn" href="PCS_with_cart_plus_v2_with_cartheader_counts_v1.html" target="_blank" rel="noopener">PCS工具書</a>
+    <div class="linkbtn linkbtn--cart" aria-label="Shopping cart counts">
+      購物車
+      <span class="cart-label">CM</span> <span class="count-badge" id="cartCMCount">0</span>
+      <span class="cart-label">PCS</span> <span class="count-badge" id="cartPCSCount">0</span>
+    </div>
+  </div>
+</div>
+
+<div class="search-row">
+      <label for="indexSearchInput">處置名稱：</label>
+      <input
+        id="indexSearchInput"
+        type="text"
+        placeholder="載入 Index 檔後，可輸入英文處置名稱（例：Appendectomy）"
+        autocomplete="off"
+        disabled
+      />
+    </div>
+
+
+    <div class="search-row">
+      <label for="searchInput">PCS前3碼：</label>
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="請先等待 Tables 載入完成，再輸入前 3 碼（例如：0BD）"
+        autocomplete="off"
+        disabled
+      />
+    </div>
+
+    <div class="search-row">
+      <label>Section：</label>
+      <select id="sectionSelect" class="select-slim" disabled>
+        <option value="">載入 Tables 後可選擇</option>
+      </select>
+    
+    <div class="search-row">
+      <label>Body System：</label>
+      <select id="bodySystemSelect" class="select-slim" disabled>
+        <option value="">請先選擇 Section</option>
+      </select>
+
+      <label>Operation：</label>
+      <select id="operationSelect" class="select-slim" disabled>
+        <option value="">請先選擇 Body System</option>
+      </select>
+    </div></div>
+
+
+    <div class="status-row">
+      <div id="loadStatus" class="badge loading" title="Tables 載入中...">
+        <span class="badge-dot"></span>
+        <span>Tables</span>
+      </div>
+      <div id="defStatus" class="badge loading" title="Definitions 載入中...">
+        <span class="badge-dot"></span>
+        <span>Definitions</span>
+      </div>
+      <div id="indexStatus" class="badge loading" title="Index 載入中...">
+        <span class="badge-dot"></span>
+        <span>Index</span>
+      </div>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        <span>來源：ICD-10-PCS 2023</span>
+      </div>
+    </div>
+    <div class="status-row">
+      <div id="resultInfo">正在從雲端載入檔案，請稍候。</div>
+    </div>
+
+
+    <div id="indexResultBox" class="index-result-box">
+      <div class="index-result-empty">
+        目前尚未載入 Index XML，或尚未輸入處置名稱。
+      </div>
+    </div>
+
+    <div id="pcsSummary" class="pcs-summary">
+      <div id="summaryTitle" class="pcs-summary-title">
+        尚未查詢
+      </div>
+      <div id="summaryDetail">
+        <div class="pcs-summary-row">
+          <span><em>Section</em></span>
+          <span>—</span>
+        </div>
+        <div class="pcs-summary-row">
+          <span><em>Body System</em></span>
+          <span>—</span>
+        </div>
+        <div class="pcs-summary-row">
+          <span><em>Operation</em></span>
+          <span>—</span>
+        </div>
+      </div>
+      <div id="selectedCodeBox" class="selected-code-box">
+        目前尚未選取完整 7 碼代碼。
+      </div>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Body Part<br />
+              <button type="button" class="clear-btn" data-field="bodypart">清除</button>
+            </th>
+            <th>
+              Approach<br />
+              <button type="button" class="clear-btn" data-field="approach">清除</button>
+            </th>
+            <th>
+              Device<br />
+              <button type="button" class="clear-btn" data-field="device">清除</button>
+            </th>
+            <th>
+              Qualifier<br />
+              <button type="button" class="clear-btn" data-field="qualifier">清除</button>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="resultBody">
+          <tr>
+            <td class="no-result" colspan="4">
+              正在從雲端載入 Tables 資料，請稍候...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // 定義雲端檔案 URL
+    const TABLES_URL = "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/refs/heads/main/icd10pcs_tables_2023.xml";
+    const DEFINITIONS_URL = "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/refs/heads/main/icd10pcs_definitions_2023.xml";
+    const INDEX_URL = "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/refs/heads/main/icd10pcs_index_2023.xml";
+    
+    
+
+    // ===== 購物車（獨立頁面）共用 localStorage Key =====
+    const CART_ITEMS_KEY = "icd_cart_items";           // array: {type:'PCS'|'CM', code, desc, addedAt}
+    const CART_PCS_SLOTS_KEY = "icd_cart_pcs_slots";   // array length 20
+    const CART_META_KEY = "icd_cart_meta";             // {mrn, admNo}
+    // ===== 與新版本購物車頁面共用 MRN / 住院號 Key（向下相容）=====
+    const CART_MRN_KEY = "icd_cart_mrn";
+    const CART_ADM_KEY = "icd_cart_adm";
+
+    function syncMetaKeys() {
+      // 讀取優先順序：新 key -> 舊 meta -> 空
+      const mrnNew = localStorage.getItem(CART_MRN_KEY) || "";
+      const admNew = localStorage.getItem(CART_ADM_KEY) || "";
+
+      if (mrnNew || admNew) {
+        // 同步回舊 meta（讓舊版本也看得到）
+        const legacy = readJSON(CART_META_KEY, { mrn: "", admNo: "" });
+        legacy.mrn = mrnNew;
+        legacy.admNo = admNew;
+        writeJSON(CART_META_KEY, legacy);
+        return;
+      }
+
+      const legacy = readJSON(CART_META_KEY, null);
+      if (legacy && (legacy.mrn || legacy.admNo)) {
+        try {
+          localStorage.setItem(CART_MRN_KEY, legacy.mrn || "");
+          localStorage.setItem(CART_ADM_KEY, legacy.admNo || "");
+        } catch (e) {}
+      }
+    }
+
+
+    function readJSON(key, fallback) {
+      try {
+        const raw = localStorage.getItem(key);
+        if (!raw) return fallback;
+        const v = JSON.parse(raw);
+        return v ?? fallback;
+      } catch (e) {
+        return fallback;
+      }
+    }
+    function writeJSON(key, value) {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+
+    function updateCartCountsFromStorage(){
+      const items = readJSON(CART_ITEMS_KEY, []);
+      let cm = 0, pcs = 0;
+      (items||[]).forEach(it=>{
+        const t = String(it?.type||"").toUpperCase();
+        if(t === "CM") cm++;
+        else if(t === "PCS") pcs++;
+        else{
+          const code = String(it?.code||"");
+          if(code.includes(".")) cm++; else pcs++;
+        }
+      });
+      const cmEl = document.getElementById("cartCMCount");
+      const pcsEl = document.getElementById("cartPCSCount");
+      if(cmEl) cmEl.textContent = String(cm);
+      if(pcsEl) pcsEl.textContent = String(pcs);
+    }
+
+    // 記錄目前已選取的完整 7 碼（用於 + 按鈕）
+    let lastFullSelection = null;
+
+    function addSelectedPCSCodeToCart() {
+      if (!lastFullSelection || !lastFullSelection.code) return;
+
+      const code = String(lastFullSelection.code).toUpperCase();
+      const desc = String(lastFullSelection.desc || "");
+
+      // 1) 寫入購物車清單（避免重複）
+      const items = readJSON(CART_ITEMS_KEY, []);
+      const exists = items.some(it => (it?.type === "PCS") && (String(it?.code).toUpperCase() === code));
+      if (!exists) {
+        items.push({ type: "PCS", code, desc, addedAt: new Date().toISOString() });
+        writeJSON(CART_ITEMS_KEY, items);
+      }
+
+      // 2) 自動填入 PCS 20 格（填下一個空格）
+      let slots = readJSON(CART_PCS_SLOTS_KEY, Array(20).fill(""));
+      if (!Array.isArray(slots)) slots = Array(20).fill("");
+      if (slots.length < 20) slots = slots.concat(Array(20 - slots.length).fill(""));
+      if (slots.length > 20) slots = slots.slice(0, 20);
+
+      const i = slots.findIndex(v => !v || !String(v).trim());
+      if (i !== -1) {
+        slots[i] = code;
+        writeJSON(CART_PCS_SLOTS_KEY, slots);
+      }
+
+      // 3) UI 提示
+      const toast = document.createElement("div");
+      toast.className = "cart-toast";
+      toast.textContent = exists ? "此 PCS 代碼已在購物車中。" : "已加入購物車（PCS）。";
+      selectedCodeBox.appendChild(toast);
+      setTimeout(() => toast.remove(), 1400);
+      updateCartCountsFromStorage();
+    }
+
+// 移除檔案選擇框的 DOM 元素取得
+    // const xmlFileInput = document.getElementById("xmlFile");
+    // const defFileInput = document.getElementById("defFile");
+    // const indexFileInput = document.getElementById("indexFile");
+
+    const loadStatus = document.getElementById("loadStatus");
+    const defStatus = document.getElementById("defStatus");
+    const indexStatus = document.getElementById("indexStatus");
+
+    const searchInput = document.getElementById("searchInput");
+    const indexSearchInput = document.getElementById("indexSearchInput");
+
+    const resultBody = document.getElementById("resultBody");
+    const resultInfo = document.getElementById("resultInfo");
+
+    const summaryTitle = document.getElementById("summaryTitle");
+    const summaryDetail = document.getElementById("summaryDetail");
+    const selectedCodeBox = document.getElementById("selectedCodeBox");
+
+    const indexResultBox = document.getElementById("indexResultBox");
+
+    // 新增：Section / Body System / Operation 下拉
+    const sectionSelect = document.getElementById("sectionSelect");
+    const bodySystemSelect = document.getElementById("bodySystemSelect");
+    const operationSelect = document.getElementById("operationSelect");
+
+    // 7 碼完整代碼列表與 map
+    let icdCodes = [];          // [{code, desc}]
+    let icdCodeMap = new Map(); // code -> desc
+    let isLoaded = false;
+
+    // 依前三碼建立合法組合 map
+    // validMap: prefix -> { body:Set, approach:Set, device:Set, qualifier:Set, combos:Set(完整7碼) }
+    let validMap = new Map();
+
+    // 新增：Section / Body System / Operation 階層資料
+    // sectionHierarchy:
+    // sectionCode -> { text, bodySystems: Map(bodyCode -> { text, operations: Map(opCode -> { text }) }) }
+    let sectionHierarchy = new Map();
+
+    // definitions（hover 提示）
+    const definitionMaps = {
+      bodypart: new Map(),
+      device: new Map(),
+    };
+    let defLoaded = false;
+
+    // Index：每筆 { path, codes[] }
+    let indexEntries = [];
+    let indexLoaded = false;
+
+    let currentPrefix = "";
+    let selections = {
+      bodypart: null,
+      approach: null,
+      device: null,
+      qualifier: null,
+    };
+
+    function setLoadStatus(text, cls) {
+      // 固定顯示 Tables，狀態文字只做為 tooltip，顏色用 class 控制
+      loadStatus.className = "badge " + (cls || "");
+      loadStatus.title = text || "";
+    }
+    function setDefStatus(text, cls) {
+      defStatus.className = "badge " + (cls || "");
+      defStatus.title = text || "";
+    }
+    function setIndexStatus(text, cls) {
+      indexStatus.className = "badge " + (cls || "");
+      indexStatus.title = text || "";
+    }
+    function setResultInfo(text) {
+      resultInfo.textContent = text;
+    }
+
+    function resetTablePlaceholder(message) {
+      resultBody.innerHTML =
+        '<tr><td class="no-result" colspan="4">' +
+        (message || "尚無資料。") +
+        "</td></tr>";
+    }
+
+    function resetSummaryHeader() {
+      summaryTitle.textContent = "尚未查詢";
+      summaryDetail.innerHTML = `
+        <div class="pcs-summary-row"><span><em>Section</em></span><span>—</span></div>
+        <div class="pcs-summary-row"><span><em>Body System</em></span><span>—</span></div>
+        <div class="pcs-summary-row"><span><em>Operation</em></span><span>—</span></div>
+      `;
+    }
+
+    function resetSelections() {
+      selections = {
+        bodypart: null,
+        approach: null,
+        device: null,
+        qualifier: null,
+      };
+      // 清掉 radio 勾選
+      ["bodypart","approach","device","qualifier"].forEach(field => {
+        document
+          .querySelectorAll(`input[name="${field}"]`)
+          .forEach(r => { r.checked = false; r.disabled = false; r.parentElement.style.opacity = 1; });
+      });
+      updateSelectedCode();
+    }
+
+    // 單獨清除某一欄位的選擇
+    
+function clearSelection(field) {
+  if (!selections.hasOwnProperty(field)) return;
+  selections[field] = null;
+  document.querySelectorAll(`input[name="${field}"]`)
+    .forEach(r => r.checked = false);
+
+  filterInvalidOptions();
+  updateSelectedCode();
+}
+
+    function escapeHtmlAttr(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    function getDefinitionTooltip(kind, label) {
+      if (!defLoaded || !label) return "";
+      const map = definitionMaps[kind];
+      if (!map) return "";
+      const key = label.trim();
+      if (!map.has(key)) return "";
+      return map.get(key);
+    }
+
+    // 取得 axis pos 的 label
+    function getDirectAxisLabels(parent, pos) {
+      const labels = [];
+      Array.from(parent.children).forEach((child) => {
+        if (
+          child.tagName === "axis" &&
+          child.getAttribute("pos") === String(pos)
+        ) {
+          labels.push(...Array.from(child.getElementsByTagName("label")));
+        }
+      });
+      return labels;
+    }
+
+    // -------- Tables XML 解析 --------
+    function parseIcd10PcsXml(xmlText) {
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+      const parserError = xmlDoc.querySelector("parsererror");
+      if (parserError) {
+        throw new Error("Tables XML 格式解析失敗，請確認檔案是否正確。");
+      }
+
+      const tables = Array.from(xmlDoc.getElementsByTagName("pcsTable"));
+      if (!tables.length) {
+        throw new Error(
+          "Tables XML 中找不到 pcsTable 節點，可能不是正確的檔案。"
+        );
+      }
+
+      const codes = [];
+
+      tables.forEach((table) => {
+        const sectionLabels = getDirectAxisLabels(table, 1);
+        const bodySystemLabels = getDirectAxisLabels(table, 2);
+        const operationLabels = getDirectAxisLabels(table, 3);
+
+        if (
+          !sectionLabels.length ||
+          !bodySystemLabels.length ||
+          !operationLabels.length
+        ) {
+          return;
+        }
+
+        const rows = Array.from(table.getElementsByTagName("pcsRow"));
+        rows.forEach((row) => {
+          const bodyPartLabels = getDirectAxisLabels(row, 4);
+          const approachLabels = getDirectAxisLabels(row, 5);
+          const deviceLabels = getDirectAxisLabels(row, 6);
+          const qualifierLabels = getDirectAxisLabels(row, 7);
+
+          if (
+            !bodyPartLabels.length ||
+            !approachLabels.length ||
+            !deviceLabels.length ||
+            !qualifierLabels.length
+          ) {
+            return;
+          }
+
+          sectionLabels.forEach((sec) => {
+            const sCode = (sec.getAttribute("code") || "").toUpperCase();
+            const sText = sec.textContent.trim();
+            bodySystemLabels.forEach((bs) => {
+              const bsCode = (bs.getAttribute("code") || "").toUpperCase();
+              const bsText = bs.textContent.trim();
+              operationLabels.forEach((op) => {
+                const opCode = (op.getAttribute("code") || "").toUpperCase();
+                const opText = op.textContent.trim();
+
+                bodyPartLabels.forEach((bp) => {
+                  const bpCode = (bp.getAttribute("code") || "").toUpperCase();
+                  const bpText = bp.textContent.trim();
+                  approachLabels.forEach((ap) => {
+                    const apCode = (ap.getAttribute("code") || "").toUpperCase();
+                    const apText = ap.textContent.trim();
+                    deviceLabels.forEach((dv) => {
+                      const dvCode = (dv.getAttribute("code") || "").toUpperCase();
+                      const dvText = dv.textContent.trim();
+                      qualifierLabels.forEach((q) => {
+                        const qCode = (q.getAttribute("code") || "").toUpperCase();
+                        const qText = q.textContent.trim();
+
+                        const fullCode =
+                          sCode +
+                          bsCode +
+                          opCode +
+                          bpCode +
+                          apCode +
+                          dvCode +
+                          qCode;
+
+                        const descParts = [
+                          sText,
+                          bsText,
+                          opText,
+                          bpText,
+                          apText,
+                          dvText,
+                          qText,
+                        ].filter(Boolean);
+                        const description = descParts.join(" / ");
+
+                        codes.push({ code: fullCode, desc: description });
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+
+      return codes;
+    }
+
+    // 建立合法組合 map（validMap）
+    function buildValidMap() {
+      validMap.clear();
+      icdCodes.forEach(item => {
+        const code = item.code;
+        if (!code || code.length !== 7) return;
+        const prefix = code.slice(0,3);
+        const c4 = code[3];
+        const c5 = code[4];
+        const c6 = code[5];
+        const c7 = code[6];
+        if (!validMap.has(prefix)) {
+          validMap.set(prefix, {
+            body: new Set(),
+            approach: new Set(),
+            device: new Set(),
+            qualifier: new Set(),
+            combos: new Set(),
+          });
+        }
+        const m = validMap.get(prefix);
+        m.body.add(c4);
+        m.approach.add(c5);
+        m.device.add(c6);
+        m.qualifier.add(c7);
+        m.combos.add(code);
+      });
+    }
+
+    // 建立 Section / Body System / Operation 階層結構
+    function buildHierarchyFromCodes() {
+      sectionHierarchy.clear();
+      icdCodes.forEach(item => {
+        const code = item.code;
+        if (!code || code.length < 3) return;
+        const parts = (item.desc || "").split(" / ");
+        if (parts.length < 3) return;
+        const sCode = code[0];
+        const bsCode = code[1];
+        const opCode = code[2];
+        const sText = parts[0] || ("Section " + sCode);
+        const bsText = parts[1] || ("Body System " + bsCode);
+        const opText = parts[2] || ("Operation " + opCode);
+
+        if (!sectionHierarchy.has(sCode)) {
+          sectionHierarchy.set(sCode, {
+            text: sText,
+            bodySystems: new Map(),
+          });
+        }
+        const sObj = sectionHierarchy.get(sCode);
+        if (!sObj.bodySystems.has(bsCode)) {
+          sObj.bodySystems.set(bsCode, {
+            text: bsText,
+            operations: new Map(),
+          });
+        }
+        const bsObj = sObj.bodySystems.get(bsCode);
+        if (!bsObj.operations.has(opCode)) {
+          bsObj.operations.set(opCode, {
+            text: opText,
+          });
+        }
+      });
+    }
+
+    function clearSelect(selectEl, placeholder) {
+      selectEl.innerHTML = "";
+      const op = document.createElement("option");
+      op.value = "";
+      op.textContent = placeholder;
+      selectEl.appendChild(op);
+      selectEl.value = "";
+    }
+
+    function populateSectionSelect() {
+      clearSelect(sectionSelect, "載入 Tables 後可選擇");
+      clearSelect(bodySystemSelect, "請先選擇 Section");
+      clearSelect(operationSelect, "請先選擇 Body System");
+
+      if (!sectionHierarchy.size) {
+        sectionSelect.disabled = true;
+        bodySystemSelect.disabled = true;
+        operationSelect.disabled = true;
+        return;
+      }
+
+      const entries = Array.from(sectionHierarchy.entries())
+        .sort((a, b) => a[0].localeCompare(b[0]));
+      entries.forEach(([code, obj]) => {
+        const op = document.createElement("option");
+        op.value = code;
+        op.textContent = `${code} - ${obj.text}`;
+        sectionSelect.appendChild(op);
+      });
+
+      sectionSelect.disabled = false;
+      bodySystemSelect.disabled = true;
+      operationSelect.disabled = true;
+    }
+
+    function populateBodySystems(sectionCode) {
+      clearSelect(bodySystemSelect, "請先選擇 Section");
+      clearSelect(operationSelect, "請先選擇 Body System");
+      bodySystemSelect.disabled = true;
+      operationSelect.disabled = true;
+
+      const sec = sectionHierarchy.get(sectionCode);
+      if (!sec) return;
+
+      clearSelect(bodySystemSelect, "請選擇 Body System");
+      const entries = Array.from(sec.bodySystems.entries())
+        .sort((a, b) => a[0].localeCompare(b[0]));
+      entries.forEach(([code, obj]) => {
+        const op = document.createElement("option");
+        op.value = code;
+        op.textContent = `${code} - ${obj.text}`;
+        bodySystemSelect.appendChild(op);
+      });
+
+      bodySystemSelect.disabled = false;
+      operationSelect.disabled = true;
+    }
+
+    function populateOperations(sectionCode, bodySystemCode) {
+      clearSelect(operationSelect, "請先選擇 Body System");
+      operationSelect.disabled = true;
+
+      const sec = sectionHierarchy.get(sectionCode);
+      if (!sec) return;
+      const bsObj = sec.bodySystems.get(bodySystemCode);
+      if (!bsObj) return;
+
+      clearSelect(operationSelect, "請選擇 Operation");
+      const entries = Array.from(bsObj.operations.entries())
+        .sort((a, b) => a[0].localeCompare(b[0]));
+      entries.forEach(([code, obj]) => {
+        const op = document.createElement("option");
+        op.value = code;
+        op.textContent = `${code} - ${obj.text}`;
+        operationSelect.appendChild(op);
+      });
+
+      operationSelect.disabled = false;
+    }
+
+    // XML 解析後若有 headerInfo，反向同步下拉選單
+    function syncDropdownFromHeader(headerInfo) {
+      if (!headerInfo || !sectionHierarchy.size) return;
+      const sCode = headerInfo.secCode;
+      const bsCode = headerInfo.bsCode;
+      const opCode = headerInfo.opCode;
+      if (!sectionHierarchy.has(sCode)) return;
+
+      sectionSelect.value = sCode;
+      populateBodySystems(sCode);
+
+      const sec = sectionHierarchy.get(sCode);
+      if (!sec.bodySystems.has(bsCode)) return;
+      bodySystemSelect.value = bsCode;
+      populateOperations(sCode, bsCode);
+
+      const bsObj = sec.bodySystems.get(bsCode);
+      if (!bsObj.operations.has(opCode)) return;
+      operationSelect.value = opCode;
+    }
+
+    // -------- Definitions XML 解析 --------
+    function parseDefinitionsXml(xmlText) {
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+      const parserError = xmlDoc.querySelector("parsererror");
+      if (parserError) {
+        throw new Error(
+          "Definitions XML 格式解析失敗，請確認檔案是否正確。"
+        );
+      }
+
+      definitionMaps.bodypart.clear();
+      definitionMaps.device.clear();
+
+      const sections = Array.from(xmlDoc.getElementsByTagName("section"));
+      sections.forEach((sec) => {
+        const axes = Array.from(sec.getElementsByTagName("axis"));
+
+        axes.forEach((axis) => {
+          const pos = axis.getAttribute("pos");
+          let kind = null;
+          if (pos === "4") kind = "bodypart";
+          else if (pos === "6") kind = "device";
+          if (!kind) return;
+
+          const termsList = Array.from(axis.getElementsByTagName("terms"));
+          termsList.forEach((terms) => {
+            const titleNodes = Array.from(terms.getElementsByTagName("title"));
+            const defNode = terms.getElementsByTagName("definition")[0];
+            const explNode = terms.getElementsByTagName("explanation")[0];
+            const includeNodes = Array.from(
+              terms.getElementsByTagName("includes")
+            );
+
+            const lines = [];
+            if (defNode && defNode.textContent.trim()) {
+              lines.push("Definition: " + defNode.textContent.trim());
+            }
+            if (explNode && explNode.textContent.trim()) {
+              lines.push("Explanation: " + explNode.textContent.trim());
+            }
+            if (includeNodes.length) {
+              lines.push("Includes:");
+              includeNodes.forEach((inc) => {
+                const t = inc.textContent.trim();
+                if (t) lines.push(" - " + t);
+              });
+            }
+            let detail = lines.join("\n");
+            if (!detail) {
+              detail = "No additional detail in definitions XML.";
+            }
+
+            titleNodes.forEach((tNode) => {
+              const label = tNode.textContent.trim();
+              if (label && !definitionMaps[kind].has(label)) {
+                definitionMaps[kind].set(label, detail);
+              }
+            });
+          });
+        });
+      });
+    }
+
+    // -------- Index XML 解析 --------
+    function getDirectTitle(parent) {
+      for (const child of Array.from(parent.children)) {
+        if (child.tagName === "title") {
+          return child.textContent.trim();
+        }
+      }
+      return "";
+    }
+
+    function collectCodesFromNode(node) {
+      const set = new Set();
+      ["code", "codes", "tab"].forEach((tag) => {
+        const els = node.getElementsByTagName(tag);
+        Array.from(els).forEach((el) => {
+          const raw = el.textContent.trim();
+          if (!raw) return;
+          raw.split(/[,;\s]+/).forEach((c) => {
+            const t = c.trim().toUpperCase();
+            if (t) set.add(t);
+          });
+        });
+      });
+      return Array.from(set);
+    }
+
+    function traverseIndexNode(node, path, entries) {
+      const isMain = node.tagName === "mainTerm";
+      const isTerm = node.tagName === "term";
+
+      let newPath = path.slice();
+      if (isMain || isTerm) {
+        const t = getDirectTitle(node);
+        if (t) {
+          if (isMain) newPath = [t];
+          else newPath.push(t);
+        }
+      }
+
+      const codes = collectCodesFromNode(node);
+      if (codes.length) {
+        entries.push({
+          path: newPath.join(" > "),
+          codes,
+        });
+      }
+
+      Array.from(node.children).forEach((child) => {
+        if (child.tagName === "term") {
+          traverseIndexNode(child, newPath, entries);
+        }
+      });
+    }
+
+    function parseIndexXml(xmlText) {
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+      const parserError = xmlDoc.querySelector("parsererror");
+      if (parserError) {
+        throw new Error("Index XML 格式解析失敗，請確認檔案是否正確。");
+      }
+
+      const letters = Array.from(xmlDoc.getElementsByTagName("letter"));
+      const entries = [];
+
+      letters.forEach((letter) => {
+        const mainTerms = Array.from(letter.getElementsByTagName("mainTerm"));
+        mainTerms.forEach((mt) => {
+          traverseIndexNode(mt, [], entries);
+        });
+      });
+
+      return entries;
+    }
+
+    // -------- 上方完整 7 碼顯示 (已修正) --------
+    function updateSelectedCode() {
+      if (!currentPrefix) {
+        selectedCodeBox.textContent = "目前尚未選取完整 7 碼代碼。";
+        lastFullSelection = null;
+        return;
+      }
+
+      const { bodypart, approach, device, qualifier } = selections;
+
+      // 四欄都選完才組出完整 7 碼
+      if (!bodypart || !approach || !device || !qualifier) {
+        lastFullSelection = null;
+        // *** 修正後的程式碼：將未選完的部分也應用 highlight-code class ***
+        selectedCodeBox.innerHTML = 
+          `目前選取代碼：<span class="highlight-code">${currentPrefix}</span>` +
+          `<span class="highlight-code">${bodypart || '- '}${approach || '- '}${device || '- '}${qualifier || '- '}</span> ` +
+          `(未選完)`;
+        return;
+      }
+
+      const fullCode =
+        currentPrefix + bodypart + approach + device + qualifier;
+
+      if (icdCodeMap.has(fullCode)) {
+        const fullDesc = icdCodeMap.get(fullCode) || "";
+        
+        // 將描述按 "/" 分割成 7 個部分
+        const descParts = fullDesc.split(" / ");
+        
+        let displayDesc = "";
+        if (descParts.length >= 7) {
+          // 只選取 Operation (index 2) 到 Qualifier (index 6) 的描述
+          // 0: Section, 1: Body System, 2: Operation, 3: Body Part, 4: Approach, 5: Device, 6: Qualifier
+          const partsToDisplay = descParts.slice(2, 7); 
+          
+          // 使用特殊符號 $, 連接，稍後再替換成 HTML 標籤
+          displayDesc = partsToDisplay.join("$, "); 
+          
+          // 將特殊分隔符 $, 替換成帶有灰色字體 #6b7280 的 ", "
+          const coloredDesc = displayDesc.replace(
+            /\$, /g, 
+            '<span style="color: #C02626;">, </span>'
+          );
+          
+          // 保存最後一次「完整且存在於 Tables」的選取（供 + 加入購物車）
+          lastFullSelection = { code: fullCode, desc: displayDesc };
+
+          selectedCodeBox.innerHTML =
+            `目前選取代碼：<code class="highlight-code">${fullCode}</code>` +
+            `<button type="button" class="add-to-cart-btn" title="加入購物車（PCS）" aria-label="加入購物車（PCS）">+</button><br>` +
+            `<span style="font-size:0.83rem;color:#374151;">${coloredDesc}</span>`;
+            
+        } else {
+          // 如果描述分割後少於 7 個部分，顯示原始描述並帶有警告
+          selectedCodeBox.innerHTML =
+            `目前選取代碼：<code class="highlight-code">${fullCode}</code><br>` +
+            `<span style="font-size:0.83rem;color:#b91c1c;">警告：描述格式不完整。原始描述：${fullDesc}</span>`;
+        }
+
+      } else {
+        selectedCodeBox.innerHTML =
+        lastFullSelection = null;
+
+          `組合出的代碼：<code class="highlight-code">${fullCode}</code><br>` +
+          `<span style="font-size:0.83rem;color:#b91c1c;">此組合在 2023 PCS Tables 中不存在，請檢查選項。</span>`;
+      }
+    }
+    // -------- 上方完整 7 碼顯示 (修正結束) --------
+
+    function applyMostLikelyCombination() {
+      if (!currentPrefix || !validMap.has(currentPrefix)) return;
+      const vm = validMap.get(currentPrefix);
+      const combos = Array.from(vm.combos);
+
+      const { bodypart, approach, device, qualifier } = selections;
+
+      const candidates = combos.filter(code => {
+        return (!bodypart  || code[3] === bodypart) &&
+               (!approach || code[4] === approach) &&
+               (!device   || code[5] === device) &&
+               (!qualifier|| code[6] === qualifier);
+      });
+
+      if (!candidates.length) return;
+
+      const best = candidates[0];
+      const b4 = best[3];
+      const b5 = best[4];
+      const b6 = best[5];
+      const b7 = best[6];
+
+      if (!bodypart)  selections.bodypart  = b4;
+      if (!approach)  selections.approach  = b5;
+      if (!device)    selections.device    = b6;
+      if (!qualifier) selections.qualifier = b7;
+
+      ["bodypart","approach","device","qualifier"].forEach(field => {
+        const v = selections[field];
+        if (!v) return;
+        const input = document.querySelector(`input[name="${field}"][value="${v}"]`);
+        if (input && !input.disabled) {
+          input.checked = true;
+        }
+      });
+    }
+
+    // -------- 將不可能組合反灰 & disabled --------
+    function filterInvalidOptions() {
+      if (!currentPrefix || !validMap.has(currentPrefix)) return;
+      const vm = validMap.get(currentPrefix);
+
+      const bpSel = selections.bodypart;
+      const apSel = selections.approach;
+      const dvSel = selections.device;
+      const qSel  = selections.qualifier;
+
+      function isValidCombination(c4, c5, c6, c7) {
+        const testCode = currentPrefix + c4 + c5 + c6 + c7;
+        return vm.combos.has(testCode);
+      }
+
+      ["bodypart","approach","device","qualifier"].forEach(field => {
+        const radios = document.querySelectorAll(`input[name="${field}"]`);
+        radios.forEach(r => {
+          const val = r.value;
+          let ok = false;
+
+          const bodyCandidates     = (field==="bodypart"  ? [val] : bpSel ? [bpSel] : Array.from(vm.body));
+          const approachCandidates = (field==="approach"  ? [val] : apSel ? [apSel] : Array.from(vm.approach));
+          const deviceCandidates   = (field==="device"    ? [val] : dvSel ? [dvSel] : Array.from(vm.device));
+          const qualCandidates     = (field==="qualifier" ? [val] : qSel  ? [qSel]  : Array.from(vm.qualifier));
+
+          outer:
+          for (let c4 of bodyCandidates) {
+            for (let c5 of approachCandidates) {
+              for (let c6 of deviceCandidates) {
+                for (let c7 of qualCandidates) {
+                  if (isValidCombination(c4, c5, c6, c7)) {
+                    ok = true;
+                    break outer;
+                  }
+                }
+              }
+            }
+          }
+
+          r.disabled = !ok;
+          r.parentElement.style.opacity = ok ? 1 : 0.35;
+          if (!ok && r.checked) {
+            r.checked = false;
+          }
+        });
+      });
+    }
+
+    function applyMostLikelyAndFilter() {
+      filterInvalidOptions();
+      updateSelectedCode();
+    }
+
+    // -------- 渲染四欄表格 --------
+    function renderAxisTable(matched, prefix, totalMatched) {
+      if (!prefix) {
+        resetTablePlaceholder("請在上方輸入前 3 碼。");
+        setResultInfo("請輸入查詢條件。");
+        resetSummaryHeader();
+        resetSelections();
+        return;
+      }
+
+      if (!matched.length) {
+        resetTablePlaceholder("此前 3 碼沒有對應的組合。");
+        setResultInfo(`「${prefix}」查無結果。`);
+        summaryTitle.textContent = prefix;
+        summaryDetail.innerHTML = `
+          <div class="pcs-summary-row"><span><em>Section</em></span><span>—</span></div>
+          <div class="pcs-summary-row"><span><em>Body System</em></span><span>—</span></div>
+          <div class="pcs-summary-row"><span><em>Operation</em></span><span>—</span></div>
+        `;
+        resetSelections();
+        return;
+      }
+
+      const bodyParts = new Map();
+      const approaches = new Map();
+      const devices = new Map();
+      const qualifiers = new Map();
+      let headerInfo = null;
+
+      matched.forEach((item) => {
+        const code = item.code || "";
+        const parts = (item.desc || "").split(" / ");
+
+        if (!headerInfo && parts.length >= 3) {
+          headerInfo = {
+            secCode: code[0],
+            secText: parts[0] || "",
+            bsCode: code[1],
+            bsText: parts[1] || "",
+            opCode: code[2],
+            opText: parts[2] || "",
+          };
+        }
+
+        const c4 = code[3];
+        const c5 = code[4];
+        const c6 = code[5];
+        const c7 = code[6];
+
+        const bpText = parts[3] || "";
+        const apText = parts[4] || "";
+        const dvText = parts[5] || "";
+        const qText = parts[6] || "";
+
+        if (c4 && bpText && !bodyParts.has(c4)) bodyParts.set(c4, bpText);
+        if (c5 && apText && !approaches.has(c5)) approaches.set(c5, apText);
+        if (c6 && dvText && !devices.has(c6)) devices.set(c6, dvText);
+        if (c7 && qText && !qualifiers.has(c7)) qualifiers.set(c7, qText);
+      });
+
+      if (headerInfo) {
+        summaryTitle.textContent = prefix;
+        summaryDetail.innerHTML = `
+          <div class="pcs-summary-row">
+            <span><em>Section</em></span>
+            <span><span class="pcs-summary-code highlight-code">${headerInfo.secCode}</span>${headerInfo.secText}</span>
+          </div>
+          <div class="pcs-summary-row">
+            <span><em>Body System</em></span>
+            <span><span class="pcs-summary-code highlight-code">${headerInfo.bsCode}</span>${headerInfo.bsText}</span>
+          </div>
+          <div class="pcs-summary-row">
+            <span><em>Operation</em></span>
+            <span><span class="pcs-summary-code highlight-code">${headerInfo.opCode}</span>${headerInfo.opText}</span>
+          </div>
+        `;
+        // 依 headerInfo 反向同步下拉選單
+        syncDropdownFromHeader(headerInfo);
+      } else {
+        summaryTitle.textContent = prefix;
+      }
+
+      // 排序規則：先 1-9 再 A-Z
+      function sortAxisEntries(arr) {
+        return arr.sort(([a], [b]) => {
+          const isNumA = /^[0-9]$/.test(a);
+          const isNumB = /^[0-9]$/.test(b);
+          if (isNumA && !isNumB) return -1; // 數字優先
+          if (!isNumA && isNumB) return 1;  // 英文字母在數字之後
+          return a.localeCompare(b);        // 其餘照字母排序
+        });
+      }
+
+      const bpArr = sortAxisEntries(Array.from(bodyParts.entries()));
+      const apArr = sortAxisEntries(Array.from(approaches.entries()));
+      const dvArr = sortAxisEntries(Array.from(devices.entries()));
+      const qArr = sortAxisEntries(Array.from(qualifiers.entries()));
+
+      const maxLen = Math.max(
+        bpArr.length,
+        apArr.length,
+        dvArr.length,
+        qArr.length
+      );
+
+      if (maxLen === 0) {
+        resetTablePlaceholder(
+          "此前 3 碼沒有可組合的 Body Part / Approach / Device / Qualifier。"
+        );
+        return;
+      }
+
+      resultBody.innerHTML = "";
+
+      for (let i = 0; i < maxLen; i++) {
+        const [bpCode, bpText] = bpArr[i] || ["", ""];
+        const [apCode, apText] = apArr[i] || ["", ""];
+        const [dvCode, dvText] = dvArr[i] || ["", ""];
+        const [qCode, qText] = qArr[i] || ["", ""];
+
+        const bpTip = getDefinitionTooltip("bodypart", bpText);
+        const dvTip = getDefinitionTooltip("device", dvText);
+
+        const bpTooltipAttr =
+          bpCode && bpTip ? ` data-tooltip="${escapeHtmlAttr(bpTip)}"` : "";
+        const dvTooltipAttr =
+          dvCode && dvTip ? ` data-tooltip="${escapeHtmlAttr(dvTip)}"` : "";
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>
+            ${
+              bpCode
+                ? `<label class="option-row"${bpTooltipAttr}>
+                     <input type="radio" name="bodypart" value="${bpCode}">
+                     <span><span class="option-code highlight-code">${bpCode}</span>${bpText}</span>
+                   </label>`
+                : ""
+            }
+          </td>
+          <td>
+            ${
+              apCode
+                ? `<label class="option-row"${bpTooltipAttr}>
+                     <input type="radio" name="approach" value="${apCode}">
+                     <span><span class="option-code highlight-code">${apCode}</span>${apText}</span>
+                   </label>`
+                : ""
+            }
+          </td>
+          <td>
+            ${
+              dvCode
+                ? `<label class="option-row"${dvTooltipAttr}>
+                     <input type="radio" name="device" value="${dvCode}">
+                     <span><span class="option-code highlight-code">${dvCode}</span>${dvText}</span>
+                   </label>`
+                : ""
+            }
+          </td>
+          <td>
+            ${
+              qCode
+                ? `<label class="option-row">
+                     <input type="radio" name="qualifier" value="${qCode}">
+                     <span><span class="option-code highlight-code">${qCode}</span>${qText}</span>
+                   </label>`
+                : ""
+            }
+          </td>
+        `;
+        resultBody.appendChild(tr);
+      }
+
+      setResultInfo(
+        `前 3 碼「${prefix}」共有 ${totalMatched.toLocaleString()} 組 7 碼代碼；下表為其 Body Part / Approach / Device / Qualifier 選項。`
+      );
+
+      resetSelections();        // 清空選擇
+      filterInvalidOptions();   // 但此時皆為合法初始狀態
+    }
+
+    function doSearch() {
+      const q = searchInput.value.trim().toUpperCase();
+
+      if (!isLoaded) {
+        resetTablePlaceholder("請先等待 Tables XML 載入完成。");
+        setResultInfo("尚未載入 Tables XML，無法查詢。");
+        resetSummaryHeader();
+        resetSelections();
+        return;
+      }
+
+      if (!q || q.length < 3) {
+        resetTablePlaceholder("請輸入完整前 3 碼再進行查詢。");
+        setResultInfo("請輸入 3 碼的查詢條件。");
+        resetSummaryHeader();
+        resetSelections();
+        currentPrefix = "";
+        return;
+      }
+
+      const prefix = q.slice(0, 3);
+      currentPrefix = prefix;
+
+      const matched = icdCodes.filter((item) =>
+        (item.code || "").startsWith(prefix)
+      );
+
+      renderAxisTable(matched, prefix, matched.length);
+    }
+
+    // -------- Index 搜尋顯示 --------
+    function renderIndexResults(list, query) {
+      if (!indexLoaded) {
+        indexResultBox.innerHTML =
+          '<div class="index-result-empty">尚未載入 Index XML，無法使用處置名稱查詢。</div>';
+        return;
+      }
+
+      if (!query) {
+        indexResultBox.innerHTML =
+          '<div class="index-result-empty">請輸入處置名稱或關鍵字（至少 2 個字母）。</div>';
+        return;
+      }
+
+      if (!list.length) {
+        indexResultBox.innerHTML =
+          '<div class="index-result-empty">「' +
+          escapeHtmlAttr(query) +
+          '」查無對應項目。</div>';
+        return;
+      }
+
+      const limited = list.slice(0, 50);
+      const parts = [];
+      limited.forEach((item) => {
+        const codes = item.codes || [];
+        const codeHtml = codes
+          .map(
+            (c) =>
+              `<span class="index-code-chip highlight-code" data-code="${escapeHtmlAttr(
+                c
+              )}">${escapeHtmlAttr(c)}</span>`
+          )
+          .join("");
+        parts.push(`
+          <div class="index-result-item">
+            <div class="index-path">${escapeHtmlAttr(item.path)}</div>
+            <div class="index-codes">${codeHtml}</div>
+          </div>
+        `);
+      });
+
+      parts.push(
+        `<div class="index-tip">共找到 ${
+          list.length
+        } 筆，僅顯示前 ${limited.length} 筆。點選代碼膠囊可帶入前三碼查詢。</div>`
+      );
+
+      indexResultBox.innerHTML = parts.join("");
+    }
+
+    function searchIndex() {
+      const qRaw = indexSearchInput.value.trim();
+      if (!indexLoaded) {
+        renderIndexResults([], "");
+        return;
+      }
+      if (!qRaw || qRaw.length < 2) {
+        renderIndexResults([], "");
+        return;
+      }
+
+      const q = qRaw.toLowerCase();
+      const matches = indexEntries.filter((e) =>
+        e.path.toLowerCase().includes(q)
+      );
+      renderIndexResults(matches, qRaw);
+    }
+    
+    // -------- 雲端檔案載入函式 --------
+
+    /**
+     * 統一處理從 URL 載入 XML 檔案的函式。
+     * @param {string} url - 檔案的 URL
+     * @param {function(string): *} parser - 處理 XML 文本的解析函式
+     * @param {function(string, string)} statusUpdater - 更新狀態的函式 (text, class)
+     * @param {string} displayName - 顯示名稱 (e.g., "Tables")
+     * @returns {Promise<*>} 解析後的資料
+     */
+    async function fetchAndLoadFile(url, parser, statusUpdater, displayName) {
+      statusUpdater(`正在從雲端載入 ${displayName} 檔...`, "loading");
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP 錯誤! 狀態碼: ${response.status}`);
+        }
+        
+        const xmlText = await response.text();
+        const start = performance.now();
+        const data = parser(xmlText);
+        const end = performance.now();
+        const ms = Math.round(end - start);
+        
+        statusUpdater(`${displayName} 載入完成（約 ${ms} ms）。`, "ok");
+        return data;
+      } catch (err) {
+        console.error(`載入 ${displayName} 失敗:`, err);
+        statusUpdater(`${displayName} 載入失敗：` + (err.message || "未知錯誤"), "error");
+        throw err; // 向上拋出錯誤
+      }
+    }
+
+    syncMetaKeys();
+    updateCartCountsFromStorage();
+
+    // -------- 初始化載入所有檔案 --------
+    async function initializeLoad() {
+      // 1. 載入 Tables
+      try {
+        const codes = await fetchAndLoadFile(
+          TABLES_URL,
+          parseIcd10PcsXml,
+          setLoadStatus,
+          "Tables"
+        );
+        icdCodes = codes;
+        icdCodeMap = new Map();
+        codes.forEach((c) => icdCodeMap.set(c.code, c.desc));
+
+        buildValidMap();          // 合法組合表
+        buildHierarchyFromCodes(); // Section/BodySystem/Operation 階層
+        populateSectionSelect();   // 填入下拉
+
+        isLoaded = true;
+        searchInput.disabled = false;
+        setResultInfo(
+          `Tables 載入完成，共 ${codes.length.toLocaleString()} 筆 7 碼代碼。請輸入前 3 碼或使用下拉選單查詢。`
+        );
+        resetTablePlaceholder("請在上方輸入前 3 碼，或使用 Section / Body System / Operation 下拉選單。");
+        resetSelections();
+      } catch (e) {
+        // Tables 載入失敗，禁用查詢功能
+        searchInput.disabled = true;
+        currentPrefix = "";
+        resetSummaryHeader();
+        resetSelections();
+        resetTablePlaceholder("Tables 資料載入失敗，請檢查網路或檔案連結。");
+      }
+
+      // 2. 載入 Definitions
+      try {
+        await fetchAndLoadFile(
+          DEFINITIONS_URL,
+          parseDefinitionsXml,
+          setDefStatus,
+          "Definitions"
+        );
+        defLoaded = true;
+      } catch (e) {
+        defLoaded = false;
+        definitionMaps.bodypart.clear();
+        definitionMaps.device.clear();
+      }
+
+      // 3. 載入 Index
+      try {
+        const entries = await fetchAndLoadFile(
+          INDEX_URL,
+          parseIndexXml,
+          setIndexStatus,
+          "Index"
+        );
+        indexEntries = entries;
+        indexLoaded = true;
+        indexSearchInput.disabled = false;
+        renderIndexResults([], ""); // 清空提示
+      } catch (e) {
+        indexEntries = [];
+        indexLoaded = false;
+        indexSearchInput.disabled = true;
+        renderIndexResults([], "");
+      }
+    }
+    
+    // 查詢事件
+    searchInput.addEventListener("input", () => {
+      doSearch();
+    });
+    searchInput.addEventListener("keyup", (e) => {
+      if (e.key === "Enter") {
+        doSearch();
+      }
+    });
+
+    indexSearchInput.addEventListener("input", () => {
+      searchIndex();
+    });
+    indexSearchInput.addEventListener("keyup", (e) => {
+      if (e.key === "Enter") {
+        searchIndex();
+      }
+    });
+
+    // 下拉選單事件：Section / Body System / Operation
+    sectionSelect.addEventListener("change", () => {
+      const sCode = sectionSelect.value;
+      bodySystemSelect.value = "";
+      operationSelect.value = "";
+      if (!sCode) {
+        clearSelect(bodySystemSelect, "請先選擇 Section");
+        clearSelect(operationSelect, "請先選擇 Body System");
+        bodySystemSelect.disabled = true;
+        operationSelect.disabled = true;
+        return;
+      }
+      populateBodySystems(sCode);
+    });
+
+    bodySystemSelect.addEventListener("change", () => {
+      const sCode = sectionSelect.value;
+      const bsCode = bodySystemSelect.value;
+      operationSelect.value = "";
+      if (!sCode || !bsCode) {
+        clearSelect(operationSelect, "請先選擇 Body System");
+        operationSelect.disabled = true;
+        return;
+      }
+      populateOperations(sCode, bsCode);
+    });
+
+    operationSelect.addEventListener("change", () => {
+      const sCode = sectionSelect.value;
+      const bsCode = bodySystemSelect.value;
+      const opCode = operationSelect.value;
+      if (!sCode || !bsCode || !opCode) return;
+      const prefix = (sCode + bsCode + opCode).toUpperCase();
+      searchInput.value = prefix;
+      doSearch();
+    });
+
+        // -------- 自訂 Tooltip（顯示 Definitions 全內容，不被瀏覽器截斷） --------
+    let tooltipEl = null;
+
+    function ensureTooltipEl() {
+      if (tooltipEl) return;
+      tooltipEl = document.createElement("div");
+      tooltipEl.className = "custom-tooltip";
+      tooltipEl.style.display = "none";
+      document.body.appendChild(tooltipEl);
+    }
+
+    function showTooltipForLabel(labelEl) {
+      const text = labelEl.getAttribute("data-tooltip");
+      if (!text) return;
+      ensureTooltipEl();
+      tooltipEl.textContent = text;
+
+      const rect = labelEl.getBoundingClientRect();
+      const top = rect.bottom + window.scrollY + 6;
+      const left = rect.left + window.scrollX;
+
+      tooltipEl.style.top = top + "px";
+      tooltipEl.style.left = left + "px";
+      tooltipEl.style.display = "block";
+    }
+
+    function hideTooltip() {
+      if (tooltipEl) {
+        tooltipEl.style.display = "none";
+      }
+    }
+
+    // 事件委派：滑鼠移到有 data-tooltip 的 label 就顯示
+    // 滑鼠移到有 data-tooltip 的 label 就顯示
+    resultBody.addEventListener("mouseover", (e) => {
+      const label = e.target.closest("label[data-tooltip]");
+      if (label) {
+        showTooltipForLabel(label);
+      }
+    });
+
+    // 全頁監控滑鼠位置：不在 label 或 tooltip 上才關 tooltip
+    document.addEventListener("mousemove", (e) => {
+      if (!tooltipEl || tooltipEl.style.display === "none") return;
+
+      const overLabel = e.target.closest("label[data-tooltip]");
+      const inTooltip =
+        tooltipEl && (e.target === tooltipEl || tooltipEl.contains(e.target));
+
+    // 同時不在 label 也不在 tooltip 範圍，才關閉
+    if (!overLabel && !inTooltip) {
+      hideTooltip();
+    }
+  });
+
+    // 點 Index 結果代碼 → 帶入前三碼並查詢
+    indexResultBox.addEventListener("click", (e) => {
+      const t = e.target;
+      if (!t.classList.contains("index-code-chip")) return;
+      const codeRaw = (t.dataset.code || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+      if (!codeRaw || codeRaw.length < 3) return;
+      const prefix = codeRaw.slice(0, 3);
+      searchInput.value = prefix;
+      doSearch();
+    });
+
+    // 監聽各欄位 Clear 按鈕：只清除單一欄位的勾選
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest(".clear-btn");
+      if (!btn) return;
+      const field = btn.dataset.field;
+      if (!field) return;
+      clearSelection(field);
+    });
+
+
+    // 監聽下方四欄 radio 的變化，更新選擇 / 自動補齊 / 顯示完整 7 碼
+    resultBody.addEventListener("change", (e) => {
+      const input = e.target;
+      if (!input || input.tagName !== "INPUT" || input.type !== "radio") return;
+
+      const field = input.name;   // bodypart / approach / device / qualifier
+      const value = input.value;
+
+      if (!selections.hasOwnProperty(field)) return;
+      selections[field] = value;
+
+      // 自動補齊最可能合法組合 + 將不合法選項反灰
+      applyMostLikelyAndFilter();
+
+      // 更新上方完整 7 碼顯示
+      updateSelectedCode();
+    });
+
+    
+    // 點選「+」將目前完整 7 碼 PCS 加入購物車（獨立頁面）
+    selectedCodeBox.addEventListener("click", (e) => {
+      const btn = e.target.closest(".add-to-cart-btn");
+      if (!btn) return;
+      addSelectedPCSCodeToCart();
+    });
+
+
+    // 頁面載入時自動開始載入檔案
+    initializeLoad();
+  </script>
+</body>
+</html>
