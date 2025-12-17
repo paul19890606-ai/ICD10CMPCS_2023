@@ -948,6 +948,7 @@
     let allEntries = [];
     let activeTab = "disease";
     let lastTokens = [];
+    let lastMatchesCache = [];
 
     // ===== Shopping Cart =====
     const cartCount = document.getElementById("cartCount");
@@ -1564,6 +1565,13 @@ const statusIndex = document.getElementById("statusIndex");
 
       renderCart();
       renderCartPageFromStorage();
+    
+      // Tab buttons: click to switch pane and re-render
+      tabDisease && tabDisease.addEventListener(\"click\", () => switchTab(\"disease\"));
+      tabExternalBtn && tabExternalBtn.addEventListener(\"click\", () => switchTab(\"external\"));
+      tabDrugs && tabDrugs.addEventListener(\"click\", () => switchTab(\"drugs\"));
+      tabNeoplasm && tabNeoplasm.addEventListener(\"click\", () => switchTab(\"neoplasm\"));
+
     });
 
 
@@ -1927,6 +1935,7 @@ const statusIndex = document.getElementById("statusIndex");
       emptyHint.style.display = "none";
 
       const matches = preciseSearch(allEntries, query);
+      lastMatchesCache = matches;
       updateResultsFromMatches(matches);
     }
 
@@ -1967,7 +1976,47 @@ const statusIndex = document.getElementById("statusIndex");
         renderHierarchicalResults(externalList, "external");
       } else if (activeTab === "drugs") {
         renderDrugTable(drugsList);
-      } else if (activeTab === "neoplasm") {
+      } else if (activeTab === "neopl
+
+    // ===== Tab switching (fix: allow switching result panes after search) =====
+    function setActiveTabButton(tabName) {
+      document.querySelectorAll(".tab-button").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.tab === tabName);
+      });
+    }
+
+    function switchTab(tabName) {
+      activeTab = tabName;
+      setActiveTabButton(tabName);
+
+      // Show/Hide neoplasm filters
+      if (neoplasmFilters) {
+        neoplasmFilters.style.display = (tabName === "neoplasm") ? "flex" : "none";
+      }
+
+      // Update title bar immediately (render function will also control content)
+      if (resultsTitleBar) {
+        if (tabName === "disease") resultsTitleBar.textContent = "Index to Diseases and Injuries";
+        else if (tabName === "external") resultsTitleBar.textContent = "External Causes";
+        else if (tabName === "drugs") resultsTitleBar.textContent = "Drugs";
+        else if (tabName === "neoplasm") resultsTitleBar.textContent = "Neoplasms";
+      }
+
+      // Re-render using the last search result if available; otherwise compute from current query.
+      const query = (searchInput && searchInput.value) ? searchInput.value.trim() : "";
+      if (!query) return;
+
+      const matches = (lastMatchesCache && lastMatchesCache.length)
+        ? lastMatchesCache
+        : preciseSearch(allEntries, query);
+
+      // Keep cache in sync (in case we recomputed)
+      lastMatchesCache = matches;
+
+      updateResultsFromMatches(matches);
+    }
+
+asm") {
         renderNeoplasmTable(neoplasmList);
       }
     }
