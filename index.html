@@ -1,0 +1,2853 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>ICD-10-CM 2023 多來源搜尋</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f7;
+    }
+    .app {
+      max-width: 1800px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+      padding: 20px 24px 24px;
+    }
+    h1 {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 16px;
+    }
+
+    .top-search-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .search-block,
+    .tabular-block {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex: 1;
+      min-width: 260px;
+    }
+    .search-label,
+    .tabular-label {
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    #searchInput,
+    #tabularCodeInput {
+      flex: 1;
+      padding: 9px 11px;
+      border-radius: 999px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      outline: none;
+    }
+    #searchInput:focus,
+    #tabularCodeInput:focus {
+      border-color: #007aff;
+      box-shadow: 0 0 0 2px rgba(0,122,255,0.18);
+    }
+    #tabularViewBtn {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      background: #0052cc;
+      color: #fff;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    #tabularViewBtn:hover {
+      background: #003f99;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 10px;
+      margin-bottom: 6px;
+    }
+    .files-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px 16px;
+      margin-bottom: 14px;
+    }
+    .file-card {
+      border-radius: 10px;
+      border: 1px solid #eee;
+      padding: 8px 10px;
+      background: #fafafa;
+    }
+    .file-label {
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    .file-input {
+      width: 100%;
+      font-size: 11px;
+    }
+    .file-status {
+      font-size: 11px;
+      margin-top: 4px;
+      color: #888;
+    }
+
+    .tabs-row {
+      display: flex;
+      gap: 20px;
+      margin-top: 10px;
+      margin-bottom: 8px;
+    }
+    .tab-button {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 24px;
+      border-radius: 999px;
+      border: 1px solid #8ec3f7;
+      background: #ffffff;
+      cursor: pointer;
+      font-size: 16px;
+      color: #2b83d1;
+      min-width: 0;
+    }
+    .tab-button .label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .tab-button .count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 8px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      font-size: 13px;
+      background: #9ca3af;
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+    .tab-button.active {
+      background: #e7f2ff;
+      border-color: #5aa7e0;
+      color: #1d4ed8;
+    }
+    .tab-button.active .count {
+      background: #9ca3af;
+      color: #ffffff;
+    }
+
+.neoplasm-filters {
+      display: none;
+      margin-bottom: 8px;
+      font-size: 12px;
+      color: #444;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      user-select: none;
+      background: #fff;
+    }
+    .chip input {
+      transform: scale(0.9);
+    }
+    .chip span {
+      font-size: 12px;
+    }
+
+    .tabular-result {
+      margin-top: 8px;
+      margin-bottom: 4px;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: #f3f7ff;
+      border: 1px solid #d3e0ff;
+      display: none;
+    }
+    .tabular-result strong {
+      color: #0052cc;
+    }
+
+    .tag-hint {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .header-row {
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .pill {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #f0f4ff;
+      font-size: 11px;
+      color: #3f5cff;
+    }
+
+    .results-wrapper {
+      border-radius: 10px;
+      border: 1px solid #e0e4ef;
+      background: #fafbff;
+      padding: 0;
+      overflow: hidden;
+      max-height: 420px;
+      display: flex;
+      flex-direction: column;
+    }
+    .results-title-bar {
+      background: #0052cc;
+      color: #fff;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .results-scroll {
+      padding: 6px 12px 10px;
+      overflow-y: auto;
+      background: #fff;
+      flex: 1;
+    }
+
+    .root-list {
+      list-style-type: circle;
+      padding-left: 20px;
+      margin: 0;
+    }
+    .root-item {
+      margin-bottom: 6px;
+      margin: 4px 0 6px;
+    }
+    .root-line {
+      line-height: 2.0;
+      font-size: 14px;
+      cursor: default;
+    }
+    .root-line .code {
+      margin-left: 6px;
+      color: #0052cc;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .child-list {
+      list-style-type: square;
+      color: #2e7d32;
+      padding-left: 18px;
+      margin-top: 4px;
+    }
+    .see-link {
+      color: #1d4ed8;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+.child-item {
+      /* existing styles */
+      margin: 2px 0;
+      color: #2e7d32;
+    }
+    .child-item span.text {
+      color: #1f2933;
+      cursor: pointer;
+    }
+    .child-item span.code {
+      color: #0052cc;
+      font-weight: 600;
+      margin-left: 6px;
+      cursor: pointer;
+    }
+    .child-item:hover span.text {
+      text-decoration: underline;
+    }
+
+    .neo-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .neo-table thead th {
+      background: #f3f4f6;
+      border-bottom: 1px solid #d1d5db;
+      padding: 6px 8px;
+      text-align: left;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .neo-table tbody tr:nth-child(odd) {
+      background: #f9fafb;
+    }
+    .neo-table tbody tr:nth-child(even) {
+      background: #ffffff;
+    }
+    .neo-table tbody td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: top;
+    }
+    .neo-term-cell {
+      color: #1f2933;
+    }
+    .neo-term-main {
+      color: #166534;
+      font-weight: 600;
+    }
+    .neo-code {
+      color: #0052cc;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .neo-code:hover {
+      text-decoration: underline;
+    }
+
+    mark {
+      background-color: #ffeb3b;
+      padding: 0 0.5px;
+    }
+
+    .empty-hint {
+      font-size: 13px;
+      color: #888;
+      margin-top: 8px;
+    }
+
+    .tabular-detail-container {
+      margin-top: 8px;
+      margin-left: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .tabular-detail-card {
+      background: #f3f7ff;
+      border-radius: 8px;
+      padding: 8px 10px;
+      border: 1px solid #d3e0ff;
+      font-size: 13px;
+    }
+    .tabular-detail-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .tabular-detail-title.instruction {
+      color: #1d4ed8;
+    }
+    .tabular-detail-title.includes {
+      color: #166534;
+    }
+    .tabular-detail-title.ex1,
+    .tabular-detail-title.ex2 {
+      color: #b91c1c;
+    }
+
+    /* ===== Tabular Modal ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .modal-overlay.show {
+      display: flex;
+    }
+    .modal-content {
+      background: #ffffff;
+      border-radius: 12px;
+      max-width: 1500px;
+      width: 90%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.25);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px 6px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .modal-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .modal-close {
+      border: none;
+      background: transparent;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      color: #666;
+      padding: 0 4px;
+    }
+    .modal-close:hover {
+      color: #000;
+    }
+    .modal-body {
+      padding: 10px 16px 12px;
+      overflow-y: auto;
+      font-size: 13px;
+    }
+    .modal-section-header {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .modal-path-line {
+      color: #166534;
+      margin-bottom: 2px;
+    }
+    .modal-code-list {
+      margin-top: 6px;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 6px;
+    }
+    .modal-code-row {
+      padding: 3px 4px;
+      border-radius: 4px;
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+    }
+    .modal-code-row.highlight {
+      background: #fff6bf;
+    }
+    .modal-code-row .code {
+      color: #0052cc;
+      font-weight: 600;
+      min-width: 70px;
+      cursor: pointer;
+    }
+    .modal-code-row .desc {
+      color: #1f2933;
+      flex: 1;
+    }
+  
+    .green-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#22c55e;margin-right:6px;vertical-align:middle;}
+    .loading-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#9ca3af;margin-right:6px;vertical-align:middle;animation:pulse 1.2s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+
+    /* ===== Cart / Add-to-cart button ===== */
+    .cart-panel{
+      margin: 10px 0 14px;
+      border: 1px solid #e0e4ef;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 10px 12px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .cart-header{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      width:100%;
+      justify-content:space-between;
+    }
+    .cart-title{
+      font-size: 13px;
+      font-weight: 700;
+      color:#111827;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .cart-count{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:22px;
+      height:22px;
+      border-radius:999px;
+      padding:0 8px;
+      background:#0ea5e9;
+      color:#fff;
+      font-size:12px;
+      font-weight:700;
+    }
+    .cart-actions{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .cart-btn{
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background:#fff;
+      color:#111827;
+      font-size: 12px;
+      cursor:pointer;
+    }
+    .cart-btn:hover{ background:#f3f4f6; }
+    .cart-list{
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      margin-top:6px;
+    }
+    .cart-item{
+      display:flex;
+      gap:10px;
+      align-items:baseline;
+      padding:6px 8px;
+      border-radius:10px;
+      border:1px solid #eef2ff;
+      background:#f8fafc;
+    }
+    .cart-item .code{
+      color:#0052cc;
+      font-weight:700;
+      min-width:78px;
+      cursor:pointer;
+    }
+    .cart-item .desc{
+      color:#1f2933;
+      flex:1;
+      font-size:12px;
+    }
+    .cart-item .remove{
+      border:none;
+      background:transparent;
+      cursor:pointer;
+      color:#b91c1c;
+      font-size:14px;
+      line-height:1;
+      padding:2px 6px;
+    }
+    .add-to-cart-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:20px;
+      height:20px;
+      border-radius:6px;
+      border:1px solid #93c5fd;
+      background:#e7f2ff;
+      color:#1d4ed8;
+      font-weight:800;
+      font-size:14px;
+      cursor:pointer;
+      margin-right:6px;
+      vertical-align:middle;
+      user-select:none;
+    }
+    .add-to-cart-btn:hover{ background:#dbeafe; }
+    .add-to-cart-btn[disabled]{
+      opacity:.4;
+      cursor:not-allowed;
+    }
+
+
+    /* ===== Cart Tab Page (MRN/Admission + CM/PCS slots) ===== */
+    .cart-page{
+      margin-top: 10px;
+    }
+    .cart-form{
+      border: 1px solid #e0e4ef;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .cart-form-row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-bottom: 10px;
+    }
+    .cart-label{
+      font-size: 13px;
+      color:#111827;
+      white-space:nowrap;
+      margin-right: 4px;
+    }
+    .cart-input{
+      padding: 7px 10px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 13px;
+      min-width: 220px;
+      outline:none;
+    }
+    .cart-input:focus{
+      border-color: #007aff;
+      box-shadow: 0 0 0 2px rgba(0,122,255,0.18);
+    }
+    .cart-grids{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 980px){
+      .cart-grids{ grid-template-columns: 1fr; }
+    }
+    .cart-grid-block{
+      border: 1px solid #eef2ff;
+      background: #fafbff;
+      border-radius: 12px;
+      padding: 10px;
+    }
+    .cart-grid-title{
+      font-size: 13px;
+      font-weight: 700;
+      color:#111827;
+      margin-bottom: 8px;
+    }
+    .code-grid{
+      display:grid;
+      grid-template-columns: repeat(5, minmax(120px, 1fr));
+      gap: 8px;
+    }
+    .code-cell{
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .code-cell .idx{
+      font-size: 12px;
+      color:#374151;
+      width: 22px;
+      text-align:right;
+      flex:0 0 22px;
+    }
+    .code-cell input{
+      width: 100%;
+      padding: 6px 8px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 12px;
+      outline:none;
+    }
+    .code-cell input:focus{
+      border-color: #007aff;
+      box-shadow: 0 0 0 2px rgba(0,122,255,0.18);
+    }
+    .cart-panel--in-tab{
+      margin: 0;
+    }
+
+
+  /* ===== 7th character picker (Tabular modal) ===== */
+.seven-picker {
+  margin: 6px 0 0 34px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.seven-picker .label {
+  font-size: 12px;
+  color: #374151;
+  margin-right: 6px;
+  white-space: nowrap;
+}
+.seven-btn {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #93c5fd;
+  background: #e7f2ff;
+  color: #1d4ed8;
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+.seven-btn:hover { background: #dbeafe; }
+.seven-btn.cancel {
+  border-color: #d1d5db;
+  background: #fff;
+  color: #374151;
+}
+.seven-btn.cancel:hover { background: #f3f4f6; }
+
+
+/* ===== 7th character hover tooltip ===== */
+.seven-tooltip{
+  position: fixed;
+  z-index: 100000;
+  display: none;
+  padding: 6px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.15);
+  background: rgba(17,24,39,0.96);
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 1.3;
+  max-width: 380px;
+  box-shadow: 0 14px 34px rgba(0,0,0,0.25);
+  pointer-events: none;
+}
+
+
+
+/* ===== Shared header (top-right buttons) ===== */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+.topbar-title{
+  font-size:18px;
+  font-weight:700;
+  white-space:nowrap;
+}
+.topbar-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.linkbtn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid #d1d5db;
+  background:#fff;
+  color:#111827;
+  font-size:12px;
+  line-height:1;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.linkbtn:hover{ background:#f3f4f6; }
+.linkbtn--cart{
+  border-color:#e0e4ef;
+  background:#fafbff;
+  cursor:default;
+}
+.cart-label{
+  font-size:11px;
+  color:#374151;
+  margin-left:2px;
+}
+.count-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:22px;
+  height:22px;
+  padding:0 7px;
+  border-radius:999px;
+  background:#0ea5e9;
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+}
+
+</style>
+</head>
+<body>
+  <div class="app">
+<div class="topbar">
+  <div class="topbar-title">購物車清單列表</div>
+  <div class="topbar-actions">
+    <a class="linkbtn" href="index.html" target="_blank" rel="noopener">開啟 CM 搜尋</a>
+    <a class="linkbtn" href="PCSheader.html" target="_blank" rel="noopener">開啟 PCS 搜尋</a>
+    <div class="linkbtn linkbtn--cart" aria-label="Shopping cart counts">
+      購物車
+      <span class="cart-label">CM</span> <span class="count-badge" id="cartCMCount">0</span>
+      <span class="cart-label">PCS</span> <span class="count-badge" id="cartPCSCount">0</span>
+    </div>
+  </div>
+</div>
+
+<!-- 檔案上傳 -->
+    <div class="files-grid">
+      <div class="file-card">
+        <div class="file-label"><span id="dotIndex"></span>疾病與損傷<code></code></div>
+<div id="statusIndex" class="file-status"></div>
+      </div>
+      <div class="file-card">
+        <div class="file-label"><span id="dotNeoplasm"></span>腫瘤 Neoplasm<code></code></div>
+<div id="statusNeoplasm" class="file-status"></div>
+      </div>
+      <div class="file-card">
+        <div class="file-label"><span id="dotExternal"></span>外因 External Cause<code></code></div>
+<div id="statusExternal" class="file-status"></div>
+      </div>
+      <div class="file-card">
+        <div class="file-label"><span id="dotDrug"></span>藥物/化學品<code></code></div>
+<div id="statusDrug" class="file-status"></div>
+      </div>
+      <div class="file-card">
+        <div class="file-label"><span id="dotTabular"></span>Tabular<code></code></div>
+<div id="statusTabular" class="file-status"></div>
+      </div>
+    </div>
+
+<div class="top-search-row">
+      <div class="search-block">
+        <span class="search-label">Enter Search Term(s):</span>
+        <input id="searchInput" type="text"
+          placeholder="例如：diabet hypergly、abdominal pain、acetaminophen、R79.1..."
+          autocomplete="off" />
+      </div>
+      <div class="tabular-block">
+        <span class="tabular-label">Find code in Tabular:</span>
+        <input id="tabularCodeInput" type="text" placeholder="例如：E11.9" autocomplete="off" />
+        <button id="tabularViewBtn">View</button>
+      </div>
+    </div>
+
+    <div class="tabs-row">
+      <button class="tab-button active" data-tab="disease" id="tabDisease">
+        Disease Index <span class="count" id="countDisease">0</span>
+      </button>
+      <button class="tab-button" data-tab="external" id="tabExternal">
+        External Causes <span class="count" id="countExternal">0</span>
+      </button>
+      <button class="tab-button" data-tab="drugs" id="tabDrugs">
+        Drugs <span class="count" id="countDrugs">0</span>
+      </button>
+      <button class="tab-button" data-tab="neoplasm" id="tabNeoplasm">
+        Neoplasms <span class="count" id="countNeoplasm">0</span>
+      </button>
+
+    <div style="display:flex; justify-content:flex-end; margin: 4px 2px 10px;">
+      <a id="openCartPage" href="cart_header.html" target="_blank"
+         style="font-size:13px; text-decoration:none; color:#0052cc;">
+        Shopping Cart (<span id="cartBadge">0</span>)
+      </a>
+    </div>
+</div>
+
+    <div class="neoplasm-filters" id="neoplasmFilters">
+      <span>Neoplasm 行為過濾：</span>
+      <label class="chip"><input id="neoAny" type="checkbox" checked /><span>不限</span></label>
+      <label class="chip"><input id="neo2" type="checkbox" /><span>惡性原發</span></label>
+      <label class="chip"><input id="neo3" type="checkbox" /><span>惡性續發</span></label>
+      <label class="chip"><input id="neo4" type="checkbox" /><span>原位癌</span></label>
+      <label class="chip"><input id="neo5" type="checkbox" /><span>良性</span></label>
+      <label class="chip"><input id="neo6" type="checkbox" /><span>行為不確定</span></label>
+      <label class="chip"><input id="neo7" type="checkbox" /><span>行為未明</span></label>
+    </div>
+
+    
+    <div id="searchArea">
+      <div class="tabular-result" id="tabularResult"></div>
+
+      <div class="tag-hint" id="tagHint"></div>
+
+      <div class="header-row">
+        <span id="resultCount"></span>
+        <span id="dataCount"></span>
+      </div>
+
+      <div class="results-wrapper" id="resultsWrapper">
+        <div class="results-title-bar" id="resultsTitleBar">
+          Index to Diseases and Injuries
+        </div>
+        <div class="results-scroll" id="resultsScroll"></div>
+      </div>
+
+      <div id="emptyHint" class="empty-hint"></div>
+    </div>
+
+    
+
+<!-- Tabular Modal -->
+
+  <div id="tabularModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div id="tabularModalTitle" class="modal-title"></div>
+        <button id="tabularModalClose" class="modal-close">&times;</button>
+      </div>
+      <div id="tabularModalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    function normalizeText(str) {
+      return (str || "")
+        .replace(/\s+/g, " ")
+        .replace(/\u00A0/g, " ")
+        .trim();
+    }
+    function normalizeCodeDash(code) {
+      if (!code) return "";
+      return code.replace(/-+$/, "");
+    }
+    function escapeRegExp(text) {
+      return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+    function highlightText(text, tokens) {
+      if (!tokens || !tokens.length) return text;
+      let result = text;
+      tokens.forEach((t) => {
+        if (!t) return;
+        const pattern = new RegExp("(" + escapeRegExp(t) + ")", "ig");
+        result = result.replace(pattern, "<mark>$1</mark>");
+      });
+      return result;
+    }
+
+    let entriesIndex = [];
+    let entriesExternal = [];
+    let entriesNeoplasm = [];
+    let entriesDrug = [];
+    let entriesTabular = [];
+    let tabularXmlDoc = null;
+    let allEntries = [];
+    let activeTab = "disease";
+    let lastTokens = [];
+
+    // ===== Shopping Cart =====
+    const cartCount = document.getElementById("cartCount");
+    const cartList = document.getElementById("cartList");
+    const cartCopyBtn = document.getElementById("cartCopyBtn");
+    const cartClearBtn = document.getElementById("cartClearBtn");
+
+    const searchArea = document.getElementById("searchArea");
+    const cartPage = document.getElementById("cartPage");
+    const mrnInput = document.getElementById("mrnInput");
+    const admInput = document.getElementById("admInput");
+    const cmGrid = document.getElementById("cmGrid");
+    const pcsGrid = document.getElementById("pcsGrid");
+
+
+    let cartItems = [];
+    try {
+      const saved = localStorage.getItem("icd_cart_items");
+      if (saved) cartItems = JSON.parse(saved) || [];
+    } catch (e) {}
+
+    function updateCartCountsFromStorage(){
+      let items = [];
+      try{
+        const raw = localStorage.getItem("icd_cart_items");
+        if(raw) items = JSON.parse(raw) || [];
+      }catch(e){}
+      let cm = 0, pcs = 0;
+      (items||[]).forEach(it=>{
+        const t = String(it?.type||"").toUpperCase();
+        if(t === "CM") cm++;
+        else if(t === "PCS") pcs++;
+        else{
+          const code = String(it?.code||"");
+          if(code.includes(".")) cm++; else pcs++;
+        }
+      });
+      const cmEl = document.getElementById("cartCMCount");
+      const pcsEl = document.getElementById("cartPCSCount");
+      if(cmEl) cmEl.textContent = String(cm);
+      if(pcsEl) pcsEl.textContent = String(pcs);
+    }
+
+    function persistCart() {
+      try { localStorage.setItem("icd_cart_items", JSON.stringify(cartItems)); } catch (e) {}
+    }
+
+    
+function renderCart() {
+      updateCartCountsFromStorage();
+  // Main page shows only the count badge; the full cart UI lives in a separate page.
+  const badge = document.getElementById("cartBadge");
+  if (badge) badge.textContent = String(cartItems.length);
+
+  // Keep these for backward compatibility if elements exist.
+  if (cartCount) cartCount.textContent = String(cartItems.length);
+  if (typeof countCart !== "undefined" && countCart) countCart.textContent = String(cartItems.length);
+
+  if (!cartList) return;
+
+  cartList.innerHTML = "";
+  if (!cartItems.length) {
+    const empty = document.createElement("div");
+    empty.style.fontSize = "12px";
+    empty.style.color = "#6b7280";
+    empty.textContent = "尚無加入代碼。僅「完整碼（leaf / billable）」會顯示 + 按鈕。";
+    cartList.appendChild(empty);
+    return;
+  }
+  cartItems.forEach((it) => {
+    const row = document.createElement("div");
+    row.className = "cart-item";
+
+    const codeEl = document.createElement("span");
+    codeEl.className = "code";
+    codeEl.textContent = it.code;
+    codeEl.title = "Click to view in Tabular";
+    codeEl.addEventListener("click", () => openTabularModal(it.code));
+
+    const descEl = document.createElement("span");
+    descEl.className = "desc";
+    descEl.textContent = it.desc || "";
+
+    const rm = document.createElement("button");
+    rm.className = "remove";
+    rm.title = "Remove";
+    rm.textContent = "×";
+    rm.addEventListener("click", () => {
+      cartItems = cartItems.filter((x) => x.code !== it.code);
+      removeFromSlots(it.code);
+      persistCart();
+      updateCartCountsFromStorage();
+    renderCart();
+});
+
+    row.appendChild(codeEl);
+    row.appendChild(descEl);
+    row.appendChild(rm);
+    cartList.appendChild(row);
+  });
+}
+
+
+    // ===== Cart slots (MRN/Admission + 20 CM + 20 PCS) =====
+    const SLOT_COUNT = 20;
+    const LS_KEYS = {
+      mrn: "icd_cart_mrn",
+      adm: "icd_cart_adm",
+      cm: "icd_cart_cm_slots",
+      pcs: "icd_cart_pcs_slots",
+    };
+
+function loadSlotsFromStorage(key) {
+  let arr = [];
+  try {
+    const raw = localStorage.getItem(key);
+    if (raw) arr = JSON.parse(raw) || [];
+  } catch (e) {}
+  // Normalize to fixed length
+  const out = new Array(SLOT_COUNT).fill("");
+  for (let i = 0; i < Math.min(arr.length, SLOT_COUNT); i++) out[i] = arr[i] || "";
+  return out;
+}
+
+function fillNextEmptySlotStorage(slotType, code) {
+  try {
+    const key = slotType === "PCS" ? LS_KEYS.pcs : LS_KEYS.cm;
+    const arr = loadSlotsFromStorage(key);
+    const upper = (code || "").toUpperCase();
+    // Avoid duplicate in slots
+    if (arr.some((x) => String(x || "").toUpperCase() === upper)) return true;
+    const idx = arr.findIndex((x) => !String(x || "").trim());
+    if (idx < 0) return false;
+    arr[idx] = code;
+    localStorage.setItem(key, JSON.stringify(arr));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+
+
+    function buildSlotGrid(containerEl, prefix) {
+      if (!containerEl) return [];
+      containerEl.innerHTML = "";
+      const inputs = [];
+      for (let i = 1; i <= SLOT_COUNT; i++) {
+        const cell = document.createElement("div");
+        cell.className = "code-cell";
+
+        const idx = document.createElement("span");
+        idx.className = "idx";
+        idx.textContent = String(i);
+
+        const inp = document.createElement("input");
+        inp.type = "text";
+        inp.autocomplete = "off";
+        inp.spellcheck = false;
+        inp.id = `${prefix}${i}`;
+        inp.addEventListener("input", persistCartPageToStorage);
+
+        cell.appendChild(idx);
+        cell.appendChild(inp);
+        containerEl.appendChild(cell);
+        inputs.push(inp);
+      }
+      return inputs;
+    }
+
+    let cmInputs = [];
+    let pcsInputs = [];
+
+    function persistCartPageToStorage() {
+      try {
+        if (mrnInput) localStorage.setItem(LS_KEYS.mrn, mrnInput.value || "");
+        if (admInput) localStorage.setItem(LS_KEYS.adm, admInput.value || "");
+        if (cmInputs.length) localStorage.setItem(LS_KEYS.cm, JSON.stringify(cmInputs.map((i) => i.value || "")));
+        if (pcsInputs.length) localStorage.setItem(LS_KEYS.pcs, JSON.stringify(pcsInputs.map((i) => i.value || "")));
+      } catch (e) {}
+    }
+
+    function renderCartPageFromStorage() {
+      // Safe to call multiple times; grid is created once in DOMContentLoaded.
+      try {
+        if (mrnInput) mrnInput.value = localStorage.getItem(LS_KEYS.mrn) || "";
+        if (admInput) admInput.value = localStorage.getItem(LS_KEYS.adm) || "";
+
+        const cmSaved = JSON.parse(localStorage.getItem(LS_KEYS.cm) || "[]");
+        const pcsSaved = JSON.parse(localStorage.getItem(LS_KEYS.pcs) || "[]");
+
+        cmInputs.forEach((inp, idx) => { inp.value = cmSaved[idx] || inp.value || ""; });
+        pcsInputs.forEach((inp, idx) => { inp.value = pcsSaved[idx] || inp.value || ""; });
+      } catch (e) {}
+    }
+
+    function clearCartPageSlots() {
+      cmInputs.forEach((i) => (i.value = ""));
+      pcsInputs.forEach((i) => (i.value = ""));
+      if (mrnInput) mrnInput.value = "";
+      if (admInput) admInput.value = "";
+      persistCartPageToStorage();
+    }
+
+    function classifyCodeToSlot(code) {
+      const c = (normalizeCodeDash(code) || "").toUpperCase();
+      if (!c) return "cm";
+
+      // Heuristic:
+      // - ICD-10-CM usually contains a dot OR starts with a letter (A-Z).
+      // - ICD-10-PCS is typically 7 characters, no dot (alphanumeric).
+      const isPCS = !c.includes(".") && /^[0-9A-HJ-NP-Z]{7}$/.test(c); // excludes I and O in PCS standard
+      return isPCS ? "pcs" : "cm";
+    }
+
+    function fillNextEmptySlot(slotType, code) {
+      const list = slotType === "pcs" ? pcsInputs : cmInputs;
+      for (const inp of list) {
+        if (!inp.value) {
+          inp.value = code;
+          persistCartPageToStorage();
+          return true;
+        }
+      }
+      return false;
+    }
+
+    
+function removeFromSlots(code) {
+      const c = (normalizeCodeDash(code) || "").toUpperCase();
+      if (!c) return;
+      try {
+        const cm = loadSlotsFromStorage(LS_KEYS.cm);
+        const pcs = loadSlotsFromStorage(LS_KEYS.pcs);
+        const i1 = cm.findIndex((x) => String(x || "").toUpperCase() === c);
+        if (i1 >= 0) {
+          cm[i1] = "";
+          localStorage.setItem(LS_KEYS.cm, JSON.stringify(cm));
+          return;
+        }
+        const i2 = pcs.findIndex((x) => String(x || "").toUpperCase() === c);
+        if (i2 >= 0) {
+          pcs[i2] = "";
+          localStorage.setItem(LS_KEYS.pcs, JSON.stringify(pcs));
+        }
+      } catch (e) {}
+    }
+
+    function addToCart(code, desc) {
+      const clean = normalizeCodeDash(code);
+      if (!clean) return;
+      if (cartItems.some((x) => x.code === clean)) return;
+      cartItems.push({ code: clean, desc: (desc || "").trim() });
+      // Auto-fill into Cart tab slots
+      const slotType = classifyCodeToSlot(clean);
+      const ok = fillNextEmptySlotStorage(slotType, clean);
+      if (!ok) {
+        // Slots full; keep in cart list but notify user
+        console.warn("No empty slot for", slotType, clean);
+      }
+      persistCart();
+      renderCart();
+      persistCartPageToStorage();
+    }
+
+    cartCopyBtn && cartCopyBtn.addEventListener("click", async () => {
+      if (!cartItems.length) return;
+      const text = cartItems.map((x) => x.code + (x.desc ? ("\t" + x.desc) : "")).join("\n");
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (e) {
+        // fallback
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+    });
+
+    cartClearBtn && cartClearBtn.addEventListener("click", () => {
+      cartItems = [];
+      persistCart();
+      renderCart();
+      clearCartPageSlots();
+    });
+
+    // ===== Tabular completeness / 7th character meta =====
+// key: compact code (no dot) -> {
+//   hasChild: boolean,
+//   requires7th: boolean,
+//   allowed7th: string[],
+//   placeholderCount: number   // number of 'X' needed before 7th char (for base code)
+// }
+let tabularCodeMeta = new Map();
+
+function codeKey(code) {
+  return (normalizeCodeDash(code) || "").toUpperCase().replace(/\./g, "");
+}
+
+function rebuildTabularMeta() {
+  tabularCodeMeta = new Map();
+  if (!tabularXmlDoc) return;
+
+  // Traverse the Tabular diag tree and inherit 7th-character rules from ancestors.
+  // In ICD-10-CM, many categories define a 7th character at a parent code (e.g., S30),
+  // which applies to all child codes unless overridden.
+  const chapters = Array.from(tabularXmlDoc.getElementsByTagName("chapter"));
+
+  function parse7thRuleFromDiag(diagEl) {
+    // Determine whether this node declares that a 7th character is required,
+    // and (if provided in Tabular) which 7th characters are allowed + their descriptions.
+    const sevenChrNoteEl = diagEl.querySelector("sevenChrNote");
+    const has7thNote =
+      !!sevenChrNoteEl ||
+      Array.from(diagEl.getElementsByTagName("note")).some((n) =>
+        /7th\s+character/i.test(n.textContent || "")
+      );
+
+    // In official ICD-10-CM Tabular XML, the allowed chars + text are defined on:
+    // <sevenChrDef><extension char="A">...</extension>...</sevenChrDef>
+    const chars = [];
+    const descMap = {};
+    Array.from(diagEl.getElementsByTagName("sevenChrDef")).forEach((defEl) => {
+      Array.from(defEl.getElementsByTagName("extension")).forEach((extEl) => {
+        const ch = String(extEl.getAttribute("char") || "").trim().toUpperCase();
+        const desc = normalizeText(extEl.textContent || "");
+        if (!ch) return;
+        chars.push(ch);
+        if (!descMap[ch] && desc) descMap[ch] = desc; // keep first
+      });
+    });
+
+    // De-duplicate while preserving order
+    const seen = new Set();
+    const allowed7th = chars.filter((c) => (seen.has(c) ? false : (seen.add(c), true)));
+
+    return has7thNote ? { requires7th: true, allowed7th, allowed7thDesc: descMap } : null;
+  }
+
+  function getCodeFromDiag(diagEl) {
+    const nameEl = diagEl.querySelector("name");
+    return normalizeText(nameEl ? nameEl.textContent : "");
+  }
+
+  function computePlaceholderCount(codeStr) {
+    // placeholderCount = how many characters are needed (including the 7th char itself)
+    // to reach a 7-character code (excluding the dot).
+    const compactLen = (codeStr || "").toUpperCase().replace(/\./g, "").length;
+    return Math.max(0, 7 - compactLen);
+  }
+
+  function walkDiag(diagEl, inheritedRule) {
+    const code = getCodeFromDiag(diagEl);
+    if (!code) return;
+
+    const key = codeKey(code);
+    const hasChild = Array.from(diagEl.children).some((el) => el.tagName === "diag");
+
+    const ownRule = parse7thRuleFromDiag(diagEl);
+    // If this node only has a 7th-character note but does not define its own allowed set,
+    // keep inheriting the allowed set from ancestors.
+    let rule = inheritedRule;
+    if (ownRule) {
+      if (ownRule.allowed7th && ownRule.allowed7th.length) rule = ownRule;
+      else if (inheritedRule) rule = inheritedRule;
+      else rule = ownRule;
+    }
+
+    tabularCodeMeta.set(key, {
+      hasChild,
+      requires7th: !!(rule && rule.requires7th),
+      allowed7th: rule ? rule.allowed7th : [],
+      allowed7thDesc: rule ? (rule.allowed7thDesc || {}) : {},
+      placeholderCount: rule && rule.requires7th ? computePlaceholderCount(code) : 0,
+    });
+
+    Array.from(diagEl.children)
+      .filter((el) => el.tagName === "diag")
+      .forEach((child) => walkDiag(child, rule));
+  }
+
+  chapters.forEach((ch) => {
+    // Some diags are direct children of chapter, others under section.
+    Array.from(ch.children)
+      .filter((el) => el.tagName === "diag")
+      .forEach((d) => walkDiag(d, null));
+
+    Array.from(ch.children)
+      .filter((el) => el.tagName === "section")
+      .forEach((sec) => {
+        Array.from(sec.children)
+          .filter((el) => el.tagName === "diag")
+          .forEach((d) => walkDiag(d, null));
+      });
+  });
+}
+
+function requires7thChar(code) {
+  if (!tabularCodeMeta || !tabularCodeMeta.size) return false;
+  const meta = tabularCodeMeta.get(codeKey(code));
+  return !!(meta && meta.requires7th);
+}
+
+function get7thMeta(code) {
+  return tabularCodeMeta.get(codeKey(code)) || null;
+}
+
+function build7thCharCode(baseCode, seventhChar) {
+  const meta = get7thMeta(baseCode);
+  const ch = String(seventhChar || "").trim().toUpperCase();
+  if (!meta || !meta.requires7th) return normalizeCodeDash(baseCode);
+  if (!meta.allowed7th.includes(ch)) return normalizeCodeDash(baseCode);
+
+  const base = normalizeCodeDash(baseCode);
+  const dot = base.includes(".") ? "" : ".";
+  // We need (placeholderCount - 1) X's before the 7th char, because the 7th char itself is the last position.
+  const xs = "X".repeat(Math.max(0, (meta.placeholderCount || 0) - 1));
+  return `${base}${dot}${xs}${ch}`;
+}
+
+function isCompleteCode(code) {
+  // 「可加入購物車」= Tabular 中的 leaf / billable code（無子節點）。
+  // 是否需要第七碼（7th character）只影響加入時的選擇與自動補 X，不影響是否顯示 +。
+  if (!tabularCodeMeta || !tabularCodeMeta.size) return false;
+  const meta = tabularCodeMeta.get(codeKey(code));
+  return !!(meta && meta.hasChild === false);
+}
+
+function makeAddButton(code, desc, enabled) {
+  const btn = document.createElement("button");
+  btn.className = "add-to-cart-btn";
+  btn.type = "button";
+  btn.textContent = "+";
+
+  if (!enabled) {
+    btn.disabled = true;
+    btn.title = "Not a billable / complete code";
+    return btn;
+  }
+
+  btn.title = "Add to cart";
+  btn.addEventListener("click", async (ev) => {
+    ev.stopPropagation();
+    ev.preventDefault();
+
+    // In the main results list we keep a lightweight prompt fallback.
+    // (In Tabular modal we use button picker UI.)
+    if (requires7thChar(code)) {
+      const meta = get7thMeta(code);
+      
+if (!(meta && meta.allowed7th && meta.allowed7th.length)) {
+  alert("此代碼需要第七碼，但 Tabular 未提供可用選項。");
+  return;
+}
+const pick = window.prompt(
+  `此代碼需要選取第七碼（${meta.allowed7th.join(" / ")}）`,
+  meta.allowed7th[0]
+);
+      if (!pick) return;
+      const full = build7thCharCode(code, pick);
+      if (codeKey(full) === codeKey(code)) {
+        alert("無效的第七碼。");
+        return;
+      }
+      addToCart(full, desc || "");
+      return;
+    }
+
+    addToCart(code, desc || "");
+  });
+
+  return btn;
+}
+const statusIndex = document.getElementById("statusIndex");
+    const statusNeoplasm = document.getElementById("statusNeoplasm");
+    const statusExternal = document.getElementById("statusExternal");
+    const statusDrug = document.getElementById("statusDrug");
+    const statusTabular = document.getElementById("statusTabular");
+
+    const searchInput = document.getElementById("searchInput");
+    const resultCountDiv = document.getElementById("resultCount");
+    const dataCountSpan = document.getElementById("dataCount");
+    const emptyHint = document.getElementById("emptyHint");
+    const resultsScroll = document.getElementById("resultsScroll");
+    const resultsTitleBar = document.getElementById("resultsTitleBar");
+
+    const tabDisease = document.getElementById("tabDisease");
+    const tabExternalBtn = document.getElementById("tabExternal");
+    const tabDrugs = document.getElementById("tabDrugs");
+    const tabNeoplasm = document.getElementById("tabNeoplasm");
+    const tabCart = document.getElementById("tabCart");
+
+    const countDisease = document.getElementById("countDisease");
+    const countExternal = document.getElementById("countExternal");
+    const countDrugs = document.getElementById("countDrugs");
+    const countNeoplasm = document.getElementById("countNeoplasm");
+    const countCart = document.getElementById("countCart");
+
+    const neoplasmFilters = document.getElementById("neoplasmFilters");
+    const neoAny = document.getElementById("neoAny");
+    const neo2 = document.getElementById("neo2");
+    const neo3 = document.getElementById("neo3");
+    const neo4 = document.getElementById("neo4");
+    const neo5 = document.getElementById("neo5");
+    const neo6 = document.getElementById("neo6");
+    const neo7 = document.getElementById("neo7");
+
+    const tabularCodeInput = document.getElementById("tabularCodeInput");
+    const tabularViewBtn = document.getElementById("tabularViewBtn");
+    const tabularResult = document.getElementById("tabularResult");
+
+    const tabularModal = document.getElementById("tabularModal");
+    const tabularModalTitle = document.getElementById("tabularModalTitle");
+    const tabularModalBody = document.getElementById("tabularModalBody");
+    const tabularModalClose = document.getElementById("tabularModalClose");
+// ===== 雲端自動載入（GitHub raw）=====
+    const CLOUD_XML_URLS = {
+      index: "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/refs/heads/main/icd10cm_index_2023.xml",
+      neoplasm: "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/refs/heads/main/icd10cm_neoplasm_2023.xml",
+      external: "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/refs/heads/main/icd10cm_eindex_2023.xml",
+      drug: "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/refs/heads/main/icd10cm_drug_2023.xml",
+      tabular: "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/refs/heads/main/icd10cm_tabular_2023.xml",
+    };
+
+    function setDot(el, state) {
+      // state: "loading" | "ok" | "error" | ""
+      if (!el) return;
+      if (state === "loading") el.innerHTML = '<span class="loading-dot"></span>';
+      else if (state === "ok") el.innerHTML = '<span class="green-dot"></span>';
+      else if (state === "error") el.innerHTML = '<span class="loading-dot" style="background:#ef4444"></span>';
+      else el.innerHTML = "";
+    }
+
+    async function loadXmlFromUrl(type, url, dotEl) {
+      try {
+        setDot(dotEl, "loading");
+        const resp = await fetch(url, { cache: "no-cache" });
+        if (!resp.ok) throw new Error("HTTP " + resp.status);
+        const text = await resp.text();
+
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(text, "application/xml");
+        const parserError = xmlDoc.getElementsByTagName("parsererror")[0];
+        if (parserError) {
+          console.error(parserError.textContent);
+          throw new Error("XML parse error");
+        }
+
+        if (type === "index") {
+          entriesIndex = extractIndexLikeEntries(xmlDoc, "index");
+        } else if (type === "external") {
+          entriesExternal = extractIndexLikeEntries(xmlDoc, "external");
+        } else if (type === "neoplasm") {
+          entriesNeoplasm = extractNeoplasmEntries(xmlDoc);
+        } else if (type === "drug") {
+          entriesDrug = extractDrugEntries(xmlDoc);
+        } else if (type === "tabular") {
+          entriesTabular = extractTabularEntries(xmlDoc);
+          tabularXmlDoc = xmlDoc;
+          rebuildTabularMeta();
+        }
+
+        setDot(dotEl, "ok");
+        
+          // 手動上傳成功：亮綠燈
+          if (type === "index") setDot(document.getElementById("dotIndex"), "ok");
+          if (type === "external") setDot(document.getElementById("dotExternal"), "ok");
+          if (type === "neoplasm") setDot(document.getElementById("dotNeoplasm"), "ok");
+          if (type === "drug") setDot(document.getElementById("dotDrug"), "ok");
+          if (type === "tabular") setDot(document.getElementById("dotTabular"), "ok");
+
+          rebuildAllEntries();
+
+      } catch (err) {
+        console.error(err);
+        setDot(dotEl, "error");
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // 若瀏覽器不支援 fetch（例如 IE），維持手動上傳
+      if (typeof fetch !== "function") return;
+
+      // 自動載入：可依需求註解掉不需要的檔案
+      loadXmlFromUrl("index", CLOUD_XML_URLS.index, document.getElementById("dotIndex"));
+      loadXmlFromUrl("neoplasm", CLOUD_XML_URLS.neoplasm, document.getElementById("dotNeoplasm"));
+      loadXmlFromUrl("external", CLOUD_XML_URLS.external, document.getElementById("dotExternal"));
+      loadXmlFromUrl("drug", CLOUD_XML_URLS.drug, document.getElementById("dotDrug"));
+      loadXmlFromUrl("tabular", CLOUD_XML_URLS.tabular, document.getElementById("dotTabular"));
+      // Build cart slot grids once
+      if (cmGrid && pcsGrid) {
+        cmInputs = buildSlotGrid(cmGrid, "cm");
+        pcsInputs = buildSlotGrid(pcsGrid, "pcs");
+      } else {
+        cmInputs = [];
+        pcsInputs = [];
+      }
+      mrnInput && mrnInput.addEventListener("input", persistCartPageToStorage);
+      admInput && admInput.addEventListener("input", persistCartPageToStorage);
+
+      renderCart();
+      renderCartPageFromStorage();
+    });
+
+
+
+    function handleXmlUpload(e, type, statusEl) {
+      const file = e.target.files && e.target.files[0];
+      if (!file) {
+        statusEl.textContent = "";
+        return;
+      }
+      statusEl.textContent = "讀取中：" + file.name + "...";
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const text = event.target.result;
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(text, "application/xml");
+          const parserError = xmlDoc.getElementsByTagName("parsererror")[0];
+          if (parserError) {
+            console.error(parserError.textContent);
+            statusEl.textContent = "❌ XML 解析失敗，請確認檔案。";
+            return;
+          }
+
+          if (type === "index") {
+            entriesIndex = extractIndexLikeEntries(xmlDoc, "index");
+            statusEl.textContent = "✅ 已載入，索引項目 " + entriesIndex.length + " 筆";
+          } else if (type === "external") {
+            entriesExternal = extractIndexLikeEntries(xmlDoc, "external");
+            statusEl.textContent = "✅ 已載入，外因索引項目 " + entriesExternal.length + " 筆";
+          } else if (type === "neoplasm") {
+            entriesNeoplasm = extractNeoplasmEntries(xmlDoc);
+            statusEl.textContent = "✅ 已載入，腫瘤索引列 " + entriesNeoplasm.length + " 筆";
+          } else if (type === "drug") {
+            entriesDrug = extractDrugEntries(xmlDoc);
+            statusEl.textContent = "✅ 已載入，藥物索引列 " + entriesDrug.length + " 筆";
+          } else if (type === "tabular") {
+            entriesTabular = extractTabularEntries(xmlDoc);
+            tabularXmlDoc = xmlDoc;
+            rebuildTabularMeta();
+            statusEl.textContent = "✅ 已載入，Tabular codes " + entriesTabular.length + " 筆";
+          }
+
+          rebuildAllEntries();
+        } catch (err) {
+          console.error(err);
+          statusEl.textContent = "❌ 解析過程發生錯誤。";
+        }
+      };
+      reader.onerror = () => {
+        statusEl.textContent = "❌ 檔案讀取失敗。";
+      };
+      reader.readAsText(file);
+    }
+
+    function extractIndexLikeEntries(xmlDoc, sourceType) {
+      const entries = [];
+      const letters = Array.from(xmlDoc.getElementsByTagName("letter"));
+      letters.forEach((letterNode) => {
+        const mainTerms = Array.from(letterNode.getElementsByTagName("mainTerm"));
+        mainTerms.forEach((mt) => collectIndexTerms(mt, [], entries, sourceType));
+      });
+      return entries;
+    }
+
+    function collectIndexTerms(node, parentTitles, entries, sourceType) {
+      const children = Array.from(node.children);
+      const titleEl = children.find((el) => el.tagName === "title");
+      const codeEl = children.find((el) => el.tagName === "code");
+      const subcatEl = children.find((el) => el.tagName === "subcat");
+      const seeEl = children.find((el) => el.tagName === "see");
+      const ownTitle = normalizeText(titleEl ? titleEl.textContent : "");
+      const pathTitles = parentTitles.slice();
+      if (ownTitle) pathTitles.push(ownTitle);
+
+      const code = normalizeText(
+        codeEl ? codeEl.textContent : subcatEl ? subcatEl.textContent : ""
+      );
+      const seeText = normalizeText(seeEl ? seeEl.textContent : "");
+
+      if (code) {
+        // 一般索引條目：有代碼
+        entries.push({
+          code,
+          title: ownTitle || pathTitles[pathTitles.length - 1] || "",
+          fullPath: pathTitles.join(" / "),
+          source: sourceType,
+        });
+      } else if (seeText) {
+        // A 方案：純 SEE 條目也要可搜尋，但不帶代碼
+        const seePath = pathTitles.slice();
+        seePath.push("SEE " + seeText);
+        entries.push({
+          code: "",
+          title: ownTitle || pathTitles[pathTitles.length - 1] || "",
+          fullPath: seePath.join(" / "),
+          source: sourceType,
+        });
+      }
+
+      const childTerms = children.filter((el) => el.tagName === "term");
+      childTerms.forEach((child) =>
+        collectIndexTerms(child, pathTitles, entries, sourceType)
+      );
+    }
+
+    function extractNeoplasmEntries(xmlDoc) {
+      const rows = [];
+      const letters = Array.from(xmlDoc.getElementsByTagName("letter"));
+      letters.forEach((letterNode) => {
+        const mainTerms = Array.from(letterNode.getElementsByTagName("mainTerm"));
+        mainTerms.forEach((mt) => collectNeoplasmRow(mt, [], rows));
+      });
+      return rows;
+    }
+
+    function collectNeoplasmRow(node, parentTitles, rows) {
+      const children = Array.from(node.children);
+      const titleEl = children.find((el) => el.tagName === "title");
+      const ownTitle = normalizeText(titleEl ? titleEl.textContent : "");
+      const pathTitles = parentTitles.slice();
+      if (ownTitle) pathTitles.push(ownTitle);
+
+      const cells = {};
+      children
+        .filter((el) => el.tagName === "cell")
+        .forEach((cell) => {
+          const col = parseInt(cell.getAttribute("col"), 10);
+          const val = normalizeText(cell.textContent);
+          if (val && val !== "-") {
+            cells[col] = val;
+          }
+        });
+
+      const hasAnyCode = [2,3,4,5,6,7].some((c) => !!cells[c]);
+      if (hasAnyCode) {
+        const text = pathTitles.join(" / ");
+        const allCodes = [2,3,4,5,6,7].map((c) => cells[c] || "").join(" ");
+        rows.push({
+          source: "neoplasm",
+          text,
+          fullPath: text,
+          codes: {
+            2: cells[2] || "",
+            3: cells[3] || "",
+            4: cells[4] || "",
+            5: cells[5] || "",
+            6: cells[6] || "",
+            7: cells[7] || "",
+          },
+          code: allCodes,
+          title: ownTitle || text,
+        });
+      }
+
+      const childTerms = children.filter((el) => el.tagName === "term");
+      childTerms.forEach((child) => collectNeoplasmRow(child, pathTitles, rows));
+    }
+
+    function extractDrugEntries(xmlDoc) {
+      const rows = [];
+      const letters = Array.from(xmlDoc.getElementsByTagName("letter"));
+      letters.forEach((letterNode) => {
+        const mainTerms = Array.from(letterNode.getElementsByTagName("mainTerm"));
+        mainTerms.forEach((mt) => collectDrugRow(mt, [], rows));
+      });
+      return rows;
+    }
+
+    function collectDrugRow(node, parentTitles, rows) {
+      const children = Array.from(node.children);
+      const titleEl = children.find((el) => el.tagName === "title");
+      const ownTitle = normalizeText(titleEl ? titleEl.textContent : "");
+      const pathTitles = parentTitles.slice();
+      if (ownTitle) pathTitles.push(ownTitle);
+
+      const cells = {};
+      children
+        .filter((el) => el.tagName === "cell")
+        .forEach((cell) => {
+          const col = parseInt(cell.getAttribute("col"), 10);
+          const val = normalizeText(cell.textContent);
+          if (val && val !== "--" && val !== "-") {
+            cells[col] = val;
+          }
+        });
+
+      const hasAnyCode = [2,3,4,5,6,7].some((c) => !!cells[c]);
+      if (hasAnyCode) {
+        const text = pathTitles.join(" / ");
+        const allCodes = [2,3,4,5,6,7].map((c) => cells[c] || "").join(" ");
+        rows.push({
+          source: "drug",
+          text,
+          fullPath: text,
+          codes: {
+            2: cells[2] || "",
+            3: cells[3] || "",
+            4: cells[4] || "",
+            5: cells[5] || "",
+            6: cells[6] || "",
+            7: cells[7] || "",
+          },
+          code: allCodes,
+          title: ownTitle || text,
+        });
+      }
+
+      const childTerms = children.filter((el) => el.tagName === "term");
+      childTerms.forEach((child) => collectDrugRow(child, pathTitles, rows));
+    }
+
+    function extractTabularEntries(xmlDoc) {
+      const entries = [];
+      const chapters = Array.from(xmlDoc.getElementsByTagName("chapter"));
+      chapters.forEach((ch) => {
+        const chDescEl = Array.from(ch.children).find((el) => el.tagName === "desc");
+        const chDesc = normalizeText(chDescEl ? chDescEl.textContent : "");
+
+        Array.from(ch.children)
+          .filter((el) => el.tagName === "diag")
+          .forEach((diag) => collectDiag(diag, [chDesc], entries));
+
+        Array.from(ch.children)
+          .filter((el) => el.tagName === "section")
+          .forEach((section) => {
+            const secDescEl = Array.from(section.children).find(
+              (el) => el.tagName === "desc"
+            );
+            const secDesc = normalizeText(secDescEl ? secDescEl.textContent : "");
+            const basePath = chDesc ? [chDesc] : [];
+            if (secDesc) basePath.push(secDesc);
+            Array.from(section.children)
+              .filter((el) => el.tagName === "diag")
+              .forEach((diag) => collectDiag(diag, basePath, entries));
+          });
+      });
+      return entries;
+    }
+
+    function collectDiag(diagNode, parentPath, entries) {
+      const children = Array.from(diagNode.children);
+      const nameEl = children.find((el) => el.tagName === "name");
+      const descEl = children.find((el) => el.tagName === "desc");
+      const code = normalizeText(nameEl ? nameEl.textContent : "");
+      const desc = normalizeText(descEl ? descEl.textContent : "");
+      if (code) {
+        const newPath = parentPath.slice();
+        if (desc) newPath.push(code + " " + desc);
+        else newPath.push(code);
+        entries.push({
+          code,
+          title: desc || code,
+          fullPath: newPath.join(" / "),
+          source: "tabular",
+        });
+        const childDiags = children.filter((el) => el.tagName === "diag");
+        childDiags.forEach((child) => collectDiag(child, newPath, entries));
+      }
+    }
+
+    function rebuildAllEntries() {
+      allEntries = [
+        ...entriesIndex,
+        ...entriesExternal,
+        ...entriesNeoplasm,
+        ...entriesDrug,
+        ...entriesTabular,
+      ];
+      if (!allEntries.length) {
+        dataCountSpan.innerHTML = "";
+        return;
+      }
+      const total =
+        entriesIndex.length +
+        entriesExternal.length +
+        entriesNeoplasm.length +
+        entriesDrug.length +
+        entriesTabular.length;
+      dataCountSpan.innerHTML = `<span class="pill">總筆數 ${total} 筆</span>`;
+    }
+
+    function preciseSearch(list, query) {
+      const q = query.toLowerCase();
+      const tokens = q.split(/\s+/).filter(Boolean);
+      lastTokens = tokens;
+      if (!tokens.length) return [];
+
+      const results = [];
+      for (const entry of list) {
+        const haystack = (
+          (entry.code || "") +
+          " " +
+          (entry.title || entry.text || "") +
+          " " +
+          (entry.fullPath || "")
+        ).toLowerCase();
+        let match = true;
+        for (const t of tokens) {
+          if (!haystack.includes(t)) {
+            match = false;
+            break;
+          }
+        }
+        if (match) results.push(entry);
+      }
+      return results.slice(0, 400);
+    }
+    function preciseSearchOrTokens(list, tokens) {
+      const tks = tokens.map((t) => t.toLowerCase()).filter(Boolean);
+      lastTokens = tks;
+      if (!tks.length) return [];
+      const results = [];
+      for (const entry of list) {
+        const haystack = (
+          (entry.code || "") +
+          " " +
+          (entry.title || entry.text || "") +
+          " " +
+          (entry.fullPath || "")
+        ).toLowerCase();
+        let match = false;
+        for (const t of tks) {
+          if (haystack.includes(t)) {
+            match = true;
+            break;
+          }
+        }
+        if (match) results.push(entry);
+      }
+      return results.slice(0, 400);
+    }
+
+
+
+    let typingTimer = null;
+    const TYPING_DELAY = 180;
+    searchInput.addEventListener("input", () => {
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(doSearch, TYPING_DELAY);
+    });
+
+        function doSearch() {
+      const query = searchInput.value.trim();
+      if (!allEntries.length) {
+        resultsScroll.innerHTML = "";
+        resultCountDiv.textContent = "";
+        emptyHint.style.display = "block";
+        emptyHint.textContent =
+          "尚未載入 XML 檔案，請先上傳至少一個官方檔案。";
+        return;
+      }
+      if (!query) {
+        resultsScroll.innerHTML = "";
+        resultCountDiv.textContent = "";
+        emptyHint.style.display = "block";
+        emptyHint.textContent = "已載入資料，請在上方輸入關鍵字開始搜尋。";
+        return;
+      }
+      emptyHint.style.display = "none";
+
+      const matches = preciseSearch(allEntries, query);
+      updateResultsFromMatches(matches);
+    }
+
+
+    function updateResultsFromMatches(matches) {
+      let diseaseList = matches.filter((e) => e.source === "index");
+      let externalList = matches.filter((e) => e.source === "external");
+      let neoplasmList = matches.filter((e) => e.source === "neoplasm");
+      let drugsList = matches.filter((e) => e.source === "drug");
+
+      const behaviorCols = [];
+      if (!neoAny.checked) {
+        if (neo2.checked) behaviorCols.push(2);
+        if (neo3.checked) behaviorCols.push(3);
+        if (neo4.checked) behaviorCols.push(4);
+        if (neo5.checked) behaviorCols.push(5);
+        if (neo6.checked) behaviorCols.push(6);
+        if (neo7.checked) behaviorCols.push(7);
+      }
+      if (!neoAny.checked && behaviorCols.length) {
+        neoplasmList = neoplasmList.filter((row) =>
+          behaviorCols.some((c) => row.codes && row.codes[c])
+        );
+      }
+
+      countDisease.textContent = diseaseList.length;
+      countExternal.textContent = externalList.length;
+      countDrugs.textContent = drugsList.length;
+      countNeoplasm.textContent = neoplasmList.length;
+
+      const total =
+        diseaseList.length + externalList.length + drugsList.length + neoplasmList.length;
+      resultCountDiv.textContent = `目前搜尋共 ${total} 筆（各索引分頁顯示）`;
+
+      if (activeTab === "disease") {
+        renderHierarchicalResults(diseaseList, "disease");
+      } else if (activeTab === "external") {
+        renderHierarchicalResults(externalList, "external");
+      } else if (activeTab === "drugs") {
+        renderDrugTable(drugsList);
+      } else if (activeTab === "neoplasm") {
+        renderNeoplasmTable(neoplasmList);
+      }
+    }
+
+
+function buildPathTree(entries) {
+      // 依 fullPath 的 " / " 分段建立多層樹狀結構，保留原本 term level
+      const root = { title: "__ROOT__", children: new Map(), code: "" };
+
+      function getOrCreate(parent, title) {
+        if (!parent.children.has(title)) {
+          parent.children.set(title, { title, children: new Map(), code: "" });
+        }
+        return parent.children.get(title);
+      }
+
+      for (const e of entries) {
+        const segs = (e.fullPath || e.title || "")
+          .split(" / ")
+          .map((s) => s.trim())
+          .filter(Boolean);
+
+        if (!segs.length) continue;
+
+        let node = root;
+        for (const s of segs) {
+          node = getOrCreate(node, s);
+        }
+
+        // 對於同一路徑，若有 code 則保留（優先保留第一個）
+        if (e.code && !node.code) node.code = e.code;
+        // 也保留 source，以便未來擴充（目前不必渲染）
+        node.source = e.source;
+      }
+
+      // Map -> Array（保留插入順序）
+      function toArray(n) {
+        return {
+          title: n.title,
+          code: n.code || "",
+          source: n.source,
+          children: Array.from(n.children.values()).map(toArray),
+        };
+      }
+      return Array.from(root.children.values()).map(toArray);
+    }
+
+    function renderTreeNodes(nodes, depth) {
+      const ul = document.createElement("ul");
+      ul.className = depth === 0 ? "root-list" : "child-list";
+
+      nodes.forEach((node) => {
+        const li = document.createElement("li");
+        li.className = depth === 0 ? "root-item" : "child-item";
+
+        const line = document.createElement("div");
+        line.className = depth === 0 ? "root-line" : "root-line"; // 使用同一行距樣式
+
+        const textSpan = document.createElement("span");
+        textSpan.className = "text";
+        textSpan.innerHTML = highlightText(node.title, lastTokens);
+
+        // SEE 節點（沒有 code、title 以 SEE 開頭）要變可點擊連結
+        const matchSee = (node.title || "").match(/^SEE\s+(.+)$/i);
+        if (!node.code && matchSee) {
+          textSpan.classList.add("see-link");
+          const target = matchSee[1];
+          textSpan.addEventListener("click", () => {
+            const rawTokens = target.split(/[\s,]+/).filter(Boolean);
+            const tokens = rawTokens.filter((tk) => {
+              const t = tk.toLowerCase();
+              return t && t !== "with" && t !== "and";
+            });
+            searchInput.value = target;
+            if (!allEntries.length) return;
+            const matches = preciseSearchOrTokens(allEntries, tokens);
+            updateResultsFromMatches(matches);
+          });
+        }
+
+        line.appendChild(textSpan);
+
+        if (node.code) {
+          const codeSpan = document.createElement("span");
+          codeSpan.className = "code";
+          const cleanCode = normalizeCodeDash(node.code);
+          codeSpan.textContent = cleanCode;
+
+          // Only leaf/billable codes show the + button (e.g., F20.81 ✅, F20.8 ❌; T07.XXXA ✅, T07 ❌)
+          line.appendChild(makeAddButton(cleanCode, node.title, isCompleteCode(cleanCode)));
+
+          codeSpan.addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            openTabularModal(cleanCode);
+          });
+          line.appendChild(codeSpan);
+        }
+
+        li.appendChild(line);
+
+        if (node.children && node.children.length) {
+          li.appendChild(renderTreeNodes(node.children, depth + 1));
+        }
+
+        ul.appendChild(li);
+      });
+
+      return ul;
+    }
+
+    function renderHierarchicalResults(entries, sourceType) {
+      resultsScroll.innerHTML = "";
+      if (sourceType === "disease") {
+        resultsTitleBar.textContent = "Index to Diseases and Injuries";
+      } else if (sourceType === "external") {
+        resultsTitleBar.textContent = "Index to External Causes";
+      } else if (sourceType === "drugs") {
+        resultsTitleBar.textContent = "Drugs";
+      }
+
+      if (!entries.length) {
+        const div = document.createElement("div");
+        div.className = "empty-hint";
+        div.textContent = "此分頁目前查無符合項目。";
+        resultsScroll.appendChild(div);
+        return;
+      }
+
+      // 依 XML 的 term level（fullPath 分段）建立多層階層樹
+      const tree = buildPathTree(entries);
+      const ul = renderTreeNodes(tree, 0);
+      resultsScroll.appendChild(ul);
+    }
+
+    function renderNeoplasmTable(rows) {
+      resultsScroll.innerHTML = "";
+      resultsTitleBar.textContent = "Table of Neoplasms";
+
+      if (!rows.length) {
+        const div = document.createElement("div");
+        div.className = "empty-hint";
+        div.textContent = "Neoplasms 分頁目前查無符合項目。";
+        resultsScroll.appendChild(div);
+        return;
+      }
+
+      const table = document.createElement("table");
+      table.className = "neo-table";
+
+      const thead = document.createElement("thead");
+      thead.innerHTML = `
+        <tr>
+          <th>Neoplasm</th>
+          <th>Malignant Primary</th>
+          <th>Malignant Secondary</th>
+          <th>Ca in situ</th>
+          <th>Benign</th>
+          <th>Uncertain Behavior</th>
+          <th>Unspecified Behavior</th>
+        </tr>`;
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+
+      rows.forEach((row) => {
+        const tr = document.createElement("tr");
+
+        const tdNeoplasm = document.createElement("td");
+        tdNeoplasm.className = "neo-term-cell";
+        const text = row.text || row.fullPath || "";
+        const parts = text.split(" / ");
+        const mainText = parts[0] || "";
+        const rest = parts.slice(1).join(" / ");
+        let termHtml = `<span class="neo-term-main">${highlightText(mainText, lastTokens)}</span>`;
+        if (rest) termHtml += " " + highlightText(rest, lastTokens);
+        tdNeoplasm.innerHTML = termHtml;
+        tr.appendChild(tdNeoplasm);
+
+        function makeCodeCell(colIndex) {
+          const td = document.createElement("td");
+          const code = row.codes && row.codes[colIndex];
+          if (code) {
+            const cleanCode = normalizeCodeDash(code);
+            const span = document.createElement("span");
+            span.className = "neo-code";
+            span.textContent = cleanCode;
+            span.addEventListener("click", () => {
+              openTabularModal(cleanCode);
+            });
+            td.appendChild(makeAddButton(cleanCode, row.title || row.text || "", isCompleteCode(cleanCode)));
+            td.appendChild(span);
+          }
+          return td;
+        }
+
+        tr.appendChild(makeCodeCell(2));
+        tr.appendChild(makeCodeCell(3));
+        tr.appendChild(makeCodeCell(4));
+        tr.appendChild(makeCodeCell(5));
+        tr.appendChild(makeCodeCell(6));
+        tr.appendChild(makeCodeCell(7));
+
+        tbody.appendChild(tr);
+      });
+
+      table.appendChild(tbody);
+      resultsScroll.appendChild(table);
+    }
+
+    function renderDrugTable(rows) {
+      resultsScroll.innerHTML = "";
+      resultsTitleBar.textContent = "Table of Drugs and Chemicals";
+
+      if (!rows.length) {
+        const div = document.createElement("div");
+        div.className = "empty-hint";
+        div.textContent = "Drugs 分頁目前查無符合項目。";
+        resultsScroll.appendChild(div);
+        return;
+      }
+
+      const table = document.createElement("table");
+      table.className = "neo-table";
+
+      const thead = document.createElement("thead");
+      thead.innerHTML = `
+        <tr>
+          <th>Substance</th>
+          <th>Poisoning Accidental (unintentional)</th>
+          <th>Poisoning Intentional self-harm</th>
+          <th>Poisoning Assault</th>
+          <th>Poisoning Undetermined</th>
+          <th>Adverse effect</th>
+          <th>Underdosing</th>
+        </tr>`;
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+
+      rows.forEach((row) => {
+        const tr = document.createElement("tr");
+
+        const tdSub = document.createElement("td");
+        tdSub.className = "neo-term-cell";
+        const text = row.text || row.fullPath || "";
+        const parts = text.split(" / ");
+        const mainText = parts[0] || "";
+        const rest = parts.slice(1).join(" / ");
+        let termHtml = `<span class="neo-term-main">${highlightText(mainText, lastTokens)}</span>`;
+        if (rest) termHtml += " " + highlightText(rest, lastTokens);
+        tdSub.innerHTML = termHtml;
+        tr.appendChild(tdSub);
+
+        function makeCodeCell(colIndex) {
+          const td = document.createElement("td");
+          const code = row.codes && row.codes[colIndex];
+          if (code) {
+            const cleanCode = normalizeCodeDash(code);
+            const span = document.createElement("span");
+            span.className = "neo-code";
+            span.textContent = cleanCode;
+            span.addEventListener("click", () => {
+              openTabularModal(cleanCode);
+            });
+            td.appendChild(makeAddButton(cleanCode, row.title || row.text || "", isCompleteCode(cleanCode)));
+            td.appendChild(span);
+          }
+          return td;
+        }
+
+        tr.appendChild(makeCodeCell(2));
+        tr.appendChild(makeCodeCell(3));
+        tr.appendChild(makeCodeCell(4));
+        tr.appendChild(makeCodeCell(5));
+        tr.appendChild(makeCodeCell(6));
+        tr.appendChild(makeCodeCell(7));
+
+        tbody.appendChild(tr);
+      });
+
+      table.appendChild(tbody);
+      resultsScroll.appendChild(table);
+    }
+
+    function setActiveTab(tab) {
+      activeTab = tab;
+      [tabDisease, tabExternalBtn, tabDrugs, tabNeoplasm, tabCart].forEach((btn) =>
+        btn.classList.remove("active")
+      );
+      if (tab === "disease") tabDisease.classList.add("active");
+      else if (tab === "external") tabExternalBtn.classList.add("active");
+      else if (tab === "drugs") tabDrugs.classList.add("active");
+      else if (tab === "neoplasm") tabNeoplasm.classList.add("active");
+      else if (tab === "cart") tabCart.classList.add("active");
+
+      neoplasmFilters.style.display = tab === "neoplasm" ? "flex" : "none";
+
+      // Cart tab toggles
+      if (searchArea) searchArea.style.display = (tab === "cart") ? "none" : "block";
+      if (cartPage) cartPage.style.display = (tab === "cart") ? "block" : "none";
+      if (tab === "cart") {
+        renderCart();
+        renderCartPageFromStorage();
+        return;
+      }
+
+
+      if (searchInput.value.trim()) {
+        doSearch();
+      } else {
+        resultsScroll.innerHTML = "";
+        resultCountDiv.textContent = "";
+      }
+    }
+
+    tabDisease.addEventListener("click", () => setActiveTab("disease"));
+    tabExternalBtn.addEventListener("click", () => setActiveTab("external"));
+    tabDrugs.addEventListener("click", () => setActiveTab("drugs"));
+    tabNeoplasm.addEventListener("click", () => setActiveTab("neoplasm"));
+    if (tabCart) tabCart.addEventListener("click", () => setActiveTab("cart"));
+
+    function syncNeoplasmFilter() {
+      if (neoAny.checked) {
+        [neo2, neo3, neo4, neo5, neo6, neo7].forEach((el) => (el.checked = false));
+      } else {
+        const others = [neo2, neo3, neo4, neo5, neo6, neo7];
+        const anyOtherChecked = others.some((el) => el.checked);
+        if (!anyOtherChecked) neoAny.checked = true;
+      }
+      if (activeTab === "neoplasm" && searchInput.value.trim()) {
+        doSearch();
+      }
+    }
+    [neoAny, neo2, neo3, neo4, neo5, neo6, neo7].forEach((el) =>
+      el.addEventListener("change", syncNeoplasmFilter)
+    );
+
+    // Tabular View 按鈕：沿用原本結果 + 開啟 modal
+    tabularViewBtn.addEventListener("click", () => {
+      const codeRaw = tabularCodeInput.value.trim();
+      if (!codeRaw) {
+        tabularResult.style.display = "block";
+        tabularResult.textContent = "請先輸入代碼。";
+        return;
+      }
+      if (!entriesTabular.length) {
+        tabularResult.style.display = "block";
+        tabularResult.textContent =
+          "尚未載入 Tabular XML 檔案，請先上傳 。";
+        return;
+      }
+
+      const codeInputNorm = codeRaw.toUpperCase();
+      const compactInput = codeInputNorm.replace(".", "");
+      const matches = entriesTabular.filter((e) => {
+        const norm = e.code.toUpperCase();
+        if (norm === codeInputNorm) return true;
+        if (norm.replace(".", "") === compactInput) return true;
+        return false;
+      });
+
+      tabularResult.style.display = "block";
+      if (!matches.length) {
+        // 若輸入為「不完整碼」（例如 T07、F20.8），嘗試用前綴找出最接近的上層節點並開啟 modal 讓使用者選擇細分碼
+        const prefixMatches = entriesTabular
+          .filter((e) => {
+            const norm = (e.code || "").toUpperCase();
+            return norm.replace(".", "").startsWith(compactInput);
+          })
+          .sort((a, b) => a.code.length - b.code.length);
+
+        if (!prefixMatches.length) {
+          tabularResult.textContent = `在 Tabular 中找不到代碼：${codeRaw}`;
+        } else {
+          const parent = prefixMatches[0];
+          tabularResult.innerHTML =
+            `輸入代碼 <strong>${codeRaw}</strong> 不是完整碼，已開啟相關章節供選取（例如需要 7th character 的 A/D/S）。`;
+          openTabularModal(parent.code);
+        }
+      } else {
+        const m = matches[0];
+        tabularResult.innerHTML =
+          `<strong>${m.code}</strong> - ${m.title}<br/><span style="font-size:11px;color:#555;">${m.fullPath}</span>`;
+        openTabularModal(m.code);
+      }
+    });
+
+    // ===== Tabular Modal 邏輯 =====
+// ===== 7th character picker (Tabular modal) =====
+function clearSevenCharPicker() {
+  hideSevenTooltip();
+  const existing = tabularModalBody.querySelector(".seven-picker");
+  if (existing && existing.parentElement) existing.parentElement.removeChild(existing);
+}
+
+// ===== 7th character hover tooltip helpers =====
+const sevenTooltipEl = document.getElementById("sevenTooltip");
+function showSevenTooltip(text, x, y) {
+  if (!sevenTooltipEl) return;
+  const t = normalizeText(text || "");
+  if (!t) { hideSevenTooltip(); return; }
+  sevenTooltipEl.textContent = t;
+  sevenTooltipEl.style.display = "block";
+
+  // Position: offset from cursor; keep within viewport
+  const pad = 12;
+  const vw = window.innerWidth || document.documentElement.clientWidth || 0;
+  const vh = window.innerHeight || document.documentElement.clientHeight || 0;
+
+  // Temporarily place to measure
+  sevenTooltipEl.style.left = "0px";
+  sevenTooltipEl.style.top = "0px";
+  const rect = sevenTooltipEl.getBoundingClientRect();
+
+  let left = (x || 0) + pad;
+  let top = (y || 0) + pad;
+
+  if (left + rect.width + pad > vw) left = Math.max(pad, vw - rect.width - pad);
+  if (top + rect.height + pad > vh) top = Math.max(pad, (y || 0) - rect.height - pad);
+
+  sevenTooltipEl.style.left = left + "px";
+  sevenTooltipEl.style.top = top + "px";
+}
+function hideSevenTooltip() {
+  if (!sevenTooltipEl) return;
+  sevenTooltipEl.style.display = "none";
+  sevenTooltipEl.textContent = "";
+}
+
+function showSevenCharPicker(rowEl, baseCode, desc) {
+  if (!rowEl) return;
+  clearSevenCharPicker();
+
+  const meta = get7thMeta(baseCode);
+  const allowed = (meta && meta.allowed7th && meta.allowed7th.length) ? meta.allowed7th : [];
+  const descMap = (meta && meta.allowed7thDesc) ? meta.allowed7thDesc : {};
+
+  function shortSevenDesc(full) {
+    const t = normalizeText(full || "");
+    if (!t) return "";
+    const lower = t.toLowerCase();
+    const idx = lower.indexOf(" for ");
+    if (idx > 0) return t.slice(0, idx).trim(); // e.g., "initial encounter"
+    return t;
+  }
+
+  const picker = document.createElement("div");
+  picker.className = "seven-picker";
+
+  const label = document.createElement("span");
+  label.className = "label";
+  label.textContent = "選擇第七碼：";
+  picker.appendChild(label);
+
+  
+if (!allowed.length) {
+  const info = document.createElement("span");
+  info.style.fontSize = "12px";
+  info.style.color = "#6b7280";
+  info.textContent = "（Tabular 未提供可用第七碼）";
+  picker.appendChild(info);
+}
+
+allowed.forEach((ch) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "seven-btn";
+    b.textContent = ch;
+    const fullDesc = descMap[ch] || "";
+    const shortDesc = shortSevenDesc(fullDesc);
+    if (fullDesc) b.title = fullDesc;
+    b.addEventListener("mouseenter", (ev) => { showSevenTooltip(shortDesc || fullDesc || "", ev.clientX, ev.clientY); });
+    b.addEventListener("mousemove", (ev) => { showSevenTooltip(shortDesc || fullDesc || "", ev.clientX, ev.clientY); });
+    b.addEventListener("mouseleave", () => { hideSevenTooltip(); });
+    b.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      const full = build7thCharCode(baseCode, ch);
+      addToCart(full, desc || "");
+      clearSevenCharPicker();
+    });
+    picker.appendChild(b);
+  });
+
+  const cancel = document.createElement("button");
+  cancel.type = "button";
+  cancel.className = "seven-btn cancel";
+  cancel.textContent = "取消";
+  cancel.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    clearSevenCharPicker();
+    hideSevenTooltip();
+  });
+  picker.appendChild(cancel);
+
+  rowEl.insertAdjacentElement("afterend", picker);
+}
+
+
+    function openTabularModal(codeRaw) {
+      if (!entriesTabular.length) {
+        tabularModalTitle.textContent = "Tabular Codes 尚未載入";
+        tabularModalBody.innerHTML =
+          "<p>請先上傳 <code></code> 檔案。</p>";
+        tabularModal.classList.add("show");
+        return;
+      }
+
+      codeRaw = normalizeCodeDash(codeRaw);
+      const codeInputNorm = (codeRaw || "").toUpperCase();
+      const compactInput = codeInputNorm.replace(".", "");
+
+      let target = entriesTabular.find((e) => {
+        const norm = e.code.toUpperCase();
+        return norm === codeInputNorm || norm.replace(".", "") === compactInput;
+      });
+
+      if (!target) {
+        // 允許不完整碼：用前綴找最接近的上層節點（例如 T07 -> T07.XXX）
+        const prefixMatches = entriesTabular
+          .filter((e) => (e.code || "").toUpperCase().replace(".", "").startsWith(compactInput))
+          .sort((a, b) => a.code.length - b.code.length);
+
+        if (prefixMatches.length) {
+          target = prefixMatches[0];
+        } else {
+          tabularModalTitle.textContent = "Tabular List of Diseases";
+          tabularModalBody.innerHTML =
+            `<p>在 Tabular 中找不到代碼：<strong>${codeRaw}</strong></p>`;
+          tabularModal.classList.add("show");
+          return;
+        }
+      }
+
+      tabularModalTitle.textContent = `Tabular List of Diseases: ${target.code}`;
+
+      const segments = (target.fullPath || "").split(" / ").map((s) => s.trim()).filter(Boolean);
+      const parentSegments =
+        segments.length > 1 ? segments.slice(0, segments.length - 1) : segments;
+      const parentPrefix = parentSegments.join(" / ");
+
+      let context = entriesTabular.filter((e) =>
+        e.fullPath && e.fullPath.startsWith(parentPrefix)
+      );
+      if (!context.length) context = [target];
+
+      const chapterLine = parentSegments[0] || "";
+      const sectionLine = parentSegments[1] || "";
+
+      let html = "";
+      if (chapterLine) {
+        html += `<div class="modal-section-header">${chapterLine}</div>`;
+      }
+      if (sectionLine) {
+        html += `<div class="modal-path-line">${sectionLine}</div>`;
+      }
+
+      html += `<div class="modal-code-list">`;
+      const baseDepth = parentSegments.length;
+
+      context.forEach((e) => {
+        const segs = (e.fullPath || "").split(" / ").map((s) => s.trim()).filter(Boolean);
+        const depth = Math.max(0, segs.length - baseDepth);
+        const isTarget =
+          e.code.toUpperCase() === codeInputNorm ||
+          e.code.toUpperCase().replace(".", "") === compactInput;
+
+        html += `<div class="modal-code-row ${
+          isTarget ? "highlight" : ""
+        }" style="padding-left:${depth * 8}px;">`;
+        const enabled = isCompleteCode(e.code);
+        const addBtnHtml = enabled
+          ? `<button class="add-to-cart-btn" type="button" data-add="${e.code}">+</button>`
+          : `<button class="add-to-cart-btn" type="button" disabled title="Not a billable / complete code">+</button>`;
+        html += `${addBtnHtml}<span class="code" data-code="${e.code}">${e.code}</span>`;
+        html += `<span class="desc">${e.title || ""}</span>`;
+        html += `</div>`;
+      });
+
+      html += `</div>`;
+      tabularModalBody.innerHTML = html;
+
+      // + buttons in modal
+Array.from(tabularModalBody.querySelectorAll('[data-add]')).forEach((btn) => {
+  btn.addEventListener("click", (ev) => {
+    ev.stopPropagation();
+    ev.preventDefault();
+    const raw = btn.getAttribute("data-add");
+    if (!raw) return;
+
+    const rowEl = btn.closest(".modal-code-row");
+    const descEl = rowEl && rowEl.querySelector(".desc");
+    const desc = descEl ? normalizeText(descEl.textContent) : "";
+
+    // If this code requires a 7th character, show A/D/S (or XML-defined) picker buttons inline.
+    if (requires7thChar(raw) && rowEl) {
+      showSevenCharPicker(rowEl, raw, desc);
+      return;
+    }
+
+    addToCart(raw, desc);
+  });
+});
+      // 點 modal 內 code：在該列下方顯示詳細說明
+      Array.from(tabularModalBody.querySelectorAll(".modal-code-row .code")).forEach((el) => {
+        el.addEventListener("click", () => {
+          const raw = el.getAttribute("data-code");
+          if (!raw) return;
+          const clean = normalizeCodeDash(raw);
+const rowEl = el.closest(".modal-code-row");
+          if (!rowEl) return;
+
+          const rows = tabularModalBody.querySelectorAll(".modal-code-row");
+          rows.forEach((row) => row.classList.remove("highlight"));
+          rowEl.classList.add("highlight");
+
+          showCodeDetailFromTabular(clean, rowEl);
+        });
+      });
+
+      // 一打開時先顯示目前代碼詳細說明
+      const initialCodeEl = tabularModalBody.querySelector(
+        `.modal-code-row .code[data-code="${target.code}"]`
+      );
+      if (initialCodeEl) {
+        const rowEl = initialCodeEl.closest(".modal-code-row");
+        if (rowEl) {
+          showCodeDetailFromTabular(target.code, rowEl);
+        }
+      }
+
+      tabularModal.classList.add("show");
+    }
+
+    function showCodeDetailFromTabular(codeRaw, rowEl) {
+      if (!tabularXmlDoc || !rowEl) return;
+      clearSevenCharPicker();
+
+      const codeInputNorm = (normalizeCodeDash(codeRaw) || "").toUpperCase();
+      const compactInput = codeInputNorm.replace(".", "");
+
+      // 移除舊的詳細區塊
+      const existingDetail = tabularModalBody.querySelector(".tabular-detail-container");
+      if (existingDetail && existingDetail.parentElement) {
+        existingDetail.parentElement.removeChild(existingDetail);
+      }
+
+      const allDiag = Array.from(tabularXmlDoc.getElementsByTagName("diag"));
+      let targetDiag = null;
+      for (const d of allDiag) {
+        const nameEl = Array.from(d.children).find((el) => el.tagName === "name");
+        const code = normalizeText(nameEl ? nameEl.textContent : "").toUpperCase();
+        if (!code) continue;
+        if (code === codeInputNorm || code.replace(".", "") === compactInput) {
+          targetDiag = d;
+          break;
+        }
+      }
+
+      const detailDiv = document.createElement("div");
+      detailDiv.className = "tabular-detail-container";
+
+      if (!targetDiag) {
+        detailDiv.innerHTML =
+          `<p style="font-size:12px;color:#666;">此代碼在 Tabular XML 中找不到詳細註記。</p>`;
+        rowEl.insertAdjacentElement("afterend", detailDiv);
+        return;
+      }
+
+      function extractIntroAndItems(block, treatFirstAsIntro) {
+        const notes = Array.from(block.getElementsByTagName("note"));
+        const inclusionTerms = Array.from(block.getElementsByTagName("inclusionTerm"));
+
+        let introLine = "";
+        const items = [];
+
+        if (notes.length) {
+          const firstText = normalizeText(notes[0].textContent);
+          const restNotes = notes.slice(1);
+
+          if (treatFirstAsIntro && firstText) {
+            introLine = firstText;
+          } else if (firstText) {
+            items.push(firstText);
+          }
+
+          restNotes.forEach((n) => {
+            const txt = normalizeText(n.textContent);
+            if (txt) items.push(txt);
+          });
+        }
+
+        inclusionTerms.forEach((term) => {
+          const txt = normalizeText(term.textContent);
+          if (txt) items.push(txt);
+        });
+
+        if (!notes.length && !inclusionTerms.length) {
+          const txt = normalizeText(block.textContent);
+          if (txt) {
+            txt
+              .split(/[\r\n]+/)
+              .map((s) => s.trim())
+              .filter(Boolean)
+              .forEach((s) => items.push(s));
+          }
+        }
+
+        return { introLine, items };
+      }
+
+      function buildBlock(tagName, titleText, titleClass, options) {
+        const opts = options || {};
+        const blocks = Array.from(targetDiag.children).filter(
+          (el) => el.tagName === tagName
+        );
+        if (!blocks.length) return "";
+
+        let html = "";
+        blocks.forEach((b) => {
+          const { introLine, items } = extractIntroAndItems(
+            b,
+            !!opts.firstNoteAsIntro
+          );
+          if (!introLine && !items.length) return;
+
+          html += `<div class="tabular-detail-card">`;
+          html += `<div class="tabular-detail-title ${titleClass}">${titleText}</div>`;
+
+          if (introLine) {
+            html += `<div style="margin-bottom:4px;">${introLine}</div>`;
+          }
+
+          if (items.length) {
+            html += `<ul>`;
+            items.forEach((line) => {
+              html += `<li>${line}</li>`;
+            });
+            html += `</ul>`;
+          }
+
+          html += `</div>`;
+        });
+        return html;
+      }
+
+      let html = "";
+
+      // 1) 代碼本身直接掛在 diag 底下的 inclusionTerm：優先顯示
+      const diagInclusionTerms = Array.from(targetDiag.children).filter(
+        (el) => el.tagName === "inclusionTerm"
+      );
+      if (diagInclusionTerms.length) {
+        let blockHtml = `<div class="tabular-detail-card"><ul>`;
+        diagInclusionTerms.forEach((term) => {
+          const raw = term.textContent || "";
+          raw
+            .split(/[\r\n]+/)
+            .map((s) => normalizeText(s))
+            .filter(Boolean)
+            .forEach((line) => {
+              blockHtml += `<li>${line}</li>`;
+            });
+        });
+        blockHtml += `</ul></div>`;
+        html += blockHtml;
+      }
+
+      // 2) 7th character 說明：sevenChrNote + sevenChrDef
+      (function () {
+        const noteBlocks = Array.from(targetDiag.children).filter(
+          (el) => el.tagName === "sevenChrNote"
+        );
+        const defBlocks = Array.from(targetDiag.children).filter(
+          (el) => el.tagName === "sevenChrDef"
+        );
+        if (!noteBlocks.length && !defBlocks.length) return;
+
+        let introLine = "";
+        const items = [];
+
+        // sevenChrNote：第一行當 intro，其餘進 items
+        noteBlocks.forEach((b, idxBlock) => {
+          const notes = Array.from(b.getElementsByTagName("note"));
+          notes.forEach((n, idxNote) => {
+            const txt = normalizeText(n.textContent);
+            if (!txt) return;
+            if (!introLine && idxBlock === 0 && idxNote === 0) {
+              introLine = txt;
+            } else {
+              items.push(txt);
+            }
+          });
+        });
+
+        // sevenChrDef：可能一個 note 裡有多行，需拆行
+        defBlocks.forEach((b) => {
+          const notes = Array.from(b.getElementsByTagName("note"));
+          if (notes.length) {
+            notes.forEach((n) => {
+              const raw = n.textContent || "";
+              raw
+                .split(/[\r\n]+/)
+                .map((s) => normalizeText(s))
+                .filter(Boolean)
+                .forEach((line) => items.push(line));
+            });
+          } else {
+            const raw = normalizeText(b.textContent);
+            if (raw) {
+              raw
+                .split(/[\r\n]+/)
+                .map((s) => s.trim())
+                .filter(Boolean)
+                .forEach((line) => items.push(line));
+            }
+          }
+        });
+
+        // 特例處理：若 sevenChrDef 只有一行，且同時包含
+        // "initial encounter" / "subsequent encounter" / "sequela" 字樣，
+        // 則拆成三行顯示。
+        if (items.length === 1) {
+          const single = items[0];
+          const lower = single.toLowerCase();
+          const specialItems = [];
+          if (lower.includes("initial encounter")) {
+            specialItems.push("A - initial encounter");
+          }
+          if (lower.includes("subsequent encounter")) {
+            specialItems.push("D - subsequent encounter");
+          }
+          if (lower.includes("sequela")) {
+            specialItems.push("S - sequela");
+          }
+          if (specialItems.length >= 2) {
+            items.length = 0;
+            specialItems.forEach((v) => items.push(v));
+          }
+        }
+
+        if (!introLine && !items.length) return;
+
+        let blockHtml = `<div class="tabular-detail-card">`;
+        blockHtml += `<div class="tabular-detail-title instruction">7th character</div>`;
+        if (introLine) {
+          blockHtml += `<div style="margin-bottom:4px;">${introLine}</div>`;
+        }
+        if (items.length) {
+          blockHtml += `<ul>`;
+          items.forEach((line) => {
+            blockHtml += `<li>${line}</li>`;
+          });
+          blockHtml += `</ul>`;
+        }
+        blockHtml += `</div>`;
+        html += blockHtml;
+      })();
+
+      // 3) Includes, Code first, Use additional, Code also, Excludes1, Excludes2
+      html += buildBlock("includes", "Includes", "includes", {
+        firstNoteAsIntro: false,
+      }) || "";
+      html += buildBlock("codeFirst", "Code first", "instruction", {
+        firstNoteAsIntro: true,
+      }) || "";
+      html += buildBlock("useAdditionalCode", "Use additional code", "instruction", {
+        firstNoteAsIntro: true,
+      }) || "";
+      html += buildBlock("codeAlso", "Code also", "instruction", {
+        firstNoteAsIntro: true,
+      }) || "";
+      html += buildBlock("excludes1", "Excludes1", "ex1", {
+        firstNoteAsIntro: false,
+      }) || "";
+      html += buildBlock("excludes2", "Excludes2", "ex2", {
+        firstNoteAsIntro: false,
+      }) || "";
+
+      if (!html) {
+        detailDiv.innerHTML =
+          `<p style="font-size:12px;color:#666;">此代碼在 Tabular 中沒有 Code first / Includes / Excludes 等額外註記。</p>`;
+      } else {
+        detailDiv.innerHTML = html;
+      }
+
+      rowEl.insertAdjacentElement("afterend", detailDiv);
+    }
+
+    function closeTabularModal() {
+      tabularModal.classList.remove("show");
+    }
+
+    tabularModalClose.addEventListener("click", closeTabularModal);
+    tabularModal.addEventListener("click", (ev) => {
+      if (ev.target === tabularModal) closeTabularModal();
+    });
+  </script>
+  <div id="sevenTooltip" class="seven-tooltip"></div>
+</body>
+</html>
