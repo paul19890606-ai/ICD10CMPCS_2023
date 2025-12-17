@@ -526,142 +526,115 @@ const toastEl = $("toast");
     return isPCS ? "PCS" : "CM";
   }
 
-  
-  // --- CM Tabular lookup (強制使用 Tabular) ---
-  const CM_TABULAR_KEYS = [
-    "cmTabularMap","cm_tabular_map","CM_TABULAR_MAP",
-    "cmTabularList","cm_tabular_list","CM_TABULAR_LIST",
-    "cm_tabular_index","cmTabularIndex"
-  ];
-  let __cmTabularCache = null;
+  // --- CM Tabular lookup (CM 必須使用 Tabular；來源：icd10cm_tabular_2023.xml) ---
+  const CM_TABULAR_URL =
+    "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/refs/heads/main/icd10cm_tabular_2023.xml";
+  const CM_TABULAR_MAP_KEY = "CM_TABULAR_MAP_V2023";
+  const CM_TABULAR_META_KEY = "CM_TABULAR_META_V2023";
 
-  function __normalizeKeyCode(code){
-    return String(code||"").trim().toUpperCase();
+  let __cmTabularCache = null;
+  let __cmTabularLoadPromise = null;
+
+  function __normalizeCmCode(code){
+    return String(code || "").trim().toUpperCase();
   }
 
-  function loadCmTabularMap(){
-    if(__cmTabularCache) return __cmTabularCache;
+  // 常見輸入容錯：A065 -> A06.5；已帶點則保留；也會建立去點版本索引
+  function __dotVariants(code){
+    const c = __normalizeCmCode(code);
+    if(!c) return [];
+    const out = [c];
+    if(!c.includes(".") && c.length >= 4){
+      out.push(c.slice(0,3) + "." + c.slice(3));
+    }
+    if(c.includes(".")){
+      out.push(c.replace(/\./g,""));
+    }
+    return Array.from(new Set(out));
+  }
 
-    // 0) If already provided as a global map/list
-    try{
-      if(window.CM_TABULAR_MAP && typeof window.CM_TABULAR_MAP === "object" && !Array.isArray(window.CM_TABULAR_MAP)){
-        __cmTabularCache = window.CM_TABULAR_MAP;
-        return __cmTabularCache;
-      }
-      if(Array.isArray(window.CM_TABULAR_LIST)){
-        const map = {};
-        window.CM_TABULAR_LIST.forEach(r=>{
-          const c = __normalizeKeyCode(r?.code || r?.Code || r?.icd || r?.ICD || r?.cm || r?.CM);
-          const desc = (r?.tabular || r?.tabularDesc || r?.tabularDescription || r?.TABULAR || r?.TABULAR_DESC || r?.Tabular || r?.TabularDesc || r?.descTabular || r?.cmTabularDesc);
-          if(c && desc) map[c] = String(desc).trim();
-        });
-        __cmTabularCache = map;
-        return __cmTabularCache;
-      }
-    }catch(_e){}
+  function __parseCmTabularXmlToMap(xmlText){
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+    if(xmlDoc.querySelector("parsererror")){
+      throw new Error("CM Tabular XML 解析失敗");
+    }
 
-    // 1) Known localStorage keys (legacy / expected)
-    try{
-      for(const k of __cmTabularStorageKeys){
-        const raw = localStorage.getItem(k);
-        if(!raw) continue;
-        const parsed = JSON.parse(raw);
+    const map = Object.create(null);
 
-        // a) already a mapping object { CODE: "desc" }
-        if(parsed && typeof parsed === "object" && !Array.isArray(parsed)){
-          __cmTabularCache = parsed;
-          return __cmTabularCache;
-        }
+    function walkDiag(diagEl){
+      // ICD-10-CM tabular 通常是 <diag><name>CODE</name><desc>TEXT</desc>...</diag>
+      const nameEl = diagEl.querySelector(":scope > name");
+      const descEl = diagEl.querySelector(":scope > desc");
+      const code = nameEl ? __normalizeCmCode(nameEl.textContent) : "";
+      const desc = descEl ? String(descEl.textContent || "").trim() : "";
 
-        // b) array rows -> build map
-        if(Array.isArray(parsed)){
-          const map = {};
-          parsed.forEach(r=>{
-            const c = __normalizeKeyCode(r?.code || r?.Code || r?.icd || r?.ICD || r?.cm || r?.CM);
-            const desc = (r?.tabular || r?.tabularDesc || r?.tabularDescription || r?.TABULAR || r?.TABULAR_DESC || r?.Tabular || r?.TabularDesc || r?.descTabular || r?.cmTabularDesc);
-            if(c && desc) map[c] = String(desc).trim();
-          });
-          __cmTabularCache = map;
-          return __cmTabularCache;
-        }
-      }
-    }catch(_e){}
-
-    // 2) Fallback: scan localStorage for anything that looks like a CM tabular dataset
-    //    This avoids "Tabular 缺失" caused by unknown key names from other pages.
-    try{
-      const maybeKeys = [];
-      for(let i=0;i<localStorage.length;i++){
-        const k = localStorage.key(i);
-        if(!k) continue;
-        const lk = k.toLowerCase();
-        if(lk.includes("tabular") && (lk.includes("cm") || lk.includes("icd") || lk.includes("diagn") || lk.includes("dx"))){
-          maybeKeys.push(k);
-        }
+      if(code && desc){
+        map[code] = desc;
+        // 也建立「去點版本」以容錯使用者輸入
+        map[code.replace(/\./g,"")] = desc;
       }
 
-      for(const k of maybeKeys){
-        const raw = localStorage.getItem(k);
-        if(!raw) continue;
+      const children = diagEl.querySelectorAll(":scope > diag");
+      children.forEach(walkDiag);
+    }
 
-        // quick reject if not JSON-ish
-        const t = raw.trim();
-        if(!(t.startsWith("{") || t.startsWith("["))) continue;
+    // 從所有 diag 開始走（map 覆寫同 key 無害）
+    xmlDoc.querySelectorAll("diag").forEach(walkDiag);
 
-        let parsed;
-        try{ parsed = JSON.parse(raw); }catch(_e){ continue; }
+    return map;
+  }
 
-        // a) object mapping
-        if(parsed && typeof parsed === "object" && !Array.isArray(parsed)){
-          // check it looks like mapping (values are mostly strings)
-          const keys = Object.keys(parsed);
-          if(keys.length){
-            const sampleKey = keys[0];
-            const sampleVal = parsed[sampleKey];
-            if(typeof sampleVal === "string"){
-              __cmTabularCache = parsed;
-              return __cmTabularCache;
-            }
-          }
-        }
+  async function ensureCmTabularLoaded(forceReload=false){
+    if(__cmTabularCache && !forceReload) return __cmTabularCache;
 
-        // b) array -> build map if rows look like CM tabular rows
-        if(Array.isArray(parsed) && parsed.length){
-          const map = {};
-          let hit = 0;
-          parsed.forEach(r=>{
-            const c = __normalizeKeyCode(r?.code || r?.Code || r?.icd || r?.ICD || r?.cm || r?.CM);
-            const desc = (r?.tabular || r?.tabularDesc || r?.tabularDescription || r?.TABULAR || r?.TABULAR_DESC || r?.Tabular || r?.TabularDesc || r?.descTabular || r?.cmTabularDesc || r?.description || r?.desc);
-            if(c && desc){
-              map[c] = String(desc).trim();
-              hit++;
-            }
-          });
-          // require enough hits to avoid false-positive datasets
-          if(hit >= Math.min(10, Math.max(2, Math.floor(parsed.length*0.1)))){
-            __cmTabularCache = map;
+    if(!forceReload){
+      // 1) localStorage cache
+      try{
+        const raw = localStorage.getItem(CM_TABULAR_MAP_KEY);
+        if(raw){
+          const parsed = JSON.parse(raw);
+          if(parsed && typeof parsed === "object"){
+            __cmTabularCache = parsed;
             return __cmTabularCache;
           }
         }
-      }
-    }catch(_e){}
+      }catch(_e){}
+    }else{
+      try{ localStorage.removeItem(CM_TABULAR_MAP_KEY); }catch(_e){}
+    }
 
-    __cmTabularCache = {}; // always return object
-    return __cmTabularCache;
+    if(__cmTabularLoadPromise && !forceReload) return __cmTabularLoadPromise;
+
+    __cmTabularLoadPromise = (async ()=>{
+      const res = await fetch(CM_TABULAR_URL, { cache: "no-store" });
+      if(!res.ok){
+        throw new Error("CM Tabular 下載失敗: " + res.status);
+      }
+      const xmlText = await res.text();
+      const map = __parseCmTabularXmlToMap(xmlText);
+
+      try{
+        localStorage.setItem(CM_TABULAR_MAP_KEY, JSON.stringify(map));
+        localStorage.setItem(CM_TABULAR_META_KEY, JSON.stringify({
+          loadedAt: new Date().toISOString(),
+          source: CM_TABULAR_URL
+        }));
+      }catch(_e){}
+
+      __cmTabularCache = map;
+      return __cmTabularCache;
+    })();
+
+    return __cmTabularLoadPromise;
   }
 
   function getCmTabularDescByCode(code){
-    const c = __normalizeKeyCode(code);
-    if(!c) return "";
-    const map = loadCmTabularMap();
-    const direct = map?.[c];
-    if(typeof direct === "string" && direct.trim()) return direct.trim();
-
-    // fallback: try without dot variations (some sources store without dot)
-    const noDot = c.replace(/\./g,"");
-    if(noDot !== c){
-      const v = map?.[noDot];
-      if(typeof v === "string" && v.trim()) return v.trim();
+    if(!__cmTabularCache) return "";
+    const vars = __dotVariants(code);
+    for(const v of vars){
+      const hit = __cmTabularCache[v];
+      if(typeof hit === "string" && hit.trim()) return hit.trim();
     }
     return "";
   }
@@ -669,35 +642,12 @@ const toastEl = $("toast");
   function pickBestDesc(it, type){
     const t = String(type||"").toUpperCase();
 
-    // Helper: find any field that looks like Tabular description
-    const findTabularLike = (obj)=>{
-      try{
-        if(!obj || typeof obj !== "object") return "";
-        const preferredKeys = [
-          "tabularDesc","tabular_desc","tabularDescription","tabular_description",
-          "cmTabularDesc","cm_tabular_desc","descTabular","desc_tabular",
-          "tabular","TabularDesc","Tabular","TABULAR_DESC","TABULAR"
-        ];
-        for(const k of preferredKeys){
-          const v = obj?.[k];
-          if(typeof v === "string" && v.trim()) return v.trim();
-        }
-        // fallback: any key containing 'tabular'
-        for(const k of Object.keys(obj)){
-          if(/tabular/i.test(k)){
-            const v = obj[k];
-            if(typeof v === "string" && v.trim()) return v.trim();
-          }
-        }
-      }catch(e){}
-      return "";
-    };
-
     if(t === "CM"){
-      // CM: 一律以「CM Tabular List」中的對應代碼敘述為準（不使用 item.desc 回退）
       const code = it?.code || it?.cm || it?.ICD || it;
-      const tab = getCmTabularDescByCode(code) || findTabularLike(it);
-      return tab ? tab : "（Tabular 缺失：請先載入 CM Tabular List）";
+      // CM：一定以 Tabular map 反查；不做 desc 回退
+      if(!__cmTabularCache) return "（Tabular 尚未載入）";
+      const tab = getCmTabularDescByCode(code);
+      return tab ? tab : "（Tabular 查無此代碼）";
     }
 
     // PCS or other
@@ -711,9 +661,19 @@ const toastEl = $("toast");
     // 清理 PCS 敘述中的分隔符/亂碼（常見為 $）
     if(t === "PCS"){
       d = d.replace(/\$/g, "").replace(/\s{2,}/g, " ").trim();
-      // 修正可能出現的「 ,」或重複逗號
       d = d.replace(/\s+,/g, ",").replace(/,{2,}/g, ",").replace(/\s{2,}/g, " ").trim();
     }
+    // 若 PCS 是「層級路徑」格式：A / B / C ... -> 取後段
+    if(t === "PCS" && d.includes(" / ")){
+      const parts = d.split(" / ").map(x=>x.trim()).filter(Boolean);
+      const tail = parts.slice(2);
+      if(tail.length){
+        d = tail.join(", ");
+      }
+    }
+    return d;
+  }
+
     // 若 PCS 仍是「層級路徑」格式：Medical and Surgical / ... / ...
     if(t === "PCS" && d.includes(" / ")){
       const parts = d.split(" / ").map(x=>x.trim()).filter(Boolean);
@@ -987,10 +947,20 @@ function loadItems(){
   $("exportJsonBtn").addEventListener("click", exportJson);
   $("copyAllBtn").addEventListener("click", copyAllCodes);
 
-  // Initial load
-  loadMeta();
-  loadSlots();
-  renderCart();
+  // Initial load (先載入 CM Tabular，再渲染清單)
+  (async ()=>{
+    loadMeta();
+    loadSlots();
+    try{
+      toast("載入 CM Tabular...");
+      await ensureCmTabularLoaded(false);
+      toast("CM Tabular 已載入");
+    }catch(e){
+      console.error(e);
+      toast("CM Tabular 載入失敗（將顯示 Tabular 查無/缺失）");
+    }
+    renderCart();
+  })();
 </script>
 </body>
 </html>
