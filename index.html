@@ -2254,36 +2254,39 @@ function buildPathTree(entries) {
 
     function setActiveTab(tab) {
       activeTab = tab;
-      [tabDisease, tabExternalBtn, tabDrugs, tabNeoplasm, tabCart].forEach((btn) =>
-        btn.classList.remove("active")
-      );
-      if (tab === "disease") tabDisease.classList.add("active");
-      else if (tab === "external") tabExternalBtn.classList.add("active");
-      else if (tab === "drugs") tabDrugs.classList.add("active");
-      else if (tab === "neoplasm") tabNeoplasm.classList.add("active");
-      else if (tab === "cart") tabCart.classList.add("active");
 
-      neoplasmFilters.style.display = tab === "neoplasm" ? "flex" : "none";
+      // Some pages (like this CM search page) may not include the Cart tab.
+      const tabButtons = [tabDisease, tabExternalBtn, tabDrugs, tabNeoplasm, tabCart].filter(Boolean);
+      tabButtons.forEach((btn) => btn.classList.remove("active"));
 
-      // Cart tab toggles
-      if (searchArea) searchArea.style.display = (tab === "cart") ? "none" : "block";
-      if (cartPage) cartPage.style.display = (tab === "cart") ? "block" : "none";
-      if (tab === "cart") {
-        renderCart();
-        renderCartPageFromStorage();
-        return;
+      if (tab === "disease" && tabDisease) tabDisease.classList.add("active");
+      else if (tab === "external" && tabExternalBtn) tabExternalBtn.classList.add("active");
+      else if (tab === "drugs" && tabDrugs) tabDrugs.classList.add("active");
+      else if (tab === "neoplasm" && tabNeoplasm) tabNeoplasm.classList.add("active");
+      else if (tab === "cart" && tabCart) tabCart.classList.add("active");
+
+      if (neoplasmFilters) neoplasmFilters.style.display = tab === "neoplasm" ? "flex" : "none";
+
+      // Cart tab toggles (only if the Cart tab exists on this page)
+      if (tabCart) {
+        if (searchArea) searchArea.style.display = (tab === "cart") ? "none" : "block";
+        if (cartPage) cartPage.style.display = (tab === "cart") ? "block" : "none";
+        if (tab === "cart") {
+          renderCart();
+          renderCartPageFromStorage();
+          return;
+        }
       }
 
-
-      if (searchInput.value.trim()) {
+      if (searchInput && searchInput.value.trim()) {
         doSearch();
       } else {
-        resultsScroll.innerHTML = "";
-        resultCountDiv.textContent = "";
+        if (resultsScroll) resultsScroll.innerHTML = "";
+        if (resultCountDiv) resultCountDiv.textContent = "";
       }
     }
 
-    tabDisease.addEventListener("click", () => setActiveTab("disease"));
+    tabDisease.addEventListener("click", () => setActiveTab("disease"));("click", () => setActiveTab("disease"));
     tabExternalBtn.addEventListener("click", () => setActiveTab("external"));
     tabDrugs.addEventListener("click", () => setActiveTab("drugs"));
     tabNeoplasm.addEventListener("click", () => setActiveTab("neoplasm"));
