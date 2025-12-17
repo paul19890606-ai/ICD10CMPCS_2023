@@ -530,11 +530,40 @@ const toastEl = $("toast");
   
   function pickBestDesc(it, type){
     const t = String(type||"").toUpperCase();
+
+    // Helper: find any field that looks like Tabular description
+    const findTabularLike = (obj)=>{
+      try{
+        if(!obj || typeof obj !== "object") return "";
+        const preferredKeys = [
+          "tabularDesc","tabular_desc","tabularDescription","tabular_description",
+          "cmTabularDesc","cm_tabular_desc","descTabular","desc_tabular",
+          "tabular","TabularDesc","Tabular","TABULAR_DESC","TABULAR"
+        ];
+        for(const k of preferredKeys){
+          const v = obj?.[k];
+          if(typeof v === "string" && v.trim()) return v.trim();
+        }
+        // fallback: any key containing 'tabular'
+        for(const k of Object.keys(obj)){
+          if(/tabular/i.test(k)){
+            const v = obj[k];
+            if(typeof v === "string" && v.trim()) return v.trim();
+          }
+        }
+      }catch(e){}
+      return "";
+    };
+
     if(t === "CM"){
-      return (it?.tabular || it?.tabularDesc || it?.cmTabularDesc || it?.descTabular || it?.desc || "");
+      const tab = findTabularLike(it);
+      if(tab) return tab;
+      // fallback to general description fields
+      return String(it?.desc || it?.description || it?.cmDesc || "").trim();
     }
+
     // PCS or other
-    return (it?.desc || it?.pcsDesc || "");
+    return String(it?.desc || it?.pcsDesc || it?.description || "").trim();
   }
 
   function formatCartDesc(type, desc){
