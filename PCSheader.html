@@ -720,9 +720,11 @@
         if(t === "CM") cm++;
         else if(t === "PCS") pcs++;
         else{
-          const code = String(it?.code||"");
-          if(code.includes(".")) cm++; else pcs++;
-        }
+           const code = String(it?.code||"");
+           const c = code.trim().toUpperCase();
+           const isPCS = !c.includes(".") && /^[0-9A-HJ-NP-Z]{7}$/.test(c); // PCS excludes I and O
+           if(isPCS) pcs++; else cm++;
+         }
       });
       const cmEl = document.getElementById("cartCMCount");
       const pcsEl = document.getElementById("cartPCSCount");
@@ -2040,3 +2042,4 @@ function clearSelection(field) {
   </script>
 </body>
 </html>
+
