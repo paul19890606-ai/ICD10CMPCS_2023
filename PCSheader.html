@@ -498,6 +498,18 @@
   font-weight:700;
 }
 
+
+/* ===== Header buttons: cart split ===== */
+.linkbtn--cartcounts{
+  border-color:#e0e4ef;
+  background:#fafbff;
+  cursor:default;
+}
+.linkbtn--disabled{
+  pointer-events:none;
+  opacity:.55;
+  cursor:default;
+}
 </style>
 </head>
 <body>
@@ -507,15 +519,13 @@
   <div class="topbar-actions">
 <a class="linkbtn" href="index.html">開啟 CM 搜尋</a>
 
-<a class="linkbtn" href="PCSheader.html">開啟 PCS 搜尋</a>
+<a class="linkbtn linkbtn--disabled" href="PCSheader.html" aria-current="page">開啟 PCS 搜尋</a>
 
-<a class="linkbtn" href="cart_header.html">
-  購物車
-  <span class="cart-label">CM</span>
-  <span class="count-badge" id="cartCMCount">0</span>
-  <span class="cart-label">PCS</span>
-  <span class="count-badge" id="cartPCSCount">0</span>
-</a>
+<a class="linkbtn" href="cart_header.html">購物車</a>
+<span class="linkbtn linkbtn--cartcounts" aria-label="Cart counts">
+  <span class="cart-label">CM</span> <span class="count-badge" id="cartCMCount">0</span>
+  <span class="cart-label">PCS</span> <span class="count-badge" id="cartPCSCount">0</span>
+</span>
 
   </div>
 </div>
