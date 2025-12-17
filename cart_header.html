@@ -519,9 +519,9 @@ function loadItems(){
       if(t === "CM") cm++;
       else if(t === "PCS") pcs++;
       else{
-        // fallback classify
-        const guess = String(it?.code||"").includes(".") ? "CM" : "PCS";
-        if(guess === "CM") cm++; else pcs++;
+        // fallback classify (same rule as cart view)
+        const guess = classifyTypeByCode(it?.code||"");
+        if(guess === "CM") cm++; else if(guess === "PCS") pcs++;
       }
     });
     return {cm, pcs};
@@ -765,3 +765,4 @@ cartListEl.innerHTML = "";
 </script>
 </body>
 </html>
+
