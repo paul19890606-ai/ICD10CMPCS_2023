@@ -240,7 +240,37 @@
       z-index:99999;
       max-width: 520px;
     }
-  </style>
+  
+/* ===== Header buttons: cart split ===== */
+.linkbtn--cartcounts{
+  border-color:#e0e4ef;
+  background:#fafbff;
+  cursor:default;
+}
+.linkbtn--disabled{
+  pointer-events:none;
+  opacity:.55;
+  cursor:default;
+}
+.cart-label{
+  font-size:11px;
+  color:#374151;
+  margin-left:2px;
+}
+.count-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:22px;
+  height:22px;
+  padding:0 7px;
+  border-radius:999px;
+  background:#0ea5e9;
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+}
+</style>
 </head>
 <body>
   <div class="app">
@@ -254,9 +284,11 @@
 
 <a class="linkbtn" href="PCSheader.html">開啟 PCS 搜尋</a>
 
-<span class="linkbtn linkbtn--cart">
-  購物車
-  <span class="cart-label">CM</span>
+<span class="linkbtn linkbtn--disabled" aria-current="page">購物車</span>
+<span class="linkbtn linkbtn--cartcounts" aria-label="Cart counts">
+  <span class="cart-label">CM</span> <span class="count-badge" id="cartCMCount">0</span>
+  <span class="cart-label">PCS</span> <span class="count-badge" id="cartPCSCount">0</span>
+</span>
   <span class="count-badge" id="cartCMCount">0</span>
   <span class="cart-label">PCS</span>
   <span class="count-badge" id="cartPCSCount">0</span>
@@ -338,6 +370,8 @@
   const cartListEl = $("cartList");
   const cmCountEl = document.getElementById("cmCount");
   const pcsCountEl = document.getElementById("pcsCount");
+  const cartCMCountEl = document.getElementById("cartCMCount");
+  const cartPCSCountEl = document.getElementById("cartPCSCount");
   const capacityAlertEl = document.getElementById("capacityAlert");
 const toastEl = $("toast");
   let toastTimer = null;
@@ -500,6 +534,8 @@ function loadItems(){
     const {cm, pcs} = countByType(items);
     if(cmCountEl) cmCountEl.textContent = String(cm);
     if(pcsCountEl) pcsCountEl.textContent = String(pcs);
+    if(cartCMCountEl) cartCMCountEl.textContent = String(cm);
+    if(cartPCSCountEl) cartPCSCountEl.textContent = String(pcs);
 
     // Capacity warning (20 slots each)
     const msgs = [];
