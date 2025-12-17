@@ -555,10 +555,9 @@ const toastEl = $("toast");
     };
 
     if(t === "CM"){
+      // CM: 必須使用 Tabular（不回退到一般 desc），避免顯示錯誤敘述
       const tab = findTabularLike(it);
-      if(tab) return tab;
-      // fallback to general description fields
-      return String(it?.desc || it?.description || it?.cmDesc || "").trim();
+      return tab ? tab : "（Tabular 缺失）";
     }
 
     // PCS or other
@@ -569,6 +568,12 @@ const toastEl = $("toast");
     const t = String(type||"").toUpperCase();
     let d = String(desc||"").trim();
     if(!d) return "";
+    // 清理 PCS 敘述中的分隔符/亂碼（常見為 $）
+    if(t === "PCS"){
+      d = d.replace(/\$/g, "").replace(/\s{2,}/g, " ").trim();
+      // 修正可能出現的「 ,」或重複逗號
+      d = d.replace(/\s+,/g, ",").replace(/,{2,}/g, ",").replace(/\s{2,}/g, " ").trim();
+    }
     // 若 PCS 仍是「層級路徑」格式：Medical and Surgical / ... / ...
     if(t === "PCS" && d.includes(" / ")){
       const parts = d.split(" / ").map(x=>x.trim()).filter(Boolean);
