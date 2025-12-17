@@ -541,52 +541,110 @@ const toastEl = $("toast");
 
   function loadCmTabularMap(){
     if(__cmTabularCache) return __cmTabularCache;
-    // 1) global variable (if injected by other pages)
-    if(typeof window !== "undefined"){
-      if(window.CM_TABULAR_MAP && typeof window.CM_TABULAR_MAP === "object"){
+
+    // 0) If already provided as a global map/list
+    try{
+      if(window.CM_TABULAR_MAP && typeof window.CM_TABULAR_MAP === "object" && !Array.isArray(window.CM_TABULAR_MAP)){
         __cmTabularCache = window.CM_TABULAR_MAP;
         return __cmTabularCache;
       }
       if(Array.isArray(window.CM_TABULAR_LIST)){
         const map = {};
         window.CM_TABULAR_LIST.forEach(r=>{
-          const c = __normalizeKeyCode(r?.code || r?.cm || r?.icd || r?.CM || r?.ICD);
-          if(!c) return;
+          const c = __normalizeKeyCode(r?.code || r?.Code || r?.icd || r?.ICD || r?.cm || r?.CM);
           const desc = (r?.tabular || r?.tabularDesc || r?.tabularDescription || r?.TABULAR || r?.TABULAR_DESC || r?.Tabular || r?.TabularDesc || r?.descTabular || r?.cmTabularDesc);
-          if(typeof desc === "string" && desc.trim()) map[c] = desc.trim();
+          if(c && desc) map[c] = String(desc).trim();
         });
         __cmTabularCache = map;
         return __cmTabularCache;
       }
-    }
+    }catch(_e){}
 
-    // 2) localStorage
-    for(const k of CM_TABULAR_KEYS){
-      try{
+    // 1) Known localStorage keys (legacy / expected)
+    try{
+      for(const k of __cmTabularStorageKeys){
         const raw = localStorage.getItem(k);
         if(!raw) continue;
         const parsed = JSON.parse(raw);
 
-        // If it's already a map: { "C34.2": "..." }
+        // a) already a mapping object { CODE: "desc" }
         if(parsed && typeof parsed === "object" && !Array.isArray(parsed)){
           __cmTabularCache = parsed;
           return __cmTabularCache;
         }
 
-        // If it's a list: [{code, tabularDesc, ...}, ...]
+        // b) array rows -> build map
         if(Array.isArray(parsed)){
           const map = {};
           parsed.forEach(r=>{
-            const c = __normalizeKeyCode(r?.code || r?.cm || r?.icd || r?.CM || r?.ICD);
-            if(!c) return;
+            const c = __normalizeKeyCode(r?.code || r?.Code || r?.icd || r?.ICD || r?.cm || r?.CM);
             const desc = (r?.tabular || r?.tabularDesc || r?.tabularDescription || r?.TABULAR || r?.TABULAR_DESC || r?.Tabular || r?.TabularDesc || r?.descTabular || r?.cmTabularDesc);
-            if(typeof desc === "string" && desc.trim()) map[c] = desc.trim();
+            if(c && desc) map[c] = String(desc).trim();
           });
           __cmTabularCache = map;
           return __cmTabularCache;
         }
-      }catch(e){}
-    }
+      }
+    }catch(_e){}
+
+    // 2) Fallback: scan localStorage for anything that looks like a CM tabular dataset
+    //    This avoids "Tabular 缺失" caused by unknown key names from other pages.
+    try{
+      const maybeKeys = [];
+      for(let i=0;i<localStorage.length;i++){
+        const k = localStorage.key(i);
+        if(!k) continue;
+        const lk = k.toLowerCase();
+        if(lk.includes("tabular") && (lk.includes("cm") || lk.includes("icd") || lk.includes("diagn") || lk.includes("dx"))){
+          maybeKeys.push(k);
+        }
+      }
+
+      for(const k of maybeKeys){
+        const raw = localStorage.getItem(k);
+        if(!raw) continue;
+
+        // quick reject if not JSON-ish
+        const t = raw.trim();
+        if(!(t.startsWith("{") || t.startsWith("["))) continue;
+
+        let parsed;
+        try{ parsed = JSON.parse(raw); }catch(_e){ continue; }
+
+        // a) object mapping
+        if(parsed && typeof parsed === "object" && !Array.isArray(parsed)){
+          // check it looks like mapping (values are mostly strings)
+          const keys = Object.keys(parsed);
+          if(keys.length){
+            const sampleKey = keys[0];
+            const sampleVal = parsed[sampleKey];
+            if(typeof sampleVal === "string"){
+              __cmTabularCache = parsed;
+              return __cmTabularCache;
+            }
+          }
+        }
+
+        // b) array -> build map if rows look like CM tabular rows
+        if(Array.isArray(parsed) && parsed.length){
+          const map = {};
+          let hit = 0;
+          parsed.forEach(r=>{
+            const c = __normalizeKeyCode(r?.code || r?.Code || r?.icd || r?.ICD || r?.cm || r?.CM);
+            const desc = (r?.tabular || r?.tabularDesc || r?.tabularDescription || r?.TABULAR || r?.TABULAR_DESC || r?.Tabular || r?.TabularDesc || r?.descTabular || r?.cmTabularDesc || r?.description || r?.desc);
+            if(c && desc){
+              map[c] = String(desc).trim();
+              hit++;
+            }
+          });
+          // require enough hits to avoid false-positive datasets
+          if(hit >= Math.min(10, Math.max(2, Math.floor(parsed.length*0.1)))){
+            __cmTabularCache = map;
+            return __cmTabularCache;
+          }
+        }
+      }
+    }catch(_e){}
 
     __cmTabularCache = {}; // always return object
     return __cmTabularCache;
