@@ -515,13 +515,15 @@ function loadItems(){
   function countByType(items){
     let cm = 0, pcs = 0;
     (items||[]).forEach(it=>{
-      const t = String(it?.type||"").toUpperCase();
+      const tRaw = String(it?.type||"");
+      const t = tRaw.toUpperCase().replace(/[\[\]\s]/g,"");
       if(t === "CM") cm++;
       else if(t === "PCS") pcs++;
       else{
-        // fallback classify (same rule as cart view)
-        const guess = classifyTypeByCode(it?.code||"");
-        if(guess === "CM") cm++; else if(guess === "PCS") pcs++;
+        // fallback classify
+        const guess = classifyTypeByCode(it?.code);
+        if(guess === "CM") cm++;
+        else if(guess === "PCS") pcs++;
       }
     });
     return {cm, pcs};
