@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <title>ICD-10-CM 2023 多來源搜尋</title>
+  <title>ICD-10-CM 2023工具書</title>
   <style>
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -784,22 +784,32 @@
   font-weight:700;
 }
 
+
+/* ===== Header buttons: cart split ===== */
+.linkbtn--cartcounts{
+  border-color:#e0e4ef;
+  background:#fafbff;
+  cursor:default;
+}
+.linkbtn--disabled{
+  pointer-events:none;
+  opacity:.55;
+  cursor:default;
+}
 </style>
 </head>
 <body>
   <div class="app">
 <div class="topbar">
-<a class="linkbtn" href="index.html">開啟 CM 搜尋</a>
-
-<a class="linkbtn" href="PCSheader.html">開啟 PCS 搜尋</a>
-
-<a class="linkbtn" href="cart_header.html">
-  購物車
-  <span class="cart-label">CM</span>
-  <span class="count-badge" id="cartCMCount">0</span>
-  <span class="cart-label">PCS</span>
-  <span class="count-badge" id="cartPCSCount">0</span>
-</a>
+  <div class="topbar-title">ICD-10-CM 2023工具書</div>
+  <div class="topbar-actions">
+    <a class="linkbtn linkbtn--disabled" href="index.html" aria-current="page">開啟 CM 搜尋</a>
+    <a class="linkbtn" href="PCSheader.html">開啟 PCS 搜尋</a>
+    <a class="linkbtn" href="cart_header.html">購物車</a>
+    <span class="linkbtn linkbtn--cartcounts" aria-label="Cart counts">
+      <span class="cart-label">CM</span> <span class="count-badge" id="cartCMCount">0</span>
+      <span class="cart-label">PCS</span> <span class="count-badge" id="cartPCSCount">0</span>
+    </span>
   </div>
 </div>
 
@@ -855,12 +865,7 @@
         Neoplasms <span class="count" id="countNeoplasm">0</span>
       </button>
 
-    <div style="display:flex; justify-content:flex-end; margin: 4px 2px 10px;">
-      <a id="openCartPage" href="cart_header.html" target="_blank"
-         style="font-size:13px; text-decoration:none; color:#0052cc;">
-        Shopping Cart (<span id="cartBadge">0</span>)
-      </a>
-    </div>
+
 </div>
 
     <div class="neoplasm-filters" id="neoplasmFilters">
