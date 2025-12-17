@@ -527,6 +527,87 @@ const toastEl = $("toast");
   }
 
   
+  // --- CM Tabular lookup (強制使用 Tabular) ---
+  const CM_TABULAR_KEYS = [
+    "cmTabularMap","cm_tabular_map","CM_TABULAR_MAP",
+    "cmTabularList","cm_tabular_list","CM_TABULAR_LIST",
+    "cm_tabular_index","cmTabularIndex"
+  ];
+  let __cmTabularCache = null;
+
+  function __normalizeKeyCode(code){
+    return String(code||"").trim().toUpperCase();
+  }
+
+  function loadCmTabularMap(){
+    if(__cmTabularCache) return __cmTabularCache;
+    // 1) global variable (if injected by other pages)
+    if(typeof window !== "undefined"){
+      if(window.CM_TABULAR_MAP && typeof window.CM_TABULAR_MAP === "object"){
+        __cmTabularCache = window.CM_TABULAR_MAP;
+        return __cmTabularCache;
+      }
+      if(Array.isArray(window.CM_TABULAR_LIST)){
+        const map = {};
+        window.CM_TABULAR_LIST.forEach(r=>{
+          const c = __normalizeKeyCode(r?.code || r?.cm || r?.icd || r?.CM || r?.ICD);
+          if(!c) return;
+          const desc = (r?.tabular || r?.tabularDesc || r?.tabularDescription || r?.TABULAR || r?.TABULAR_DESC || r?.Tabular || r?.TabularDesc || r?.descTabular || r?.cmTabularDesc);
+          if(typeof desc === "string" && desc.trim()) map[c] = desc.trim();
+        });
+        __cmTabularCache = map;
+        return __cmTabularCache;
+      }
+    }
+
+    // 2) localStorage
+    for(const k of CM_TABULAR_KEYS){
+      try{
+        const raw = localStorage.getItem(k);
+        if(!raw) continue;
+        const parsed = JSON.parse(raw);
+
+        // If it's already a map: { "C34.2": "..." }
+        if(parsed && typeof parsed === "object" && !Array.isArray(parsed)){
+          __cmTabularCache = parsed;
+          return __cmTabularCache;
+        }
+
+        // If it's a list: [{code, tabularDesc, ...}, ...]
+        if(Array.isArray(parsed)){
+          const map = {};
+          parsed.forEach(r=>{
+            const c = __normalizeKeyCode(r?.code || r?.cm || r?.icd || r?.CM || r?.ICD);
+            if(!c) return;
+            const desc = (r?.tabular || r?.tabularDesc || r?.tabularDescription || r?.TABULAR || r?.TABULAR_DESC || r?.Tabular || r?.TabularDesc || r?.descTabular || r?.cmTabularDesc);
+            if(typeof desc === "string" && desc.trim()) map[c] = desc.trim();
+          });
+          __cmTabularCache = map;
+          return __cmTabularCache;
+        }
+      }catch(e){}
+    }
+
+    __cmTabularCache = {}; // always return object
+    return __cmTabularCache;
+  }
+
+  function getCmTabularDescByCode(code){
+    const c = __normalizeKeyCode(code);
+    if(!c) return "";
+    const map = loadCmTabularMap();
+    const direct = map?.[c];
+    if(typeof direct === "string" && direct.trim()) return direct.trim();
+
+    // fallback: try without dot variations (some sources store without dot)
+    const noDot = c.replace(/\./g,"");
+    if(noDot !== c){
+      const v = map?.[noDot];
+      if(typeof v === "string" && v.trim()) return v.trim();
+    }
+    return "";
+  }
+
   function pickBestDesc(it, type){
     const t = String(type||"").toUpperCase();
 
@@ -555,9 +636,10 @@ const toastEl = $("toast");
     };
 
     if(t === "CM"){
-      // CM: 必須使用 Tabular（不回退到一般 desc），避免顯示錯誤敘述
-      const tab = findTabularLike(it);
-      return tab ? tab : "（Tabular 缺失）";
+      // CM: 一律以「CM Tabular List」中的對應代碼敘述為準（不使用 item.desc 回退）
+      const code = it?.code || it?.cm || it?.ICD || it;
+      const tab = getCmTabularDescByCode(code) || findTabularLike(it);
+      return tab ? tab : "（Tabular 缺失：請先載入 CM Tabular List）";
     }
 
     // PCS or other
@@ -854,4 +936,3 @@ function loadItems(){
 </script>
 </body>
 </html>
-
