@@ -184,6 +184,28 @@
       margin-top:10px;
     }
 
+    /* ===== Drag handle + order index (cart list) ===== */
+    .drag-handle{
+      width:8px;
+      align-self:stretch;
+      border-radius:8px;
+      background:#dbeafe;
+      border:1px solid #bfdbfe;
+      cursor:grab;
+      flex:0 0 8px;
+    }
+    .item.dragging{
+      opacity:.65;
+      transform: scale(0.995);
+    }
+    .order-index{
+      width:22px;
+      text-align:right;
+      font-weight:700;
+      color:#374151;
+      flex:0 0 22px;
+    }
+
     /* ===== Cart list: CM left / PCS right ===== */
     .added-list-wrapper{
       display:grid;
@@ -216,7 +238,7 @@
     .item{
       display:flex;
       gap:10px;
-      align-items:baseline;
+      align-items:center;
       padding:6px 8px;
       border-radius:10px;
       border:1px solid #eef2ff;
@@ -553,8 +575,25 @@ const toastEl = $("toast");
   }
 
 function loadItems(){
-    const items = readJSON(KEYS.items, []);
-    return Array.isArray(items) ? items : [];
+    const itemsRaw = readJSON(KEYS.items, []);
+    const items = Array.isArray(itemsRaw) ? itemsRaw : [];
+    // Ensure each item has a stable id for drag-sorting
+    let changed = false;
+    const withIds = items.map((it)=>{
+      if(it && typeof it === "object"){
+        if(!it._id){
+          it._id = "it_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2,9);
+          changed = true;
+        }
+        return it;
+      }
+      changed = true;
+      return { _id: "it_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2,9), code: String(it||""), type: classifyTypeByCode(String(it||"")) };
+    });
+    if(changed){
+      writeJSON(KEYS.items, withIds);
+    }
+    return withIds;
   }
   function saveItems(items){
     writeJSON(KEYS.items, items);
@@ -623,6 +662,122 @@ function loadItems(){
     writeJSON(KEYS.pcs, pcs);
   }
 
+
+  // ===== Drag & drop sorting (CM / PCS list) =====
+  let draggingItem = null;
+
+  function updateOrderNumbers(listEl){
+    const rows = Array.from(listEl.querySelectorAll(".item"));
+    rows.forEach((row, i)=>{
+      const n = row.querySelector(".order-index");
+      if(n) n.textContent = String(i + 1);
+    });
+  }
+
+  function getDragAfterElement(container, y){
+    const draggableElements = [...container.querySelectorAll(".item:not(.dragging)")];
+    return draggableElements.reduce((closest, child)=>{
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if(offset < 0 && offset > closest.offset){
+        return { offset, element: child };
+      }else{
+        return closest;
+      }
+    }, { offset: Number.NEGATIVE_INFINITY, element: null }).element;
+  }
+
+  function syncSlotsFromItems(items){
+    const cm = new Array(SLOT_COUNT).fill("");
+    const pcs = new Array(SLOT_COUNT).fill("");
+    let ci = 0, pi = 0;
+
+    (items || []).forEach((it)=>{
+      const code = normalizeCode(it?.code);
+      if(!code) return;
+      const type = String(it?.type || classifyTypeByCode(code) || "").toUpperCase();
+      if(type === "CM"){
+        if(ci < SLOT_COUNT) cm[ci++] = code;
+      }else if(type === "PCS"){
+        if(pi < SLOT_COUNT) pcs[pi++] = code;
+      }else{
+        // fallback
+        const guess = classifyTypeByCode(code);
+        if(guess === "CM"){
+          if(ci < SLOT_COUNT) cm[ci++] = code;
+        }else if(guess === "PCS"){
+          if(pi < SLOT_COUNT) pcs[pi++] = code;
+        }
+      }
+    });
+
+    // update UI inputs
+    cmInputs.forEach((inp, idx)=>{ inp.value = cm[idx] || ""; });
+    pcsInputs.forEach((inp, idx)=>{ inp.value = pcs[idx] || ""; });
+
+    // persist
+    writeJSON(KEYS.cm, cm);
+    writeJSON(KEYS.pcs, pcs);
+    persistSlots();
+  }
+
+  function reorderItemsFromDom(){
+    const current = loadItems();
+    const map = new Map(current.map(it=>[it._id, it]));
+
+    const cmIds = Array.from(cmListEl.querySelectorAll(".item[data-id]")).map(el=>el.getAttribute("data-id"));
+    const pcsIds = Array.from(pcsListEl.querySelectorAll(".item[data-id]")).map(el=>el.getAttribute("data-id"));
+
+    const next = [];
+    cmIds.forEach(id=>{ const it = map.get(id); if(it) next.push(it); });
+    pcsIds.forEach(id=>{ const it = map.get(id); if(it) next.push(it); });
+
+    // Append any items that might not be present in DOM (safety)
+    current.forEach(it=>{ if(it && it._id && !next.includes(it)) next.push(it); });
+
+    saveItems(next);
+    syncSlotsFromItems(next);
+  }
+
+  function initDragAndDrop(){
+    const containers = [cmListEl, pcsListEl];
+
+    containers.forEach(container=>{
+      // Drag over to reorder
+      container.addEventListener("dragover", (e)=>{
+        if(!draggingItem) return;
+        e.preventDefault();
+        const afterElement = getDragAfterElement(container, e.clientY);
+        if(afterElement == null){
+          container.appendChild(draggingItem);
+        }else{
+          container.insertBefore(draggingItem, afterElement);
+        }
+        updateOrderNumbers(container);
+      });
+
+      // Drop finalize
+      container.addEventListener("drop", (e)=>{
+        if(!draggingItem) return;
+        e.preventDefault();
+        draggingItem.classList.remove("dragging");
+        draggingItem = null;
+        reorderItemsFromDom();
+        renderCart();
+        toast("已更新順序");
+      });
+    });
+
+    // Safety: clear dragging state if dropped outside
+    document.addEventListener("dragend", ()=>{
+      if(draggingItem){
+        draggingItem.classList.remove("dragging");
+        draggingItem = null;
+        renderCart();
+      }
+    });
+  }
+
   function renderCart(){
     const items = loadItems();
     updateHeaderCountsAndAlert(items);
@@ -639,6 +794,9 @@ function loadItems(){
       return;
     }
 
+    // Keep CM/PCS 1–20 slots aligned with current cart order
+    syncSlotsFromItems(items);
+
     // newest last (stable); split into left CM and right PCS (others appended to PCS)
     const display = items.map((it, i)=>({it, i}));
     display.forEach(({it, i})=>{
@@ -648,6 +806,41 @@ function loadItems(){
 
         const row = document.createElement("div");
         row.className = "item";
+        const id = (it && it._id) ? String(it._id) : "";
+        if(id) row.setAttribute("data-id", id);
+
+        // Drag handle (narrow strip) + display order number
+        const handle = document.createElement("span");
+        handle.className = "drag-handle";
+        handle.title = "拖曳排序";
+        row.draggable = false;
+
+        // Enable dragging only when the handle is used (prevents accidental drags)
+        const enableDrag = ()=>{ row.draggable = true; };
+        const disableDrag = ()=>{ row.draggable = false; };
+        handle.addEventListener("pointerdown", enableDrag);
+        handle.addEventListener("pointerup", disableDrag);
+        handle.addEventListener("pointercancel", disableDrag);
+        handle.addEventListener("pointerleave", disableDrag);
+
+        row.addEventListener("dragstart", (e)=>{
+          if(!row.draggable) { e.preventDefault(); return; }
+          draggingItem = row;
+          row.classList.add("dragging");
+          try{
+            e.dataTransfer.effectAllowed = "move";
+            e.dataTransfer.setData("text/plain", id || code || "");
+          }catch(_){}
+        });
+
+        row.addEventListener("dragend", ()=>{
+          row.classList.remove("dragging");
+          row.draggable = false;
+        });
+
+        const orderEl = document.createElement("span");
+        orderEl.className = "order-index";
+        orderEl.textContent = "0";
 
         const codeEl = document.createElement("span");
         codeEl.className = "code";
@@ -677,12 +870,16 @@ function loadItems(){
         rm.title = "移除";
         rm.addEventListener("click", ()=>{
           const current = loadItems();
-          const filtered = current.filter((x, idx)=> idx !== i);
+          const filtered = current.filter((x)=> (x && x._id ? String(x._id) : "") !== id);
           saveItems(filtered);
           if(code) removeFromSlotsByCode(code);
+          // Re-sync slots to keep 1–20 aligned with list order
+          syncSlotsFromItems(filtered);
           renderCart();
         });
 
+        row.appendChild(handle);
+        row.appendChild(orderEl);
         row.appendChild(codeEl);
         row.appendChild(typeEl);
         row.appendChild(descEl);
@@ -690,6 +887,10 @@ function loadItems(){
         if(type === "CM") cmListEl.appendChild(row);
         else pcsListEl.appendChild(row);
     });
+
+    // Update display order numbers
+    updateOrderNumbers(cmListEl);
+    updateOrderNumbers(pcsListEl);
   }
 
   function gatherExportPayload(){
@@ -816,8 +1017,10 @@ function loadItems(){
   // Initial load
   loadMeta();
   loadSlots();
+  initDragAndDrop();
   renderCart();
 </script>
 </body>
 </html>
+
 
