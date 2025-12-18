@@ -1179,6 +1179,39 @@ body{
       return result;
     }
 
+
+    // ===== Sorting helpers: ignore parenthetical modifiers for matching =====
+    function stripParenModifiers(s) {
+      // Remove all (...) groups (modifier phrases) for matching / sorting only.
+      return normalizeText(String(s || "").replace(/\([^)]*\)/g, " "));
+    }
+    function normalizeForMatch(s) {
+      return stripParenModifiers(s)
+        .toLowerCase()
+        .replace(/[^\p{L}\p{N}\s]/gu, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+    function computeBestMatchDepthByPath(fullPath, tokens) {
+      // Return the earliest (shallowest) segment index (0-based) that matches any token.
+      // If none match, return Infinity.
+      const segs = (fullPath || "")
+        .split(" / ")
+        .map((s) => s.trim())
+        .filter(Boolean);
+      if (!segs.length) return Infinity;
+
+      const segNorm = segs.map((s) => normalizeForMatch(s));
+      const tks = (tokens || []).map((t) => normalizeForMatch(t)).filter(Boolean);
+      if (!tks.length) return Infinity;
+
+      for (let depth = 0; depth < segNorm.length; depth++) {
+        const hay = segNorm[depth];
+        if (tks.some((t) => hay.includes(t))) return depth;
+      }
+      return Infinity;
+    }
+
     let entriesIndex = [];
     let entriesExternal = [];
     let entriesNeoplasm = [];
@@ -1188,6 +1221,9 @@ body{
     let allEntries = [];
     let activeTab = "disease";
     let lastTokens = [];
+
+    // Stable ordering for search-result sorting
+    let entrySeq = 0;
 
     // ===== Shopping Cart =====
     const cartCount = document.getElementById("cartCount");
@@ -2092,6 +2128,7 @@ async function loadXmlFromUrl(type, url, dotEl) {
       if (code) {
         // 一般索引條目：有代碼
         entries.push({
+          seq: entrySeq++,
           code,
           title: ownTitle || pathTitles[pathTitles.length - 1] || "",
           fullPath: pathTitles.join(" / "),
@@ -2102,6 +2139,7 @@ async function loadXmlFromUrl(type, url, dotEl) {
         const seePath = pathTitles.slice();
         seePath.push("SEE " + seeText);
         entries.push({
+          seq: entrySeq++,
           code: "",
           title: ownTitle || pathTitles[pathTitles.length - 1] || "",
           fullPath: seePath.join(" / "),
@@ -2148,6 +2186,7 @@ async function loadXmlFromUrl(type, url, dotEl) {
         const text = pathTitles.join(" / ");
         const allCodes = [2,3,4,5,6,7].map((c) => cells[c] || "").join(" ");
         rows.push({
+          seq: entrySeq++,
           source: "neoplasm",
           text,
           fullPath: text,
@@ -2201,6 +2240,7 @@ async function loadXmlFromUrl(type, url, dotEl) {
         const text = pathTitles.join(" / ");
         const allCodes = [2,3,4,5,6,7].map((c) => cells[c] || "").join(" ");
         rows.push({
+          seq: entrySeq++,
           source: "drug",
           text,
           fullPath: text,
@@ -2260,6 +2300,7 @@ async function loadXmlFromUrl(type, url, dotEl) {
         if (desc) newPath.push(code + " " + desc);
         else newPath.push(code);
         entries.push({
+          seq: entrySeq++,
           code,
           title: desc || code,
           fullPath: newPath.join(" / "),
@@ -2526,7 +2567,33 @@ function buildPathTree(entries) {
       }
 
       // 依 XML 的 term level（fullPath 分段）建立多層階層樹
-      const tree = buildPathTree(entries);
+      // 排序優化：越上層命中越前；命中判斷忽略 () 修飾詞（例如 Pneumonia(acute) ...）
+      const tks = (lastTokens || []);
+      const qNorm = normalizeForMatch((searchInput && searchInput.value) ? searchInput.value : "");
+      const sorted = (entries || []).slice().sort((a, b) => {
+        const da = computeBestMatchDepthByPath(a.fullPath || a.title || "", tks);
+        const db = computeBestMatchDepthByPath(b.fullPath || b.title || "", tks);
+        if (da !== db) return da - db;
+
+        // tie-break #1: 若「第一層主詞」完全等於查詢字串（忽略括號修飾詞），優先排最前
+        const getRootSegNorm = (e) => {
+          const fp = String(e && (e.fullPath || e.title || "") || "");
+          const seg0 = fp.split(" / ").map(s => s.trim()).filter(Boolean)[0] || fp;
+          return normalizeForMatch(seg0);
+        };
+        const ra = getRootSegNorm(a);
+        const rb = getRootSegNorm(b);
+        const aExactRoot = !!qNorm && ra === qNorm;
+        const bExactRoot = !!qNorm && rb === qNorm;
+        if (aExactRoot !== bExactRoot) return aExactRoot ? -1 : 1;
+
+        // tie-break #2: 同為非完全相等時，仍維持原 XML 順序（穩定排序）
+        const sa = (typeof a.seq === "number") ? a.seq : 0;
+        const sb = (typeof b.seq === "number") ? b.seq : 0;
+        return sa - sb;
+      });
+
+      const tree = buildPathTree(sorted);
       const ul = renderTreeNodes(tree, 0);
       resultsScroll.appendChild(ul);
     }
