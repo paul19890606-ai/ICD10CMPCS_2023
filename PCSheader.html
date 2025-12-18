@@ -511,6 +511,183 @@
   opacity:.55;
   cursor:default;
 }
+
+
+/* ===== App layout: fixed header area + main split (PCS) ===== */
+body{ overflow:hidden; }
+.app{
+  height: calc(100vh - 40px); /* body padding 20*2 */
+  display:flex;
+  flex-direction:column;
+}
+.main-split{
+  flex:1;
+  min-height:0;
+  display:flex;
+  gap:16px;
+  margin-top:10px;
+}
+.left-panel{
+  flex:1;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+}
+.left-panel .table-wrapper{
+  flex:1;
+  min-height:0;
+  max-height:none; /* let it fill and scroll */
+}
+
+/* ===== Cart sidebar (match CM style) ===== */
+.cart-panel{
+  width:300px;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+  padding:10px;
+}
+.cart-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+}
+.cart-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:800;
+  font-size:14px;
+}
+.cart-clear{
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid #d1d5db;
+  background:#fff;
+  font-size:12px;
+  cursor:pointer;
+}
+.cart-clear:hover{ background:#f3f4f6; }
+
+.cart-tabs{
+  display:flex;
+  gap:8px;
+  margin-bottom:10px;
+}
+.cart-tab{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid #d1d5db;
+  background:#fff;
+  font-size:12px;
+  cursor:pointer;
+}
+.cart-tab.active{
+  border-color:#93c5fd;
+  background:#e7f2ff;
+  color:#1d4ed8;
+  font-weight:800;
+}
+.cart-tab .pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:20px;
+  height:20px;
+  padding:0 7px;
+  border-radius:999px;
+  background:#0ea5e9;
+  color:#fff;
+  font-size:12px;
+  font-weight:800;
+}
+
+.cart-list{
+  flex:1;
+  min-height:0;
+  overflow:auto;
+  padding-right:4px;
+}
+.cart-empty{
+  color:#9ca3af;
+  font-size:13px;
+  padding:8px 4px;
+}
+
+.cart-item{
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  padding:8px 8px;
+  margin-bottom:10px;
+  background:#f8fafc;
+  display:grid;
+  grid-template-columns: 1fr auto auto;
+  grid-template-rows: auto auto;
+  column-gap:8px;
+  row-gap:3px;
+}
+.cart-code{
+  grid-column:1 / 2;
+  grid-row:1 / 2;
+  font-weight:900;
+  color:#0d6efd;
+  font-size:14px;
+}
+.cart-desc{
+  grid-column:1 / 2;
+  grid-row:2 / 3;
+  font-size:12px;
+  color:#374151;
+  line-height:1.25;
+  word-break:break-word;
+  white-space:normal;
+}
+.drag-handle{
+  grid-column:2 / 3;
+  grid-row:1 / 3;
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  border:1px solid #e5e7eb;
+  background:#fff;
+  cursor:grab;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#6b7280;
+  user-select:none;
+}
+.drag-handle:active{ cursor:grabbing; }
+
+.cart-remove{
+  grid-column:3 / 4;
+  grid-row:1 / 3;
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  border:1px solid #e5e7eb;
+  background:#fff;
+  cursor:pointer;
+  color:#ef4444;
+  font-weight:900;
+}
+.cart-remove:hover{ background:#fff1f2; }
+
+.cart-item.dragging{
+  opacity:.55;
+  outline:2px dashed #93c5fd;
+}
+
 </style>
 </head>
 <body>
@@ -596,7 +773,10 @@
     </div>
 
 
-    <div id="indexResultBox" class="index-result-box">
+    
+<div class="main-split">
+  <div class="left-panel">
+<div id="indexResultBox" class="index-result-box">
       <div class="index-result-empty">
         目前尚未載入 Index XML，或尚未輸入處置名稱。
       </div>
@@ -658,11 +838,26 @@
     </div>
   </div>
 
+  <aside class="cart-panel" aria-label="購物車">
+    <div class="cart-header">
+      <div class="cart-title">購物車 <span class="count-badge" id="sideCartCount">0</span></div>
+      <button type="button" class="cart-clear" id="cartClearBtn">清空</button>
+    </div>
+    <div class="cart-tabs" role="tablist" aria-label="購物車類型">
+      <button type="button" class="cart-tab" data-tab="CM" id="cartTabCM">CM <span class="pill" id="sideCMCount">0</span></button>
+      <button type="button" class="cart-tab active" data-tab="PCS" id="cartTabPCS">PCS <span class="pill" id="sidePCSCount">0</span></button>
+    </div>
+    <div class="cart-list" id="cartList"></div>
+  </aside>
+</div>
+
+  </div>
+
   <script>
     // 定義雲端檔案 URL
-    const TABLES_URL = "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/refs/heads/main/icd10pcs_tables_2023.xml";
-    const DEFINITIONS_URL = "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/refs/heads/main/icd10pcs_definitions_2023.xml";
-    const INDEX_URL = "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/refs/heads/main/icd10pcs_index_2023.xml";
+    const TABLES_URL = "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/main/icd10pcs_tables_2023.xml";
+    const DEFINITIONS_URL = "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/main/icd10pcs_definitions_2023.xml";
+    const INDEX_URL = "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/main/icd10pcs_index_2023.xml";
     
     
 
@@ -735,6 +930,165 @@
           if(guess === "CM") cm++;
           else if(guess === "PCS") pcs++;
         }
+
+    // ===== PCS 頁右側購物車（與 CM 同款樣式） =====
+    let cartActiveTab = "PCS"; // PCS 頁預設顯示 PCS
+
+    function getCartItemsSafe(){
+      const items = readJSON(CART_ITEMS_KEY, []);
+      return Array.isArray(items) ? items : [];
+    }
+
+    function normalizeType(t){
+      return String(t||"").toUpperCase().replace(/[\[\]\s]/g,"");
+    }
+
+    function getItemType(it){
+      const t = normalizeType(it?.type);
+      if (t === "CM" || t === "PCS") return t;
+      const guess = classifyTypeByCode(it?.code);
+      return guess || "CM";
+    }
+
+    function updateSideCartCounts(){
+      const items = getCartItemsSafe();
+      let cm = 0, pcs = 0;
+      items.forEach(it=>{
+        const t = getItemType(it);
+        if(t==="CM") cm++;
+        else if(t==="PCS") pcs++;
+      });
+      const total = cm + pcs;
+
+      const sideTotal = document.getElementById("sideCartCount");
+      const sideCM = document.getElementById("sideCMCount");
+      const sidePCS = document.getElementById("sidePCSCount");
+      if(sideTotal) sideTotal.textContent = String(total);
+      if(sideCM) sideCM.textContent = String(cm);
+      if(sidePCS) sidePCS.textContent = String(pcs);
+
+      // 同步 header 右上角 counts
+      updateCartCountsFromStorage();
+      renderSideCart();
+    }
+
+    function buildCartItemHTML(it){
+      const code = String(it?.code||"").toUpperCase();
+      const desc = String(it?.desc||it?.description||"").trim();
+      const safeCode = escapeHtmlAttr(code);
+      const safeDesc = escapeHtmlAttr(desc || "（無敘述）");
+      const type = getItemType(it);
+      return `
+        <div class="cart-item" draggable="true" data-code="${safeCode}" data-type="${type}">
+          <div class="cart-code">${safeCode}</div>
+          <div class="cart-desc">${safeDesc}</div>
+          <button type="button" class="drag-handle" title="拖曳排序" aria-label="拖曳排序">⋮⋮</button>
+          <button type="button" class="cart-remove" title="移除" aria-label="移除" data-code="${safeCode}" data-type="${type}">×</button>
+        </div>
+      `;
+    }
+
+    function renderSideCart(){
+      updateSideCartCounts();
+      const listEl = document.getElementById("cartList");
+      if(!listEl) return;
+
+      const items = getCartItemsSafe();
+      const filtered = items.filter(it => getItemType(it) === cartActiveTab);
+
+      if(!filtered.length){
+        listEl.innerHTML = `<div class="cart-empty">此分頁尚未加入代碼。</div>`;
+        return;
+      }
+
+      listEl.innerHTML = filtered.map(buildCartItemHTML).join("");
+      bindCartDnD();
+    }
+
+    function setCartTab(tab){
+      cartActiveTab = (tab === "CM") ? "CM" : "PCS";
+      const btnCM = document.getElementById("cartTabCM");
+      const btnPCS = document.getElementById("cartTabPCS");
+      if(btnCM) btnCM.classList.toggle("active", cartActiveTab==="CM");
+      if(btnPCS) btnPCS.classList.toggle("active", cartActiveTab==="PCS");
+      renderSideCart();
+    }
+
+    function removeCartItemByKey(type, code){
+      const items = getCartItemsSafe();
+      const t = (type==="PCS") ? "PCS" : "CM";
+      const c = String(code||"").toUpperCase();
+      const next = items.filter(it => !(getItemType(it)===t && String(it?.code||"").toUpperCase()===c));
+      writeJSON(CART_ITEMS_KEY, next);
+      renderSideCart();
+    }
+
+    function clearCartByTab(){
+      const items = getCartItemsSafe();
+      const next = items.filter(it => getItemType(it) !== cartActiveTab);
+      writeJSON(CART_ITEMS_KEY, next);
+      renderSideCart();
+    }
+
+    // --- Drag & Drop sort (within active tab only; preserve other type order positions) ---
+    let dragFromCode = null;
+
+    function bindCartDnD(){
+      const listEl = document.getElementById("cartList");
+      if(!listEl) return;
+
+      // remove handlers by cloning? keep simple: event delegation
+      listEl.querySelectorAll(".cart-item").forEach(el=>{
+        el.addEventListener("dragstart", (e)=>{
+          dragFromCode = el.dataset.code || null;
+          el.classList.add("dragging");
+          e.dataTransfer.effectAllowed = "move";
+          try{ e.dataTransfer.setData("text/plain", dragFromCode || ""); }catch(_){}
+        });
+        el.addEventListener("dragend", ()=>{
+          el.classList.remove("dragging");
+        });
+        el.addEventListener("dragover", (e)=>{
+          e.preventDefault();
+          e.dataTransfer.dropEffect = "move";
+        });
+        el.addEventListener("drop", (e)=>{
+          e.preventDefault();
+          const toCode = el.dataset.code || null;
+          if(!dragFromCode || !toCode || dragFromCode===toCode) return;
+          reorderWithinActiveTab(dragFromCode, toCode);
+          dragFromCode = null;
+        });
+      });
+    }
+
+    function reorderWithinActiveTab(fromCode, toCode){
+      const items = getCartItemsSafe();
+
+      const active = [];
+      items.forEach(it=>{
+        if(getItemType(it)===cartActiveTab) active.push(it);
+      });
+
+      const fromIdx = active.findIndex(it => String(it?.code||"").toUpperCase() === String(fromCode).toUpperCase());
+      const toIdx = active.findIndex(it => String(it?.code||"").toUpperCase() === String(toCode).toUpperCase());
+      if(fromIdx<0 || toIdx<0) return;
+
+      const [moved] = active.splice(fromIdx, 1);
+      active.splice(toIdx, 0, moved);
+
+      // 回填：保留非 active 的相對位置與順序
+      let ai = 0;
+      const next = items.map(it=>{
+        if(getItemType(it)===cartActiveTab){
+          return active[ai++];
+        }
+        return it;
+      });
+
+      writeJSON(CART_ITEMS_KEY, next);
+      renderSideCart();
+    }
       });
       const cmEl = document.getElementById("cartCMCount");
       const pcsEl = document.getElementById("cartPCSCount");
@@ -1818,6 +2172,19 @@ function clearSelection(field) {
 
     syncMetaKeys();
     updateCartCountsFromStorage();
+    // 初始化右側購物車
+    setCartTab('PCS');
+    document.getElementById('cartTabCM')?.addEventListener('click', ()=>setCartTab('CM'));
+    document.getElementById('cartTabPCS')?.addEventListener('click', ()=>setCartTab('PCS'));
+    document.getElementById('cartClearBtn')?.addEventListener('click', ()=>clearCartByTab());
+    document.getElementById('cartList')?.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.cart-remove');
+      if(!btn) return;
+      removeCartItemByKey(btn.dataset.type, btn.dataset.code);
+    });
+    window.addEventListener('storage', (ev)=>{
+      if(ev.key === CART_ITEMS_KEY){ renderSideCart(); }
+    });
 
     // -------- 初始化載入所有檔案 --------
     async function initializeLoad() {
