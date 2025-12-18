@@ -409,6 +409,36 @@
       background: #b91c1c;
     }
 
+
+/* ===== Load status pills (Tables / Definitions / Index) ===== */
+.load-badges{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-wrap:wrap;
+}
+.load-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid #e5e7eb;
+  background:#f9fafb;
+  color:#111827;
+  font-size:12px;
+  line-height:1;
+  white-space:nowrap;
+}
+.load-pill .badge-dot{
+  width:8px;
+  height:8px;
+}
+.load-pill.ok .badge-dot{ background:#16a34a; }
+.load-pill.loading .badge-dot{ background:#f59e0b; }
+.load-pill.error .badge-dot{ background:#b91c1c; }
+
+
     /* 加入購物車按鈕（PCS 完整 7 碼） */
     .add-to-cart-btn{
       display:inline-flex;
@@ -803,11 +833,21 @@
 <div class="topbar">
   <div class="topbar-title">ICD-10-PCS 2023 工具書</div>
   <div class="topbar-actions">
+
+<div class="load-badges" aria-label="載入狀態">
+  <div id="loadStatus" class="load-pill loading" title="Tables 載入中...">
+    <span class="badge-dot"></span><span class="pill-text">載入中</span>
+  </div>
+</div>
+
 <a class="linkbtn" href="index.html">開啟 CM 搜尋</a>
 
 <a class="linkbtn linkbtn--disabled" href="PCSheader.html" aria-current="page">開啟 PCS 搜尋</a>
 
 <a class="linkbtn" href="cart_header.html">購物車</a>
+<span class="linkbtn linkbtn--cartcounts" aria-label="Cart counts">
+  <span class="cart-label">CM</span> <span class="count-badge" id="cartCMCount">0</span>
+  <span class="cart-label">PCS</span> <span class="count-badge" id="cartPCSCount">0</span>
 </span>
 
   </div>
@@ -853,27 +893,7 @@
         <option value="">請先選擇 Body System</option>
       </select>
     </div></div>
-
-
-    <div class="status-row">
-      <div id="loadStatus" class="badge loading" title="Tables 載入中...">
-        <span class="badge-dot"></span>
-        <span>Tables</span>
-      </div>
-      <div id="defStatus" class="badge loading" title="Definitions 載入中...">
-        <span class="badge-dot"></span>
-        <span>Definitions</span>
-      </div>
-      <div id="indexStatus" class="badge loading" title="Index 載入中...">
-        <span class="badge-dot"></span>
-        <span>Index</span>
-      </div>
-      <div class="badge">
-        <span class="badge-dot"></span>
-        <span>來源：ICD-10-PCS 2023</span>
-      </div>
-    </div>
-    <div class="status-row">
+<div class="status-row">
       <div id="resultInfo">正在從雲端載入檔案，請稍候。</div>
     </div>    <div class="main-layout">
       <div class="left-pane">
@@ -1105,8 +1125,7 @@
     // const indexFileInput = document.getElementById("indexFile");
 
     const loadStatus = document.getElementById("loadStatus");
-    const defStatus = document.getElementById("defStatus");
-    const indexStatus = document.getElementById("indexStatus");
+    // defStatus / indexStatus pills merged into one
 
     const searchInput = document.getElementById("searchInput");
     const indexSearchInput = document.getElementById("indexSearchInput");
@@ -1158,20 +1177,68 @@
       qualifier: null,
     };
 
-    function setLoadStatus(text, cls) {
-      // 固定顯示 Tables，狀態文字只做為 tooltip，顏色用 class 控制
-      loadStatus.className = "badge " + (cls || "");
-      loadStatus.title = text || "";
-    }
-    function setDefStatus(text, cls) {
-      defStatus.className = "badge " + (cls || "");
-      defStatus.title = text || "";
-    }
-    function setIndexStatus(text, cls) {
-      indexStatus.className = "badge " + (cls || "");
-      indexStatus.title = text || "";
-    }
-    function setResultInfo(text) {
+    
+
+// ===== Load status (Tables / Definitions / Index) merged into ONE pill =====
+const __loadState = {
+  tables: { cls: "loading", text: "Tables 載入中..." },
+  def:    { cls: "loading", text: "Definitions 載入中..." },
+  index:  { cls: "loading", text: "Index 載入中..." },
+};
+
+function __stateLabel(cls){
+  return (cls === "ok") ? "載入完成" : (cls === "loading") ? "載入中" : (cls === "error") ? "載入異常" : "";
+}
+
+function __renderMergedLoadStatus(){
+  const pill = loadStatus;
+  if (!pill) return;
+
+  const states = [__loadState.tables, __loadState.def, __loadState.index];
+  const okCount = states.filter(s => s.cls === "ok").length;
+
+  let mergedCls = "loading";
+  if (states.some(s => s.cls === "error")) mergedCls = "error";
+  else if (okCount === 3) mergedCls = "ok";
+
+  pill.className = "load-pill " + mergedCls;
+
+  const stateText = __stateLabel(mergedCls);
+  const t = pill.querySelector(".pill-text");
+  if (t) {
+    // 單一顯示：資料載入中 / 完成 / 異常，並附 x/3 進度（載入中時）
+    t.textContent = (mergedCls === "loading")
+      ? `資料 載入中 (${okCount}/3)`
+      : `資料 ${stateText}`;
+  }
+
+  // tooltip：保留三項細節，不占用畫面
+  const tip = [
+    `Tables：${__stateLabel(__loadState.tables.cls)}`,
+    `Definitions：${__stateLabel(__loadState.def.cls)}`,
+    `Index：${__stateLabel(__loadState.index.cls)}`,
+  ].join("\n");
+  pill.title = tip;
+}
+
+function setLoadStatus(text, cls) {
+  __loadState.tables = { cls: (cls || ""), text: (text || "") };
+  __renderMergedLoadStatus();
+}
+
+function setDefStatus(text, cls) {
+  __loadState.def = { cls: (cls || ""), text: (text || "") };
+  __renderMergedLoadStatus();
+}
+
+function setIndexStatus(text, cls) {
+  __loadState.index = { cls: (cls || ""), text: (text || "") };
+  __renderMergedLoadStatus();
+}
+
+// 初始狀態顯示
+__renderMergedLoadStatus();
+function setResultInfo(text) {
       resultInfo.textContent = text;
     }
 
