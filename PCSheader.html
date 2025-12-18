@@ -592,6 +592,210 @@
   .cart-panel{ position: static; }
 }
 
+
+
+/* ===== Cart sidebar (match CM page) ===== */
+/* ===== Cart / Add-to-cart button ===== */
+    .cart-panel{
+      margin: 10px 0 14px;
+      border: 1px solid #e0e4ef;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 10px 12px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .cart-header{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      width:100%;
+      justify-content:space-between;
+    }
+    .cart-title{
+      font-size: 13px;
+      font-weight: 700;
+      color:#111827;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .cart-count{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:22px;
+      height:22px;
+      border-radius:999px;
+      padding:0 8px;
+      background:#0ea5e9;
+      color:#fff;
+      font-size:12px;
+      font-weight:700;
+    }
+    .cart-actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:8px;
+    }
+    .cart-tabs{
+      display:flex;
+      gap:6px;
+      align-items:center;
+      flex: 1;
+      min-width: 0;
+    }
+    .cart-tab{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid #d1d5db;
+      background:#f9fafb;
+      font-size:12px;
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .cart-tab.active{
+      background:#e6f0ff;
+      border-color:#60a5fa;
+      color:#1d4ed8;
+      font-weight:600;
+    }
+    .cart-tab .count-badge{
+      background:#1d4ed8;
+      color:#fff;
+      border-radius:999px;
+      padding:1px 7px;
+      font-size:11px;
+      line-height:16px;
+      min-width:18px;
+      text-align:center;
+    }
+
+    .cart-btn{
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background:#fff;
+      color:#111827;
+      font-size: 12px;
+      cursor:pointer;
+    }
+    .cart-btn:hover{ background:#f3f4f6; }
+    .cart-list{
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      margin-top:6px;
+    }
+    
+    .cart-item{
+      display:grid;
+      grid-template-columns: 1fr auto auto;
+      grid-template-rows: auto auto;
+      column-gap: 10px;
+      row-gap: 2px;
+      padding:6px 8px;
+      border-radius:10px;
+      border:1px solid #eef2ff;
+      background:#f8fafc;
+      align-items:start;
+    }
+    .cart-item .code{
+      grid-column:1;
+      grid-row:1;
+      color:#0052cc;
+      font-weight:700;
+      cursor:pointer;
+      line-height:1.2;
+      word-break: break-word;
+    }
+    .cart-item .desc{
+      grid-column:1;
+      grid-row:2;
+      color:#111827;
+      font-size:12px;
+      line-height:1.25;
+      word-break: break-word;
+    }
+    
+    .cart-item .drag-handle{
+      grid-column:2;
+      grid-row:1 / span 2;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:24px;
+      height:24px;
+      margin-top:2px;
+      border-radius:8px;
+      border:1px solid #e5e7eb;
+      background:#ffffff;
+      color:#6b7280;
+      cursor:grab;
+      user-select:none;
+    }
+    .cart-item .drag-handle:active{ cursor:grabbing; }
+    .cart-item.dragging{
+      opacity:.55;
+      border-color:#93c5fd;
+      background:#eff6ff;
+    }
+
+    .cart-item .remove{
+      grid-column:3;
+      grid-row:1 / span 2;
+      border:none;
+      background:transparent;
+      cursor:pointer;
+      color:#b91c1c;
+      font-size:14px;
+      line-height:1;
+      padding:2px 6px;
+      align-self:start;
+    }
+    .add-to-cart-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:20px;
+      height:20px;
+      border-radius:6px;
+      border:1px solid #93c5fd;
+      background:#e7f2ff;
+      color:#1d4ed8;
+      font-weight:800;
+      font-size:14px;
+      cursor:pointer;
+      margin-right:6px;
+      vertical-align:middle;
+      user-select:none;
+    }
+    .add-to-cart-btn:hover{ background:#dbeafe; }
+    .add-to-cart-btn[disabled]{
+      opacity:.4;
+      cursor:not-allowed;
+    }
+
+/* Cart sidebar card */
+.cart-sidebar{
+  border: 1px solid #e0e4ef;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+}
+
 </style>
 </head>
 <body>
@@ -741,29 +945,23 @@
     </div>
       </div>
       <aside class="right-pane" aria-label="購物車側欄">
-        <div class="cart-panel">
-          <div class="cart-panel-header">
-            <div class="cart-panel-title">
-              購物車 <span class="count-badge count-badge--sm" id="cartTotalCountSide">0</span>
-            </div>
-            <button type="button" class="linkbtn" id="cartClearBtnSide">清空</button>
-          </div>
-
-          <div class="cart-panel-tabs" role="tablist" aria-label="購物車類別">
-            <button type="button" class="cart-pill" data-type="CM" aria-selected="false">
-              CM <span class="count-badge count-badge--sm" id="cartCMCountSide">0</span>
-            </button>
-            <button type="button" class="cart-pill cart-pill--active" data-type="PCS" aria-selected="true">
-              PCS <span class="count-badge count-badge--sm" id="cartPCSCountSide">0</span>
-            </button>
-          </div>
-
-          <div class="cart-panel-body" id="cartPanelBody">
-            <div class="cart-panel-empty">
-              此區塊提供快速檢視數量與清空功能；完整清單與排序調整請至上方「購物車」頁。
-            </div>
-          </div>
-        </div>
+        <div aria-label="購物車" class="cart-sidebar">
+<div class="cart-header">
+<div class="cart-title">購物車</div>
+</div>
+<div class="cart-actions">
+<div aria-label="購物車類型" class="cart-tabs" role="tablist">
+<button aria-selected="false" class="cart-tab" data-type="CM" id="cartTabCM" role="tab" type="button">
+          CM <span class="count-badge" id="cartSideCMCount">0</span>
+</button>
+<button aria-selected="true" class="cart-tab active" data-type="PCS" id="cartTabPCS" role="tab" type="button">
+          PCS <span class="count-badge" id="cartSidePCSCount">0</span>
+</button>
+</div>
+<button class="cart-btn" id="cartClearBtn" type="button">清空</button>
+</div>
+<div class="cart-list" id="cartList"></div>
+</div
       </aside>
     </div></div>
 
@@ -896,6 +1094,12 @@
       selectedCodeBox.appendChild(toast);
       setTimeout(() => toast.remove(), 1400);
       updateCartCountsFromStorage();
+      // 即時更新右側購物車（不需重新整理）
+      try{
+        if (typeof window.__setCartSidebarType === "function") window.__setCartSidebarType("PCS");
+        if (typeof window.__renderCartSidebar === "function") window.__renderCartSidebar();
+      }catch(_){}
+
     }
 
 // 移除檔案選擇框的 DOM 元素取得
@@ -1495,17 +1699,14 @@ function clearSelection(field) {
           // 0: Section, 1: Body System, 2: Operation, 3: Body Part, 4: Approach, 5: Device, 6: Qualifier
           const partsToDisplay = descParts.slice(2, 7); 
           
-          // 使用特殊符號 $, 連接，稍後再替換成 HTML 標籤
-          displayDesc = partsToDisplay.join("$, "); 
-          
-          // 將特殊分隔符 $, 替換成帶有灰色字體 #6b7280 的 ", "
-          const coloredDesc = displayDesc.replace(
-            /\$, /g, 
-            '<span style="color: #C02626;">, </span>'
-          );
-          
+          // 組合顯示用敘述（Operation → Qualifier）
+          const plainDesc = partsToDisplay.join(", ");
+
+          // 顯示在畫面上（用紅色逗號分隔），但存入購物車要用純文字
+          const coloredDesc = partsToDisplay.join('<span style="color: #C02626;">, </span>');
+
           // 保存最後一次「完整且存在於 Tables」的選取（供 + 加入購物車）
-          lastFullSelection = { code: fullCode, desc: displayDesc };
+          lastFullSelection = { code: fullCode, desc: plainDesc };
 
           selectedCodeBox.innerHTML =
             `目前選取代碼：<code class="highlight-code">${fullCode}</code>` +
@@ -2188,6 +2389,242 @@ function clearSelection(field) {
     // 頁面載入時自動開始載入檔案
     initializeLoad();
   </script>
+
+<script>
+/* ===== Cart Sidebar (match CM page) =====
+   Notes:
+   - Uses shared storage key: icd_cart_items
+   - Default viewType = PCS on PCS page
+*/
+(function(){
+  function safeParseJSON(v){ try{ return JSON.parse(v||""); }catch(e){ return null; } }
+  function normalizeCode(code){ return String(code||"").trim(); }
+  function classifyTypeByCode(code){
+    const c = normalizeCode(code).toUpperCase();
+    if(!c) return "";
+    const isPCS = !c.includes(".") && /^[0-9A-HJ-NP-Z]{7}$/.test(c);
+    return isPCS ? "PCS" : "CM";
+  }
+  function getCartItems(){
+    const raw = localStorage.getItem("icd_cart_items");
+    const arr = safeParseJSON(raw);
+    return Array.isArray(arr) ? arr : [];
+  }
+  function persistCartItems(items){
+    try{ localStorage.setItem("icd_cart_items", JSON.stringify(items||[])); }catch(e){}
+  }
+
+  let cartViewType = "PCS";
+  let cartDragCode = null;
+
+  const cartList = document.getElementById("cartList");
+  const cartClearBtn = document.getElementById("cartClearBtn");
+  const cartTabCM = document.getElementById("cartTabCM");
+  const cartTabPCS = document.getElementById("cartTabPCS");
+  const cartSideCMCount = document.getElementById("cartSideCMCount");
+  const cartSidePCSCount = document.getElementById("cartSidePCSCount");
+
+  function getItemType(it){
+    const tRaw = String(it?.type||"");
+    const t = tRaw.toUpperCase().replace(/[\[\]\s]/g,"");
+    if (t === "CM" || t === "PCS") return t;
+    return classifyTypeByCode(it?.code);
+  }
+
+  function updateCartCounts(){
+    const items = getCartItems();
+    let cm = 0, pcs = 0;
+    items.forEach(it=>{
+      const t = getItemType(it);
+      if(t === "CM") cm++;
+      else if(t === "PCS") pcs++;
+    });
+
+    // top-right badges (if present)
+    const cmEl = document.getElementById("cartCMCount");
+    const pcsEl = document.getElementById("cartPCSCount");
+    if (cmEl) cmEl.textContent = String(cm);
+    if (pcsEl) pcsEl.textContent = String(pcs);
+
+    // sidebar badges
+    if (cartSideCMCount) cartSideCMCount.textContent = String(cm);
+    if (cartSidePCSCount) cartSidePCSCount.textContent = String(pcs);
+  }
+
+  function reorderWithinType(items, dragCode, targetCode, type){
+    if (!dragCode || !targetCode || dragCode === targetCode) return items;
+
+    const positions = [];
+    const typeItems = [];
+    for (let i=0;i<items.length;i++){
+      const it = items[i];
+      if (getItemType(it) === type){
+        positions.push(i);
+        typeItems.push(it);
+      }
+    }
+    const fromIdx = typeItems.findIndex(x => String(x.code||"") === dragCode);
+    const toIdx = typeItems.findIndex(x => String(x.code||"") === targetCode);
+    if (fromIdx < 0 || toIdx < 0) return items;
+
+    const moved = typeItems.splice(fromIdx, 1)[0];
+    typeItems.splice(toIdx, 0, moved);
+    positions.forEach((pos, k) => { items[pos] = typeItems[k]; });
+    return items;
+  }
+
+  function bindDnd(){
+    if (!cartList || cartList.__dndBound) return;
+    cartList.__dndBound = true;
+
+    cartList.addEventListener("dragover", (e) => {
+      if (!cartDragCode) return;
+      e.preventDefault();
+      try{ e.dataTransfer.dropEffect = "move"; }catch(_){}
+    });
+
+    cartList.addEventListener("drop", (e) => {
+      if (!cartDragCode) return;
+      e.preventDefault();
+      const targetRow = e.target.closest(".cart-item");
+      if (!targetRow) return;
+      const targetCode = targetRow.dataset.code;
+      let items = getCartItems();
+      items = reorderWithinType(items, cartDragCode, targetCode, cartViewType);
+      persistCartItems(items);
+      cartDragCode = null;
+      renderCart();
+    });
+  }
+
+  function renderCart(){
+    updateCartCounts();
+    if (!cartList) return;
+
+    const items = getCartItems();
+    cartList.innerHTML = "";
+
+    const visible = items.filter(it => getItemType(it) === cartViewType);
+
+    if (!items.length){
+      const empty = document.createElement("div");
+      empty.style.fontSize = "12px";
+      empty.style.color = "#6b7280";
+      empty.textContent = "尚無加入代碼。";
+      cartList.appendChild(empty);
+      return;
+    }
+    if (!visible.length){
+      const empty = document.createElement("div");
+      empty.style.fontSize = "12px";
+      empty.style.color = "#6b7280";
+      empty.textContent = (cartViewType === "PCS") ? "PCS 尚無加入代碼。" : "CM 尚無加入代碼。";
+      cartList.appendChild(empty);
+      return;
+    }
+
+    visible.forEach((it)=>{
+      const row = document.createElement("div");
+      row.className = "cart-item";
+      row.dataset.code = String(it.code||"");
+
+      const codeEl = document.createElement("div");
+      codeEl.className = "code";
+      codeEl.textContent = String(it.code||"");
+      // Avoid breaking PCS page: only bind click if a handler exists
+      codeEl.title = "Code";
+      codeEl.addEventListener("click", ()=>{
+        // If you later implement a PCS detail modal, wire it here.
+        // For now, do nothing to avoid load exceptions.
+      });
+
+      const descEl = document.createElement("div");
+      descEl.className = "desc";
+      descEl.textContent = String(it.desc||"");
+
+      const dragEl = document.createElement("div");
+      dragEl.className = "drag-handle";
+      dragEl.title = "拖曳調整順序";
+      dragEl.textContent = "⋮⋮";
+      dragEl.draggable = true;
+      dragEl.addEventListener("dragstart", (e)=>{
+        cartDragCode = String(it.code||"");
+        row.classList.add("dragging");
+        try{ e.dataTransfer.setData("text/plain", cartDragCode); }catch(_){}
+        try{ e.dataTransfer.effectAllowed = "move"; }catch(_){}
+      });
+      dragEl.addEventListener("dragend", ()=>{
+        row.classList.remove("dragging");
+        cartDragCode = null;
+      });
+
+      const rm = document.createElement("button");
+      rm.className = "remove";
+      rm.title = "Remove";
+      rm.textContent = "×";
+      rm.addEventListener("click", ()=>{
+        const code = String(it.code||"");
+        const next = items.filter(x => String(x.code||"") !== code);
+        persistCartItems(next);
+        renderCart();
+        // keep existing PCS slot removal behavior (if present)
+        if (typeof window.removeFromPCSSlots === "function") {
+          try{ window.removeFromPCSSlots(code); }catch(_){}
+        }
+      });
+
+      row.appendChild(codeEl);
+      row.appendChild(descEl);
+      row.appendChild(dragEl);
+      row.appendChild(rm);
+      cartList.appendChild(row);
+    });
+
+    bindDnd();
+  }
+
+  function setCartViewType(next){
+    const t = String(next||"").toUpperCase();
+    cartViewType = (t === "CM") ? "CM" : "PCS";
+
+    if (cartTabCM){
+      cartTabCM.classList.toggle("active", cartViewType === "CM");
+      cartTabCM.setAttribute("aria-selected", cartViewType === "CM" ? "true" : "false");
+    }
+    if (cartTabPCS){
+      cartTabPCS.classList.toggle("active", cartViewType === "PCS");
+      cartTabPCS.setAttribute("aria-selected", cartViewType === "PCS" ? "true" : "false");
+    }
+    renderCart();
+  }
+
+  if (cartTabCM) cartTabCM.addEventListener("click", ()=>setCartViewType("CM"));
+  if (cartTabPCS) cartTabPCS.addEventListener("click", ()=>setCartViewType("PCS"));
+  if (cartClearBtn) cartClearBtn.addEventListener("click", ()=>{
+    persistCartItems([]);
+    renderCart();
+    // keep PCS page slot-clearing behavior if present
+    if (typeof window.clearPCSSlots === "function") {
+      try{ window.clearPCSSlots(); }catch(_){}
+    }
+  });
+
+  // Expose for other scripts (non-breaking)
+  window.__renderCartSidebar = renderCart;
+  window.__setCartSidebarType = setCartViewType;
+
+  document.addEventListener("DOMContentLoaded", ()=>{
+    // ensure default PCS
+    setCartViewType("PCS");
+    renderCart();
+  });
+
+  // storage sync across tabs/pages
+  window.addEventListener("storage", (e)=>{
+    if (e && e.key === "icd_cart_items") renderCart();
+  });
+})();
+</script>
 </body>
 </html>
 
