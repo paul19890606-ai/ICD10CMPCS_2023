@@ -586,7 +586,7 @@
     
     .cart-item{
       display:grid;
-      grid-template-columns: 18px 1fr auto;
+      grid-template-columns: 10px 1fr auto;
       grid-template-rows: auto auto;
       column-gap: 10px;
       row-gap: 2px;
@@ -618,29 +618,21 @@
     
     
     
-    .cart-item .drag-handle{
+    .cart-item .drag-strip{
       grid-column:1;
       grid-row:1 / span 2;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      width:14px;
-      border-radius:8px;
-      background:#e0f2fe;
+      width:8px;
+      border-radius:999px;
+      background:#dbeafe;
       border:1px solid #bfdbfe;
       cursor:grab;
       user-select:none;
       align-self:stretch;
+      justify-self:center;
     }
-    .cart-item .drag-handle::before{
-      content:none;
-      display:none;
-    }
-    .cart-item.dragging .drag-handle{
-      cursor:grabbing;
-    }
-.cart-item .drag-handle:active{ cursor:grabbing; }
-    .cart-item.dragging{
+    .cart-item .drag-strip:active{ cursor:grabbing; }
+
+.cart-item.dragging{
       opacity:.55;
       border-color:#93c5fd;
       background:#eff6ff;
@@ -1515,7 +1507,7 @@ function renderCart() {
     row.className = "cart-item";
     row.dataset.code = it.code;
     const dragEl = document.createElement("div");
-    dragEl.className = "drag-handle";
+    dragEl.className = "drag-strip";
     dragEl.title = "拖曳調整順序";
     dragEl.textContent = "";
     dragEl.draggable = true;
