@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <title>ICD-10-CM 2023工具書</title>
-  <style>
+<meta charset="utf-8"/>
+<title>ICD-10-CM 2023工具書</title>
+<style>
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       margin: 0;
@@ -11,7 +12,7 @@
       background: #f5f5f7;
     }
     .app {
-      max-width: 1800px;
+      max-width: 1900px;
       margin: 0 auto;
       background: #ffffff;
       border-radius: 16px;
@@ -156,32 +157,6 @@
       color: #ffffff;
     }
 
-.neoplasm-filters {
-      display: none;
-      margin-bottom: 8px;
-      font-size: 12px;
-      color: #444;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid #ddd;
-      cursor: pointer;
-      user-select: none;
-      background: #fff;
-    }
-    .chip input {
-      transform: scale(0.9);
-    }
-    .chip span {
-      font-size: 12px;
-    }
 
     .tabular-result {
       margin-top: 8px;
@@ -509,10 +484,48 @@
     }
     .cart-actions{
       display:flex;
-      gap:8px;
       align-items:center;
-      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:8px;
     }
+    .cart-tabs{
+      display:flex;
+      gap:6px;
+      align-items:center;
+      flex: 1;
+      min-width: 0;
+    }
+    .cart-tab{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid #d1d5db;
+      background:#f9fafb;
+      font-size:12px;
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .cart-tab.active{
+      background:#e6f0ff;
+      border-color:#60a5fa;
+      color:#1d4ed8;
+      font-weight:600;
+    }
+    .cart-tab .count-badge{
+      background:#1d4ed8;
+      color:#fff;
+      border-radius:999px;
+      padding:1px 7px;
+      font-size:11px;
+      line-height:16px;
+      min-width:18px;
+      text-align:center;
+    }
+
     .cart-btn{
       padding: 7px 12px;
       border-radius: 999px;
@@ -530,27 +543,63 @@
       gap:6px;
       margin-top:6px;
     }
+    
     .cart-item{
-      display:flex;
-      gap:10px;
-      align-items:baseline;
+      display:grid;
+      grid-template-columns: 1fr auto auto;
+      grid-template-rows: auto auto;
+      column-gap: 10px;
+      row-gap: 2px;
       padding:6px 8px;
       border-radius:10px;
       border:1px solid #eef2ff;
       background:#f8fafc;
+      align-items:start;
     }
     .cart-item .code{
+      grid-column:1;
+      grid-row:1;
       color:#0052cc;
       font-weight:700;
-      min-width:78px;
       cursor:pointer;
+      line-height:1.2;
+      word-break: break-word;
     }
     .cart-item .desc{
-      color:#1f2933;
-      flex:1;
+      grid-column:1;
+      grid-row:2;
+      color:#111827;
       font-size:12px;
+      line-height:1.25;
+      word-break: break-word;
     }
+    
+    .cart-item .drag-handle{
+      grid-column:2;
+      grid-row:1 / span 2;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:24px;
+      height:24px;
+      margin-top:2px;
+      border-radius:8px;
+      border:1px solid #e5e7eb;
+      background:#ffffff;
+      color:#6b7280;
+      cursor:grab;
+      user-select:none;
+    }
+    .cart-item .drag-handle:active{ cursor:grabbing; }
+    .cart-item.dragging{
+      opacity:.55;
+      border-color:#93c5fd;
+      background:#eff6ff;
+    }
+
     .cart-item .remove{
+      grid-column:3;
+      grid-row:1 / span 2;
       border:none;
       background:transparent;
       cursor:pointer;
@@ -558,6 +607,7 @@
       font-size:14px;
       line-height:1;
       padding:2px 6px;
+      align-self:start;
     }
     .add-to-cart-btn{
       display:inline-flex;
@@ -796,125 +846,315 @@
   opacity:.55;
   cursor:default;
 }
+/* ===== Main two-column layout (Search 1500px + Cart 300px) ===== */
+.main-layout{
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+  margin-top: 10px;
+}
+.code-pane{
+  flex: 0 0 1500px;
+  max-width: 1500px;
+  min-width: 0;
+}
+.cart-pane{
+  flex: 0 0 300px;
+  max-width: 300px;
+  min-width: 300px;
+  position: sticky;
+  top: 16px;
+}
+@media (max-width: 1880px){
+  .code-pane{ flex: 1 1 auto; max-width: 100%; }
+  .cart-pane{ flex: 0 0 320px; max-width: 320px; min-width: 280px; }
+}
+@media (max-width: 1200px){
+  .main-layout{ flex-direction: column; }
+  .cart-pane{ position: static; max-width: 100%; min-width: 0; width: 100%; }
+}
+
+/* Cart sidebar card */
+.cart-sidebar{
+  border: 1px solid #e0e4ef;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+}
+.cart-sidebar .cart-title{ font-size: 13px; font-weight: 700; }
+.cart-sidebar .cart-actions{ margin-top: 8px; }
+.cart-sidebar .cart-list{
+  max-height: calc(100vh - 220px);
+  overflow: auto;
+  padding-right: 4px;
+}
+
+    .topbar-datacount{
+      display:inline-flex;
+      align-items:center;
+      margin-right: 6px;
+      white-space: nowrap;
+    }
+    
+
+/* === 固定版面高度、左右區塊各自滾動（避免頁面變長） === */
+html, body { height: 100%; }
+body { overflow: hidden; }
+
+/* body padding = 20px * 2 = 40px */
+.app{
+  height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 讓主要內容吃滿剩餘高度 */
+.main-layout{
+  flex: 1;
+  min-height: 0;
+  align-items: stretch;
+}
+
+/* 左側（Index/搜尋結果）可向下撐滿並滾動 */
+.code-pane{
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.results-wrapper{
+  flex: 1;
+  min-height: 0;
+  max-height: none; /* 覆蓋原本 420px 限制 */
+}
+
+.results-scroll{
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* 右側（購物車）同高度、內部滾動 */
+.cart-sidebar{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.cart-sidebar .cart-list{
+  flex: 1;
+  min-height: 0;
+  max-height: none; /* 覆蓋原本 calc(100vh - 220px) */
+  overflow: auto;
+}
+
+/* ===== Standard App Layout: fixed header + full-height main ===== */
+*{ box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  padding: 20px;
+  height: 100vh;
+  overflow: hidden; /* prevent page from growing; main content scrolls */
+  background: #f5f5f7;
+}
+.app{
+  height: calc(100vh - 40px); /* account for body padding */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.app-header{
+  flex: 0 0 auto;
+  /* keep visual continuity when content scrolls */
+  background: #ffffff;
+  z-index: 5;
+}
+.app-main{
+  flex: 1 1 auto;
+  min-height: 0; /* critical for nested scroll areas */
+  overflow: hidden;
+}
+
+/* main two-column layout fills the remaining height */
+.main-layout{
+  height: 100%;
+  min-height: 0;
+}
+
+/* ensure left pane and right cart pane can fully use height */
+.code-pane{
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.results-wrapper{
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.results-scroll{
+  height: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* cart */
+.cart-pane{ min-height: 0; }
+.cart-sidebar{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.cart-list{
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+/* remove bottom visual gaps caused by outer paddings/margins */
+.main-layout, .code-pane, .cart-pane { margin-bottom: 0; }
+
+
+
+    /* Load status badge (move to topbar, left of total count) */
+    .load-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      margin-right: 6px;
+      white-space: nowrap;
+    }
+    .load-badge::before{
+      content:'';
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background: currentColor;
+      opacity: .85;
+    }
+    .load-ok{ background:#e7f8ee; color:#0f7a35; }
+    .load-loading{ background:#fff3e0; color:#b45309; }
+    .load-error{ background:#fee2e2; color:#b91c1c; }
+
+    /* Hide the old second-row file status cards */
+    .files-grid{ display:none; }
 </style>
 </head>
 <body>
-  <div class="app">
+<div class="app">
+<div class="app-header">
 <div class="topbar">
-  <div class="topbar-title">ICD-10-CM 2023工具書</div>
-  <div class="topbar-actions">
-    <a class="linkbtn linkbtn--disabled" href="index.html" aria-current="page">開啟 CM 搜尋</a>
-    <a class="linkbtn" href="PCSheader.html">開啟 PCS 搜尋</a>
-    <a class="linkbtn" href="cart_header.html">購物車</a>
-    <span class="linkbtn linkbtn--cartcounts" aria-label="Cart counts">
-      <span class="cart-label">CM</span> <span class="count-badge" id="cartCMCount">0</span>
-      <span class="cart-label">PCS</span> <span class="count-badge" id="cartPCSCount">0</span>
-    </span>
-  </div>
+<div class="topbar-title">ICD-10-CM 2023工具書</div>
+<div class="topbar-actions">
+<span class="pill load-badge load-loading" id="loadBadge">載入中</span><span class="topbar-datacount" id="dataCount"></span>
+<a aria-current="page" class="linkbtn linkbtn--disabled" href="index.html">開啟 CM 搜尋</a>
+<a class="linkbtn" href="PCSheader.html">開啟 PCS 搜尋</a>
+<a class="linkbtn" href="cart_header.html">購物車</a>
+</span>
 </div>
-
+</div>
 <!-- 檔案上傳 -->
-    <div class="files-grid">
-      <div class="file-card">
-        <div class="file-label"><span id="dotIndex"></span>疾病與損傷<code></code></div>
-<div id="statusIndex" class="file-status"></div>
-      </div>
-      <div class="file-card">
-        <div class="file-label"><span id="dotNeoplasm"></span>腫瘤 Neoplasm<code></code></div>
-<div id="statusNeoplasm" class="file-status"></div>
-      </div>
-      <div class="file-card">
-        <div class="file-label"><span id="dotExternal"></span>外因 External Cause<code></code></div>
-<div id="statusExternal" class="file-status"></div>
-      </div>
-      <div class="file-card">
-        <div class="file-label"><span id="dotDrug"></span>藥物/化學品<code></code></div>
-<div id="statusDrug" class="file-status"></div>
-      </div>
-      <div class="file-card">
-        <div class="file-label"><span id="dotTabular"></span>Tabular<code></code></div>
-<div id="statusTabular" class="file-status"></div>
-      </div>
-    </div>
-
-<div class="top-search-row">
-      <div class="search-block">
-        <span class="search-label">Enter Search Term(s):</span>
-        <input id="searchInput" type="text"
-          placeholder="例如：diabet hypergly、abdominal pain、acetaminophen、R79.1..."
-          autocomplete="off" />
-      </div>
-      <div class="tabular-block">
-        <span class="tabular-label">Find code in Tabular:</span>
-        <input id="tabularCodeInput" type="text" placeholder="例如：E11.9" autocomplete="off" />
-        <button id="tabularViewBtn">View</button>
-      </div>
-    </div>
-
-    <div class="tabs-row">
-      <button class="tab-button active" data-tab="disease" id="tabDisease">
-        Disease Index <span class="count" id="countDisease">0</span>
-      </button>
-      <button class="tab-button" data-tab="external" id="tabExternal">
-        External Causes <span class="count" id="countExternal">0</span>
-      </button>
-      <button class="tab-button" data-tab="drugs" id="tabDrugs">
-        Drugs <span class="count" id="countDrugs">0</span>
-      </button>
-      <button class="tab-button" data-tab="neoplasm" id="tabNeoplasm">
-        Neoplasms <span class="count" id="countNeoplasm">0</span>
-      </button>
-
-
+<div class="files-grid">
+<div class="file-card">
+<div class="file-label"><span id="dotIndex"></span>疾病與損傷<code></code></div>
+<div class="file-status" id="statusIndex"></div>
 </div>
-
-    <div class="neoplasm-filters" id="neoplasmFilters">
-      <span>Neoplasm 行為過濾：</span>
-      <label class="chip"><input id="neoAny" type="checkbox" checked /><span>不限</span></label>
-      <label class="chip"><input id="neo2" type="checkbox" /><span>惡性原發</span></label>
-      <label class="chip"><input id="neo3" type="checkbox" /><span>惡性續發</span></label>
-      <label class="chip"><input id="neo4" type="checkbox" /><span>原位癌</span></label>
-      <label class="chip"><input id="neo5" type="checkbox" /><span>良性</span></label>
-      <label class="chip"><input id="neo6" type="checkbox" /><span>行為不確定</span></label>
-      <label class="chip"><input id="neo7" type="checkbox" /><span>行為未明</span></label>
-    </div>
-
-    
-    <div id="searchArea">
-      <div class="tabular-result" id="tabularResult"></div>
-
-      <div class="tag-hint" id="tagHint"></div>
-
-      <div class="header-row">
-        <span id="resultCount"></span>
-        <span id="dataCount"></span>
-      </div>
-
-      <div class="results-wrapper" id="resultsWrapper">
-        <div class="results-title-bar" id="resultsTitleBar">
+<div class="file-card">
+<div class="file-label"><span id="dotNeoplasm"></span>腫瘤 Neoplasm<code></code></div>
+<div class="file-status" id="statusNeoplasm"></div>
+</div>
+<div class="file-card">
+<div class="file-label"><span id="dotExternal"></span>外因 External Cause<code></code></div>
+<div class="file-status" id="statusExternal"></div>
+</div>
+<div class="file-card">
+<div class="file-label"><span id="dotDrug"></span>藥物/化學品<code></code></div>
+<div class="file-status" id="statusDrug"></div>
+</div>
+<div class="file-card">
+<div class="file-label"><span id="dotTabular"></span>Tabular<code></code></div>
+<div class="file-status" id="statusTabular"></div>
+</div>
+</div>
+<div class="top-search-row">
+<div class="search-block">
+<span class="search-label">Enter Search Term(s):</span>
+<input autocomplete="off" id="searchInput" placeholder="例如：diabet hypergly、abdominal pain、acetaminophen、R79.1..." type="text"/>
+</div>
+<div class="tabular-block">
+<span class="tabular-label">Find code in Tabular:</span>
+<input autocomplete="off" id="tabularCodeInput" placeholder="例如：E11.9" type="text"/>
+<button id="tabularViewBtn">View</button>
+</div>
+</div>
+<div class="tabs-row">
+<button class="tab-button active" data-tab="disease" id="tabDisease">
+        Disease Index <span class="count" id="countDisease">0</span>
+</button>
+<button class="tab-button" data-tab="external" id="tabExternal">
+        External Causes <span class="count" id="countExternal">0</span>
+</button>
+<button class="tab-button" data-tab="drugs" id="tabDrugs">
+        Drugs <span class="count" id="countDrugs">0</span>
+</button>
+<button class="tab-button" data-tab="neoplasm" id="tabNeoplasm">
+        Neoplasms <span class="count" id="countNeoplasm">0</span>
+</button>
+</div>
+</div><!-- /app-header -->
+<main class="app-main">
+<div class="main-layout">
+<div class="code-pane">
+<div id="searchArea">
+<div class="tabular-result" id="tabularResult"></div>
+</div>
+<div class="tag-hint" id="tagHint"></div>
+<div class="header-row">
+<span id="resultCount"></span>
+</div>
+<div class="results-wrapper" id="resultsWrapper">
+<div class="results-title-bar" id="resultsTitleBar">
           Index to Diseases and Injuries
         </div>
-        <div class="results-scroll" id="resultsScroll"></div>
-      </div>
-
-      <div id="emptyHint" class="empty-hint"></div>
-    </div>
-
-    
-
+<div class="results-scroll" id="resultsScroll"></div>
+</div>
+<div class="empty-hint" id="emptyHint"></div>
+</div>
+<aside class="cart-pane">
+<div aria-label="購物車" class="cart-sidebar">
+<div class="cart-header">
+<div class="cart-title">購物車</div>
+</div>
+<div class="cart-actions">
+<div aria-label="購物車類型" class="cart-tabs" role="tablist">
+<button aria-selected="true" class="cart-tab active" data-type="CM" id="cartTabCM" role="tab" type="button">
+          CM <span class="count-badge" id="cartSideCMCount">0</span>
+</button>
+<button aria-selected="false" class="cart-tab" data-type="PCS" id="cartTabPCS" role="tab" type="button">
+          PCS <span class="count-badge" id="cartSidePCSCount">0</span>
+</button>
+</div>
+<button class="cart-btn" id="cartClearBtn" type="button">清空</button>
+</div>
+<div class="cart-list" id="cartList"></div>
+</div>
+</aside>
+</div>
+</main>
 <!-- Tabular Modal -->
-
-  <div id="tabularModal" class="modal-overlay">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div id="tabularModalTitle" class="modal-title"></div>
-        <button id="tabularModalClose" class="modal-close">&times;</button>
-      </div>
-      <div id="tabularModalBody" class="modal-body"></div>
-    </div>
-  </div>
-
-  <script>
+<div class="modal-overlay" id="tabularModal">
+<div class="modal-content">
+<div class="modal-header">
+<div class="modal-title" id="tabularModalTitle"></div>
+<button class="modal-close" id="tabularModalClose">×</button>
+</div>
+<div class="modal-body" id="tabularModalBody"></div>
+</div>
+</div>
+<script>
     function normalizeText(str) {
       return (str || "")
         .replace(/\s+/g, " ")
@@ -951,9 +1191,71 @@
 
     // ===== Shopping Cart =====
     const cartCount = document.getElementById("cartCount");
-    const cartList = document.getElementById("cartList");
-    const cartCopyBtn = document.getElementById("cartCopyBtn");
+    const cartList = document.getElementById("cartList");    let cartDragCode = null;
+
+    function getCartItemType(item){
+      const t = item?.type;
+      const finalType = (t === "CM" || t === "PCS") ? t : classifyTypeByCode(item?.code);
+      return finalType;
+    }
+
+    function reorderCartWithinType(dragCode, targetCode, type){
+      if (!dragCode || !targetCode || dragCode === targetCode) return;
+
+      const positions = [];
+      const typeItems = [];
+      for (let i = 0; i < cartItems.length; i++){
+        const it = cartItems[i];
+        if (getCartItemType(it) === type){
+          positions.push(i);
+          typeItems.push(it);
+        }
+      }
+
+      const fromIdx = typeItems.findIndex(x => x.code === dragCode);
+      const toIdx = typeItems.findIndex(x => x.code === targetCode);
+      if (fromIdx < 0 || toIdx < 0) return;
+
+      const moved = typeItems.splice(fromIdx, 1)[0];
+      typeItems.splice(toIdx, 0, moved);
+
+      // Put reordered items back into original positions
+      positions.forEach((pos, k) => { cartItems[pos] = typeItems[k]; });
+
+      persistCart();
+      updateCartCountsFromStorage();
+      renderCart();
+      bindCartDragDrop();
+    }
+
+    function bindCartDragDrop(){
+      if (!cartList || cartList.__dndBound) return;
+      cartList.__dndBound = true;
+
+      cartList.addEventListener("dragover", (e) => {
+        // allow drop only when dragging from our handle
+        if (!cartDragCode) return;
+        e.preventDefault();
+        e.dataTransfer.dropEffect = "move";
+      });
+
+      cartList.addEventListener("drop", (e) => {
+        if (!cartDragCode) return;
+        e.preventDefault();
+        const targetRow = e.target.closest(".cart-item");
+        if (!targetRow) return;
+        const targetCode = targetRow.dataset.code;
+        reorderCartWithinType(cartDragCode, targetCode, cartViewType);
+      });
+    }
     const cartClearBtn = document.getElementById("cartClearBtn");
+    const cartTabCM = document.getElementById("cartTabCM");
+    const cartTabPCS = document.getElementById("cartTabPCS");
+    const cartSideCMCount = document.getElementById("cartSideCMCount");
+    const cartSidePCSCount = document.getElementById("cartSidePCSCount");
+
+    let cartViewType = "CM"; // Default: current page is CM
+
 
     const searchArea = document.getElementById("searchArea");
     const cartPage = document.getElementById("cartPage");
@@ -1001,6 +1303,8 @@
       const pcsEl = document.getElementById("cartPCSCount");
       if(cmEl) cmEl.textContent = String(cm);
       if(pcsEl) pcsEl.textContent = String(pcs);
+      if(cartSideCMCount) cartSideCMCount.textContent = String(cm);
+      if(cartSidePCSCount) cartSidePCSCount.textContent = String(pcs);
     }
 
     function persistCart() {
@@ -1021,6 +1325,15 @@ function renderCart() {
   if (!cartList) return;
 
   cartList.innerHTML = "";
+
+  // Filter by current view type (CM / PCS)
+  const visibleItems = (cartItems || []).filter((it) => {
+    const tRaw = String(it?.type || "");
+    const t = tRaw.toUpperCase().replace(/[\[\]\s]/g, "");
+    const finalType = (t === "CM" || t === "PCS") ? t : classifyTypeByCode(it?.code);
+    return finalType === cartViewType;
+  });
+
   if (!cartItems.length) {
     const empty = document.createElement("div");
     empty.style.fontSize = "12px";
@@ -1029,19 +1342,46 @@ function renderCart() {
     cartList.appendChild(empty);
     return;
   }
-  cartItems.forEach((it) => {
+
+  if (!visibleItems.length) {
+    const empty = document.createElement("div");
+    empty.style.fontSize = "12px";
+    empty.style.color = "#6b7280";
+    empty.textContent = (cartViewType === "PCS") ? "PCS 尚無加入代碼。" : "CM 尚無加入代碼。";
+    cartList.appendChild(empty);
+    return;
+  }
+
+  visibleItems.forEach((it) => {
     const row = document.createElement("div");
     row.className = "cart-item";
+    row.dataset.code = it.code;
+    const dragEl = document.createElement("div");
+    dragEl.className = "drag-handle";
+    dragEl.title = "拖曳調整順序";
+    dragEl.textContent = "⋮⋮";
+    dragEl.draggable = true;
+    dragEl.addEventListener("dragstart", (e) => {
+      cartDragCode = it.code;
+      row.classList.add("dragging");
+      try { e.dataTransfer.setData("text/plain", it.code); } catch(_){}
+      e.dataTransfer.effectAllowed = "move";
+    });
+    dragEl.addEventListener("dragend", () => {
+      row.classList.remove("dragging");
+      cartDragCode = null;
+    });
 
-    const codeEl = document.createElement("span");
+    const codeEl = document.createElement("div");
     codeEl.className = "code";
     codeEl.textContent = it.code;
     codeEl.title = "Click to view in Tabular";
     codeEl.addEventListener("click", () => openTabularModal(it.code));
 
-    const descEl = document.createElement("span");
+    const descEl = document.createElement("div");
     descEl.className = "desc";
-    descEl.textContent = it.desc || "";
+    const tabDesc = (typeof getCartTabularDescription === "function") ? (getCartTabularDescription(it.code) || "") : "";
+    descEl.textContent = (tabDesc || it.desc || "");
 
     const rm = document.createElement("button");
     rm.className = "remove";
@@ -1057,9 +1397,11 @@ function renderCart() {
 
     row.appendChild(codeEl);
     row.appendChild(descEl);
+    row.appendChild(dragEl);
     row.appendChild(rm);
     cartList.appendChild(row);
   });
+  bindCartDragDrop();
 }
 
 
@@ -1212,7 +1554,12 @@ function removeFromSlots(code) {
       const clean = normalizeCodeDash(code);
       if (!clean) return;
       if (cartItems.some((x) => x.code === clean)) return;
-      cartItems.push({ code: clean, desc: (desc || "").trim() });
+
+      // Prefer Tabular description (authoritative) when available.
+      const tabDesc = (typeof getCartTabularDescription === "function") ? (getCartTabularDescription(clean) || "") : "";
+      const finalDesc = (tabDesc || (desc || "").trim());
+
+      cartItems.push({ code: clean, desc: finalDesc });
       // Auto-fill into Cart tab slots
       const slotType = classifyCodeToSlot(clean);
       const ok = fillNextEmptySlotStorage(slotType, clean);
@@ -1225,23 +1572,25 @@ function removeFromSlots(code) {
       persistCartPageToStorage();
     }
 
-    cartCopyBtn && cartCopyBtn.addEventListener("click", async () => {
-      if (!cartItems.length) return;
-      const text = cartItems.map((x) => x.code + (x.desc ? ("\t" + x.desc) : "")).join("\n");
-      try {
-        await navigator.clipboard.writeText(text);
-      } catch (e) {
-        // fallback
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
+    
+    function setCartViewType(nextType){
+      const t = String(nextType || "").toUpperCase();
+      cartViewType = (t === "PCS") ? "PCS" : "CM";
+      if (cartTabCM) {
+        cartTabCM.classList.toggle("active", cartViewType === "CM");
+        cartTabCM.setAttribute("aria-selected", cartViewType === "CM" ? "true" : "false");
       }
-    });
+      if (cartTabPCS) {
+        cartTabPCS.classList.toggle("active", cartViewType === "PCS");
+        cartTabPCS.setAttribute("aria-selected", cartViewType === "PCS" ? "true" : "false");
+      }
+      renderCart();
+    }
 
-    cartClearBtn && cartClearBtn.addEventListener("click", () => {
+    cartTabCM && cartTabCM.addEventListener("click", () => setCartViewType("CM"));
+    cartTabPCS && cartTabPCS.addEventListener("click", () => setCartViewType("PCS"));
+
+cartClearBtn && cartClearBtn.addEventListener("click", () => {
       cartItems = [];
       persistCart();
       renderCart();
@@ -1256,6 +1605,8 @@ function removeFromSlots(code) {
 //   placeholderCount: number   // number of 'X' needed before 7th char (for base code)
 // }
 let tabularCodeMeta = new Map();
+
+let tabularCodeDesc = new Map();
 
 function codeKey(code) {
   return (normalizeCodeDash(code) || "").toUpperCase().replace(/\./g, "");
@@ -1358,6 +1709,69 @@ function rebuildTabularMeta() {
       });
   });
 }
+function rebuildTabularDesc() {
+  tabularCodeDesc = new Map();
+  if (!entriesTabular || !entriesTabular.length) return;
+  entriesTabular.forEach((e) => {
+    if (!e || !e.code) return;
+    const k = codeKey(e.code);
+    if (!k) return;
+    if (!tabularCodeDesc.has(k)) tabularCodeDesc.set(k, (e.title || "").trim());
+  });
+}
+
+// Fallback mapping if Tabular doesn't provide allowed7thDesc text
+const SEVENTH_CHAR_FALLBACK = {
+  A: "initial encounter",
+  B: "initial encounter",
+  C: "initial encounter",
+  D: "subsequent encounter",
+  G: "subsequent encounter",
+  K: "subsequent encounter",
+  S: "sequela",
+};
+
+// Build cart display description strictly from Tabular.
+// If a 7th character is present, append its encounter description (from Tabular if available).
+function getCartTabularDescription(code) {
+  const raw = String(code || "");
+  if (!raw) return "";
+  const fullKey = codeKey(raw);
+
+  // Try exact match first (some Tabular diags may include full code)
+  let baseDesc = (tabularCodeDesc && tabularCodeDesc.get(fullKey)) || "";
+
+  // Detect 7th character (letter at end)
+  let seventhChar = null;
+  let baseCode = raw;
+
+  if (/[A-Z]$/i.test(raw)) {
+    // ICD-10-CM 7th char is alphabetic; take last character as candidate
+    seventhChar = raw.slice(-1).toUpperCase();
+    baseCode = raw.slice(0, -1);
+  }
+
+  const baseKey = codeKey(baseCode);
+
+  if (!baseDesc) {
+    baseDesc = (tabularCodeDesc && tabularCodeDesc.get(baseKey)) || "";
+  }
+
+  // If still empty, fall back to stored description (Index/Neoplasm/etc.)
+  if (!baseDesc) return "";
+
+  if (seventhChar) {
+    const meta =
+      (tabularCodeMeta && (tabularCodeMeta.get(baseKey) || tabularCodeMeta.get(fullKey))) || null;
+    const tabular7 =
+      meta && meta.allowed7thDesc ? (meta.allowed7thDesc[seventhChar] || "") : "";
+    const seventhDesc = (tabular7 || SEVENTH_CHAR_FALLBACK[seventhChar] || "").trim();
+    if (seventhDesc) return `${baseDesc}, ${seventhDesc}`;
+  }
+
+  return baseDesc;
+}
+
 
 function requires7thChar(code) {
   if (!tabularCodeMeta || !tabularCodeMeta.size) return false;
@@ -1426,7 +1840,10 @@ const pick = window.prompt(
         alert("無效的第七碼。");
         return;
       }
-      addToCart(full, desc || "");
+      const baseDescText = (desc || ((tabularCodeDesc && tabularCodeDesc.get(codeKey(baseCode))) || "") || "").trim();
+      const pickText = (shortDesc || fullDesc || "").trim();
+      const finalDescText = (baseDescText && pickText) ? `${baseDescText}, ${pickText}` : (baseDescText || pickText);
+      addToCart(full, finalDescText);
       return;
     }
 
@@ -1459,16 +1876,6 @@ const statusIndex = document.getElementById("statusIndex");
     const countDrugs = document.getElementById("countDrugs");
     const countNeoplasm = document.getElementById("countNeoplasm");
     const countCart = document.getElementById("countCart");
-
-    const neoplasmFilters = document.getElementById("neoplasmFilters");
-    const neoAny = document.getElementById("neoAny");
-    const neo2 = document.getElementById("neo2");
-    const neo3 = document.getElementById("neo3");
-    const neo4 = document.getElementById("neo4");
-    const neo5 = document.getElementById("neo5");
-    const neo6 = document.getElementById("neo6");
-    const neo7 = document.getElementById("neo7");
-
     const tabularCodeInput = document.getElementById("tabularCodeInput");
     const tabularViewBtn = document.getElementById("tabularViewBtn");
     const tabularResult = document.getElementById("tabularResult");
@@ -1487,15 +1894,49 @@ const statusIndex = document.getElementById("statusIndex");
     };
 
     function setDot(el, state) {
+      if (el) el.dataset.state = state;
       // state: "loading" | "ok" | "error" | ""
       if (!el) return;
       if (state === "loading") el.innerHTML = '<span class="loading-dot"></span>';
       else if (state === "ok") el.innerHTML = '<span class="green-dot"></span>';
       else if (state === "error") el.innerHTML = '<span class="loading-dot" style="background:#ef4444"></span>';
       else el.innerHTML = "";
+      updateLoadBadge();
     }
 
-    async function loadXmlFromUrl(type, url, dotEl) {
+    
+    function updateLoadBadge() {
+      const badge = document.getElementById("loadBadge");
+      if (!badge) return;
+
+      const dots = [
+        document.getElementById("dotIndex"),
+        document.getElementById("dotNeoplasm"),
+        document.getElementById("dotExternal"),
+        document.getElementById("dotDrug"),
+        document.getElementById("dotTabular")
+      ].filter(Boolean);
+
+      const states = dots.map(d => d.dataset.state || "loading");
+
+      let overall = "ok";
+      if (states.includes("error")) overall = "error";
+      else if (states.includes("loading")) overall = "loading";
+
+      badge.classList.remove("load-ok","load-loading","load-error");
+      if (overall === "ok") {
+        badge.classList.add("load-ok");
+        badge.textContent = "載入完成";
+      } else if (overall === "error") {
+        badge.classList.add("load-error");
+        badge.textContent = "載入異常";
+      } else {
+        badge.classList.add("load-loading");
+        badge.textContent = "載入中";
+      }
+    }
+
+async function loadXmlFromUrl(type, url, dotEl) {
       try {
         setDot(dotEl, "loading");
         const resp = await fetch(url, { cache: "no-cache" });
@@ -1522,6 +1963,7 @@ const statusIndex = document.getElementById("statusIndex");
           entriesTabular = extractTabularEntries(xmlDoc);
           tabularXmlDoc = xmlDoc;
           rebuildTabularMeta();
+          rebuildTabularDesc();
         }
 
         setDot(dotEl, "ok");
@@ -1542,6 +1984,7 @@ const statusIndex = document.getElementById("statusIndex");
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+      updateLoadBadge();
       // 若瀏覽器不支援 fetch（例如 IE），維持手動上傳
       if (typeof fetch !== "function") return;
 
@@ -1605,6 +2048,7 @@ const statusIndex = document.getElementById("statusIndex");
             entriesTabular = extractTabularEntries(xmlDoc);
             tabularXmlDoc = xmlDoc;
             rebuildTabularMeta();
+          rebuildTabularDesc();
             statusEl.textContent = "✅ 已載入，Tabular codes " + entriesTabular.length + " 筆";
           }
 
@@ -1919,9 +2363,9 @@ const statusIndex = document.getElementById("statusIndex");
       }
       if (!query) {
         resultsScroll.innerHTML = "";
-        resultCountDiv.textContent = "";
-        emptyHint.style.display = "block";
-        emptyHint.textContent = "已載入資料，請在上方輸入關鍵字開始搜尋。";
+        // 未搜尋時，提示訊息與「目前搜尋共 X 筆」使用同一位置
+        resultCountDiv.textContent = "已載入資料，請在上方輸入關鍵字開始搜尋。";
+        emptyHint.style.display = "none";
         return;
       }
       emptyHint.style.display = "none";
@@ -1936,21 +2380,6 @@ const statusIndex = document.getElementById("statusIndex");
       let externalList = matches.filter((e) => e.source === "external");
       let neoplasmList = matches.filter((e) => e.source === "neoplasm");
       let drugsList = matches.filter((e) => e.source === "drug");
-
-      const behaviorCols = [];
-      if (!neoAny.checked) {
-        if (neo2.checked) behaviorCols.push(2);
-        if (neo3.checked) behaviorCols.push(3);
-        if (neo4.checked) behaviorCols.push(4);
-        if (neo5.checked) behaviorCols.push(5);
-        if (neo6.checked) behaviorCols.push(6);
-        if (neo7.checked) behaviorCols.push(7);
-      }
-      if (!neoAny.checked && behaviorCols.length) {
-        neoplasmList = neoplasmList.filter((row) =>
-          behaviorCols.some((c) => row.codes && row.codes[c])
-        );
-      }
 
       countDisease.textContent = diseaseList.length;
       countExternal.textContent = externalList.length;
@@ -2264,9 +2693,6 @@ function buildPathTree(entries) {
       else if (tab === "drugs" && tabDrugs) tabDrugs.classList.add("active");
       else if (tab === "neoplasm" && tabNeoplasm) tabNeoplasm.classList.add("active");
       else if (tab === "cart" && tabCart) tabCart.classList.add("active");
-
-      if (neoplasmFilters) neoplasmFilters.style.display = tab === "neoplasm" ? "flex" : "none";
-
       // Cart tab toggles (only if the Cart tab exists on this page)
       if (tabCart) {
         if (searchArea) searchArea.style.display = (tab === "cart") ? "none" : "block";
@@ -2286,28 +2712,11 @@ function buildPathTree(entries) {
       }
     }
 
-    tabDisease.addEventListener("click", () => setActiveTab("disease"));("click", () => setActiveTab("disease"));
+    tabDisease.addEventListener("click", () => setActiveTab("disease"));
     tabExternalBtn.addEventListener("click", () => setActiveTab("external"));
     tabDrugs.addEventListener("click", () => setActiveTab("drugs"));
     tabNeoplasm.addEventListener("click", () => setActiveTab("neoplasm"));
     if (tabCart) tabCart.addEventListener("click", () => setActiveTab("cart"));
-
-    function syncNeoplasmFilter() {
-      if (neoAny.checked) {
-        [neo2, neo3, neo4, neo5, neo6, neo7].forEach((el) => (el.checked = false));
-      } else {
-        const others = [neo2, neo3, neo4, neo5, neo6, neo7];
-        const anyOtherChecked = others.some((el) => el.checked);
-        if (!anyOtherChecked) neoAny.checked = true;
-      }
-      if (activeTab === "neoplasm" && searchInput.value.trim()) {
-        doSearch();
-      }
-    }
-    [neoAny, neo2, neo3, neo4, neo5, neo6, neo7].forEach((el) =>
-      el.addEventListener("change", syncNeoplasmFilter)
-    );
-
     // Tabular View 按鈕：沿用原本結果 + 開啟 modal
     tabularViewBtn.addEventListener("click", () => {
       const codeRaw = tabularCodeInput.value.trim();
@@ -2449,7 +2858,10 @@ allowed.forEach((ch) => {
       ev.preventDefault();
       ev.stopPropagation();
       const full = build7thCharCode(baseCode, ch);
-      addToCart(full, desc || "");
+      const baseDescText = (desc || ((tabularCodeDesc && tabularCodeDesc.get(codeKey(baseCode))) || "") || "").trim();
+      const pickText = (shortDesc || fullDesc || "").trim();
+      const finalDescText = (baseDescText && pickText) ? `${baseDescText}, ${pickText}` : (baseDescText || pickText);
+      addToCart(full, finalDescText);
       clearSevenCharPicker();
     });
     picker.appendChild(b);
@@ -2870,6 +3282,6 @@ const rowEl = el.closest(".modal-code-row");
       if (ev.target === tabularModal) closeTabularModal();
     });
   </script>
-  <div id="sevenTooltip" class="seven-tooltip"></div>
-</body>
+<div class="seven-tooltip" id="sevenTooltip"></div>
+</div></body>
 </html>
