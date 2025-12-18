@@ -24,7 +24,7 @@
       margin-bottom: 4px;
     }
     .subtitle {
-      font-size: 13px;
+      font-size: 18px;
       color: #666;
       margin-bottom: 16px;
     }
@@ -47,7 +47,7 @@
     }
     .search-label,
     .tabular-label {
-      font-size: 13px;
+      font-size: 18px;
       white-space: nowrap;
     }
     #searchInput,
@@ -56,7 +56,7 @@
       padding: 9px 11px;
       border-radius: 999px;
       border: 1px solid #ccc;
-      font-size: 14px;
+      font-size: 18px;
       outline: none;
     }
     #searchInput:focus,
@@ -232,7 +232,7 @@
       display: flex;
       align-items: center;
       gap: 10px;              /* 主文字 ↔ + 按鈕的間距 */
-      line-height: 1.8;
+      line-height: 1.5;
       cursor: default;
     }
 
@@ -242,7 +242,7 @@
       align-items: center;
       gap: 10px;
       font-size: 18px;
-      line-height: 2.1;
+      line-height: 1.5;
     }
 
     /* 子層字體略小 */
@@ -350,6 +350,19 @@
     .neo-code:hover {
       text-decoration: underline;
     }
+
+
+    /* Keep + and displayed code on the same line (e.g., + D05.-) */
+    .code-wrap{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .code-wrap .add-to-cart-btn{ margin-right: 0; }
+
+    .add-to-cart-btn, .neo-code, .root-line .code { white-space: nowrap; }
+
 
     mark {
       background-color: #ffeb3b;
@@ -1206,7 +1219,28 @@ body{
       if (!code) return "";
       return code.replace(/-+$/, "");
     }
-    function escapeRegExp(text) {
+    
+    // Display-only formatter: show ".-" or "-" for non-leaf (non-billable) codes without changing the actual code value.
+    // Examples:
+    // - D05   -> D05.-
+    // - D05.1 -> D05.1-
+    // - T07   -> T07.-
+    function formatDisplayCode(code) {
+      const clean = normalizeCodeDash(code);
+      if (!clean) return "";
+
+      // Tabular meta must exist to know if a code has children (non-leaf)
+      if (typeof tabularCodeMeta === "undefined" || !tabularCodeMeta || !tabularCodeMeta.size) return clean;
+
+      const meta = tabularCodeMeta.get(codeKey(clean));
+      if (meta && meta.hasChild) {
+        if (clean.includes(".")) return clean + "-";
+        return clean + ".-";
+      }
+      return clean;
+    }
+
+function escapeRegExp(text) {
       return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     }
     function highlightText(text, tokens) {
@@ -2749,7 +2783,7 @@ function buildPathTree(entries) {
           const codeSpan = document.createElement("span");
           codeSpan.className = "code";
           const cleanCode = normalizeCodeDash(node.code);
-          codeSpan.textContent = cleanCode;
+          codeSpan.textContent = formatDisplayCode(cleanCode);
 
           // Only leaf/billable codes show the + button (e.g., F20.81 ✅, F20.8 ❌; T07.XXXA ✅, T07 ❌)
           {
@@ -2902,18 +2936,21 @@ function buildPathTree(entries) {
             const cleanCode = normalizeCodeDash(code);
             const span = document.createElement("span");
             span.className = "neo-code";
-            span.textContent = cleanCode;
+            span.textContent = formatDisplayCode(cleanCode);
             span.addEventListener("click", () => {
               openTabularModal(cleanCode);
             });
+            const wrap = document.createElement("span");
+            wrap.className = "code-wrap";
             {
             const complete = isCompleteCode(cleanCode);
             const needs7 = requires7thChar(cleanCode);
             const enabled = complete && !needs7;
             const reason = !complete ? "非完整代碼，無法加入" : (needs7 ? "需至 Tabular 選擇第七碼" : "");
-            td.appendChild(makeAddButton(cleanCode, row.title || row.text || "", enabled, reason));
+            wrap.appendChild(makeAddButton(cleanCode, row.title || row.text || "", enabled, reason));
           }
-            td.appendChild(span);
+            wrap.appendChild(span);
+            td.appendChild(wrap);
           }
           return td;
         }
@@ -2983,18 +3020,21 @@ function buildPathTree(entries) {
             const cleanCode = normalizeCodeDash(code);
             const span = document.createElement("span");
             span.className = "neo-code";
-            span.textContent = cleanCode;
+            span.textContent = formatDisplayCode(cleanCode);
             span.addEventListener("click", () => {
               openTabularModal(cleanCode);
             });
+            const wrap = document.createElement("span");
+            wrap.className = "code-wrap";
             {
             const complete = isCompleteCode(cleanCode);
             const needs7 = requires7thChar(cleanCode);
             const enabled = complete && !needs7;
             const reason = !complete ? "非完整代碼，無法加入" : (needs7 ? "需至 Tabular 選擇第七碼" : "");
-            td.appendChild(makeAddButton(cleanCode, row.title || row.text || "", enabled, reason));
+            wrap.appendChild(makeAddButton(cleanCode, row.title || row.text || "", enabled, reason));
           }
-            td.appendChild(span);
+            wrap.appendChild(span);
+            td.appendChild(wrap);
           }
           return td;
         }
