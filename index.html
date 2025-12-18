@@ -229,12 +229,46 @@
       margin: 4px 0 6px;
     }
     .root-line {
-      line-height: 2.0;
-      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;              /* 主文字 ↔ + 按鈕的間距 */
+      line-height: 2.1;
       cursor: default;
     }
-    .root-line .code {
-      margin-left: 6px;
+
+    /* 第一層（主條目）字體更大 */
+    .root-item .root-line{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      line-height: 2.1;
+    }
+
+    /* 子層字體略小 */
+    .child-item .root-line{
+      font-size: 16px;
+    }
+
+    /* + 與代碼間距 */
+    .add-to-cart-btn{
+      margin-right: 0;
+    }
+    .add-to-cart-btn:disabled,
+    .add-to-cart-btn.disabled-add{
+      opacity: 0.45;
+      cursor: not-allowed;
+      filter: grayscale(0.3);
+    }
+
+    
+    /* 代碼區塊不額外加 margin，間距完全交給 flex gap 控制 */
+    .code{
+      margin: 0;
+      display: inline-block;
+    }
+.root-line .code {
+      margin-left: 0;
       color: #0052cc;
       font-weight: 600;
       cursor: pointer;
@@ -249,8 +283,14 @@
       color: #1d4ed8;
       cursor: pointer;
       text-decoration: underline;
+          font-style: italic;
     }
 
+
+    /* () 修飾詞淡化，讓主詞更突出 */
+    .modifier-text{
+      color: #6b7280; /* gray-500 */
+    }
 .child-item {
       /* existing styles */
       margin: 2px 0;
@@ -546,7 +586,7 @@
     
     .cart-item{
       display:grid;
-      grid-template-columns: 1fr auto auto;
+      grid-template-columns: 18px 1fr auto;
       grid-template-rows: auto auto;
       column-gap: 10px;
       row-gap: 2px;
@@ -556,8 +596,9 @@
       background:#f8fafc;
       align-items:start;
     }
+    
     .cart-item .code{
-      grid-column:1;
+      grid-column:2;
       grid-row:1;
       color:#0052cc;
       font-weight:700;
@@ -565,8 +606,9 @@
       line-height:1.2;
       word-break: break-word;
     }
+    
     .cart-item .desc{
-      grid-column:1;
+      grid-column:2;
       grid-row:2;
       color:#111827;
       font-size:12px;
@@ -574,23 +616,30 @@
       word-break: break-word;
     }
     
+    
+    
     .cart-item .drag-handle{
-      grid-column:2;
+      grid-column:1;
       grid-row:1 / span 2;
-      display:inline-flex;
+      display:flex;
       align-items:center;
       justify-content:center;
-      width:24px;
-      height:24px;
-      margin-top:2px;
+      width:14px;
       border-radius:8px;
-      border:1px solid #e5e7eb;
-      background:#ffffff;
-      color:#6b7280;
+      background:#e0f2fe;
+      border:1px solid #bfdbfe;
       cursor:grab;
       user-select:none;
+      align-self:stretch;
     }
-    .cart-item .drag-handle:active{ cursor:grabbing; }
+    .cart-item .drag-handle::before{
+      content:none;
+      display:none;
+    }
+    .cart-item.dragging .drag-handle{
+      cursor:grabbing;
+    }
+.cart-item .drag-handle:active{ cursor:grabbing; }
     .cart-item.dragging{
       opacity:.55;
       border-color:#93c5fd;
@@ -1212,6 +1261,79 @@ body{
       return Infinity;
     }
 
+
+    // === Hierarchical (level-aware) scoring for Index terms ===
+    function parseHierarchicalQueryTokens(input) {
+      // Normalize, split by whitespace, keep numbers; also build combined phrases like "type 2"
+      const base = normalizeForMatch(input).split(/\s+/).filter(Boolean);
+      const out = [];
+      for (let i = 0; i < base.length; i++) {
+        const t = base[i];
+        const nxt = base[i + 1];
+        // Combine common patterns: word + number (e.g., "type 2", "stage 3", "grade 4")
+        if (nxt && /^\d+$/.test(nxt) && /^(type|stage|grade|level|class)$/.test(t)) {
+          out.push(t + " " + nxt);
+          i++;
+          continue;
+        }
+        out.push(t);
+      }
+      // Remove very common stopwords that hurt level matching in Index
+      return out.filter(t => t && t !== "and" && t !== "or" && t !== "the" && t !== "of");
+    }
+
+    function computeHierarchicalPathScore(fullPath, qTokens) {
+      // Greedy, level-aware matching: try to match tokens in order to successive path segments.
+      // Returns a score where earlier levels and more matched tokens score higher.
+      const segs = (fullPath || "")
+        .split(" / ")
+        .map(s => normalizeForMatch(s))
+        .filter(Boolean);
+
+      const tokens = (qTokens || []).slice();
+      if (!segs.length || !tokens.length) return 0;
+
+      let score = 0;
+      let ti = 0;
+
+      for (let depth = 0; depth < segs.length && ti < tokens.length; depth++) {
+        const hay = segs[depth];
+        // Try to match as many remaining tokens as possible at this level (including phrase tokens)
+        let matchedHere = 0;
+        while (ti < tokens.length) {
+          const tk = tokens[ti];
+          if (hay.includes(tk)) {
+            matchedHere++;
+            ti++;
+            continue;
+          }
+          // If tk is a phrase like "type 2", also allow matching split words across same level
+          if (tk.includes(" ")) {
+            const parts = tk.split(" ");
+            if (parts.every(p => hay.includes(p))) {
+              matchedHere++;
+              ti++;
+              continue;
+            }
+          }
+          break;
+        }
+        if (matchedHere > 0) {
+          // Base for matching this depth: shallower is better; more matches at same depth is better
+          score += (120 - depth * 12) + (matchedHere - 1) * 15;
+        }
+      }
+
+      return score;
+    }
+
+    function getRootSegment(fullPathOrTitle) {
+      const fp = String(fullPathOrTitle || "");
+      const seg0 = fp.split(" / ").map(s => s.trim()).filter(Boolean)[0] || fp;
+      return seg0;
+    }
+
+
     let entriesIndex = [];
     let entriesExternal = [];
     let entriesNeoplasm = [];
@@ -1395,7 +1517,7 @@ function renderCart() {
     const dragEl = document.createElement("div");
     dragEl.className = "drag-handle";
     dragEl.title = "拖曳調整順序";
-    dragEl.textContent = "⋮⋮";
+    dragEl.textContent = "";
     dragEl.draggable = true;
     dragEl.addEventListener("dragstart", (e) => {
       cartDragCode = it.code;
@@ -1431,9 +1553,9 @@ function renderCart() {
     renderCart();
 });
 
+    row.appendChild(dragEl);
     row.appendChild(codeEl);
     row.appendChild(descEl);
-    row.appendChild(dragEl);
     row.appendChild(rm);
     cartList.appendChild(row);
   });
@@ -1658,27 +1780,32 @@ function rebuildTabularMeta() {
   const chapters = Array.from(tabularXmlDoc.getElementsByTagName("chapter"));
 
   function parse7thRuleFromDiag(diagEl) {
-    // Determine whether this node declares that a 7th character is required,
-    // and (if provided in Tabular) which 7th characters are allowed + their descriptions.
-    const sevenChrNoteEl = diagEl.querySelector("sevenChrNote");
+    // IMPORTANT: Only consider *direct* children of this <diag>.
+    // Using getElementsByTagName/querySelector would also match descendants and can
+    // incorrectly propagate 7th-character rules to siblings (e.g., E11.9).
+    const directChildren = Array.from(diagEl.children || []);
+    const directByTag = (tag) => directChildren.filter((el) => el.tagName === tag);
+
+    const sevenChrNoteEl = directByTag("sevenChrNote")[0] || null;
+
     const has7thNote =
       !!sevenChrNoteEl ||
-      Array.from(diagEl.getElementsByTagName("note")).some((n) =>
-        /7th\s+character/i.test(n.textContent || "")
-      );
+      directByTag("note").some((n) => /7th\s+character/i.test((n.textContent || "").trim()));
 
-    // In official ICD-10-CM Tabular XML, the allowed chars + text are defined on:
+    // Allowed chars + descriptions are defined on *this* node's <sevenChrDef> (direct child):
     // <sevenChrDef><extension char="A">...</extension>...</sevenChrDef>
     const chars = [];
     const descMap = {};
-    Array.from(diagEl.getElementsByTagName("sevenChrDef")).forEach((defEl) => {
-      Array.from(defEl.getElementsByTagName("extension")).forEach((extEl) => {
-        const ch = String(extEl.getAttribute("char") || "").trim().toUpperCase();
-        const desc = normalizeText(extEl.textContent || "");
-        if (!ch) return;
-        chars.push(ch);
-        if (!descMap[ch] && desc) descMap[ch] = desc; // keep first
-      });
+    directByTag("sevenChrDef").forEach((defEl) => {
+      Array.from(defEl.children || [])
+        .filter((el) => el.tagName === "extension")
+        .forEach((extEl) => {
+          const ch = String(extEl.getAttribute("char") || "").trim().toUpperCase();
+          const desc = normalizeText(extEl.textContent || "");
+          if (!ch) return;
+          chars.push(ch);
+          if (!descMap[ch] && desc) descMap[ch] = desc; // keep first
+        });
     });
 
     // De-duplicate while preserving order
@@ -1840,7 +1967,7 @@ function isCompleteCode(code) {
   return !!(meta && meta.hasChild === false);
 }
 
-function makeAddButton(code, desc, enabled) {
+function makeAddButton(code, desc, enabled, disabledReason) {
   const btn = document.createElement("button");
   btn.className = "add-to-cart-btn";
   btn.type = "button";
@@ -1848,7 +1975,8 @@ function makeAddButton(code, desc, enabled) {
 
   if (!enabled) {
     btn.disabled = true;
-    btn.title = "Not a billable / complete code";
+    btn.title = disabledReason || "Not a billable / complete code";
+    btn.classList.add("disabled-add");
     return btn;
   }
 
@@ -2333,13 +2461,21 @@ async function loadXmlFromUrl(type, url, dotEl) {
     }
 
     function preciseSearch(list, query) {
-      const q = query.toLowerCase();
+      const q = (query || "").toLowerCase();
       const tokens = q.split(/\s+/).filter(Boolean);
       lastTokens = tokens;
       if (!tokens.length) return [];
 
+      // 重要：避免「全域先切 400 筆」導致 Neoplasms/Drugs 結果被擠掉。
+      // 改為「每個來源各自最多 400 筆」，同時保留穩定順序。
+      const perSourceLimit = 400;
+      const counts = Object.create(null);
       const results = [];
+
       for (const entry of list) {
+        const src = entry.source || "unknown";
+        if ((counts[src] || 0) >= perSourceLimit) continue;
+
         const haystack = (
           (entry.code || "") +
           " " +
@@ -2347,16 +2483,20 @@ async function loadXmlFromUrl(type, url, dotEl) {
           " " +
           (entry.fullPath || "")
         ).toLowerCase();
-        let match = true;
+
+        let ok = true;
         for (const t of tokens) {
-          if (!haystack.includes(t)) {
-            match = false;
-            break;
-          }
+          if (!haystack.includes(t)) { ok = false; break; }
         }
-        if (match) results.push(entry);
+        if (!ok) continue;
+
+        counts[src] = (counts[src] || 0) + 1;
+        results.push(entry);
+
+        // 可選：避免極端情況回傳過多（4 個來源各 400 => 1600）
+        if (results.length >= perSourceLimit * 4) break;
       }
-      return results.slice(0, 400);
+      return results;
     }
     function preciseSearchOrTokens(list, tokens) {
       const tks = tokens.map((t) => t.toLowerCase()).filter(Boolean);
@@ -2444,17 +2584,17 @@ async function loadXmlFromUrl(type, url, dotEl) {
 
 
 function buildPathTree(entries) {
-      // 依 fullPath 的 " / " 分段建立多層樹狀結構，保留原本 term level
-      const root = { title: "__ROOT__", children: new Map(), code: "" };
+      // 依 fullPath 的 " / " 分段建立多層樹狀結構，並可依匹配分數做子層排序
+      const root = { title: "__ROOT__", children: new Map(), code: "", bestScore: 0, seqMin: 1e15 };
 
       function getOrCreate(parent, title) {
         if (!parent.children.has(title)) {
-          parent.children.set(title, { title, children: new Map(), code: "" });
+          parent.children.set(title, { title, children: new Map(), code: "", bestScore: 0, seqMin: 1e15 });
         }
         return parent.children.get(title);
       }
 
-      for (const e of entries) {
+      for (const e of (entries || [])) {
         const segs = (e.fullPath || e.title || "")
           .split(" / ")
           .map((s) => s.trim())
@@ -2462,27 +2602,110 @@ function buildPathTree(entries) {
 
         if (!segs.length) continue;
 
+        const score = (typeof e.hierScore === "number") ? e.hierScore : 0;
+        const seq = (typeof e.seq === "number") ? e.seq : 0;
+
         let node = root;
+        // 更新 root
+        node.bestScore = Math.max(node.bestScore, score);
+        node.seqMin = Math.min(node.seqMin, seq);
+
         for (const s of segs) {
           node = getOrCreate(node, s);
+          node.bestScore = Math.max(node.bestScore, score);
+          node.seqMin = Math.min(node.seqMin, seq);
         }
 
-        // 對於同一路徑，若有 code 則保留（優先保留第一個）
         if (e.code && !node.code) node.code = e.code;
-        // 也保留 source，以便未來擴充（目前不必渲染）
         node.source = e.source;
       }
 
-      // Map -> Array（保留插入順序）
       function toArray(n) {
+        const children = Array.from(n.children.values())
+          .sort((a, b) => {
+            if (a.bestScore !== b.bestScore) return b.bestScore - a.bestScore;
+            return a.seqMin - b.seqMin;
+          })
+          .map(toArray);
+
         return {
           title: n.title,
           code: n.code || "",
           source: n.source,
-          children: Array.from(n.children.values()).map(toArray),
+          bestScore: n.bestScore || 0,
+          seqMin: n.seqMin || 0,
+          children,
         };
       }
-      return Array.from(root.children.values()).map(toArray);
+
+      return Array.from(root.children.values())
+        .sort((a, b) => {
+          if (a.bestScore !== b.bestScore) return b.bestScore - a.bestScore;
+          return a.seqMin - b.seqMin;
+        })
+        .map(toArray);
+    }
+
+
+    // === SEE navigation (comma-separated levels) ===
+    function parseSeeTarget(target) {
+      // "Pneumonia, in (due to)" => ["Pneumonia", "in (due to)"]
+      return String(target || "")
+        .split(",")
+        .map(s => s.trim())
+        .filter(Boolean);
+    }
+
+    function flashElement(el) {
+      if (!el) return;
+      el.classList.add("see-target-flash");
+      setTimeout(() => el.classList.remove("see-target-flash"), 900);
+    }
+
+    function findAndScrollPath(parts) {
+      if (!parts || !parts.length) return;
+
+      const normParts = parts.map(p => normalizeForMatch(p));
+      const lines = Array.from(document.querySelectorAll("#searchResults .root-line[data-depth]"));
+      if (!lines.length) return;
+
+      // Find root (depth 0)
+      let rootIdx = -1;
+      for (let i = 0; i < lines.length; i++) {
+        const d = Number(lines[i].dataset.depth || 0);
+        if (d !== 0) continue;
+        const tn = lines[i].dataset.titleNorm || "";
+        if (tn === normParts[0] || tn.includes(normParts[0]) || normParts[0].includes(tn)) {
+          rootIdx = i;
+          break;
+        }
+      }
+      if (rootIdx < 0) return;
+
+      let currentIdx = rootIdx;
+      let currentDepth = 0;
+
+      for (let p = 1; p < normParts.length; p++) {
+        const want = normParts[p];
+        let found = -1;
+        for (let i = currentIdx + 1; i < lines.length; i++) {
+          const d = Number(lines[i].dataset.depth || 0);
+          if (d <= currentDepth) break; // leave subtree
+          if (d !== currentDepth + 1) continue; // next level only
+          const tn = lines[i].dataset.titleNorm || "";
+          if (tn === want || tn.includes(want) || want.includes(tn)) {
+            found = i;
+            break;
+          }
+        }
+        if (found < 0) break;
+        currentIdx = found;
+        currentDepth = currentDepth + 1;
+      }
+
+      const targetEl = lines[currentIdx];
+      targetEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      flashElement(targetEl);
     }
 
     function renderTreeNodes(nodes, depth) {
@@ -2494,27 +2717,37 @@ function buildPathTree(entries) {
         li.className = depth === 0 ? "root-item" : "child-item";
 
         const line = document.createElement("div");
-        line.className = depth === 0 ? "root-line" : "root-line"; // 使用同一行距樣式
+        line.className = "root-line";
 
         const textSpan = document.createElement("span");
         textSpan.className = "text";
-        textSpan.innerHTML = highlightText(node.title, lastTokens);
-
-        // SEE 節點（沒有 code、title 以 SEE 開頭）要變可點擊連結
+        // 將 () 修飾詞包成淡化 span（僅影響顯示，不影響排序）
+        const rawTitle = (node.title || "").trim();
+        line.dataset.depth = String(depth);
+        line.dataset.titleNorm = normalizeForMatch(rawTitle);
+        const withMods = rawTitle.replace(/\([^)]*\)/g, (m) => `@@MOD_START@@${m}@@MOD_END@@`);
+        let html = highlightText(withMods, lastTokens)
+          .replaceAll("@@MOD_START@@", '<span class="modifier-text">')
+          .replaceAll("@@MOD_END@@", "</span>");
+        textSpan.innerHTML = html;
+// SEE 節點（沒有 code、title 以 SEE 開頭）要變可點擊連結
         const matchSee = (node.title || "").match(/^SEE\s+(.+)$/i);
         if (!node.code && matchSee) {
           textSpan.classList.add("see-link");
           const target = matchSee[1];
           textSpan.addEventListener("click", () => {
-            const rawTokens = target.split(/[\s,]+/).filter(Boolean);
-            const tokens = rawTokens.filter((tk) => {
-              const t = tk.toLowerCase();
-              return t && t !== "with" && t !== "and";
-            });
-            searchInput.value = target;
-            if (!allEntries.length) return;
-            const matches = preciseSearchOrTokens(allEntries, tokens);
-            updateResultsFromMatches(matches);
+            const parts = parseSeeTarget(target);
+            if (!parts.length) return;
+
+            // Step 1: search by the first-level term
+            searchInput.value = parts.join(" ");
+            setActiveTab("disease");
+            doSearch();
+
+            // Step 2: after render, navigate within the hierarchy by comma-separated levels
+            setTimeout(() => {
+              findAndScrollPath(parts);
+            }, 50);
           });
         }
 
@@ -2527,7 +2760,13 @@ function buildPathTree(entries) {
           codeSpan.textContent = cleanCode;
 
           // Only leaf/billable codes show the + button (e.g., F20.81 ✅, F20.8 ❌; T07.XXXA ✅, T07 ❌)
-          line.appendChild(makeAddButton(cleanCode, node.title, isCompleteCode(cleanCode)));
+          {
+          const complete = isCompleteCode(cleanCode);
+          const needs7 = requires7thChar(cleanCode);
+          const enabled = complete && !needs7;
+          const reason = !complete ? "非完整代碼，無法加入" : (needs7 ? "需至 Tabular 選擇第七碼" : "");
+          line.appendChild(makeAddButton(cleanCode, node.title, enabled, reason));
+        }
 
           codeSpan.addEventListener("click", (ev) => {
             ev.stopPropagation();
@@ -2569,7 +2808,9 @@ function buildPathTree(entries) {
       // 依 XML 的 term level（fullPath 分段）建立多層階層樹
       // 排序優化：越上層命中越前；命中判斷忽略 () 修飾詞（例如 Pneumonia(acute) ...）
       const tks = (lastTokens || []);
-      const qNorm = normalizeForMatch((searchInput && searchInput.value) ? searchInput.value : "");
+      const qRaw = (searchInput && searchInput.value) ? searchInput.value : "";
+      const qNorm = normalizeForMatch(qRaw);
+      const qTokensHier = parseHierarchicalQueryTokens(qRaw);
       const sorted = (entries || []).slice().sort((a, b) => {
         const da = computeBestMatchDepthByPath(a.fullPath || a.title || "", tks);
         const db = computeBestMatchDepthByPath(b.fullPath || b.title || "", tks);
@@ -2587,12 +2828,32 @@ function buildPathTree(entries) {
         const bExactRoot = !!qNorm && rb === qNorm;
         if (aExactRoot !== bExactRoot) return aExactRoot ? -1 : 1;
 
-        // tie-break #2: 同為非完全相等時，仍維持原 XML 順序（穩定排序）
+        // tie-break #2: 層級導向分數（例如 "Diabetes type 2" 會將 Diabetes > type 2 分支置頂）
+        const ha = computeHierarchicalPathScore(a.fullPath || a.title || "", qTokensHier);
+        const hb = computeHierarchicalPathScore(b.fullPath || b.title || "", qTokensHier);
+        if (ha !== hb) return hb - ha;
+
+        // tie-break #3: 同分時維持原 XML 順序（穩定排序）
         const sa = (typeof a.seq === "number") ? a.seq : 0;
         const sb = (typeof b.seq === "number") ? b.seq : 0;
         return sa - sb;
       });
 
+
+
+      // 預先計算每筆資料的層級導向分數，供樹狀子層排序使用
+      // 並加入「第一層主詞完全符合查詢」的強制加權，確保如 Pneumonia(...) 會排在 Bronchopneumonia 之前
+      const getRootSegNorm2 = (e) => {
+        const fp = String(e && (e.fullPath || e.title || "") || "");
+        const seg0 = fp.split(" / ").map(s => s.trim()).filter(Boolean)[0] || fp;
+        return normalizeForMatch(seg0);
+      };
+      for (const e of sorted) {
+        const base = computeHierarchicalPathScore(e.fullPath || e.title || "", qTokensHier);
+        const r0 = getRootSegNorm2(e);
+        const exactRootBonus = (qNorm && r0 === qNorm) ? 10000 : 0; // 強制置頂
+        e.hierScore = base + exactRootBonus;
+      }
       const tree = buildPathTree(sorted);
       const ul = renderTreeNodes(tree, 0);
       resultsScroll.appendChild(ul);
@@ -2653,7 +2914,13 @@ function buildPathTree(entries) {
             span.addEventListener("click", () => {
               openTabularModal(cleanCode);
             });
-            td.appendChild(makeAddButton(cleanCode, row.title || row.text || "", isCompleteCode(cleanCode)));
+            {
+            const complete = isCompleteCode(cleanCode);
+            const needs7 = requires7thChar(cleanCode);
+            const enabled = complete && !needs7;
+            const reason = !complete ? "非完整代碼，無法加入" : (needs7 ? "需至 Tabular 選擇第七碼" : "");
+            td.appendChild(makeAddButton(cleanCode, row.title || row.text || "", enabled, reason));
+          }
             td.appendChild(span);
           }
           return td;
@@ -2728,7 +2995,13 @@ function buildPathTree(entries) {
             span.addEventListener("click", () => {
               openTabularModal(cleanCode);
             });
-            td.appendChild(makeAddButton(cleanCode, row.title || row.text || "", isCompleteCode(cleanCode)));
+            {
+            const complete = isCompleteCode(cleanCode);
+            const needs7 = requires7thChar(cleanCode);
+            const enabled = complete && !needs7;
+            const reason = !complete ? "非完整代碼，無法加入" : (needs7 ? "需至 Tabular 選擇第七碼" : "");
+            td.appendChild(makeAddButton(cleanCode, row.title || row.text || "", enabled, reason));
+          }
             td.appendChild(span);
           }
           return td;
