@@ -836,7 +836,7 @@
 
 <div class="load-badges" aria-label="載入狀態">
   <div id="loadStatus" class="load-pill loading" title="Tables 載入中...">
-    <span class="badge-dot"></span><span class="pill-text">載入中</span>
+    <span class="badge-dot"></span><span class="pill-text">資料 載入中</span>
   </div>
 </div>
 
@@ -845,6 +845,9 @@
 <a class="linkbtn linkbtn--disabled" href="PCSheader.html" aria-current="page">開啟 PCS 搜尋</a>
 
 <a class="linkbtn" href="cart_header.html">購物車</a>
+<span class="linkbtn linkbtn--cartcounts" aria-label="Cart counts">
+  <span class="cart-label">CM</span> <span class="count-badge" id="cartCMCount">0</span>
+  <span class="cart-label">PCS</span> <span class="count-badge" id="cartPCSCount">0</span>
 </span>
 
   </div>
@@ -863,11 +866,11 @@
 
 
     <div class="search-row">
-      <label for="searchInput">PCS前3碼：</label>
+      <label for="searchInput">PCS代碼搜尋：</label>
       <input
         id="searchInput"
         type="text"
-        placeholder="請先等待 Tables 載入完成，再輸入前 3 碼（例如：0BD）"
+        placeholder="請先等待 Tables 載入完成，再輸入 PCS 代碼（最少 3 碼，例如：0BD 或 0BD23Z0）"
         autocomplete="off"
         disabled
       />
@@ -1167,12 +1170,42 @@
     let indexLoaded = false;
 
     let currentPrefix = "";
+    // 若使用者輸入/點選到 4~7 碼，暫存並在表格選項渲染後自動套用
+    let pendingFullCode = null;
+
     let selections = {
       bodypart: null,
       approach: null,
       device: null,
       qualifier: null,
     };
+    // 依完整碼自動勾選下方四欄（Body Part / Approach / Device / Qualifier）
+    // 僅在表格已渲染出對應 radio 選項時生效，並會觸發既有的合法組合過濾與上方顯示更新
+    function applyFullCodeRemainder(fullCode) {
+      if (!fullCode || fullCode.length < 4 || !currentPrefix) return;
+      const code = String(fullCode).toUpperCase().replace(/[^A-Z0-9]/g, "");
+      if (code.length < 4) return;
+
+      const remainder = code.slice(3, 7).split(""); // 第4~7碼：BodyPart, Approach, Device, Qualifier
+
+      const fields = ["bodypart", "approach", "device", "qualifier"];
+      fields.forEach((field, i) => {
+        const v = remainder[i];
+        if (!v) return;
+
+        const input = resultBody.querySelector(`input[type="radio"][name="${field}"][value="${v}"]`);
+        if (input) {
+          input.checked = true;
+          selections[field] = v;
+        }
+      });
+
+      // 套用後走既有流程：補齊最可能組合 + 反灰不合法 + 更新上方完整碼與 + 按鈕
+      applyMostLikelyAndFilter();
+      updateSelectedCode();
+    }
+
+
 
     
 
@@ -1885,7 +1918,7 @@ function clearSelection(field) {
     // -------- 渲染四欄表格 --------
     function renderAxisTable(matched, prefix, totalMatched) {
       if (!prefix) {
-        resetTablePlaceholder("請在上方輸入前 3 碼。");
+        resetTablePlaceholder("請在上方輸入 PCS 代碼（最少 3 碼）。");
         setResultInfo("請輸入查詢條件。");
         resetSummaryHeader();
         resetSelections();
@@ -2062,10 +2095,21 @@ function clearSelection(field) {
 
       resetSelections();        // 清空選擇
       filterInvalidOptions();   // 但此時皆為合法初始狀態
+
+      // 若目前有暫存的完整碼（4~7 碼），在選項列完成後自動套用剩餘 4 碼
+      if (pendingFullCode && pendingFullCode.startsWith(prefix)) {
+        applyFullCodeRemainder(pendingFullCode);
+        // 套用一次後就清掉，避免後續手動選擇被覆蓋
+        pendingFullCode = null;
+      }
+
     }
 
     function doSearch() {
       const q = searchInput.value.trim().toUpperCase();
+
+      // 允許輸入 3~7 碼；實際查詢 Tables 仍以前三碼為主，若有 4~7 碼則稍後自動套用
+      pendingFullCode = (q && q.length >= 4) ? q.slice(0, 7) : null;
 
       if (!isLoaded) {
         resetTablePlaceholder("請先等待 Tables XML 載入完成。");
@@ -2076,8 +2120,8 @@ function clearSelection(field) {
       }
 
       if (!q || q.length < 3) {
-        resetTablePlaceholder("請輸入完整前 3 碼再進行查詢。");
-        setResultInfo("請輸入 3 碼的查詢條件。");
+        resetTablePlaceholder("請至少輸入 PCS 代碼前 3 碼再進行查詢。");
+        setResultInfo("請輸入至少 3 碼的查詢條件。");
         resetSummaryHeader();
         resetSelections();
         currentPrefix = "";
@@ -2139,7 +2183,7 @@ function clearSelection(field) {
       parts.push(
         `<div class="index-tip">共找到 ${
           list.length
-        } 筆，僅顯示前 ${limited.length} 筆。點選代碼膠囊可帶入前三碼查詢。</div>`
+        } 筆，僅顯示前 ${limited.length} 筆。點選代碼膠囊可帶入 PCS 代碼並查詢。</div>`
       );
 
       indexResultBox.innerHTML = parts.join("");
@@ -2340,7 +2384,12 @@ function clearSelection(field) {
       const opCode = operationSelect.value;
       if (!sCode || !bsCode || !opCode) return;
       const prefix = (sCode + bsCode + opCode).toUpperCase();
-      searchInput.value = prefix;
+      const existing = searchInput.value.trim().toUpperCase();
+      if (existing && existing.length > 3 && existing.startsWith(prefix)) {
+        searchInput.value = existing.slice(0, 7);
+      } else {
+        searchInput.value = prefix;
+      }
       doSearch();
     });
 
@@ -2399,16 +2448,19 @@ function clearSelection(field) {
     }
   });
 
-    // 點 Index 結果代碼 → 帶入前三碼並查詢
+    // 點 Index 結果代碼 → 帶入 PCS 代碼（最少前三碼；若有 7 碼則自動勾選下方四欄）並查詢
     indexResultBox.addEventListener("click", (e) => {
       const t = e.target;
       if (!t.classList.contains("index-code-chip")) return;
+
       const codeRaw = (t.dataset.code || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
       if (!codeRaw || codeRaw.length < 3) return;
-      const prefix = codeRaw.slice(0, 3);
-      searchInput.value = prefix;
+
+      // 允許 3~7 碼；輸入框顯示實際點選碼（最多 7 碼）
+      searchInput.value = codeRaw.slice(0, 7);
       doSearch();
     });
+
 
     // 監聽各欄位 Clear 按鈕：只清除單一欄位的勾選
     document.addEventListener("click", (e) => {
