@@ -301,6 +301,51 @@
       border-bottom: 1px solid #e5e7eb;
     }
 
+    /* --- Index 階層呈現（Tree）--- */
+    .idx-tree {
+      padding: 2px 0;
+    }
+    .idx-node {
+      padding: 4px 0;
+      border-bottom: 1px solid #eef2f7;
+    }
+    .idx-node:last-child {
+      border-bottom: none;
+    }
+    .idx-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.25;
+      flex-wrap: wrap;
+    }
+    .idx-term {
+      font-weight: 600;
+    }
+    .idx-continued {
+      font-size: 12px;
+      color: #6b7280;
+      font-style: italic;
+    }
+    .idx-codes {
+      display: inline-flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-left: 2px;
+    }
+    .idx-children {
+      margin-top: 4px;
+    }
+    .idx-node.level-1 { padding-left: 18px; border-bottom: none; }
+    .idx-node.level-2 { padding-left: 36px; border-bottom: none; }
+    .idx-node.level-3 { padding-left: 54px; border-bottom: none; }
+    .idx-node.level-4 { padding-left: 72px; border-bottom: none; }
+    /* 讓階層更像 ICD Index：子層文字較淡 */
+    .idx-node.level-1 .idx-term { font-weight: 500; }
+    .idx-node.level-2 .idx-term,
+    .idx-node.level-3 .idx-term,
+    .idx-node.level-4 .idx-term { font-weight: 500; color: #374151; }
+
     .index-result-item:last-child {
       border-bottom: none;
     }
@@ -845,9 +890,7 @@
 <a class="linkbtn linkbtn--disabled" href="PCSheader.html" aria-current="page">開啟 PCS 搜尋</a>
 
 <a class="linkbtn" href="cart_header.html">購物車</a>
-<span class="linkbtn linkbtn--cartcounts" aria-label="Cart counts">
-  <span class="cart-label">CM</span> <span class="count-badge" id="cartCMCount">0</span>
-  <span class="cart-label">PCS</span> <span class="count-badge" id="cartPCSCount">0</span>
+
 </span>
 
   </div>
@@ -1708,6 +1751,34 @@ function clearSelection(field) {
       return Array.from(set);
     }
 
+    function collectDirectCodesFromNode(node) {
+      const set = new Set();
+      ["code", "codes", "tab"].forEach((tag) => {
+        for (const child of Array.from(node.children)) {
+          if (child.tagName === tag) {
+            const raw = child.textContent.trim();
+            if (!raw) continue;
+            raw.split(/[,;\s]+/).forEach((c) => {
+              const t = c.trim().toUpperCase();
+              if (t) set.add(t);
+            });
+          }
+        }
+      });
+      return Array.from(set);
+    }
+
+    function getReferenceTitle(node) {
+      const t = getDirectTitle(node);
+      if (t) return t;
+      // fallback: remove code-like elements then read text
+      const clone = node.cloneNode(true);
+      Array.from(clone.getElementsByTagName("code")).forEach((el) => el.remove());
+      Array.from(clone.getElementsByTagName("codes")).forEach((el) => el.remove());
+      Array.from(clone.getElementsByTagName("tab")).forEach((el) => el.remove());
+      return (clone.textContent || "").trim();
+    }
+
     function traverseIndexNode(node, path, entries) {
       const isMain = node.tagName === "mainTerm";
       const isTerm = node.tagName === "term";
@@ -1721,22 +1792,41 @@ function clearSelection(field) {
         }
       }
 
-      const codes = collectCodesFromNode(node);
-      if (codes.length) {
+      // 只收集「本層」直接掛載的代碼，避免把下層(例如 see/term)的代碼往上層提昇造成重複顯示
+      const directCodes = collectDirectCodesFromNode(node);
+      if (directCodes.length) {
         entries.push({
           path: newPath.join(" > "),
-          codes,
+          codes: directCodes,
         });
       }
 
+      // 支援 Index 中的 see / seeAlso / use 參照：以「子層」方式顯示 (如：Blepharectomy -> see Excision, Eye -> 08B)
       Array.from(node.children).forEach((child) => {
+        const tag = (child.tagName || "").toLowerCase();
+        const isRef =
+          tag === "see" || tag === "seealso" || tag === "use" || tag === "useterm";
+
+        if (isRef) {
+          const refTitle = getReferenceTitle(child);
+          const codes = collectCodesFromNode(child); // 允許參照層內深層代碼
+          if (refTitle || codes.length) {
+            const prefix = tag === "use" ? "use " : "see ";
+            entries.push({
+              path: [...newPath, `${prefix}${refTitle}`].join(" > "),
+              codes,
+            });
+          }
+        }
+
         if (child.tagName === "term") {
           traverseIndexNode(child, newPath, entries);
         }
       });
     }
 
-    function parseIndexXml(xmlText) {
+
+function parseIndexXml(xmlText) {
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xmlText, "application/xml");
       const parserError = xmlDoc.querySelector("parsererror");
@@ -2152,19 +2242,70 @@ function clearSelection(field) {
         return;
       }
 
-      if (!list.length) {
+      if (!list || list.length === 0) {
         indexResultBox.innerHTML =
-          '<div class="index-result-empty">「' +
-          escapeHtmlAttr(query) +
-          '」查無對應項目。</div>';
+          '<div class="index-result-empty">查無結果，請嘗試其他關鍵字。</div>';
         return;
       }
 
-      const limited = list.slice(0, 50);
-      const parts = [];
+      // 限制顯示筆數避免 DOM 過重
+      const limited = list.slice(0, 120);
+
+      // --- 建立階層樹狀結構：以 " > " 分隔 path ---
+      const root = { children: new Map(), codes: [] };
+
+      function upsertChild(parent, name) {
+        if (!parent.children) parent.children = new Map();
+        if (!parent.children.has(name)) {
+          parent.children.set(name, { name, children: new Map(), codes: [] });
+        }
+        return parent.children.get(name);
+      }
+
+      function addCodes(node, codes) {
+        if (!codes || codes.length === 0) return;
+        const set = new Set(node.codes || []);
+        codes.forEach((c) => set.add(c));
+        node.codes = Array.from(set);
+      }
+
       limited.forEach((item) => {
-        const codes = item.codes || [];
-        const codeHtml = codes
+        const path = (item.path || "").trim();
+        if (!path) return;
+        const segs = path
+          .split(">")
+          .map((s) => s.trim())
+          .filter(Boolean);
+
+        let node = root;
+        segs.forEach((seg, idx) => {
+          node = upsertChild(node, seg);
+          if (idx === segs.length - 1) addCodes(node, item.codes || []);
+        });
+
+      // --- 去除上層重複代碼：若代碼在更下層已出現，則不在上層重複顯示（保留最具體層級） ---
+      function pruneDescendantCodes(node) {
+        let descendant = new Set();
+        if (node.children && node.children.size > 0) {
+          node.children.forEach((child) => {
+            const childSet = pruneDescendantCodes(child);
+            childSet.forEach((c) => descendant.add(c));
+          });
+        }
+        if (node.codes && node.codes.length > 0) {
+          node.codes = node.codes.filter((c) => !descendant.has(c));
+        }
+        const all = new Set(descendant);
+        (node.codes || []).forEach((c) => all.add(c));
+        return all;
+      }
+      pruneDescendantCodes(root);
+
+      });
+
+      function renderCodeChips(codes) {
+        if (!codes || codes.length === 0) return "";
+        return codes
           .map(
             (c) =>
               `<span class="index-code-chip highlight-code" data-code="${escapeHtmlAttr(
@@ -2172,13 +2313,43 @@ function clearSelection(field) {
               )}">${escapeHtmlAttr(c)}</span>`
           )
           .join("");
-        parts.push(`
-          <div class="index-result-item">
-            <div class="index-path">${escapeHtmlAttr(item.path)}</div>
-            <div class="index-codes">${codeHtml}</div>
-          </div>
-        `);
+      }
+
+      function renderNode(node, level) {
+        const hasChildren = node.children && node.children.size > 0;
+        const codesHtml = renderCodeChips(node.codes || []);
+        const continuedHtml =
+          level === 0 && hasChildren ? `<span class="idx-continued">(continued)</span>` : "";
+
+        // 只有一條路徑且沒有 codes 的中繼節點也要顯示（符合 Index 階層）
+        let html = `
+          <div class="idx-node level-${level}">
+            <div class="idx-line">
+              <span class="idx-term">${escapeHtmlAttr(node.name || "")}</span>
+              ${continuedHtml}
+              ${codesHtml ? `<span class="idx-codes">${codesHtml}</span>` : ""}
+            </div>
+        `;
+
+        if (hasChildren) {
+          html += `<div class="idx-children">`;
+          node.children.forEach((child) => {
+            html += renderNode(child, level + 1);
+          });
+          html += `</div>`;
+        }
+
+        html += `</div>`;
+        return html;
+      }
+
+      // 輸出樹狀 UI
+      const parts = [];
+      parts.push(`<div class="idx-tree">`);
+      root.children.forEach((child) => {
+        parts.push(renderNode(child, 0));
       });
+      parts.push(`</div>`);
 
       parts.push(
         `<div class="index-tip">共找到 ${
