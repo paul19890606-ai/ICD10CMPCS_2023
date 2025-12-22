@@ -1313,7 +1313,80 @@ body{
 #tabularModal .addcopy-wrap button{
   margin:0 !important;
 }
+/* ===== Tabular modal: + ⧉ CODE as ONE pill ===== */
+#tabularModal .modal-code-row{
+  align-items: center;
+}
 
+/* outer pill container */
+#tabularModal .modal-code-row .pill-wrap{
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #93c5fd;
+  border-radius: 999px;
+  background: #eef5ff;
+  overflow: hidden; /* clip inner corners */
+}
+
+/* remove inner borders/backgrounds */
+#tabularModal .pill-wrap .add-to-cart-btn,
+#tabularModal .pill-wrap .copy-code-btn{
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* consistent button sizing inside pill */
+#tabularModal .pill-wrap .add-to-cart-btn,
+#tabularModal .pill-wrap .copy-code-btn{
+  width: 28px;
+  height: 26px;
+  line-height: 26px;
+  margin: 0 !important;
+}
+
+/* code segment inside pill */
+#tabularModal .pill-wrap .code{
+  padding: 0 10px;
+  font-weight: 600;
+  color: #0052cc;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* hover entire pill */
+#tabularModal .pill-wrap:hover{
+  background: #dbeafe;
+  border-color: #60a5fa;
+}
+
+/* ===== Tabular modal pill status colors ===== */
+
+/* Addable (complete code, no 7th needed) */
+#tabularModal .pill-wrap.is-addable{
+  background: #e7f2ff;
+  border-color: #60a5fa;
+}
+#tabularModal .pill-wrap.is-addable:hover{
+  background: #dbeafe;
+}
+
+/* Needs 7th character */
+#tabularModal .pill-wrap.is-need7{
+  background: #fff7ed;
+  border-color: #f59e0b;
+}
+#tabularModal .pill-wrap.is-need7:hover{
+  background: #ffedd5;
+}
+
+/* Disabled (non-leaf / not billable) */
+#tabularModal .pill-wrap.is-disabled{
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  opacity: 0.65;
+  cursor: not-allowed;
+}
 </style>
 
 </head>
@@ -3673,14 +3746,29 @@ allowed.forEach((ch) => {
         html += `<div class="modal-code-row ${
           isTarget ? "highlight" : ""
         }" style="padding-left:${depth * 8}px;">`;
-        const canAct = isCompleteCode(e.code) || requires7thChar(e.code);
+        const canAct = isCompleteCode(e.code);
         const addBtnHtml = canAct
           ? `<button class="add-to-cart-btn" type="button" data-add="${e.code}" title="加入購物車">+</button>`
           : `<button class="add-to-cart-btn" type="button" disabled title="Not a billable / complete code">+</button>`;
         const copyBtnHtml = canAct
           ? `<button class="copy-code-btn" type="button" data-copy="${e.code}" title="Copy code">⧉</button>`
           : `<button class="copy-code-btn" type="button" disabled title="Not a billable / complete code">⧉</button>`;
-        html += `${addBtnHtml}${copyBtnHtml}<span class="code" data-code="${e.code}">${e.code}</span>`;
+        const complete = isCompleteCode(e.code);
+        const need7 = requires7thChar(e.code);
+
+        // Status priority:
+        // - non-leaf codes are always disabled, even if a parent defines 7th-character rules
+        // - leaf codes that require 7th are marked as need7
+        // - leaf codes that don't require 7th are addable
+        let pillClass = "pill-wrap";
+        if (!complete) pillClass += " is-disabled";
+        else if (need7) pillClass += " is-need7";
+        else pillClass += " is-addable";
+
+        html += `
+  <span class="${pillClass}">
+    ${addBtnHtml}${copyBtnHtml}<span class="code" data-code="${e.code}">${e.code}</span>
+  </span>`;
         html += `<span class="desc">${e.title || ""}</span>`;
         html += `</div>`;
       });
