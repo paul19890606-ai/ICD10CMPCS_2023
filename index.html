@@ -17,7 +17,7 @@
       background: #ffffff;
       border-radius: 16px;
       box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-      padding: 20px 24px 24px;
+      padding: 15px 15px 15px;
     }
     h1 {
       font-size: 20px;
@@ -971,10 +971,10 @@ body { overflow: hidden; }
 }
 
 /* 左側（Index/搜尋結果）可向下撐滿並滾動 */
+
 .code-pane{
-  flex: 1;
+  height: 735px;   /* 固定高度 */
   min-width: 0;
-  min-height: 0;
   display: flex;
   flex-direction: column;
 }
@@ -1095,6 +1095,25 @@ body{
 
     /* Hide the old second-row file status cards */
     .files-grid{ display:none; }
+
+/* ===== Align right cart sidebar bottom with left results panel ===== */
+.cart-pane{
+  align-self: stretch;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: static; /* override sticky to avoid bottom misalignment in fixed-height layout */
+}
+/* Ensure the sidebar card fills the full column height */
+.cart-sidebar{
+  flex: 1 1 auto;
+}
+/* Slight bottom safe space so borders are not visually clipped */
+.app-main{
+  padding-bottom: 6px;
+  box-sizing: border-box;
+}
+
 </style>
 </head>
 <body>
@@ -1218,6 +1237,22 @@ body{
     function normalizeCodeDash(code) {
       if (!code) return "";
       return code.replace(/-+$/, "");
+    }
+
+    // Some Index entries have an "additional code" shown in square brackets, e.g. "A23.9 [N16]".
+    // We store them separately so the UI can render: A23.9  [+ N16]
+    function splitPrimaryAndBracketCode(raw) {
+      const t = normalizeText(raw || "");
+      if (!t) return { primary: "", bracket: "" };
+
+      // Accept formats:
+      // - "A23.9 [N16]"
+      // - "A23.9/[N16]" or "A23.9 /[N16]" (seen in some PDFs)
+      // - "A23.9 [N16.0]" etc.
+      const m = t.match(/^(.+?)\s*(?:\/?\s*)?\[\s*([A-Z0-9][A-Z0-9\.]*)\s*\]\s*$/i);
+      if (!m) return { primary: t, bracket: "" };
+
+      return { primary: normalizeText(m[1]), bracket: normalizeText(m[2]).toUpperCase() };
     }
     
     // Display-only formatter: show ".-" or "-" for non-leaf (non-billable) codes without changing the actual code value.
@@ -2274,9 +2309,22 @@ async function loadXmlFromUrl(type, url, dotEl) {
       const pathTitles = parentTitles.slice();
       if (ownTitle) pathTitles.push(ownTitle);
 
-      const code = normalizeText(
+      const rawCodeText = normalizeText(
         codeEl ? codeEl.textContent : subcatEl ? subcatEl.textContent : ""
       );
+      const codeParts = splitPrimaryAndBracketCode(rawCodeText);
+      const code = codeParts.primary;
+
+      // In the official Index XML, additional/manifestation codes are often stored in <manif> nodes
+      // (e.g., <code>A23.9</code><manif>N16</manif>), not in the same text string as the primary code.
+      const manifCodes = children
+        .filter((el) => el.tagName === "manif")
+        .map((el) => normalizeText(el.textContent))
+        .filter(Boolean);
+
+      // bracketCode supports either "A23.9 [N16]" style (from text) OR <manif> style (from XML)
+      const bracketCode = codeParts.bracket || (manifCodes.length ? manifCodes.join(" ") : "");
+
       const seeText = normalizeText(seeEl ? seeEl.textContent : "");
 
       if (code) {
@@ -2284,6 +2332,7 @@ async function loadXmlFromUrl(type, url, dotEl) {
         entries.push({
           seq: entrySeq++,
           code,
+          bracketCode,
           title: ownTitle || pathTitles[pathTitles.length - 1] || "",
           fullPath: pathTitles.join(" / "),
           source: sourceType,
@@ -2611,11 +2660,11 @@ async function loadXmlFromUrl(type, url, dotEl) {
 
 function buildPathTree(entries) {
       // 依 fullPath 的 " / " 分段建立多層樹狀結構，並可依匹配分數做子層排序
-      const root = { title: "__ROOT__", children: new Map(), code: "", bestScore: 0, seqMin: 1e15 };
+      const root = { title: "__ROOT__", children: new Map(), code: "", bracketCode: "", bestScore: 0, seqMin: 1e15 };
 
       function getOrCreate(parent, title) {
         if (!parent.children.has(title)) {
-          parent.children.set(title, { title, children: new Map(), code: "", bestScore: 0, seqMin: 1e15 });
+          parent.children.set(title, { title, children: new Map(), code: "", bracketCode: "", bestScore: 0, seqMin: 1e15 });
         }
         return parent.children.get(title);
       }
@@ -2643,6 +2692,7 @@ function buildPathTree(entries) {
         }
 
         if (e.code && !node.code) node.code = e.code;
+        if (e.bracketCode && !node.bracketCode) node.bracketCode = e.bracketCode;
         node.source = e.source;
       }
 
@@ -2657,6 +2707,7 @@ function buildPathTree(entries) {
         return {
           title: n.title,
           code: n.code || "",
+          bracketCode: n.bracketCode || "",
           source: n.source,
           bestScore: n.bestScore || 0,
           seqMin: n.seqMin || 0,
@@ -2799,6 +2850,54 @@ function buildPathTree(entries) {
             openTabularModal(cleanCode);
           });
           line.appendChild(codeSpan);
+
+          // Optional additional/manifestation codes (e.g., A23.9 [N16] or <manif>N16</manif>).
+          if (node.bracketCode) {
+            const codes = String(node.bracketCode)
+              .split(/[\s,;]+/)
+              .map((s) => s.trim())
+              .filter(Boolean);
+
+            codes.forEach((c) => {
+              const addOn = normalizeCodeDash(c);
+
+              const bracketWrap = document.createElement("span");
+              bracketWrap.className = "code-wrap";
+              bracketWrap.style.marginLeft = "6px";
+              bracketWrap.style.whiteSpace = "nowrap";
+
+              const left = document.createElement("span");
+              left.textContent = "[";
+              left.style.color = "#6b7280";
+
+              const right = document.createElement("span");
+              right.textContent = "]";
+              right.style.color = "#6b7280";
+
+              const addOnSpan = document.createElement("span");
+              addOnSpan.className = "code";
+              addOnSpan.textContent = formatDisplayCode(addOn);
+              addOnSpan.addEventListener("click", (ev) => {
+                ev.stopPropagation();
+                openTabularModal(addOn);
+              });
+
+              // Show + for additional code as well (respecting leaf/billable & 7th rules)
+              const complete2 = isCompleteCode(addOn);
+              const needs7_2 = requires7thChar(addOn);
+              const enabled2 = complete2 && !needs7_2;
+              const reason2 = !complete2
+                ? "非完整代碼，無法加入"
+                : (needs7_2 ? "需至 Tabular 選擇第七碼" : "");
+
+              bracketWrap.appendChild(left);
+              bracketWrap.appendChild(makeAddButton(addOn, node.title, enabled2, reason2));
+              bracketWrap.appendChild(addOnSpan);
+              bracketWrap.appendChild(right);
+
+              line.appendChild(bracketWrap);
+            });
+          }
         }
 
         li.appendChild(line);
