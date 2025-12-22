@@ -908,16 +908,14 @@
   margin-top: 10px;
 }
 .code-pane{
-  flex: 0 0 1500px;
-  max-width: 1500px;
+  flex: 1 1 auto;
   min-width: 0;
 }
 .cart-pane{
-  flex: 0 0 300px;
-  max-width: 300px;
-  min-width: 300px;
-  position: sticky;
-  top: 16px;
+  flex: 0 0 clamp(280px, 22vw, 340px);
+  max-width: clamp(280px, 22vw, 340px);
+  min-width: 260px;
+  position: static;
 }
 @media (max-width: 1880px){
   .code-pane{ flex: 1 1 auto; max-width: 100%; }
@@ -973,7 +971,8 @@ body { overflow: hidden; }
 /* 左側（Index/搜尋結果）可向下撐滿並滾動 */
 
 .code-pane{
-  height: 735px;   /* 固定高度 */
+  /* height is synced to .app-main via CSS var --paneH (set by JS) */
+  height: var(--paneH, 735px);
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -1159,7 +1158,99 @@ body{
 .app, .app-main, .main-layout { overflow: visible; }
 /* Keep inner scrolling behavior */
 .results-scroll, .cart-list { overflow: auto; }
+
+/* ===== Zoom-safe height sync (keep Index visual height while aligning Cart) =====
+   - We compute available height from .app-main and set --paneH via JS on load/resize.
+   - Both columns use the same --paneH, so bottoms align without being clipped.
+*/
+:root{ --paneH: 735px; }
+.code-pane, .cart-pane{ height: var(--paneH); }
+@media (max-width: 1200px){
+  /* stacked layout: let content flow naturally */
+  .code-pane, .cart-pane{ height: auto; }
+}
+
 </style>
+
+<style id="layout-safearea-override">
+/* === Layout hardening: keep panels inside the white .app container at any browser zoom === */
+html, body { height: 100%; }
+body{
+  /* prevent the page itself from growing taller than the viewport when zooming;
+     scrolling stays inside the result/cart panes */
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Make the white container a viewport-bounded shell */
+.app{
+  height: calc(100vh - 40px); /* body padding is 20px top + 20px bottom */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* critical: clip anything that would paint outside the white rounded box */
+  box-sizing: border-box;
+}
+
+/* Main content area fills remaining space and provides bottom safe area */
+.app-main{
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  padding-bottom: 16px; /* requested bottom safe area */
+  box-sizing: border-box;
+}
+
+/* Two-column area must stretch and be height-bounded */
+.main-layout{
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  align-items: stretch !important;
+}
+
+/* Columns become bounded flex containers */
+.code-pane,
+.cart-pane{
+  min-height: 0 !important;
+  height: auto !important; /* disable any JS/var driven hard heights */
+  display: flex;
+  flex-direction: column;
+}
+
+/* The framed panels fill their column and scroll internally */
+.results-wrapper{
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  max-height: none !important; /* remove fixed max-height that causes layout drift */
+  overflow: hidden !important;
+  box-sizing: border-box;
+}
+.results-scroll{
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.cart-sidebar{
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  box-sizing: border-box;
+}
+.cart-sidebar .cart-list{
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow: auto !important;
+}
+
+/* Safety: never allow these containers to override clipping with overflow: visible */
+.app, .app-main, .main-layout { overflow: hidden !important; }
+</style>
+
 </head>
 <body>
 <div class="app">
@@ -2172,6 +2263,8 @@ const statusIndex = document.getElementById("statusIndex");
       else if (state === "error") el.innerHTML = '<span class="loading-dot" style="background:#ef4444"></span>';
       else el.innerHTML = "";
       updateLoadBadge();
+      syncPaneHeight();
+      window.addEventListener("resize", syncPaneHeight);
     }
 
     
@@ -2251,6 +2344,17 @@ async function loadXmlFromUrl(type, url, dotEl) {
         console.error(err);
         setDot(dotEl, "error");
       }
+    }
+
+
+    // ===== Zoom-safe layout: keep left (Index) visual height and align cart bottom =====
+    function syncPaneHeight(){
+      const main = document.querySelector(".app-main");
+      if(!main) return;
+      const rect = main.getBoundingClientRect();
+      // Use floor to avoid sub-pixel border clipping at different zoom levels
+      const h = Math.max(320, Math.floor(rect.height));
+      document.documentElement.style.setProperty("--paneH", h + "px");
     }
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -3799,5 +3903,11 @@ const rowEl = el.closest(".modal-code-row");
     });
   </script>
 <div class="seven-tooltip" id="sevenTooltip"></div>
-</div></body>
+</div>
+<script id="layout-safearea-js">
+/* Disable pane-height syncing: layout is now purely flex-based and viewport-bounded. */
+window.syncPaneHeight = function(){};
+</script>
+
+</body>
 </html>
