@@ -254,6 +254,30 @@
     .add-to-cart-btn{
       margin-right: 0;
     }
+
+    .copy-code-btn{
+      width: 22px;
+      height: 22px;
+      line-height: 20px;
+      border-radius: 6px;
+      border: 1px solid #9ec5ff;
+      background: #eef5ff;
+      color: #0b5ed7;
+      font-size: 14px;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    /* Tabular modal: keep consistent spacing between + / copy / code */
+    .modal-code-row .add-to-cart-btn,
+    .modal-code-row .copy-code-btn{
+      margin-right: 6px;
+    }
+
+    .copy-code-btn:hover{ filter: brightness(0.97); }
+    .copy-code-btn:active{ transform: translateY(0.5px); }
+    .copy-code-btn:disabled{ opacity: 0.5; cursor: not-allowed; }
+
     .add-to-cart-btn:disabled,
     .add-to-cart-btn.disabled-add{
       opacity: 0.45;
@@ -1170,6 +1194,17 @@ body{
   .code-pane, .cart-pane{ height: auto; }
 }
 
+
+/* ===== Tabular list + / copy buttons: no gap ===== */
+.tabular-btn-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0 !important;
+}
+.tabular-btn-wrap button {
+  margin: 0 !important;
+}
+
 </style>
 
 <style id="layout-safearea-override">
@@ -1249,6 +1284,36 @@ body{
 
 /* Safety: never allow these containers to override clipping with overflow: visible */
 .app, .app-main, .main-layout { overflow: hidden !important; }
+
+/* ===== Tabular list + / copy buttons: no gap ===== */
+.tabular-btn-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0 !important;
+}
+.tabular-btn-wrap button {
+  margin: 0 !important;
+}
+
+
+/* ===== Add + Copy button group ===== */
+.addcopy-wrap{
+  display:inline-flex;
+  align-items:center;
+  gap:6px; /* default spacing outside Tabular (same as before) */
+}
+.addcopy-wrap button{
+  margin:0;
+}
+
+/* Tabular: + and copy should be flush (no gap) */
+#tabularModal .addcopy-wrap{
+  gap:0 !important;
+}
+#tabularModal .addcopy-wrap button{
+  margin:0 !important;
+}
+
 </style>
 
 </head>
@@ -2164,7 +2229,39 @@ function isCompleteCode(code) {
   return !!(meta && meta.hasChild === false);
 }
 
+// === Clipboard helper: copy plain text (code only) ===
+async function copyTextToClipboard(text) {
+  // Prefer modern clipboard API; fallback for older browsers / insecure contexts (e.g., file://)
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch (e) {}
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    ta.style.top = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand("copy");
+    document.body.removeChild(ta);
+    return ok;
+  } catch (e) {
+    return false;
+  }
+}
+
 function makeAddButton(code, desc, enabled, disabledReason) {
+  // Wrap + and Copy buttons so spacing stays consistent across all levels
+  const wrap = document.createElement("span");
+  wrap.className = "addcopy-wrap";
+  wrap.style.display = "inline-flex";
+  wrap.style.alignItems = "center";
+// + (add to cart)
   const btn = document.createElement("button");
   btn.className = "add-to-cart-btn";
   btn.type = "button";
@@ -2174,44 +2271,42 @@ function makeAddButton(code, desc, enabled, disabledReason) {
     btn.disabled = true;
     btn.title = disabledReason || "Not a billable / complete code";
     btn.classList.add("disabled-add");
-    return btn;
+  } else {
+    btn.title = "Add to cart";
+    btn.addEventListener("click", (ev) => {
+      ev.stopPropagation();
+      ev.preventDefault();
+      addToCart(code, desc || "");
+    });
   }
 
-  btn.title = "Add to cart";
-  btn.addEventListener("click", async (ev) => {
+  // Copy code (code only, no description)
+  const copyBtn = document.createElement("button");
+  copyBtn.className = "copy-code-btn";
+  copyBtn.type = "button";
+  copyBtn.textContent = "⧉";
+  copyBtn.title = "Copy code";
+
+  copyBtn.addEventListener("click", async (ev) => {
     ev.stopPropagation();
     ev.preventDefault();
-
-    // In the main results list we keep a lightweight prompt fallback.
-    // (In Tabular modal we use button picker UI.)
-    if (requires7thChar(code)) {
-      const meta = get7thMeta(code);
-      
-if (!(meta && meta.allowed7th && meta.allowed7th.length)) {
-  alert("此代碼需要第七碼，但 Tabular 未提供可用選項。");
-  return;
-}
-const pick = window.prompt(
-  `此代碼需要選取第七碼（${meta.allowed7th.join(" / ")}）`,
-  meta.allowed7th[0]
-);
-      if (!pick) return;
-      const full = build7thCharCode(code, pick);
-      if (codeKey(full) === codeKey(code)) {
-        alert("無效的第七碼。");
-        return;
-      }
-      const baseDescText = (desc || ((tabularCodeDesc && tabularCodeDesc.get(codeKey(baseCode))) || "") || "").trim();
-      const pickText = (shortDesc || fullDesc || "").trim();
-      const finalDescText = (baseDescText && pickText) ? `${baseDescText}, ${pickText}` : (baseDescText || pickText);
-      addToCart(full, finalDescText);
-      return;
+    const ok = await copyTextToClipboard(code);
+    if (ok) {
+      const old = copyBtn.textContent;
+      copyBtn.textContent = "✓";
+      copyBtn.title = "Copied";
+      setTimeout(() => {
+        copyBtn.textContent = old;
+        copyBtn.title = "Copy code";
+      }, 900);
+    } else {
+      alert("複製失敗：此瀏覽器不支援剪貼簿功能。");
     }
-
-    addToCart(code, desc || "");
   });
 
-  return btn;
+  wrap.appendChild(btn);
+  wrap.appendChild(copyBtn);
+  return wrap;
 }
 const statusIndex = document.getElementById("statusIndex");
     const statusNeoplasm = document.getElementById("statusNeoplasm");
@@ -3429,7 +3524,7 @@ function hideSevenTooltip() {
   sevenTooltipEl.textContent = "";
 }
 
-function showSevenCharPicker(rowEl, baseCode, desc) {
+function showSevenCharPicker(rowEl, baseCode, desc, onPick) {
   if (!rowEl) return;
   clearSevenCharPicker();
 
@@ -3481,9 +3576,13 @@ allowed.forEach((ch) => {
       const baseDescText = (desc || ((tabularCodeDesc && tabularCodeDesc.get(codeKey(baseCode))) || "") || "").trim();
       const pickText = (shortDesc || fullDesc || "").trim();
       const finalDescText = (baseDescText && pickText) ? `${baseDescText}, ${pickText}` : (baseDescText || pickText);
-      addToCart(full, finalDescText);
+      if (typeof onPick === "function") {
+        onPick(full, finalDescText);
+      } else {
+        addToCart(full, finalDescText);
+      }
       clearSevenCharPicker();
-    });
+      });
     picker.appendChild(b);
   });
 
@@ -3574,11 +3673,14 @@ allowed.forEach((ch) => {
         html += `<div class="modal-code-row ${
           isTarget ? "highlight" : ""
         }" style="padding-left:${depth * 8}px;">`;
-        const enabled = isCompleteCode(e.code);
-        const addBtnHtml = enabled
-          ? `<button class="add-to-cart-btn" type="button" data-add="${e.code}">+</button>`
+        const canAct = isCompleteCode(e.code) || requires7thChar(e.code);
+        const addBtnHtml = canAct
+          ? `<button class="add-to-cart-btn" type="button" data-add="${e.code}" title="加入購物車">+</button>`
           : `<button class="add-to-cart-btn" type="button" disabled title="Not a billable / complete code">+</button>`;
-        html += `${addBtnHtml}<span class="code" data-code="${e.code}">${e.code}</span>`;
+        const copyBtnHtml = canAct
+          ? `<button class="copy-code-btn" type="button" data-copy="${e.code}" title="Copy code">⧉</button>`
+          : `<button class="copy-code-btn" type="button" disabled title="Not a billable / complete code">⧉</button>`;
+        html += `${addBtnHtml}${copyBtnHtml}<span class="code" data-code="${e.code}">${e.code}</span>`;
         html += `<span class="desc">${e.title || ""}</span>`;
         html += `</div>`;
       });
@@ -3607,6 +3709,44 @@ Array.from(tabularModalBody.querySelectorAll('[data-add]')).forEach((btn) => {
     addToCart(raw, desc);
   });
 });
+      // Copy code buttons inside Tabular modal
+      Array.from(tabularModalBody.querySelectorAll('[data-copy]')).forEach((btn) => {
+        btn.addEventListener("click", async (ev) => {
+          ev.stopPropagation();
+          ev.preventDefault();
+          const raw = btn.getAttribute("data-copy");
+          if (!raw) return;
+
+          const rowEl = btn.closest(".modal-code-row");
+          const descEl = rowEl && rowEl.querySelector(".desc");
+          const desc = descEl ? normalizeText(descEl.textContent) : "";
+
+          const flash = () => {
+            const old = btn.textContent;
+            btn.textContent = "✓";
+            btn.title = "Copied";
+            setTimeout(() => {
+              btn.textContent = old;
+              btn.title = "Copy code";
+            }, 900);
+          };
+
+          // If requires 7th char, let user pick first, then copy the completed code (no add-to-cart).
+          if (requires7thChar(raw) && rowEl) {
+            showSevenCharPicker(rowEl, raw, desc, async (fullCode) => {
+              const ok = await copyTextToClipboard(fullCode);
+              if (ok) flash();
+              else alert("複製失敗：此瀏覽器不支援剪貼簿功能。");
+            });
+            return;
+          }
+
+          const ok = await copyTextToClipboard(raw);
+          if (ok) flash();
+          else alert("複製失敗：此瀏覽器不支援剪貼簿功能。");
+        });
+      });
+
       // 點 modal 內 code：在該列下方顯示詳細說明
       Array.from(tabularModalBody.querySelectorAll(".modal-code-row .code")).forEach((el) => {
         el.addEventListener("click", () => {
