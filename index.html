@@ -1114,6 +1114,51 @@ body{
   box-sizing: border-box;
 }
 
+
+/* ===== FIX: Align bottom edges between left results and right cart ===== */
+.code-pane,
+.cart-pane{
+  min-height: 0;
+}
+
+.results-wrapper,
+.cart-sidebar{
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Prevent bottom border clipping due to sub-pixel rounding */
+.app-main{
+  padding-bottom: 8px;
+  box-sizing: border-box;
+}
+
+
+/* ===== FIX: Keep original Index panel height; align Cart bottom to Index bottom ===== */
+/* Original Index height target (match your previous layout) */
+:root{ --indexPanelHeight: 735px; }
+
+/* Do NOT stretch columns to full app height; keep Index fixed height */
+.code-pane{ height: var(--indexPanelHeight) !important; min-height: var(--indexPanelHeight) !important; }
+.cart-pane{ height: var(--indexPanelHeight) !important; min-height: var(--indexPanelHeight) !important; }
+
+/* Ensure inner cards fill their column height */
+.results-wrapper{ flex: 1 1 auto !important; min-height: 0 !important; }
+.cart-sidebar{ height: 100% !important; min-height: 0 !important; display:flex !important; flex-direction:column !important; }
+
+/* Ensure both scroll areas behave */
+.results-scroll{ flex: 1 1 auto !important; min-height: 0 !important; overflow:auto !important; }
+.cart-sidebar .cart-list{ flex: 1 1 auto !important; min-height: 0 !important; overflow:auto !important; }
+
+/* Stop main layout from forcing stretch that changes Index height */
+.main-layout{ align-items: flex-start !important; }
+
+
+/* ===== FIX: prevent cart bottom border from being clipped (keep left Index height unchanged) ===== */
+/* Root cause: parent containers have overflow:hidden in fixed-height layout; the cart sidebar border sits on the boundary and gets clipped. */
+.app, .app-main, .main-layout { overflow: visible; }
+/* Keep inner scrolling behavior */
+.results-scroll, .cart-list { overflow: auto; }
 </style>
 </head>
 <body>
