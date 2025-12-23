@@ -303,15 +303,12 @@
       padding-left: 18px;
       margin-top: 4px;
     }
-    .see-link {
-      color: #1d4ed8;
-      cursor: pointer;
-      text-decoration: underline;
-          font-style: italic;
-    }
+    .see-link{ color:#9ca3af; cursor: pointer; text-decoration: none; }
 
 
-    /* () 修飾詞淡化，讓主詞更突出 */
+    
+    .see-link:hover{ color:#6b7280; }
+/* () 修飾詞淡化，讓主詞更突出 */
     .modifier-text{
       color: #6b7280; /* gray-500 */
     }
@@ -1204,6 +1201,16 @@ body{
 .tabular-btn-wrap button {
   margin: 0 !important;
 }
+
+
+    /* Inline SEE / SEE ALSO notes (Index) */
+    .see-inline, .seealso-inline{
+      color:#9ca3af;
+      font-style: italic;
+      margin-left: 6px;
+      white-space: nowrap;
+    }
+    .seealso-inline{ color:#9ca3af; }
 
 </style>
 
@@ -2360,6 +2367,18 @@ function makeAddButton(code, desc, enabled, disabledReason) {
   copyBtn.textContent = "⧉";
   copyBtn.title = "Copy code";
 
+  // If this code requires a 7th character (e.g., injury codes), do NOT allow copying the incomplete base code.
+  // Only enable copy once a full code (with 7th character) exists.
+  try {
+    const need7 = (typeof requires7thChar === "function") ? requires7thChar(code) : false;
+    const has7th = (code || "").replace(".", "").length >= 7;
+    if (need7 && !has7th) {
+      copyBtn.disabled = true;
+      copyBtn.title = "需先選擇第七碼";
+      copyBtn.classList.add("disabled-copy");
+    }
+  } catch (e) { /* ignore */ }
+
   copyBtn.addEventListener("click", async (ev) => {
     ev.stopPropagation();
     ev.preventDefault();
@@ -2622,6 +2641,7 @@ async function loadXmlFromUrl(type, url, dotEl) {
       const codeEl = children.find((el) => el.tagName === "code");
       const subcatEl = children.find((el) => el.tagName === "subcat");
       const seeEl = children.find((el) => el.tagName === "see");
+      const seeAlsoEl = children.find((el) => (el.tagName === "seeAlso" || el.tagName === "seealso" || el.tagName === "seealso"));
       const ownTitle = normalizeText(titleEl ? titleEl.textContent : "");
       const pathTitles = parentTitles.slice();
       if (ownTitle) pathTitles.push(ownTitle);
@@ -2643,26 +2663,30 @@ async function loadXmlFromUrl(type, url, dotEl) {
       const bracketCode = codeParts.bracket || (manifCodes.length ? manifCodes.join(" ") : "");
 
       const seeText = normalizeText(seeEl ? seeEl.textContent : "");
+      const seeAlsoText = normalizeText(seeAlsoEl ? seeAlsoEl.textContent : "");
 
       if (code) {
-        // 一般索引條目：有代碼
+        // 一般索引條目：有代碼（仍可能伴隨 SEE / SEE ALSO 註記）
         entries.push({
           seq: entrySeq++,
           code,
           bracketCode,
+          seeTarget: seeText || "",
+          seeAlsoTarget: seeAlsoText || "",
           title: ownTitle || pathTitles[pathTitles.length - 1] || "",
           fullPath: pathTitles.join(" / "),
           source: sourceType,
         });
-      } else if (seeText) {
-        // A 方案：純 SEE 條目也要可搜尋，但不帶代碼
-        const seePath = pathTitles.slice();
-        seePath.push("SEE " + seeText);
+      } else if (seeText || seeAlsoText) {
+        // 無代碼但帶有 SEE / SEE ALSO：應與本層同一行顯示（不可再往下一層縮排）
         entries.push({
           seq: entrySeq++,
           code: "",
+          bracketCode: "",
+          seeTarget: seeText || "",
+          seeAlsoTarget: seeAlsoText || "",
           title: ownTitle || pathTitles[pathTitles.length - 1] || "",
-          fullPath: seePath.join(" / "),
+          fullPath: pathTitles.join(" / "),
           source: sourceType,
         });
       }
@@ -3010,6 +3034,8 @@ function buildPathTree(entries) {
 
         if (e.code && !node.code) node.code = e.code;
         if (e.bracketCode && !node.bracketCode) node.bracketCode = e.bracketCode;
+        if (e.seeTarget && !node.seeTarget) node.seeTarget = e.seeTarget;
+        if (e.seeAlsoTarget && !node.seeAlsoTarget) node.seeAlsoTarget = e.seeAlsoTarget;
         node.source = e.source;
       }
 
@@ -3025,6 +3051,8 @@ function buildPathTree(entries) {
           title: n.title,
           code: n.code || "",
           bracketCode: n.bracketCode || "",
+          seeTarget: n.seeTarget || "",
+          seeAlsoTarget: n.seeAlsoTarget || "",
           source: n.source,
           bestScore: n.bestScore || 0,
           seqMin: n.seqMin || 0,
@@ -3124,28 +3152,44 @@ function buildPathTree(entries) {
           .replaceAll("@@MOD_START@@", '<span class="modifier-text">')
           .replaceAll("@@MOD_END@@", "</span>");
         textSpan.innerHTML = html;
-// SEE 節點（沒有 code、title 以 SEE 開頭）要變可點擊連結
-        const matchSee = (node.title || "").match(/^SEE\s+(.+)$/i);
-        if (!node.code && matchSee) {
-          textSpan.classList.add("see-link");
-          const target = matchSee[1];
-          textSpan.addEventListener("click", () => {
-            const parts = parseSeeTarget(target);
-            if (!parts.length) return;
-
-            // Step 1: search by the first-level term
-            searchInput.value = parts.join(" ");
-            setActiveTab("disease");
-            doSearch();
-
-            // Step 2: after render, navigate within the hierarchy by comma-separated levels
-            setTimeout(() => {
-              findAndScrollPath(parts);
-            }, 50);
-          });
-        }
-
         line.appendChild(textSpan);
+
+        // Inline SEE / SEE ALSO notes should stay at the SAME hierarchy level (no extra indentation)
+        if (!node.code && (node.seeTarget || node.seeAlsoTarget)) {
+          if (node.seeTarget) {
+            const seeInline = document.createElement("span");
+            seeInline.className = "see-inline";
+            seeInline.append(" - see ");
+            const seeLink = document.createElement("span");
+            seeLink.className = "see-link";
+            seeLink.textContent = node.seeTarget;
+            seeLink.dataset.search = node.seeTarget.replace(/,/g, "").trim();
+            seeInline.appendChild(seeLink);
+            line.appendChild(seeInline);
+}
+          if (node.seeAlsoTarget) {
+            const seeAlsoInline = document.createElement("span");
+            seeAlsoInline.className = "seealso-inline";
+            seeAlsoInline.append(" - see also ");
+            const seeAlsoLink = document.createElement("span");
+            seeAlsoLink.className = "see-link";
+            seeAlsoLink.textContent = node.seeAlsoTarget;
+            seeAlsoLink.dataset.search = node.seeAlsoTarget.replace(/,/g, "").trim();
+            seeAlsoInline.appendChild(seeAlsoLink);
+            line.appendChild(seeAlsoInline);
+}
+        } else if (node.seeAlsoTarget) {
+          // Some headings have SEE ALSO while also having children; still show it on the heading line
+          const seeAlsoInline = document.createElement("span");
+            seeAlsoInline.className = "seealso-inline";
+            seeAlsoInline.append(" - see also ");
+            const seeAlsoLink = document.createElement("span");
+            seeAlsoLink.className = "see-link";
+            seeAlsoLink.textContent = node.seeAlsoTarget;
+            seeAlsoLink.dataset.search = node.seeAlsoTarget.replace(/,/g, "").trim();
+            seeAlsoInline.appendChild(seeAlsoLink);
+            line.appendChild(seeAlsoInline);
+}
 
         if (node.code) {
           const codeSpan = document.createElement("span");
@@ -3359,12 +3403,23 @@ function buildPathTree(entries) {
             const wrap = document.createElement("span");
             wrap.className = "code-wrap";
             {
-            const complete = isCompleteCode(cleanCode);
-            const needs7 = requires7thChar(cleanCode);
-            const enabled = complete && !needs7;
-            const reason = !complete ? "非完整代碼，無法加入" : (needs7 ? "需至 Tabular 選擇第七碼" : "");
-            wrap.appendChild(makeAddButton(cleanCode, row.title || row.text || "", enabled, reason));
-          }
+              const complete = isCompleteCode(cleanCode);
+              const needs7 = requires7thChar(cleanCode);
+              const enabled = complete && !needs7;
+              const reason = !complete ? "非完整代碼，無法加入" : (needs7 ? "需至 Tabular 選擇第七碼" : "");
+
+              // Neoplasms：非完整碼不允許複製（避免複製到像 C34.9- 這種非完整代碼）
+              const addCopyWrap = makeAddButton(cleanCode, row.title || row.text || "", enabled, reason);
+              if (!complete) {
+                const copyBtn = addCopyWrap.querySelector(".copy-code-btn");
+                if (copyBtn) {
+                  copyBtn.disabled = true;
+                  copyBtn.title = "非完整代碼不可複製";
+                  copyBtn.classList.add("disabled-copy");
+                }
+              }
+              wrap.appendChild(addCopyWrap);
+            }
             wrap.appendChild(span);
             td.appendChild(wrap);
           }
@@ -4135,6 +4190,24 @@ const rowEl = el.closest(".modal-code-row");
 <script id="layout-safearea-js">
 /* Disable pane-height syncing: layout is now purely flex-based and viewport-bounded. */
 window.syncPaneHeight = function(){};
+
+    // Clickable SEE / SEE ALSO target: fill search box and run Index search
+    document.addEventListener("click", (e) => {
+      const link = e.target.closest(".see-link");
+      if (!link) return;
+      const keyword = (link.dataset.search || link.textContent || "").trim();
+      if (!keyword) return;
+
+      // switch to Disease Index tab for quick inspection
+      if (typeof setActiveTab === "function") setActiveTab("disease");
+
+      const input = document.getElementById("searchInput");
+      if (input) input.value = keyword;
+
+      // trigger search
+      if (typeof doSearch === "function") doSearch();
+    });
+
 </script>
 
 </body>
