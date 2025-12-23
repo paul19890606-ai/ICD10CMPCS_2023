@@ -507,7 +507,27 @@
       opacity:.4;
       cursor:not-allowed;
     }
-    .cart-toast{
+    
+
+    /* Copy code button (match INDEX) */
+    .copy-code-btn{
+      width:22px;
+      height:22px;
+      line-height:20px;
+      border-radius:6px;
+      border:1px solid #9ec5ff;
+      background:#eef5ff;
+      color:#0b5ed7;
+      font-size:14px;
+      padding:0;
+      cursor:pointer;
+      vertical-align:middle;
+      user-select:none;
+    }
+    .copy-code-btn:hover{ filter: brightness(0.97); }
+    .copy-code-btn:active{ transform: translateY(0.5px); }
+    .copy-code-btn:disabled{ opacity: 0.5; cursor: not-allowed; }
+.cart-toast{
       margin-top: 6px;
       font-size: 0.82rem;
       color: #047857;
@@ -1075,7 +1095,46 @@
       localStorage.setItem(key, JSON.stringify(value));
     }
 
-    function normalizeCode(code){
+    // === Clipboard helper: copy plain text (PCS code only) ===
+    async function copyTextToClipboard(text) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          return true;
+        }
+      } catch (e) {}
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        ta.style.top = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand("copy");
+        document.body.removeChild(ta);
+        return ok;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    async function copySelectedPCSCodeToClipboard() {
+      if (!lastFullSelection || !lastFullSelection.code) return;
+
+      const code = String(lastFullSelection.code).toUpperCase();
+      const ok = await copyTextToClipboard(code);
+
+      // UI toast (reuse selectedCodeBox)
+      const toast = document.createElement("div");
+      toast.className = "cart-toast";
+      toast.textContent = ok ? "已複製 PCS 代碼。" : "複製失敗（瀏覽器限制）。";
+      selectedCodeBox.appendChild(toast);
+      setTimeout(() => toast.remove(), 1400);
+    }
+
+function normalizeCode(code){
       return String(code || "").trim();
     }
     function classifyTypeByCode(code){
@@ -1890,7 +1949,7 @@ function parseIndexXml(xmlText) {
 
           selectedCodeBox.innerHTML =
             `目前選取代碼：<code class="highlight-code">${fullCode}</code>` +
-            `<button type="button" class="add-to-cart-btn" title="加入購物車（PCS）" aria-label="加入購物車（PCS）">+</button><br>` +
+            `<button type="button" class="add-to-cart-btn" title="加入購物車（PCS）" aria-label="加入購物車（PCS）">+</button><button type="button" class="copy-code-btn" title="複製代碼" aria-label="複製代碼">⧉</button><br>` +
             `<span style="font-size:0.83rem;color:#374151;">${coloredDesc}</span>`;
             
         } else {
@@ -2658,11 +2717,19 @@ function parseIndexXml(xmlText) {
     });
 
     
-    // 點選「+」將目前完整 7 碼 PCS 加入購物車（獨立頁面）
+    // 點選「+」將目前完整 7 碼 PCS 加入購物車；點選「⧉」複製 PCS 代碼
     selectedCodeBox.addEventListener("click", (e) => {
-      const btn = e.target.closest(".add-to-cart-btn");
-      if (!btn) return;
-      addSelectedPCSCodeToCart();
+      const addBtn = e.target.closest(".add-to-cart-btn");
+      if (addBtn) {
+        addSelectedPCSCodeToCart();
+        return;
+      }
+
+      const copyBtn = e.target.closest(".copy-code-btn");
+      if (copyBtn) {
+        copySelectedPCSCodeToClipboard();
+        return;
+      }
     });
 
 
