@@ -1391,8 +1391,16 @@ body{
 #tabularModal .pill-wrap.is-disabled{
   background: #f3f4f6;
   border-color: #d1d5db;
-  opacity: 0.65;
+}
+/* Keep code legible (do NOT dim ICD code text); dim only the buttons */
+#tabularModal .pill-wrap.is-disabled .add-to-cart-btn,
+#tabularModal .pill-wrap.is-disabled .copy-code-btn{
+  opacity: 0.45;
   cursor: not-allowed;
+}
+#tabularModal .pill-wrap.is-disabled .code{
+  color: #0052cc;
+  opacity: 1;
 }
 </style>
 
@@ -2378,6 +2386,18 @@ function makeAddButton(code, desc, enabled, disabledReason) {
       copyBtn.classList.add("disabled-copy");
     }
   } catch (e) { /* ignore */ }
+
+  // Do NOT allow copying non-complete / non-billable placeholder codes (e.g., D24.-, C34.9-, codes ending with '.' or '-')
+  try {
+    const endsIncomplete = /[\.-]$/.test((code || "").trim());
+    const complete = (typeof isCompleteCode === "function") ? isCompleteCode(code) : true;
+    if (endsIncomplete || !complete) {
+      copyBtn.disabled = true;
+      copyBtn.title = "非完整代碼不可複製";
+      copyBtn.classList.add("disabled-copy");
+    }
+  } catch (e) { /* ignore */ }
+
 
   copyBtn.addEventListener("click", async (ev) => {
     ev.stopPropagation();
