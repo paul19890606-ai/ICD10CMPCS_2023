@@ -410,7 +410,42 @@
       border: 1px solid #d3e0ff;
       font-size: 13px;
     }
-    .tabular-detail-title {
+    
+    .tabular-detail-card.rule-code-first{
+      background:#f1f6ff;
+      border:1px solid #d3e0ff;
+      border-left:5px solid #3b82f6;
+    }
+    .tabular-detail-card.rule-code-first .tabular-detail-title{ color:#1d4ed8; }
+
+    .tabular-detail-card.rule-additional-code{
+      background:#eefaf4;
+      border:1px solid rgba(31,122,77,0.25);
+      border-left:5px solid #22c55e;
+    }
+    .tabular-detail-card.rule-additional-code .tabular-detail-title{ color:#15803d; }
+
+    .tabular-detail-card.rule-excludes1{
+      background:#fef2f2;
+      border:1px solid rgba(168,7,26,0.22);
+      border-left:5px solid #ef4444;
+    }
+    .tabular-detail-card.rule-excludes1 .tabular-detail-title{ color:#b91c1c; }
+
+    .tabular-detail-card.rule-excludes2{
+      background:#fff1f2;
+      border:1px solid rgba(168,7,26,0.18);
+      border-left:5px solid #f43f5e;
+    }
+    .tabular-detail-card.rule-excludes2 .tabular-detail-title{ color:#be123c; }
+
+    .tabular-detail-card.rule-7th{
+      background:#fff7ed;
+      border:1px solid rgba(138,75,0,0.22);
+      border-left:5px solid #f97316;
+    }
+    .tabular-detail-card.rule-7th .tabular-detail-title{ color:#c2410c; }
+.tabular-detail-title {
       font-weight: 600;
       margin-bottom: 4px;
     }
@@ -505,7 +540,37 @@
       min-width: 70px;
       cursor: pointer;
     }
-    .modal-code-row .desc {
+    
+    /* Tabular modal: rule tags after description (inline, not right-aligned) */
+    .desc-wrap{
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      min-width: 0;
+    }
+    .rule-tags{
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .rule-tag{
+      font-size: 12px;
+      line-height: 1.2;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: #f5f5f5;
+      color: #333;
+      white-space: nowrap;
+    }
+    .rule-tag.code-first{ background:#e8f0ff; color:#1a4ed8; border-color: rgba(26,78,216,0.25); }
+    .rule-tag.additional-code{ background:#e6f7ef; color:#1f7a4d; border-color: rgba(31,122,77,0.25); }
+    .rule-tag.excludes1{ background:#fdecea; color:#b42318; border-color: rgba(180,35,24,0.25); }
+    .rule-tag.excludes2{ background:#fff1f0; color:#a8071a; border-color: rgba(168,7,26,0.22); }
+    .rule-tag.seventh{ background:#fff4e5; color:#8a4b00; border-color: rgba(138,75,0,0.25); }
+.modal-code-row .desc {
       color: #1f2933;
       flex: 1;
     }
@@ -1211,6 +1276,22 @@ body{
       white-space: nowrap;
     }
     .seealso-inline{ color:#9ca3af; }
+
+
+/* ===== Font size normalization (per request) ===== */
+body{ font-size:17px; }
+
+/* Title slightly larger */
+.topbar-title{ font-size:24px; }
+
+/* Do NOT change cart base sizing */
+.cart-panel{ font-size:16px; }
+
+/* Do NOT change top-right pills (load status / total count) */
+#loadBadge, #dataCount, #dataCount .pill{ font-size:11px; }
+
+/* Do NOT change the tabular result banner (red-box area, injected into #tabularResult) */
+#tabularResult{ font-size:12px; }
 
 </style>
 
@@ -2200,9 +2281,15 @@ function rebuildTabularMeta() {
       allowed7th: rule ? rule.allowed7th : [],
       allowed7thDesc: rule ? (rule.allowed7thDesc || {}) : {},
       placeholderCount: rule && rule.requires7th ? computePlaceholderCount(code) : 0,
+
+      // Rule notes directly defined on this node (not inherited from children)
+      hasCodeFirst: Array.from(diagEl.children).some((el) => el.tagName === "codeFirst"),
+      hasUseAdditionalCode: Array.from(diagEl.children).some((el) => el.tagName === "useAdditionalCode"),
+      hasExcludes1: Array.from(diagEl.children).some((el) => el.tagName === "excludes1"),
+      hasExcludes2: Array.from(diagEl.children).some((el) => el.tagName === "excludes2"),
     });
 
-    Array.from(diagEl.children)
+Array.from(diagEl.children)
       .filter((el) => el.tagName === "diag")
       .forEach((child) => walkDiag(child, rule));
   }
@@ -3831,6 +3918,21 @@ allowed.forEach((ch) => {
         const complete = isCompleteCode(e.code);
         const need7 = requires7thChar(e.code);
 
+        // Rule tags (shown in the list row, before expanding)
+        const meta = (tabularCodeMeta && tabularCodeMeta.get(codeKey(e.code))) || {};
+        const tags = [];
+        if (meta.hasCodeFirst) tags.push({ text: "Code first", cls: "code-first" });
+        if (meta.hasUseAdditionalCode) tags.push({ text: "Use additional code", cls: "additional-code" });
+        if (meta.hasExcludes1) tags.push({ text: "Excludes1", cls: "excludes1" });
+        if (meta.hasExcludes2) tags.push({ text: "Excludes2", cls: "excludes2" });
+        if (need7) tags.push({ text: "7th", cls: "seventh" });
+
+        const tagsHtml = tags.length
+          ? `<span class="rule-tags">${tags
+              .map((t) => `<span class="rule-tag ${t.cls}">${t.text}</span>`)
+              .join("")}</span>`
+          : "";
+
         // Status priority:
         // - non-leaf codes are always disabled, even if a parent defines 7th-character rules
         // - leaf codes that require 7th are marked as need7
@@ -3844,7 +3946,7 @@ allowed.forEach((ch) => {
   <span class="${pillClass}">
     ${addBtnHtml}${copyBtnHtml}<span class="code" data-code="${e.code}">${e.code}</span>
   </span>`;
-        html += `<span class="desc">${e.title || ""}</span>`;
+        html += `<span class="desc-wrap"><span class="desc-text">${e.title || ""}</span>${tagsHtml}</span>`;
         html += `</div>`;
       });
 
@@ -4018,7 +4120,27 @@ const rowEl = el.closest(".modal-code-row");
         return { introLine, items };
       }
 
-      function buildBlock(tagName, titleText, titleClass, options) {
+      
+      function getRuleCardClass(tagName) {
+        switch (tagName) {
+          case "codeFirst":
+            return "rule-code-first";
+          case "useAdditionalCode":
+          case "codeAlso":
+            return "rule-additional-code";
+          case "excludes1":
+            return "rule-excludes1";
+          case "excludes2":
+            return "rule-excludes2";
+          case "sevenChrNote":
+          case "sevenChrDef":
+            return "rule-7th";
+          default:
+            return "";
+        }
+      }
+
+function buildBlock(tagName, titleText, titleClass, options) {
         const opts = options || {};
         const blocks = Array.from(targetDiag.children).filter(
           (el) => el.tagName === tagName
@@ -4033,7 +4155,8 @@ const rowEl = el.closest(".modal-code-row");
           );
           if (!introLine && !items.length) return;
 
-          html += `<div class="tabular-detail-card">`;
+          const cardClass = getRuleCardClass(tagName);
+          html += `<div class="tabular-detail-card ${cardClass}">`;
           html += `<div class="tabular-detail-title ${titleClass}">${titleText}</div>`;
 
           if (introLine) {
@@ -4104,6 +4227,27 @@ const rowEl = el.closest(".modal-code-row");
 
         // sevenChrDef：可能一個 note 裡有多行，需拆行
         defBlocks.forEach((b) => {
+          // Prefer explicit <extension char="..."> definitions so we can show "X - description"
+          const exts = Array.from(b.children || []).filter((el) => el.tagName === "extension");
+          if (exts.length) {
+            exts.forEach((extEl) => {
+              const ch = String(extEl.getAttribute("char") || "").trim();
+              const desc = normalizeText(extEl.textContent || "");
+              if (ch && desc) {
+                // Avoid double prefix if source already contains "X - ..."
+                const norm = desc.replace(/^\s+/, "");
+                if (new RegExp(`^${ch}\s*[-:]\s*`, "i").test(norm)) {
+                  items.push(norm);
+                } else {
+                  items.push(`${ch} - ${desc}`);
+                }
+              } else if (desc) {
+                items.push(desc);
+              }
+            });
+            return;
+          }
+
           const notes = Array.from(b.getElementsByTagName("note"));
           if (notes.length) {
             notes.forEach((n) => {
@@ -4150,7 +4294,7 @@ const rowEl = el.closest(".modal-code-row");
 
         if (!introLine && !items.length) return;
 
-        let blockHtml = `<div class="tabular-detail-card">`;
+        let blockHtml = `<div class="tabular-detail-card ${getRuleCardClass("sevenChrNote")}">`;
         blockHtml += `<div class="tabular-detail-title instruction">7th character</div>`;
         if (introLine) {
           blockHtml += `<div style="margin-bottom:4px;">${introLine}</div>`;
