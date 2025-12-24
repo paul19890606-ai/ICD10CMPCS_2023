@@ -2782,10 +2782,10 @@ const statusIndex = document.getElementById("statusIndex");
           const nameEn = it.item_name_en || "";
           const val = fmtValidity(it.validity_years || "");
           const headParts = [];
-          if (itemCode) headParts.push(itemCode);
-          if (nameZh) headParts.push(nameZh);
           if (nameEn) headParts.push(nameEn);
+          if (nameZh) headParts.push(nameZh);
           if (val) headParts.push(`有效期限：${val}`);
+          if (itemCode) headParts.push(itemCode);
           h += `<li>${headParts.join(" / ")}`;
 
           // Show mapping-level bilingual descriptions (dedup)
@@ -4473,9 +4473,6 @@ function buildBlock(tagName, titleText, titleClass, options) {
 
       let html = "";
 
-      // 0) 重大傷病 / 罕見疾病（僅點選代碼後在「代碼注意事項」顯示）
-      html += buildMirdPolicyDetailCardsHtml(codeInputNorm) || "";
-
       // 1) 代碼本身直接掛在 diag 底下的 inclusionTerm：優先顯示
       const diagInclusionTerms = Array.from(targetDiag.children).filter(
         (el) => el.tagName === "inclusionTerm"
@@ -4495,6 +4492,9 @@ function buildBlock(tagName, titleText, titleClass, options) {
         blockHtml += `</ul></div>`;
         html += blockHtml;
       }
+
+      // 0) 重大傷病 / 罕見疾病（僅點選代碼後在「代碼注意事項」顯示）
+      html += buildMirdPolicyDetailCardsHtml(codeInputNorm) || "";
 
       // 2) 7th character 說明：sevenChrNote + sevenChrDef
       (function () {
