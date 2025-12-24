@@ -1,0 +1,2703 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mird>
+  <policy_items>
+    <item item_id="MI-01-01" kind="major">
+      <item_name_zh>甲狀腺惡性腫瘤</item_name_zh>
+      <item_name_en>Malignant neoplasm of thyroid gland</item_name_en>
+      <validity_years>3</validity_years>
+    </item>
+    <item item_id="MI-01-02" kind="major">
+      <item_name_zh>口腔、口咽及下咽惡性腫瘤第一期</item_name_zh>
+      <item_name_en>Malignant neoplasm of oral cavity,oropharynx and hypopharynx stage I</item_name_en>
+      <validity_years>3</validity_years>
+    </item>
+    <item item_id="MI-01-03" kind="major">
+      <item_name_zh>乳房惡性腫瘤第一期</item_name_zh>
+      <item_name_en>Malignant neoplasm of breast stage I</item_name_en>
+      <validity_years>3</validity_years>
+    </item>
+    <item item_id="MI-01-04" kind="major">
+      <item_name_zh>子宮頸惡性腫瘤第一期</item_name_zh>
+      <item_name_en>Malignant neoplasm of cervix uteri stage I</item_name_en>
+      <validity_years>3</validity_years>
+    </item>
+    <item item_id="MI-01-05" kind="major">
+      <item_name_zh>除（一）~（四）之其他惡性腫瘤</item_name_zh>
+      <item_name_en>other malignant neoplasm</item_name_en>
+      <validity_years>5</validity_years>
+    </item>
+    <item item_id="MI-02-01" kind="major">
+      <item_name_zh>遺傳性第Ⅷ凝血因子缺乏症</item_name_zh>
+      <item_name_en>Hereditary factor VIII deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-02-02" kind="major">
+      <item_name_zh>遺傳性第Ⅸ凝血因子缺乏症</item_name_zh>
+      <item_name_en>Hereditary factor IX deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-02-03" kind="major">
+      <item_name_zh>遺傳性第 XI 凝血因子缺乏症</item_name_zh>
+      <item_name_en>Hereditary factor XI deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-02-04" kind="major">
+      <item_name_zh>其他遺傳性凝血因子缺乏症</item_name_zh>
+      <item_name_en>Hereditary deficiency of other clotting factors</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-03-01" kind="major">
+      <item_name_zh>遺傳性溶血性貧血</item_name_zh>
+      <item_name_en>Hereditary hemolytic anemias</item_name_en>
+      <validity_years>5</validity_years>
+    </item>
+    <item item_id="MI-03-02" kind="major">
+      <item_name_zh>後天性溶血性貧血</item_name_zh>
+      <item_name_en>Acquired hemolytic anemias</item_name_en>
+      <validity_years>5</validity_years>
+    </item>
+    <item item_id="MI-03-03" kind="major">
+      <item_name_zh>再生不良性貧血</item_name_zh>
+      <item_name_en>Aplastic anemias</item_name_en>
+      <validity_years>5</validity_years>
+    </item>
+    <item item_id="MI-04-01" kind="major">
+      <item_name_zh>慢性腎臟疾病</item_name_zh>
+      <item_name_en>Chronic kidney disease</item_name_en>
+      <validity_years>3M/PERM</validity_years>
+      <note>未確定是否定期透析者效期3個月</note>
+    </item>
+    <item item_id="MI-04-02" kind="major">
+      <item_name_zh>高血壓性慢性腎臟病伴有第五期慢性腎病或末期腎病</item_name_zh>
+      <item_name_en>Hypertensive chronic kidney disease with stage 5 chronic kidney disease or end stage renal disease</item_name_en>
+      <validity_years>3M/PERM</validity_years>
+      <note>未確定是否定期透析者效期3個月</note>
+    </item>
+    <item item_id="MI-04-03" kind="major">
+      <item_name_zh>高血壓性心臟及慢性腎臟病伴有心臟衰竭及第五期慢性腎病或末期腎病(高血壓性心臟及慢性腎臟病未伴有心臟衰竭合併第五期慢性腎病或末期腎病)</item_name_zh>
+      <item_name_en>Hypertensive heart and
+chronic kidney disease
+with heart failure and
+with stage 5 chronic
+kidney disease, or end
+stage renal disease (Hypertensive heart and chronic kidney disease without heart failure, with stage 5 chronic kidney disease, or end stage renal disease)</item_name_en>
+      <validity_years>3M/PERM</validity_years>
+      <note>未確定是否定期透析者效期3個月</note>
+    </item>
+    <item item_id="MI-05-01" kind="major">
+      <item_name_zh>全身性紅斑狼瘡</item_name_zh>
+      <item_name_en>Systemic lupus erythematosus (SLE)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-02" kind="major">
+      <item_name_zh>全身性硬化症</item_name_zh>
+      <item_name_en>Systemic sclerosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-03" kind="major">
+      <item_name_zh>類風濕關節炎〔符合1987美國風濕病學院修訂之診斷標準〕</item_name_zh>
+      <item_name_en>Rheumatoid arthritis (Rheumatoid arthritis juvenile)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-04" kind="major">
+      <item_name_zh>多發性肌炎</item_name_zh>
+      <item_name_en>Polymyositis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-05" kind="major">
+      <item_name_zh>皮多肌炎</item_name_zh>
+      <item_name_en>Dermatopolymyositis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-06-01" kind="major">
+      <item_name_zh>血管炎-結節狀多動脈炎</item_name_zh>
+      <item_name_en>Vasculitis - Polyarteritis nodosa</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-06-02" kind="major">
+      <item_name_zh>血管炎-過敏性血管炎</item_name_zh>
+      <item_name_en>Vasculitis - Hypersensitivity angiitis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-06-03" kind="major">
+      <item_name_zh>血管炎-韋格納氏肉芽腫</item_name_zh>
+      <item_name_en>Vasculitis - Wegener’s granulomatosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-06-04" kind="major">
+      <item_name_zh>血管炎-巨細胞動脈炎</item_name_zh>
+      <item_name_en>Vasculitis - Giant cell arteritis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-06-05" kind="major">
+      <item_name_zh>血管炎-血栓閉鎖性血管炎</item_name_zh>
+      <item_name_en>Vasculitis - Thromboangiitis obliterans (Buerger’s disease)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-06-06" kind="major">
+      <item_name_zh>血管炎-主動脈弓症候群</item_name_zh>
+      <item_name_en>Vasculitis - Aortic arch syndrome (Takayasu)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-06-07" kind="major">
+      <item_name_zh>血管炎-貝賽特氏病</item_name_zh>
+      <item_name_en>Vasculitis - Behcet’s disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-07" kind="major">
+      <item_name_zh>天孢瘡</item_name_zh>
+      <item_name_en>Pemphigus</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-08" kind="major">
+      <item_name_zh>乾燥症</item_name_zh>
+      <item_name_en>Sicca syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-09" kind="major">
+      <item_name_zh>克隆氏症</item_name_zh>
+      <item_name_en>Crohn’s disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-10" kind="major">
+      <item_name_zh>慢性潰瘍性結腸炎</item_name_zh>
+      <item_name_en>Ulcerative colitis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-05-11" kind="major">
+      <item_name_zh>粘膜淋巴結綜合症（川崎病）</item_name_zh>
+      <item_name_en>Kawasaki disease</item_name_en>
+      <validity_years>5/3</validity_years>
+      <note>1. 伴隨冠狀動脈 50%以上程度狹窄者或伴隨冠狀動脈瘤，大小超過 8mm，持續超過 1 個月以上者(5年)
+2. 伴隨冠狀動脈瘤，大小6-8mm，持續超過 1 個月以上者(3年)</note>
+    </item>
+    <item item_id="MI-06-01" kind="major">
+      <item_name_zh>失智症(具器質性病態)【限由精神科或神經科專科醫師開具之診斷書並加註專科醫師證號】</item_name_zh>
+      <item_name_en>Unspecified dementia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-06-02" kind="major">
+      <item_name_zh>生理狀況所致之譫妄</item_name_zh>
+      <item_name_en>Delirium due to known physiological condition</item_name_en>
+      <validity_years>6M</validity_years>
+      <note>六個月（每六個月重新評估）</note>
+    </item>
+    <item item_id="MI-06-03" kind="major">
+      <item_name_zh>其他生理狀況所致之其他精神疾患</item_name_zh>
+      <item_name_en>Other mental disorders due to known physiological condition</item_name_en>
+      <validity_years>2/PERM</validity_years>
+      <note>二年：首次、永久：續發</note>
+    </item>
+    <item item_id="MI-06-04" kind="major">
+      <item_name_zh>思覺失調症</item_name_zh>
+      <item_name_en>Schizophrenia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-06-05" kind="major">
+      <item_name_zh>情感性疾患</item_name_zh>
+      <item_name_en>Affective disorders</item_name_en>
+      <validity_years>2/PERM</validity_years>
+      <note>二年：首次、永久：續發</note>
+    </item>
+    <item item_id="MI-06-06" kind="major">
+      <item_name_zh>妄想性疾患</item_name_zh>
+      <item_name_en>Delusional disorders</item_name_en>
+      <validity_years>2/PERM</validity_years>
+      <note>二年：首次、永久：續發</note>
+    </item>
+    <item item_id="MI-06-07-01" kind="major">
+      <item_name_zh>廣泛性發展疾患-自閉性疾患</item_name_zh>
+      <item_name_en>Pervasive developmental disorders - Autistic disorder</item_name_en>
+      <validity_years>5/PERM</validity_years>
+      <note>五年：首次、永久：續發</note>
+    </item>
+    <item item_id="MI-06-07-02" kind="major">
+      <item_name_zh>廣泛性發展疾患-其他兒童期崩解疾患</item_name_zh>
+      <item_name_en>Pervasive developmental disorders - Other childhood disintegrative disorder</item_name_en>
+      <validity_years>5/PERM</validity_years>
+      <note>五年：首次、永久：續發</note>
+    </item>
+    <item item_id="MI-06-07-03" kind="major">
+      <item_name_zh>廣泛性發展疾患-其他廣泛性發展疾患(含亞斯伯格症候群)</item_name_zh>
+      <item_name_en>Pervasive developmental disorders - Other pervasive developmental disorders(Asperger's syndrome)</item_name_en>
+      <validity_years>5/PERM</validity_years>
+      <note>五年：首次、永久：續發</note>
+    </item>
+    <item item_id="MI-06-07-04" kind="major">
+      <item_name_zh>廣泛性發展疾患-未明示之廣泛性發展疾患</item_name_zh>
+      <item_name_en>Pervasive developmental disorders - Pervasive developmental disorder,unspecified</item_name_en>
+      <validity_years>3/5/PERM</validity_years>
+      <note>三年：首次、五年：續發、五年：再發、永久：第四次以後</note>
+    </item>
+    <item item_id="MI-07-01" kind="major">
+      <item_name_zh>先天性缺碘症候群(含先天性甲狀腺低下)</item_name_zh>
+      <item_name_en>Congenital iodine-deficiency syndrome(Congenital hypothyroidism)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-02" kind="major">
+      <item_name_zh>胰島素依賴型糖尿病</item_name_zh>
+      <item_name_en>Type 1 diabetes mellitus</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-03" kind="major">
+      <item_name_zh>尿崩症</item_name_zh>
+      <item_name_en>Diabetes insipidus</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-04" kind="major">
+      <item_name_zh>腎上腺性生殖器疾患</item_name_zh>
+      <item_name_en>Adrenogenital disorders</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-05" kind="major">
+      <item_name_zh>氨基酸輸送與代謝之失調</item_name_zh>
+      <item_name_en>Disorders of amino-acid transport and metabolism</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-06" kind="major">
+      <item_name_zh>肝糖儲藏疾病</item_name_zh>
+      <item_name_en>Glycogen storage disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-07" kind="major">
+      <item_name_zh>半乳糖血症</item_name_zh>
+      <item_name_en>Galactosemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-08" kind="major">
+      <item_name_zh>純高三酸甘油酯血症</item_name_zh>
+      <item_name_en>Pure hyperglyceridemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-09" kind="major">
+      <item_name_zh>脂質失養症</item_name_zh>
+      <item_name_en>Lipodystrophy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-10" kind="major">
+      <item_name_zh>神經脂質代謝疾患</item_name_zh>
+      <item_name_en>Disorders of sphingolipid metabolism</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-11" kind="major">
+      <item_name_zh>脂質代謝疾患</item_name_zh>
+      <item_name_en>Disorders of lipoid metabolism</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-12" kind="major">
+      <item_name_zh>銅代謝疾患</item_name_zh>
+      <item_name_en>Disorders of copper metabolism</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-13" kind="major">
+      <item_name_zh>鈣代謝疾患</item_name_zh>
+      <item_name_en>Disorders of calcium metabolism</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-14" kind="major">
+      <item_name_zh>嘌呤及嘧啶代謝疾患</item_name_zh>
+      <item_name_en>Disorders of purine and pyrimidine metabolism</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-15" kind="major">
+      <item_name_zh>葡萄糖胺聚合醣代謝疾患</item_name_zh>
+      <item_name_en>Disorders of glycosaminoglycan metabolism</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-16" kind="major">
+      <item_name_zh>其他特定之新陳代謝疾患</item_name_zh>
+      <item_name_en>Other specified disorders of metabolism</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-07-17" kind="major">
+      <item_name_zh>新陳代謝疾患</item_name_zh>
+      <item_name_en>Metabolic disorder, unspecified</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-08-01" kind="major">
+      <item_name_zh>無腦症及類似畸形</item_name_zh>
+      <item_name_en>Anencephaly and similar malformations</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-08-02" kind="major">
+      <item_name_zh>神經系統之其他先天性畸形</item_name_zh>
+      <item_name_en>Other congenital anomalies of nervous system</item_name_en>
+      <validity_years>3</validity_years>
+    </item>
+    <item item_id="MI-08-03" kind="major">
+      <item_name_zh>先天性心球〔胚胎〕及心臟中隔閉合之畸形或心臟之其他先天性畸形</item_name_zh>
+      <item_name_en>Bulbus cordis anomalies and anomalies of cardiac septal closure or other congenital anomalies of heart</item_name_en>
+      <validity_years>3</validity_years>
+    </item>
+    <item item_id="MI-08-04" kind="major">
+      <item_name_zh>循環系統之其他先天性畸形</item_name_zh>
+      <item_name_en>Other congenital anomalies of circulatory system</item_name_en>
+      <validity_years>3</validity_years>
+    </item>
+    <item item_id="MI-08-05" kind="major">
+      <item_name_zh>先天性肺囊腫</item_name_zh>
+      <item_name_en>Congenital cystic lung</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-08-06" kind="major">
+      <item_name_zh>肺缺乏症形成不全及形成異常</item_name_zh>
+      <item_name_en>Agenesis, hypoplasia and dysplasia of lung</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-08-07" kind="major">
+      <item_name_zh>肺之其他畸形</item_name_zh>
+      <item_name_en>Other congenital malformations of lung</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-08-08" kind="major">
+      <item_name_zh>消化系統之其他先天性畸形</item_name_zh>
+      <item_name_en>Other congenital anomalies of digestive system</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-08-09" kind="major">
+      <item_name_zh>腎無發育及腎其他縮減缺陷</item_name_zh>
+      <item_name_en>Renal agenesis and other reduction defects of kidney</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-08-10" kind="major">
+      <item_name_zh>腎囊腫性疾病</item_name_zh>
+      <item_name_en>Cystic kidney disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-08-11" kind="major">
+      <item_name_zh>先天性腎盂及輸尿管之阻塞性</item_name_zh>
+      <item_name_en>Congenital Obstructive defects of renal pelvis and ureter</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-08-12" kind="major">
+      <item_name_zh>先天性腎其他畸形</item_name_zh>
+      <item_name_en>Other congenital malformations of kidney</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-08-13" kind="major">
+      <item_name_zh>骨軟骨發育不良伴有管狀骨及脊椎生長缺陷</item_name_zh>
+      <item_name_en>Osteochondrodysplasia with defects of growth of tubular bones and spine</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-08-14" kind="major">
+      <item_name_zh>染色體異常</item_name_zh>
+      <item_name_en>Chromosomal abnormalities</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-08-15" kind="major">
+      <item_name_zh>先天性畸形唇顎裂〔限需多次手術治療及語言復健者〕</item_name_zh>
+      <item_name_en>Congenital cleft palate and cleft lip</item_name_en>
+      <validity_years>3</validity_years>
+    </item>
+    <item item_id="MI-09-01" kind="major">
+      <item_name_zh>體表面積之大於20%之燒傷</item_name_zh>
+      <item_name_en>Burn of &gt;20% of total body surface</item_name_en>
+      <validity_years>1</validity_years>
+    </item>
+    <item item_id="MI-09-02-01" kind="major">
+      <item_name_zh>顏面燒燙傷-眼及其附屬器官之燒傷</item_name_zh>
+      <item_name_en>Burn confined to eye and adnexa</item_name_en>
+      <validity_years>1</validity_years>
+    </item>
+    <item item_id="MI-09-02-02" kind="major">
+      <item_name_zh>顏面燒燙傷-臉及頭之燒傷，深部組織壞死（深三度），伴有身體部位損害。</item_name_zh>
+      <item_name_en>Burn of face and head,
+deep necrosis of underlying tissue (deep third degree) with loss of a body part</item_name_en>
+      <validity_years>1</validity_years>
+    </item>
+    <item item_id="MI-10-01-01" kind="major">
+      <item_name_zh>腎臟移植</item_name_zh>
+      <item_name_en>Transplantation of Kidney</item_name_en>
+      <validity_years>PERM</validity_years>
+      <note>手術當次，由醫師逕行認定免申請證明</note>
+    </item>
+    <item item_id="MI-10-01-02" kind="major">
+      <item_name_zh>心臟移植</item_name_zh>
+      <item_name_en>Transplantation of Heart</item_name_en>
+      <validity_years>PERM</validity_years>
+      <note>手術當次，由醫師逕行認定免申請證明</note>
+    </item>
+    <item item_id="MI-10-01-03" kind="major">
+      <item_name_zh>肺臟移植</item_name_zh>
+      <item_name_en>Transplantation of Lung</item_name_en>
+      <validity_years>PERM</validity_years>
+      <note>手術當次，由醫師逕行認定免申請證明</note>
+    </item>
+    <item item_id="MI-10-01-04" kind="major">
+      <item_name_zh>肝臟移植</item_name_zh>
+      <item_name_en>Transplantation of Liver</item_name_en>
+      <validity_years>PERM</validity_years>
+      <note>手術當次，由醫師逕行認定免申請證明</note>
+    </item>
+    <item item_id="MI-10-01-05" kind="major">
+      <item_name_zh>骨髓移植</item_name_zh>
+      <item_name_en>Autologous Bone Marrow</item_name_en>
+      <validity_years>PERM</validity_years>
+      <note>手術當次，由醫師逕行認定免申請證明</note>
+    </item>
+    <item item_id="MI-10-01-06" kind="major">
+      <item_name_zh>胰臟移植</item_name_zh>
+      <item_name_en>Transplantation of Pancreas</item_name_en>
+      <validity_years>PERM</validity_years>
+      <note>手術當次，由醫師逕行認定免申請證明</note>
+    </item>
+    <item item_id="MI-10-01-07" kind="major">
+      <item_name_zh>小腸移植</item_name_zh>
+      <item_name_en>Transplantation of Small Intestine</item_name_en>
+      <validity_years>PERM</validity_years>
+      <note>手術當次，由醫師逕行認定免申請證明</note>
+    </item>
+    <item item_id="MI-10-02-01" kind="major">
+      <item_name_zh>腎臟移植手術後之追蹤治療</item_name_zh>
+      <item_name_en>Kidney transplant status</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-10-02-02" kind="major">
+      <item_name_zh>心臟移植手術後之追蹤治療</item_name_zh>
+      <item_name_en>Heart transplant status</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-10-02-03" kind="major">
+      <item_name_zh>肺臟移植手術後之追蹤治療</item_name_zh>
+      <item_name_en>Lung transplant status</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-10-02-04" kind="major">
+      <item_name_zh>肝臟移植手術後之追蹤治療</item_name_zh>
+      <item_name_en>Liver transplant status</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-10-02-05" kind="major">
+      <item_name_zh>骨髓移植手術後之追蹤治療</item_name_zh>
+      <item_name_en>Bone transplant status</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-10-02-06" kind="major">
+      <item_name_zh>胰臟移植手術後之追蹤治療</item_name_zh>
+      <item_name_en>Pancreas transplant status</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-10-02-07" kind="major">
+      <item_name_zh>小腸移植手術後之追蹤治療</item_name_zh>
+      <item_name_en>Intestine transplant status</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-10-02-08" kind="major">
+      <item_name_zh>腎臟移植併發症</item_name_zh>
+      <item_name_en>Complication of kidney transplant</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-10-02-09" kind="major">
+      <item_name_zh>肝臟移植併發症</item_name_zh>
+      <item_name_en>Complication of liver transplant</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-10-02-10" kind="major">
+      <item_name_zh>心臟移植併發症</item_name_zh>
+      <item_name_en>Complication of heart transplant</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-10-02-11" kind="major">
+      <item_name_zh>肺臟移植併發症</item_name_zh>
+      <item_name_en>Complication of lung transplant</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-10-02-12" kind="major">
+      <item_name_zh>骨髓移植併發症</item_name_zh>
+      <item_name_en>Complication of bone marrow transplant</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-10-02-13" kind="major">
+      <item_name_zh>胰臟移植併發症</item_name_zh>
+      <item_name_en>Complication of pancreas transplant</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-10-02-14" kind="major">
+      <item_name_zh>小腸移植併發症</item_name_zh>
+      <item_name_en>Complication of intestine transplant</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-11-01" kind="major">
+      <item_name_zh>急性脊髓灰白質炎併有其他麻痺者</item_name_zh>
+      <item_name_en>Acute poliomyelitis with other paralysis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-11-02" kind="major">
+      <item_name_zh>嬰兒腦性麻痺</item_name_zh>
+      <item_name_en>Cerebral palsy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-11-03" kind="major">
+      <item_name_zh>其他麻痺性徵候群（急性脊髓灰白質炎之後期影響併有提及麻痺性徵候群）</item_name_zh>
+      <item_name_en>Other paralytic syndromes ( late effects of acute poliomyelitis )</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-12-01" kind="major">
+      <item_name_zh>重大創傷且其嚴重程度到達創傷嚴重程度分數十六分以上者</item_name_zh>
+      <item_name_en>Major trauma rated 16 or above on the severity scale</item_name_en>
+      <validity_years>1/3</validity_years>
+      <note>一年：首次、三年：續發 (INJURY SEVERITY SCORE ≧16)</note>
+    </item>
+    <item item_id="MI-13-01" kind="major">
+      <item_name_zh>因呼吸衰竭需長期使用呼吸器</item_name_zh>
+      <item_name_en>Long-term mechanical ventilation</item_name_en>
+      <validity_years>42D/3M/1</validity_years>
+      <note>四十二日：首次
+三個月：續發
+一年：第三次以後
+（一）使用侵襲性呼吸輔助器二十一天以上者
+（二）使用侵襲性呼吸輔助器改善後，改用非侵襲性陽壓呼吸治療總計二十一天以上者
+（三）使用侵襲性呼吸輔助器後改用負壓呼吸輔助器總計二十一天以上者
+（四）特殊疾病(末期心衰竭、慢性呼吸道疾病、原發性神經原肌肉病變、慢性換氣不足症候群)而須使用非侵襲性陽壓呼吸治療總計二十一天以上者。
+以上天數計算須符合連續使用定義原則</note>
+    </item>
+    <item item_id="MI-14-01" kind="major">
+      <item_name_zh>因腸道大量切除或失去功能引起之嚴重營養不良者，給予全靜脈營養已超過三十天，且病情已達穩定狀態，口攝飲食仍無法提供足量營養者。</item_name_zh>
+      <item_name_en>Patients suffering from severe malnutrition due to major enterectomy, intestinal failure already on a fully intravenous diet for 30 days, and unable to obtain sufficient nutrition through an oral diet</item_name_en>
+      <validity_years>3</validity_years>
+      <note>三個月：首次、三年：續發</note>
+    </item>
+    <item item_id="MI-14-02" kind="major">
+      <item_name_zh>其他慢性疾病之嚴重營養不良者，給予全靜脈營養已超過三十天，且病情已達穩定狀態，口攝飲食仍無法提供足量營養者。</item_name_zh>
+      <item_name_en>Patients suffering from severe malnutrition due to other chronic disease already on a fully intravenous diet for 30 days, and unable to obtain sufficient nutrition through an oral diet</item_name_en>
+      <validity_years>3</validity_years>
+      <note>三個月：首次、三年：續發</note>
+    </item>
+    <item item_id="MI-15-01" kind="major">
+      <item_name_zh>減壓病</item_name_zh>
+      <item_name_en>Decompression sickness</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-15-02" kind="major">
+      <item_name_zh>空氣栓塞症</item_name_zh>
+      <item_name_en>Air embolism</item_name_en>
+      <validity_years>3</validity_years>
+    </item>
+    <item item_id="MI-16-01" kind="major">
+      <item_name_zh>重症肌無力症</item_name_zh>
+      <item_name_en>Myasthenia gravis</item_name_en>
+      <validity_years>3</validity_years>
+    </item>
+    <item item_id="MI-17-01" kind="major">
+      <item_name_zh>免疫缺乏症伴有主要抗體缺陷</item_name_zh>
+      <item_name_en>Immunodeficiency with predominantly antibody defects</item_name_en>
+      <validity_years>5</validity_years>
+    </item>
+    <item item_id="MI-17-02" kind="major">
+      <item_name_zh>複合性免疫缺乏症</item_name_zh>
+      <item_name_en>Combined immunodeficiencies</item_name_en>
+      <validity_years>5</validity_years>
+    </item>
+    <item item_id="MI-17-03" kind="major">
+      <item_name_zh>與其他重大缺陷相關的免疫缺乏症</item_name_zh>
+      <item_name_en>Immunodeficiency associated with other major defects</item_name_en>
+      <validity_years>5</validity_years>
+    </item>
+    <item item_id="MI-17-04" kind="major">
+      <item_name_zh>常見多樣性免疫缺乏症</item_name_zh>
+      <item_name_en>Common variable immunodeficiency</item_name_en>
+      <validity_years>5</validity_years>
+    </item>
+    <item item_id="MI-17-05" kind="major">
+      <item_name_zh>其他免疫缺乏症</item_name_zh>
+      <item_name_en>Other immunodeficiencies</item_name_en>
+      <validity_years>5</validity_years>
+    </item>
+    <item item_id="MI-18-01" kind="major">
+      <item_name_zh>脊柱骨折，伴有脊髓病灶</item_name_zh>
+      <item_name_en>Fracture of vertebral column with spinal cord injury</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-18-02" kind="major">
+      <item_name_zh>無明顯脊椎損傷之脊髓傷害</item_name_zh>
+      <item_name_en>Spinal cord injury without evidence of spinal bone injury</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-18-03" kind="major">
+      <item_name_zh>其他脊髓病變</item_name_zh>
+      <item_name_en>Other disease of spinal cord</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-19-01" kind="major">
+      <item_name_zh>煤礦工人塵肺症</item_name_zh>
+      <item_name_en>Coalworker's pneumoconiosis</item_name_en>
+      <validity_years>3/PERM</validity_years>
+      <note>三年：首次、永久：續發</note>
+    </item>
+    <item item_id="MI-19-02" kind="major">
+      <item_name_zh>石綿沉著症</item_name_zh>
+      <item_name_en>Asbestosis</item_name_en>
+      <validity_years>3/PERM</validity_years>
+      <note>三年：首次、永久：續發</note>
+    </item>
+    <item item_id="MI-19-03" kind="major">
+      <item_name_zh>其他矽石或矽鹽所致之塵肺症</item_name_zh>
+      <item_name_en>Pneumoconiosis due to other silica or silicates</item_name_en>
+      <validity_years>3/PERM</validity_years>
+      <note>三年：首次、永久：續發</note>
+    </item>
+    <item item_id="MI-19-04" kind="major">
+      <item_name_zh>其他無機性塵埃所致之塵肺症</item_name_zh>
+      <item_name_en>Pneumoconiosis due to other inorganic dust</item_name_en>
+      <validity_years>3/PERM</validity_years>
+      <note>三年：首次、永久：續發</note>
+    </item>
+    <item item_id="MI-19-05" kind="major">
+      <item_name_zh>塵肺症</item_name_zh>
+      <item_name_en>Pneumoconiosis</item_name_en>
+      <validity_years>3/PERM</validity_years>
+      <note>三年：首次、永久：續發</note>
+    </item>
+    <item item_id="MI-20-01" kind="major">
+      <item_name_zh>蜘蛛膜下腔出血</item_name_zh>
+      <item_name_en>Subarachnoid hemorrhage</item_name_en>
+      <validity_years>1M</validity_years>
+      <note>急性發作後一個月內由醫師逕行認定免申請證明</note>
+    </item>
+    <item item_id="MI-20-02" kind="major">
+      <item_name_zh>腦內出血</item_name_zh>
+      <item_name_en>Intracerebral hemorrhage</item_name_en>
+      <validity_years>1M</validity_years>
+      <note>急性發作後一個月內由醫師逕行認定免申請證明</note>
+    </item>
+    <item item_id="MI-20-03" kind="major">
+      <item_name_zh>腦梗塞</item_name_zh>
+      <item_name_en>Cerebral infarction</item_name_en>
+      <validity_years>1M</validity_years>
+      <note>急性發作後一個月內由醫師逕行認定免申請證明</note>
+    </item>
+    <item item_id="MI-20-04" kind="major">
+      <item_name_zh>其他腦血管疾病</item_name_zh>
+      <item_name_en>Other cerebrovascular disease</item_name_en>
+      <validity_years>1M</validity_years>
+      <note>急性發作後一個月內由醫師逕行認定免申請證明</note>
+    </item>
+    <item item_id="MI-21-01" kind="major">
+      <item_name_zh>多發性硬化症</item_name_zh>
+      <item_name_en>Multiple sclerosis</item_name_en>
+      <validity_years>5</validity_years>
+    </item>
+    <item item_id="MI-22-01" kind="major">
+      <item_name_zh>先天性肌肉萎縮症</item_name_zh>
+      <item_name_en>Congenital muscular dystrophy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-23-01" kind="major">
+      <item_name_zh>先天性水泡性表皮鬆懈症</item_name_zh>
+      <item_name_en>Congenital epidermolysis bullosa</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-23-02" kind="major">
+      <item_name_zh>皮膚先天性畸形</item_name_zh>
+      <item_name_en>Congenital malformation of integument, unspecified</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-23-03" kind="major">
+      <item_name_zh>先天性魚鱗癬（穿山甲症）</item_name_zh>
+      <item_name_en>Congenital ichthyosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-24-01" kind="major">
+      <item_name_zh>漢生病</item_name_zh>
+      <item_name_en>Leprosy（Hansen’s disease）</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-25-01" kind="major">
+      <item_name_zh>腹水無法控制</item_name_zh>
+      <item_name_en>Ascites with poor control</item_name_en>
+      <validity_years>5</validity_years>
+    </item>
+    <item item_id="MI-25-02" kind="major">
+      <item_name_zh>食道或胃靜脈曲張出血</item_name_zh>
+      <item_name_en>Esophageal or gastric varices bleeding</item_name_en>
+      <validity_years>5</validity_years>
+    </item>
+    <item item_id="MI-25-03" kind="major">
+      <item_name_zh>肝昏迷或肝代償不全</item_name_zh>
+      <item_name_en>Hepatic coma or liver dyscompensated</item_name_en>
+      <validity_years>5</validity_years>
+    </item>
+    <item item_id="MI-26-01" kind="major">
+      <item_name_zh>早產兒出生後三個月內因神經、肌肉、骨骼、心臟、肺臟（含支氣管）等之併發症住院者</item_name_zh>
+      <item_name_en>Neurological, muscular, skeletal, cardiac or pulmonary complications
+due to premature infants to have admission care within three months birth.</item_name_en>
+      <note>由醫師逕行認定免申請證明</note>
+    </item>
+    <item item_id="MI-26-02" kind="major">
+      <item_name_zh>早產兒出生滿三個月後，經身心障礙等級評鑑為中度以上，領有社政單位核發之身心障礙手冊者</item_name_zh>
+      <item_name_en>Neurological, muscular, skeletal, cardiac or pulmonary complications due to premature infants certified to have moderate impairments three months of age.</item_name_en>
+      <validity_years>3</validity_years>
+    </item>
+    <item item_id="MI-27-01" kind="major">
+      <item_name_zh>砷及其化合物之毒性作用（烏腳病）</item_name_zh>
+      <item_name_en>Toxic effect of arsenic and its compounds (black foot disease)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="MI-28-01" kind="major">
+      <item_name_zh>運動神經元疾病其身心障礙等級在中度以上或須使用呼吸器者</item_name_zh>
+      <item_name_en>Motor neuron disease</item_name_en>
+      <validity_years>PERM</validity_years>
+      <note>【惟經神經內科專科醫師診斷為肌萎縮性側索硬化症者(AMYOTROPHIC LATERAL SCLEROSIS ICD-10-CM G12.21)，不受其身心障礙等級在中度以上或須使用呼吸器之限制】。</note>
+    </item>
+    <item item_id="MI-29-01" kind="major">
+      <item_name_zh>庫賈氏病</item_name_zh>
+      <item_name_en>Creutzfeldt-Jakob disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A01-01" kind="rare">
+      <item_name_zh>先天性尿素循環代謝障礙</item_name_zh>
+      <item_name_en>Congenital urea cycle disorders</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A01-02" kind="rare">
+      <item_name_zh>瓜胺酸血症</item_name_zh>
+      <item_name_en>Citrullinemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A01-03" kind="rare">
+      <item_name_zh>乙醯榖胺酸合成酶缺乏症</item_name_zh>
+      <item_name_en>Nitroacetylglutamate synthetase deficiency, NAG synthetase deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A01-04" kind="rare">
+      <item_name_zh>鳥胺酸氨甲醯基轉移酶缺乏症</item_name_zh>
+      <item_name_en>Ornithine transcarbamylase deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A01-05" kind="rare">
+      <item_name_zh>高鳥胺酸血症 高氨血症 高瓜胺酸血症症候群</item_name_zh>
+      <item_name_en>Hyperornithinemia Hyperammonemia Homocitrullinuria syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-01" kind="rare">
+      <item_name_zh>胺基酸代謝疾病</item_name_zh>
+      <item_name_en>Amino acid metabolic disorders (Aminoacidopathies)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-02" kind="rare">
+      <item_name_zh>高胱胺酸尿症</item_name_zh>
+      <item_name_en>Homocystinuria</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-03" kind="rare">
+      <item_name_zh>高甲硫胺酸血症</item_name_zh>
+      <item_name_en>Hypermethioninemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-04" kind="rare">
+      <item_name_zh>非酮性高甘胺酸血症</item_name_zh>
+      <item_name_en>Nonketotic hyperglycinemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-05" kind="rare">
+      <item_name_zh>苯酮尿症</item_name_zh>
+      <item_name_en>Phenylketonuria</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-06" kind="rare">
+      <item_name_zh>四氫基喋呤缺乏症</item_name_zh>
+      <item_name_en>Tetrahydrobiopterin deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-07" kind="rare">
+      <item_name_zh>遺傳性高酪胺酸血症</item_name_zh>
+      <item_name_en>Hereditary tyrosinemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-08" kind="rare">
+      <item_name_zh>楓糖尿症</item_name_zh>
+      <item_name_en>Maple syrup urine disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-09" kind="rare">
+      <item_name_zh>有機酸血症</item_name_zh>
+      <item_name_en>Organic acidemias</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-10" kind="rare">
+      <item_name_zh>異戊酸血症</item_name_zh>
+      <item_name_en>Isovaleric acidemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-11" kind="rare">
+      <item_name_zh>戊二酸尿症，第一型、第二型</item_name_zh>
+      <item_name_en>Glutaric aciduria type I 、 II</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-12" kind="rare">
+      <item_name_zh>丙酸血症</item_name_zh>
+      <item_name_en>Propionic acidemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-13" kind="rare">
+      <item_name_zh>甲基丙二酸血症</item_name_zh>
+      <item_name_en>Methylmalonic acidemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-14" kind="rare">
+      <item_name_zh>3 羥基 3 甲基戊二酸血症</item_name_zh>
+      <item_name_en>3 Hydroxy 3 methylglutaric acidemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-15" kind="rare">
+      <item_name_zh>典型苯酮尿症合併蔗糖酶同麥芽糖酶缺乏症</item_name_zh>
+      <item_name_en>PAH type PKU combine with sucrase isomaltase deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-16" kind="rare">
+      <item_name_zh>高離胺酸血症</item_name_zh>
+      <item_name_en>Hyperlysinemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-17" kind="rare">
+      <item_name_zh>組胺酸血症</item_name_zh>
+      <item_name_en>Histidinemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-18" kind="rare">
+      <item_name_zh>三甲基巴豆醯輔酶 A 羧化酵素缺乏症</item_name_zh>
+      <item_name_en>3 Methylcrotonyl CoA carboxylase deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-19" kind="rare">
+      <item_name_zh>多發性羧化酶缺乏症</item_name_zh>
+      <item_name_en>Multiple carboxylase deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-20" kind="rare">
+      <item_name_zh>高脯胺酸血症</item_name_zh>
+      <item_name_en>Hyperprolinemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-21" kind="rare">
+      <item_name_zh>芳香族 L 胺基酸類脫羧基酶缺乏症</item_name_zh>
+      <item_name_en>Aromatic L amino acid decarboxylase deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-22" kind="rare">
+      <item_name_zh>酪胺酸羥化酶缺乏症</item_name_zh>
+      <item_name_en>Tyrosine hydroxylase deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-23" kind="rare">
+      <item_name_zh>甲基丙二酸血症併高胱胺酸尿症 ,cb1C 型</item_name_zh>
+      <item_name_en>Cobalamin C defect (Methylmalonic acidemia and Homocystinuria, cb1C type)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-24" kind="rare">
+      <item_name_zh>原發性高草酸鹽尿症</item_name_zh>
+      <item_name_en>Primary hyperoxaluria</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A02-25" kind="rare">
+      <item_name_zh>黑尿症</item_name_zh>
+      <item_name_en>Alkaptonuria</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A03-01" kind="rare">
+      <item_name_zh>高雪氏症</item_name_zh>
+      <item_name_en>Gaucher disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A03-02" kind="rare">
+      <item_name_zh>GM1/GM2 神經節苷脂儲積症</item_name_zh>
+      <item_name_en>GM1/GM2 gangliosidosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A03-03" kind="rare">
+      <item_name_zh>Fabry 氏症 法布瑞氏症</item_name_zh>
+      <item_name_en>Fabry disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A03-04" kind="rare">
+      <item_name_zh>Niemann Pick 氏症，鞘髓磷脂儲積症</item_name_zh>
+      <item_name_en>Niemann Pick disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A03-05" kind="rare">
+      <item_name_zh>MLD 症候群</item_name_zh>
+      <item_name_en>Metachromatic leukodystrophy (MLD)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A03-06" kind="rare">
+      <item_name_zh>球細胞腦白質失養症</item_name_zh>
+      <item_name_en>Globoid cell leukodystrophy (Krabbe's disease)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A03-07" kind="rare">
+      <item_name_zh>嬰兒型溶酶體酸性脂肪酶缺乏症(又稱伍爾曼氏症)</item_name_zh>
+      <item_name_en>Infantile form lysosomal acid lipase deficiency (Wolman disease)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A03-08" kind="rare">
+      <item_name_zh>胱胺酸血症</item_name_zh>
+      <item_name_en>Cystinosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A03-09" kind="rare">
+      <item_name_zh>黏多醣症</item_name_zh>
+      <item_name_en>Mucopolysaccharidoses</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A03-10" kind="rare">
+      <item_name_zh>岩藻糖代謝異常(儲積症)</item_name_zh>
+      <item_name_en>Fucosidosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A03-11" kind="rare">
+      <item_name_zh>涎酸酵素缺乏症</item_name_zh>
+      <item_name_en>Sialidosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A03-12" kind="rare">
+      <item_name_zh>黏脂質症</item_name_zh>
+      <item_name_en>Mucolipidosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A03-13" kind="rare">
+      <item_name_zh>神經元蠟樣脂褐質儲積症</item_name_zh>
+      <item_name_en>Neuronal ceroid lipofuscinosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A03-14" kind="rare">
+      <item_name_zh>多發性硫酸脂酶缺乏症</item_name_zh>
+      <item_name_en>Multiple sulfatase deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A04-01" kind="rare">
+      <item_name_zh>半乳糖血症</item_name_zh>
+      <item_name_en>Galactosemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A04-02" kind="rare">
+      <item_name_zh>肝醣儲積症</item_name_zh>
+      <item_name_en>Glycogen storage disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A04-03" kind="rare">
+      <item_name_zh>腦血管屏障葡萄糖輸送缺陷</item_name_zh>
+      <item_name_en>Glut (Glucose transport)1 deficiency syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A04-04" kind="rare">
+      <item_name_zh>轉醛醇酶缺乏症</item_name_zh>
+      <item_name_en>Transaldolase deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A05-01" kind="rare">
+      <item_name_zh>脂肪酸氧化作用缺陷</item_name_zh>
+      <item_name_en>Fatty acid oxidation defect</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A05-02" kind="rare">
+      <item_name_zh>原發性肉鹼缺乏症</item_name_zh>
+      <item_name_en>Carnitine deficiency syndrome, primary</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A05-03" kind="rare">
+      <item_name_zh>中鏈脂肪酸去氫酵素缺乏症</item_name_zh>
+      <item_name_en>Medium-chain acyl-coenzyme A dehydrogenase deficiency (MCAD)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A05-04" kind="rare">
+      <item_name_zh>短鏈脂肪酸去氫酶缺乏症</item_name_zh>
+      <item_name_en>Short-chain acyl-CoA dehydrogenase deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A06-01" kind="rare">
+      <item_name_zh>粒線體缺陷</item_name_zh>
+      <item_name_en>Mitochondrial defect</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A06-02" kind="rare">
+      <item_name_zh>Kearns-Sayre氏症候群</item_name_zh>
+      <item_name_en>Kearns-Sayre syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A06-03" kind="rare">
+      <item_name_zh>Leigh氏童年期腦脊髓病變</item_name_zh>
+      <item_name_en>Leigh disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A06-04" kind="rare">
+      <item_name_zh>MELAS症候群</item_name_zh>
+      <item_name_en>MELAS</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A06-05" kind="rare">
+      <item_name_zh>MNGIE症候群粒線體性神經胃腸腦病變症候群</item_name_zh>
+      <item_name_en>Mitochondrial neurogastrointestinal encephalopathy syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A06-06" kind="rare">
+      <item_name_zh>丙酮酸鹽脫氫酶缺乏症</item_name_zh>
+      <item_name_en>Pyruvate dehydrogenase deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A06-07" kind="rare">
+      <item_name_zh>巴氏症候群</item_name_zh>
+      <item_name_en>Barth syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A06-08" kind="rare">
+      <item_name_zh>雷伯氏遺傳性視神經病變</item_name_zh>
+      <item_name_en>Leber hereditary optic neuropathy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A07-01" kind="rare">
+      <item_name_zh>生物素酶缺乏症</item_name_zh>
+      <item_name_en>Biotinidase deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A08-01" kind="rare">
+      <item_name_zh>同合子家族性高膽固醇血症</item_name_zh>
+      <item_name_en>Homozygous familial hypercholesterolemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A08-02" kind="rare">
+      <item_name_zh>家族性高乳糜微粒血症</item_name_zh>
+      <item_name_en>Familial hyperchylomicronemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A08-03" kind="rare">
+      <item_name_zh>豆固醇血症(植物性)</item_name_zh>
+      <item_name_en>Sitosterolemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A08-04" kind="rare">
+      <item_name_zh>先天性全身脂質營養不良症</item_name_zh>
+      <item_name_en>Congenital generalized lipodystrophy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A08-05" kind="rare">
+      <item_name_zh>腦腱性黃瘤症</item_name_zh>
+      <item_name_en>Cerebrotendinous xanthomatosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A09-01" kind="rare">
+      <item_name_zh>威爾森氏症</item_name_zh>
+      <item_name_en>Wilson’s disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A09-02" kind="rare">
+      <item_name_zh>Menkes症候群</item_name_zh>
+      <item_name_en>Menkes syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A09-03" kind="rare">
+      <item_name_zh>鉬輔酶缺乏症</item_name_zh>
+      <item_name_en>Molybdenum cofactor deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A10-01" kind="rare">
+      <item_name_zh>Zellweger氏症候群</item_name_zh>
+      <item_name_en>Zellweger syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A10-02" kind="rare">
+      <item_name_zh>腎上腺腦白質失養症</item_name_zh>
+      <item_name_en>Adrenoleukodystrophy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A10-03" kind="rare">
+      <item_name_zh>肢近端型點狀軟骨發育不良</item_name_zh>
+      <item_name_en>Rhizomelic chondrodysplasia punctata</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A11-01" kind="rare">
+      <item_name_zh>紫質症</item_name_zh>
+      <item_name_en>Porphyria</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A11-02" kind="rare">
+      <item_name_zh>Lesch-Nyhan氏症候群</item_name_zh>
+      <item_name_en>Lesch-Nyhan syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A11-03" kind="rare">
+      <item_name_zh>亞硫酸鹽氧化酶缺乏</item_name_zh>
+      <item_name_en>Sulfite oxidase deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A11-04" kind="rare">
+      <item_name_zh>先天性醣基化障礙</item_name_zh>
+      <item_name_en>Congenital disorder of glycosylation, CDG</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A11-05" kind="rare">
+      <item_name_zh>三甲基胺尿症</item_name_zh>
+      <item_name_en>Trimethylaminuria</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A11-06" kind="rare">
+      <item_name_zh>低磷酸酯酶症</item_name_zh>
+      <item_name_en>Hypophosphatasia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A11-07" kind="rare">
+      <item_name_zh>Beta硫解酶缺乏症</item_name_zh>
+      <item_name_en>Beta-Ketothiolase deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A11-08" kind="rare">
+      <item_name_zh>大腦肌酸缺乏症</item_name_zh>
+      <item_name_en>Cerebral creatine deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-A11-09" kind="rare">
+      <item_name_zh>硫胺素(維生素B1)代謝功能障礙症候群</item_name_zh>
+      <item_name_en>Thiamine metabolism dysfunction syndromes</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-01" kind="rare">
+      <item_name_zh>多發性硬化症/泛視神經脊髓炎</item_name_zh>
+      <item_name_en>Multiple sclerosis, MS/ Neuromyelitis optica spectrum disorders, NMOSD</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-02" kind="rare">
+      <item_name_zh>肌萎縮性側索硬化症</item_name_zh>
+      <item_name_en>Amyotrophic lateral sclerosis (ALS)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-03" kind="rare">
+      <item_name_zh>共濟失調微血管擴張症候群</item_name_zh>
+      <item_name_en>Ataxia telangiectasia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-04" kind="rare">
+      <item_name_zh>亨丁頓氏舞蹈症</item_name_zh>
+      <item_name_en>Huntington disease (又稱Huntington's chorea)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-05" kind="rare">
+      <item_name_zh>雷特氏症</item_name_zh>
+      <item_name_en>Rett syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-06" kind="rare">
+      <item_name_zh>脊髓性肌肉萎縮症</item_name_zh>
+      <item_name_en>Spinal muscular atrophy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-07" kind="rare">
+      <item_name_zh>脊髓小腦退化性動作協調障礙</item_name_zh>
+      <item_name_en>Spinocerebellar ataxia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-08" kind="rare">
+      <item_name_zh>結節性硬化症</item_name_zh>
+      <item_name_en>Tuberous sclerosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-09" kind="rare">
+      <item_name_zh>先天性痛不敏感症合併無汗症</item_name_zh>
+      <item_name_en>Congenital insensitivity to pain with anhidrosis (CIPA)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-10" kind="rare">
+      <item_name_zh>神經纖維瘤症候群第二型</item_name_zh>
+      <item_name_en>Neurofibromatosis type Ⅱ</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-11" kind="rare">
+      <item_name_zh>Alexander氏病</item_name_zh>
+      <item_name_en>Alexander disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-12" kind="rare">
+      <item_name_zh>僵體症候群</item_name_zh>
+      <item_name_en>Stiffperson syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-13" kind="rare">
+      <item_name_zh>遺傳性痙攣性下身麻痺</item_name_zh>
+      <item_name_en>Hereditary spastic paraplegia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-14" kind="rare">
+      <item_name_zh>Joubert氏症候群(家族性小腦蚓部發育不全)</item_name_zh>
+      <item_name_en>Joubert syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-15" kind="rare">
+      <item_name_zh>Pelizaeus-Merzbacher氏症(慢性兒童型腦硬化症)</item_name_zh>
+      <item_name_en>Pelizaeus-Merzbacher disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-16" kind="rare">
+      <item_name_zh>夏柯-馬利-杜斯氏症</item_name_zh>
+      <item_name_en>Charcot-Marie-Tooth disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-17" kind="rare">
+      <item_name_zh>甘迺迪氏症(脊髓延髓性肌肉萎縮症)</item_name_zh>
+      <item_name_en>Kennedy disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-18" kind="rare">
+      <item_name_zh>家族性澱粉樣多發性神經病變</item_name_zh>
+      <item_name_en>Familial amyloidotic polyneuropathy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-19" kind="rare">
+      <item_name_zh>Moebius症候群</item_name_zh>
+      <item_name_en>Moebius syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-20" kind="rare">
+      <item_name_zh>Mcleod症候群</item_name_zh>
+      <item_name_en>Mcleod syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-21" kind="rare">
+      <item_name_zh>Aicardi-Goutieres症候群</item_name_zh>
+      <item_name_en>Aicardi-Goutieres syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-22" kind="rare">
+      <item_name_zh>MECP2綜合症候群</item_name_zh>
+      <item_name_en>Methyl CpG binding protein 2 duplication syndrome (MECP2 duplication syndrome)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-23" kind="rare">
+      <item_name_zh>Dravet症候群</item_name_zh>
+      <item_name_en>Dravet syndrome, DS</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-24" kind="rare">
+      <item_name_zh>腦白質消失症</item_name_zh>
+      <item_name_en>Vanishing white matter disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-25" kind="rare">
+      <item_name_zh>泛酸鹽激酶關聯之神經退化性疾病</item_name_zh>
+      <item_name_en>Pantothenate kinase associated neurodegeneration (PKAN)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-26" kind="rare">
+      <item_name_zh>磷脂質脂解酶A2關聯之神經退化性疾病</item_name_zh>
+      <item_name_en>Phospholipase A2-associated neurodegeneration (PLAN)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-27" kind="rare">
+      <item_name_zh>皮特-霍普金斯症候群</item_name_zh>
+      <item_name_en>Pitt-Hopkins syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-28" kind="rare">
+      <item_name_zh>Beta螺旋狀蛋白關聯之神經退化疾病</item_name_zh>
+      <item_name_en>Beta-Propeller protein-associated neurodegeneration (BPAN)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-29" kind="rare">
+      <item_name_zh>嬰兒型上行性遺傳性痙攣性麻痺</item_name_zh>
+      <item_name_en>Infantile-onset ascending hereditary spastic paralysis, IAHSP</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-30" kind="rare">
+      <item_name_zh>先天性中樞性換氣不足症候群</item_name_zh>
+      <item_name_en>Congenital central hypoventilation syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-31" kind="rare">
+      <item_name_zh>Von Hippel-Lindau症候群</item_name_zh>
+      <item_name_en>Von Hippel-Lindau disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-32" kind="rare">
+      <item_name_zh>Basilicata-Akhtar症候群</item_name_zh>
+      <item_name_en>Basilicata-Akhtar syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-B01-33" kind="rare">
+      <item_name_zh>舞蹈症-棘紅細胞增多症</item_name_zh>
+      <item_name_en>Chorea-acanthocytosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-C01-01" kind="rare">
+      <item_name_zh>特發性嬰兒動脈硬化症</item_name_zh>
+      <item_name_en>Idiopathic infantile arterial calcification</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-C01-02" kind="rare">
+      <item_name_zh>囊狀纖維化症</item_name_zh>
+      <item_name_en>Cystic fibrosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-C01-03" kind="rare">
+      <item_name_zh>特發性或遺傳性肺動脈高壓</item_name_zh>
+      <item_name_en>Idiopathic or Heritable pulmonary arterial hypertension (IPAH or HPAH)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-C01-04" kind="rare">
+      <item_name_zh>Holt-Oram氏症候群</item_name_zh>
+      <item_name_en>Holt-Oram syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-C01-05" kind="rare">
+      <item_name_zh>Andersen氏症候群(心節律障礙暨週期性麻痺症候群；鉀離子通道病變)</item_name_zh>
+      <item_name_en>Andersen syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-C01-06" kind="rare">
+      <item_name_zh>遺傳性出血性血管擴張症</item_name_zh>
+      <item_name_en>Hereditary hemorrhagic telangiectasia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-C01-07" kind="rare">
+      <item_name_zh>窒息性胸腔失養症</item_name_zh>
+      <item_name_en>Asphyxiating thoracic dystrophy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-D01-01" kind="rare">
+      <item_name_zh>進行性家族性肝內膽汁滯留症</item_name_zh>
+      <item_name_en>Progressive familial intrahepatic cholestasis, PFIC</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-D01-02" kind="rare">
+      <item_name_zh>先天性膽酸合成障礙</item_name_zh>
+      <item_name_en>Inborn errors of bile acid synthesis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-D01-03" kind="rare">
+      <item_name_zh>α1-抗胰蛋白酶缺乏症</item_name_zh>
+      <item_name_en>α1- Antitrypsin deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-D01-04" kind="rare">
+      <item_name_zh>先天性Cajal氏間質細胞增生合併腸道神經元發育異常</item_name_zh>
+      <item_name_en>Congenital interstitial cell of Cajal hyperplasia with neuronal intestinal dysplasia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-D01-05" kind="rare">
+      <item_name_zh>阿拉吉歐症候群</item_name_zh>
+      <item_name_en>Alagille syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-D01-06" kind="rare">
+      <item_name_zh>髮-肝-腸症候群</item_name_zh>
+      <item_name_en>Tricho-hepato-enteric syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-E01-01" kind="rare">
+      <item_name_zh>Lowe氏症候群</item_name_zh>
+      <item_name_en>Lowe syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-E01-02" kind="rare">
+      <item_name_zh>Bartter氏症候群</item_name_zh>
+      <item_name_en>Bartter’s syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-E01-03" kind="rare">
+      <item_name_zh>體染色體隱性多囊性腎臟疾病</item_name_zh>
+      <item_name_en>Autosomal recessive polycystic kidney disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-E01-04" kind="rare">
+      <item_name_zh>亞伯氏症候群</item_name_zh>
+      <item_name_en>Alport syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-F01-01" kind="rare">
+      <item_name_zh>遺傳性表皮分解性水皰症</item_name_zh>
+      <item_name_en>Hereditary epidermolysis bullosa</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-F01-02" kind="rare">
+      <item_name_zh>層狀魚鱗癬(自體隱性遺傳型)</item_name_zh>
+      <item_name_en>Ichthyosis, lamellar recessive</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-F01-03" kind="rare">
+      <item_name_zh>膠膜兒</item_name_zh>
+      <item_name_en>Collodion baby</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-F01-04" kind="rare">
+      <item_name_zh>斑色魚鱗癬</item_name_zh>
+      <item_name_en>Harlequin ichthyosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-F01-05" kind="rare">
+      <item_name_zh>水泡型先天性魚鱗癬樣紅皮症(表皮鬆解性角化過度症)</item_name_zh>
+      <item_name_en>Bullous congenital ichthyosiform erythoderma (epidermolytic hyperkeratosis)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-F01-06" kind="rare">
+      <item_name_zh>外胚層增生不良症</item_name_zh>
+      <item_name_en>Ectodermal dysplasias</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-F01-07" kind="rare">
+      <item_name_zh>Meleda島病</item_name_zh>
+      <item_name_en>Meleda disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-F01-08" kind="rare">
+      <item_name_zh>Darier氏症(毛囊角化病)</item_name_zh>
+      <item_name_en>Darier’s disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-F01-09" kind="rare">
+      <item_name_zh>先天性角化不全症</item_name_zh>
+      <item_name_en>Dyskeratosis congenita</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-F01-10" kind="rare">
+      <item_name_zh>皮膚過度角化症雅司病</item_name_zh>
+      <item_name_en>Diffuse non-epidermolytic palmoplantar keratoderma type Unna-Thost</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-F01-11" kind="rare">
+      <item_name_zh>色素失調症</item_name_zh>
+      <item_name_en>Incontinentia pigmenti</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-G01-01" kind="rare">
+      <item_name_zh>裘馨氏肌肉失養症</item_name_zh>
+      <item_name_en>Duchenne muscular dystrophy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-G01-02" kind="rare">
+      <item_name_zh>Nemaline線狀肌肉病變</item_name_zh>
+      <item_name_en>Nemaline rod myopathy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-G01-03" kind="rare">
+      <item_name_zh>Schwartz Jampel氏症候群</item_name_zh>
+      <item_name_en>Schwartz Jampel syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-G01-04" kind="rare">
+      <item_name_zh>肌肉強直症</item_name_zh>
+      <item_name_en>Myotonic dystrophy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-G01-05" kind="rare">
+      <item_name_zh>面肩胛肱肌失養症</item_name_zh>
+      <item_name_en>Facioscapulohumeral muscular dystrophy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-G01-06" kind="rare">
+      <item_name_zh>肌小管病變</item_name_zh>
+      <item_name_en>Myotubular myopathy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-G01-07" kind="rare">
+      <item_name_zh>貝克型肌肉失養症</item_name_zh>
+      <item_name_en>Becker muscular dystrophy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-G01-08" kind="rare">
+      <item_name_zh>Freeman-Sheldon氏症候群</item_name_zh>
+      <item_name_en>Freeman-Sheldon syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-G01-09" kind="rare">
+      <item_name_zh>肢帶型肌失養症</item_name_zh>
+      <item_name_en>Limb-girdle muscular dystrophy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-G01-10" kind="rare">
+      <item_name_zh>先天性肌失養症</item_name_zh>
+      <item_name_en>Congenital muscular dystrophy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-G01-11" kind="rare">
+      <item_name_zh>中心軸空肌病</item_name_zh>
+      <item_name_en>Central core disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-G01-12" kind="rare">
+      <item_name_zh>多微小軸空肌病</item_name_zh>
+      <item_name_en>Multiminicore disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-G01-13" kind="rare">
+      <item_name_zh>Emery-Dreifuss肌失養症</item_name_zh>
+      <item_name_en>Emery-Dreifuss muscular dystrophy (EDMD)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-G01-14" kind="rare">
+      <item_name_zh>GNE遠端肌病變</item_name_zh>
+      <item_name_en>GNE myopathy</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-G01-15" kind="rare">
+      <item_name_zh>史托摩根症候群</item_name_zh>
+      <item_name_en>Stormorken syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-H01-01" kind="rare">
+      <item_name_zh>軟骨發育不全症</item_name_zh>
+      <item_name_en>Achondroplasia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-H01-02" kind="rare">
+      <item_name_zh>成骨不全症</item_name_zh>
+      <item_name_en>Osteogenesis imperfecta</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-H01-03" kind="rare">
+      <item_name_zh>原發性變形性骨炎</item_name_zh>
+      <item_name_en>Primary Paget disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-H01-04" kind="rare">
+      <item_name_zh>鎖骨顱骨發育異常</item_name_zh>
+      <item_name_en>Cleidocraninal dysplasia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-H01-05" kind="rare">
+      <item_name_zh>進行性骨化性肌炎</item_name_zh>
+      <item_name_en>Fibrodysplasia ossificans progressiva</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-H01-06" kind="rare">
+      <item_name_zh>裂手裂足症</item_name_zh>
+      <item_name_en>Split-hand/ Split-foot malformation (SHFM)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-H01-07" kind="rare">
+      <item_name_zh>骨質石化症</item_name_zh>
+      <item_name_en>Osteopetrosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-H01-08" kind="rare">
+      <item_name_zh>假性軟骨發育不全</item_name_zh>
+      <item_name_en>Pseudoachondroplastic dysplasia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-H01-09" kind="rare">
+      <item_name_zh>多發性骨骺發育不全症</item_name_zh>
+      <item_name_en>Multiple epiphyseal dysplasia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-H01-10" kind="rare">
+      <item_name_zh>顱骨幹骺端發育不良</item_name_zh>
+      <item_name_en>Craniometaphyseal dysplasia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-H01-11" kind="rare">
+      <item_name_zh>腦肋小頜症候群</item_name_zh>
+      <item_name_en>Cerebro-Costo-Mandibular syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-H01-12" kind="rare">
+      <item_name_zh>Crouzon氏症候群</item_name_zh>
+      <item_name_en>Crouzon syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-H01-13" kind="rare">
+      <item_name_zh>Pfeiffer氏症候群</item_name_zh>
+      <item_name_en>Pfeiffer syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-I01-01" kind="rare">
+      <item_name_zh>先天結締組織異常第四型</item_name_zh>
+      <item_name_en>Ehlers Danlos syndrome Ⅳ</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-J01-01" kind="rare">
+      <item_name_zh>重型海洋性貧血</item_name_zh>
+      <item_name_en>Thalassemia major</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-J01-02" kind="rare">
+      <item_name_zh>血小板無力症</item_name_zh>
+      <item_name_en>Thrombasthenia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-J01-03" kind="rare">
+      <item_name_zh>同基因合子蛋白質C缺乏症</item_name_zh>
+      <item_name_en>Homozygous protein C deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-J01-04" kind="rare">
+      <item_name_zh>陣發性夜間血紅素尿症</item_name_zh>
+      <item_name_en>Paroxysmal nocturnal hemoglobinuria</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-J01-05" kind="rare">
+      <item_name_zh>先天性血栓性血小板低下紫斑症</item_name_zh>
+      <item_name_en>Congenital thrombotic thrombocytopenic purpura</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-K01-01" kind="rare">
+      <item_name_zh>原發性慢性肉芽腫病</item_name_zh>
+      <item_name_en>Chronic primary granulomatous disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-K01-02" kind="rare">
+      <item_name_zh>先天性高免疫球蛋白E症候群</item_name_zh>
+      <item_name_en>Congenital hyper IgE syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-K01-03" kind="rare">
+      <item_name_zh>布魯頓氏低免疫球蛋白血症</item_name_zh>
+      <item_name_en>Bruton’s agammaglobulinemia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-K01-04" kind="rare">
+      <item_name_zh>Wiskott-Aldrich氏症候群</item_name_zh>
+      <item_name_en>Wiskott-Aldrich syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-K01-05" kind="rare">
+      <item_name_zh>嚴重複合型免疫缺乏症</item_name_zh>
+      <item_name_en>Severe combined immunodeficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-K01-06" kind="rare">
+      <item_name_zh>補體成份8缺乏症</item_name_zh>
+      <item_name_en>Complement component 8 deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-K01-07" kind="rare">
+      <item_name_zh>IPEX症候群</item_name_zh>
+      <item_name_en>IPEX syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-K01-08" kind="rare">
+      <item_name_zh>高免疫球蛋白M症候群</item_name_zh>
+      <item_name_en>Hyper-IgM syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-K01-09" kind="rare">
+      <item_name_zh>γ干擾素受體1缺陷</item_name_zh>
+      <item_name_en>Interferon γ receptor 1 deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-K01-10" kind="rare">
+      <item_name_zh>遺傳性血管性水腫</item_name_zh>
+      <item_name_en>Hereditary angioedema (HAE)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-K01-11" kind="rare">
+      <item_name_zh>Netherton症候群</item_name_zh>
+      <item_name_en>Netherton syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-K01-12" kind="rare">
+      <item_name_zh>非典型性尿毒溶血症候群</item_name_zh>
+      <item_name_en>Atypical hemolytic uremic syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-01" kind="rare">
+      <item_name_zh>Kenny-Caffey氏症候群</item_name_zh>
+      <item_name_en>Kenny-Caffey syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-02" kind="rare">
+      <item_name_zh>假性副甲狀腺低能症</item_name_zh>
+      <item_name_en>Pseudohypoparathyroidism</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-03" kind="rare">
+      <item_name_zh>遺傳性低磷酸鹽佝僂症</item_name_zh>
+      <item_name_en>Hereditary hypophosphatemic rickets</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-04" kind="rare">
+      <item_name_zh>Laron氏侏儒症候群</item_name_zh>
+      <item_name_en>Laron syndrome (Laron Dwarfism)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-05" kind="rare">
+      <item_name_zh>Bardet-Biedl氏症候群</item_name_zh>
+      <item_name_en>Bardet-Biedl syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-06" kind="rare">
+      <item_name_zh>Alstrom氏症候群</item_name_zh>
+      <item_name_en>Alstrom syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-07" kind="rare">
+      <item_name_zh>持續性幼兒型胰島素過度分泌低血糖症</item_name_zh>
+      <item_name_en>Persistent hyperinsulinemic hypoglycemia of infancy (PHHI)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-08" kind="rare">
+      <item_name_zh>Wolfram氏症候群</item_name_zh>
+      <item_name_en>Wolfram syndrome, DIDMOAD</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-09" kind="rare">
+      <item_name_zh>McCune Albright氏症候群</item_name_zh>
+      <item_name_en>McCune Albright syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-10" kind="rare">
+      <item_name_zh>短指發育不良及性別顛倒</item_name_zh>
+      <item_name_en>Campomelic dysplasia with autosomal sex reversal</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-11" kind="rare">
+      <item_name_zh>腎上腺皮促素抗性</item_name_zh>
+      <item_name_en>ACTH resistance</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-12" kind="rare">
+      <item_name_zh>第一型遺傳性維生素D依賴型佝僂症</item_name_zh>
+      <item_name_en>25-Hydroxyvitamin D 1-alpha-hydroxylase deficiency</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-13" kind="rare">
+      <item_name_zh>先天性腎上腺發育不全</item_name_zh>
+      <item_name_en>Congenital adrenal hypoplasia</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-14" kind="rare">
+      <item_name_zh>Kallmann氏症候群</item_name_zh>
+      <item_name_en>Kallmann syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-15" kind="rare">
+      <item_name_zh>永久性新生兒糖尿病</item_name_zh>
+      <item_name_en>Permanent neonatal diabetes mellitus</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-L01-16" kind="rare">
+      <item_name_zh>MIRAGE症候群</item_name_zh>
+      <item_name_en>MIRAGE syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-01" kind="rare">
+      <item_name_zh>Aarskog-Scott氏症候群</item_name_zh>
+      <item_name_en>Aarskog-Scott syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-02" kind="rare">
+      <item_name_zh>瓦登伯格氏症候群</item_name_zh>
+      <item_name_en>Waardenburg syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-03" kind="rare">
+      <item_name_zh>愛伯特氏症</item_name_zh>
+      <item_name_en>Apert syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-04" kind="rare">
+      <item_name_zh>Smith-Lemli-Opitz氏症候群</item_name_zh>
+      <item_name_en>Smith-Lemli-Opitz syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-05" kind="rare">
+      <item_name_zh>Larsen氏症候群(顎裂-先天性脫位症候群)</item_name_zh>
+      <item_name_en>Larsen syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-06" kind="rare">
+      <item_name_zh>Beckwith Wiedemann氏症候群</item_name_zh>
+      <item_name_en>Beckwith Wiedemann syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-07" kind="rare">
+      <item_name_zh>Fraser氏症候群</item_name_zh>
+      <item_name_en>Fraser syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-08" kind="rare">
+      <item_name_zh>多發性翼狀膜症候群</item_name_zh>
+      <item_name_en>Multiple pterygium syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-09" kind="rare">
+      <item_name_zh>Cornelia de Lange氏症候群</item_name_zh>
+      <item_name_en>Cornelia de Lange syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-10" kind="rare">
+      <item_name_zh>海勒曼-史德萊夫氏症候群</item_name_zh>
+      <item_name_en>Hallerman-Streiff syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-11" kind="rare">
+      <item_name_zh>Kabuki症候群</item_name_zh>
+      <item_name_en>Kabuki syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-12" kind="rare">
+      <item_name_zh>耳-齶-指（趾）症候群</item_name_zh>
+      <item_name_en>Oto-Palato-Digital syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-13" kind="rare">
+      <item_name_zh>Conradi-Hunermann氏症候群</item_name_zh>
+      <item_name_en>Conradi-Hunermann syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-14" kind="rare">
+      <item_name_zh>Treacher Collins氏症候群</item_name_zh>
+      <item_name_en>Treacher Collins syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-15" kind="rare">
+      <item_name_zh>Robinow氏症候群</item_name_zh>
+      <item_name_en>Robinow syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-16" kind="rare">
+      <item_name_zh>指（趾）甲髕骨症候群</item_name_zh>
+      <item_name_en>Nail-Patella syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-17" kind="rare">
+      <item_name_zh>CFC症候群</item_name_zh>
+      <item_name_en>Cardiofaciocutaneous syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-18" kind="rare">
+      <item_name_zh>Peters-Plus症候群</item_name_zh>
+      <item_name_en>Peters-Plus syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-19" kind="rare">
+      <item_name_zh>Nager症候群</item_name_zh>
+      <item_name_en>Nager syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-20" kind="rare">
+      <item_name_zh>CHARGE症候群</item_name_zh>
+      <item_name_en>CHARGE syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-21" kind="rare">
+      <item_name_zh>懷特-薩頓症候群</item_name_zh>
+      <item_name_en>White-Sutton syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-22" kind="rare">
+      <item_name_zh>克斯提洛氏彈性蛋白缺陷症</item_name_zh>
+      <item_name_en>Costello syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-23" kind="rare">
+      <item_name_zh>Ayme-Gripp症候群</item_name_zh>
+      <item_name_en>Ayme-Gripp syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-24" kind="rare">
+      <item_name_zh>Coffin-Lowry症候群</item_name_zh>
+      <item_name_en>Coffin-Lowry syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-25" kind="rare">
+      <item_name_zh>Myhre症候群</item_name_zh>
+      <item_name_en>Myhre syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-26" kind="rare">
+      <item_name_zh>森森布倫納症候群</item_name_zh>
+      <item_name_en>Sensenbrenner syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-27" kind="rare">
+      <item_name_zh>克片-魯賓斯基症候群</item_name_zh>
+      <item_name_en>Keppen-Lubinsky syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-28" kind="rare">
+      <item_name_zh>Angelman氏症候群</item_name_zh>
+      <item_name_en>Angelman syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-29" kind="rare">
+      <item_name_zh>DiGeorge症候群</item_name_zh>
+      <item_name_en>DiGeorge syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-30" kind="rare">
+      <item_name_zh>Prader-Willi氏症候群</item_name_zh>
+      <item_name_en>Prader-Willi syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-31" kind="rare">
+      <item_name_zh>威爾姆氏腫瘤、無虹膜、性器異常、智能障礙症候群(WAGR症候群)</item_name_zh>
+      <item_name_en>WAGR syndrome (Wilms’ tumor-aniridia-genitourinary anomalies-mental retardation)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-32" kind="rare">
+      <item_name_zh>Miller Dieker症候群</item_name_zh>
+      <item_name_en>Miller Dieker syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-33" kind="rare">
+      <item_name_zh>Rubinstein-Taybi氏症候群</item_name_zh>
+      <item_name_en>Rubinstein-Taybi syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-34" kind="rare">
+      <item_name_zh>威廉斯氏症候群</item_name_zh>
+      <item_name_en>Williams syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-35" kind="rare">
+      <item_name_zh>Branchio-Oto-Renal症候群(BOR症候群)</item_name_zh>
+      <item_name_en>Branchio-Oto-Renal syndrome(BOR syndrome)</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-36" kind="rare">
+      <item_name_zh>普洛提斯症候群</item_name_zh>
+      <item_name_en>Proteus syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-37" kind="rare">
+      <item_name_zh>Cockayne氏症候群(柯凱因氏症候群)</item_name_zh>
+      <item_name_en>Cockayne syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-38" kind="rare">
+      <item_name_zh>早老症</item_name_zh>
+      <item_name_en>Hutchinson Gilford progeria syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-39" kind="rare">
+      <item_name_zh>Schaaf-Yang 症候群</item_name_zh>
+      <item_name_en>Schaaf-Yang syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-M01-40" kind="rare">
+      <item_name_zh>Galloway-Mowat症候群</item_name_zh>
+      <item_name_en>Galloway-Mowat syndrome</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-N01-01" kind="rare">
+      <item_name_zh>Stargardt's氏症</item_name_zh>
+      <item_name_en>Stargardt's disease</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-N01-02" kind="rare">
+      <item_name_zh>隱匿性黃斑部失養症</item_name_zh>
+      <item_name_en>Occult macular dystrophy；OMD</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+    <item item_id="RD-N01-03" kind="rare">
+      <item_name_zh>萊伯氏先天性黑矇症</item_name_zh>
+      <item_name_en>Leber congenital amaurosis</item_name_en>
+      <validity_years>PERM</validity_years>
+    </item>
+  </policy_items>
+  <code_maps>
+    <map map_id="M010100" item_id="MI-01-01" item_id2="MI-01-01" kind="major" include_exclude="include" match_type="prefix" icd_start="C73"/>
+    <map map_id="M010200" item_id="MI-01-02" item_id2="MI-01-02" kind="major" include_exclude="include" match_type="range" icd_start="C00.0" icd_end="C06.9" sort="1"/>
+    <map map_id="M010201" item_id="MI-01-02" item_id2="MI-01-02" kind="major" include_exclude="include" match_type="range" icd_start="C09.0" icd_end="C10.9" sort="2"/>
+    <map map_id="M010202" item_id="MI-01-02" item_id2="MI-01-02" kind="major" include_exclude="include" match_type="range" icd_start="C12" icd_end="C14.8" sort="3"/>
+    <map map_id="M010300" item_id="MI-01-03" item_id2="MI-01-03" kind="major" include_exclude="include" match_type="range" icd_start="C50.011" icd_end="C50.929"/>
+    <map map_id="M010400" item_id="MI-01-04" item_id2="MI-01-04" kind="major" include_exclude="include" match_type="range" icd_start="C53.0" icd_end="C53.9" sort="1"/>
+    <map map_id="M010401" item_id="MI-01-04" item_id2="MI-01-04" kind="major" include_exclude="include" match_type="prefix" icd_start="C55" sort="2"/>
+    <map map_id="M010500" item_id="MI-01-05" item_id2="MI-01-05" kind="major" include_exclude="include" match_type="range" icd_start="C00.0" icd_end="C96.9" sort="1"/>
+    <map map_id="M010501" item_id="MI-01-05" item_id2="MI-01-05" kind="major" include_exclude="exclude" match_type="prefix" icd_start="C73" sort="2"/>
+    <map map_id="M010502" item_id="MI-01-05" item_id2="MI-01-05" kind="major" include_exclude="exclude" match_type="exact" icd_start="C94.4" sort="3"/>
+    <map map_id="M010503" item_id="MI-01-05" item_id2="MI-01-05" kind="major" include_exclude="exclude" match_type="exact" icd_start="C94.6" sort="4"/>
+    <map map_id="M020100" item_id="MI-02-01" item_id2="MI-02-01" kind="major" include_exclude="include" match_type="prefix" icd_start="D66"/>
+    <map map_id="M020200" item_id="MI-02-02" item_id2="MI-02-02" kind="major" include_exclude="include" match_type="prefix" icd_start="D67"/>
+    <map map_id="M020300" item_id="MI-02-03" item_id2="MI-02-03" kind="major" include_exclude="include" match_type="exact" icd_start="D68.1"/>
+    <map map_id="M020400" item_id="MI-02-04" item_id2="MI-02-04" kind="major" include_exclude="include" match_type="exact" icd_start="D68.2"/>
+    <map map_id="M030100" item_id="MI-03-01" item_id2="MI-03-01" kind="major" include_exclude="include" match_type="range" icd_start="D55.0" icd_end="D58.9"/>
+    <map map_id="M030200" item_id="MI-03-02" item_id2="MI-03-02" kind="major" include_exclude="include" match_type="range" icd_start="D59.0" icd_end="D59.9"/>
+    <map map_id="M030300" item_id="MI-03-03" item_id2="MI-03-03" kind="major" include_exclude="include" match_type="exact" icd_start="D46.4" sort="1"/>
+    <map map_id="M030301" item_id="MI-03-03" item_id2="MI-03-03" kind="major" include_exclude="include" match_type="range" icd_start="D60.0" icd_end="D60.9" sort="2"/>
+    <map map_id="M030302" item_id="MI-03-03" item_id2="MI-03-03" kind="major" include_exclude="include" match_type="range" icd_start="D61.01" icd_end="D61.9" sort="3"/>
+    <map map_id="M040100" item_id="MI-04-01" item_id2="MI-04-01" kind="major" include_exclude="include" match_type="exact" icd_start="N18.5" sort="1"/>
+    <map map_id="M040101" item_id="MI-04-01" item_id2="MI-04-01" kind="major" include_exclude="include" match_type="exact" icd_start="N18.6" sort="2"/>
+    <map map_id="M040200" item_id="MI-04-02" item_id2="MI-04-02" kind="major" include_exclude="include" match_type="exact" icd_start="I12.0"/>
+    <map map_id="M040300" item_id="MI-04-03" item_id2="MI-04-03" kind="major" include_exclude="include" match_type="exact" icd_start="I13.11" sort="1"/>
+    <map map_id="M040301" item_id="MI-04-03" item_id2="MI-04-03" kind="major" include_exclude="include" match_type="exact" icd_start="I13.2" sort="2"/>
+    <map map_id="M050100" item_id="MI-05-01" item_id2="MI-05-01" kind="major" include_exclude="include" match_type="range" icd_start="M32.0" icd_end="M32.9"/>
+    <map map_id="M050200" item_id="MI-05-02" item_id2="MI-05-02" kind="major" include_exclude="include" match_type="range" icd_start="M34.0" icd_end="M34.9"/>
+    <map map_id="M050300" item_id="MI-05-03" item_id2="MI-05-03" kind="major" include_exclude="include" match_type="range" icd_start="M05.70" icd_end="M06.09" sort="1"/>
+    <map map_id="M050301" item_id="MI-05-03" item_id2="MI-05-03" kind="major" include_exclude="include" match_type="range" icd_start="M06.20" icd_end="M06.39" sort="2"/>
+    <map map_id="M050302" item_id="MI-05-03" item_id2="MI-05-03" kind="major" include_exclude="include" match_type="range" icd_start="M06.80" icd_end="M06.8A" sort="3"/>
+    <map map_id="M050303" item_id="MI-05-03" item_id2="MI-05-03" kind="major" include_exclude="include" match_type="exact" icd_start="M06.9" sort="4"/>
+    <map map_id="M050304" item_id="MI-05-03" item_id2="MI-05-03" kind="major" include_exclude="include" match_type="range" icd_start="M08.00" icd_end="M08.9A" sort="5"/>
+    <map map_id="M050400" item_id="MI-05-04" item_id2="MI-05-04" kind="major" include_exclude="include" match_type="range" icd_start="M33.20" icd_end="M33.29"/>
+    <map map_id="M050500" item_id="MI-05-05" item_id2="MI-05-05" kind="major" include_exclude="include" match_type="range" icd_start="M33.00" icd_end="M33.19" sort="1"/>
+    <map map_id="M050501" item_id="MI-05-05" item_id2="MI-05-05" kind="major" include_exclude="include" match_type="range" icd_start="M33.90" icd_end="M33.99" sort="2"/>
+    <map map_id="M050502" item_id="MI-05-05" item_id2="MI-05-05" kind="major" include_exclude="include" match_type="exact" icd_start="M36.0" sort="3"/>
+    <map map_id="M050600" item_id="MI-05-06" item_id2="MI-05-06-01" kind="major" include_exclude="include" match_type="exact" icd_start="M30.0" sort="1"/>
+    <map map_id="M050601" item_id="MI-05-06" item_id2="MI-05-06-01" kind="major" include_exclude="include" match_type="exact" icd_start="M30.2" sort="2"/>
+    <map map_id="M050602" item_id="MI-05-06" item_id2="MI-05-06-01" kind="major" include_exclude="include" match_type="exact" icd_start="M30.8" sort="3"/>
+    <map map_id="M050603" item_id="MI-05-06" item_id2="MI-05-06-02" kind="major" include_exclude="include" match_type="exact" icd_start="M31.0"/>
+    <map map_id="M050604" item_id="MI-05-06" item_id2="MI-05-06-03" kind="major" include_exclude="include" match_type="exact" icd_start="M31.30" sort="1"/>
+    <map map_id="M050605" item_id="MI-05-06" item_id2="MI-05-06-03" kind="major" include_exclude="include" match_type="exact" icd_start="M31.31" sort="2"/>
+    <map map_id="M050606" item_id="MI-05-06" item_id2="MI-05-06-04" kind="major" include_exclude="include" match_type="exact" icd_start="M31.5" sort="1"/>
+    <map map_id="M050607" item_id="MI-05-06" item_id2="MI-05-06-04" kind="major" include_exclude="include" match_type="exact" icd_start="M31.6" sort="2"/>
+    <map map_id="M050608" item_id="MI-05-06" item_id2="MI-05-06-05" kind="major" include_exclude="include" match_type="exact" icd_start="I73.1"/>
+    <map map_id="M050609" item_id="MI-05-06" item_id2="MI-05-06-06" kind="major" include_exclude="include" match_type="exact" icd_start="M31.4"/>
+    <map map_id="M050610" item_id="MI-05-06" item_id2="MI-05-06-07" kind="major" include_exclude="include" match_type="exact" icd_start="M35.2"/>
+    <map map_id="M050700" item_id="MI-05-07" item_id2="MI-05-07" kind="major" include_exclude="include" match_type="range" icd_start="L10.0" icd_end="L10.9"/>
+    <map map_id="M050800" item_id="MI-05-08" item_id2="MI-05-08" kind="major" include_exclude="include" match_type="range" icd_start="M35.00" icd_end="M35.0C"/>
+    <map map_id="M050900" item_id="MI-05-09" item_id2="MI-05-09" kind="major" include_exclude="include" match_type="range" icd_start="K50.00" icd_end="K50.919"/>
+    <map map_id="M051000" item_id="MI-05-10" item_id2="MI-05-10" kind="major" include_exclude="include" match_type="range" icd_start="K51.00" icd_end="K51.919"/>
+    <map map_id="M051100" item_id="MI-05-11" item_id2="MI-05-11" kind="major" include_exclude="include" match_type="exact" icd_start="M30.3"/>
+    <map map_id="M060100" item_id="MI-06-01" item_id2="MI-06-01" kind="major" include_exclude="include" match_type="range" icd_start="F01.A11" icd_end="F01.C4" sort="1"/>
+    <map map_id="M060101" item_id="MI-06-01" item_id2="MI-06-01" kind="major" include_exclude="include" match_type="range" icd_start="F03.A11" icd_end="F03.C4" sort="2"/>
+    <map map_id="M060200" item_id="MI-06-02" item_id2="MI-06-02" kind="major" include_exclude="include" match_type="exact" icd_start="F05"/>
+    <map map_id="M060300" item_id="MI-06-03" item_id2="MI-06-03" kind="major" include_exclude="include" match_type="range" icd_start="F02.A11" icd_end="F02.C4" sort="1"/>
+    <map map_id="M060301" item_id="MI-06-03" item_id2="MI-06-03" kind="major" include_exclude="include" match_type="exact" icd_start="F06.0" sort="2"/>
+    <map map_id="M060302" item_id="MI-06-03" item_id2="MI-06-03" kind="major" include_exclude="include" match_type="exact" icd_start="F06.1" sort="3"/>
+    <map map_id="M060303" item_id="MI-06-03" item_id2="MI-06-03" kind="major" include_exclude="include" match_type="exact" icd_start="F06.8" sort="4"/>
+    <map map_id="M060400" item_id="MI-06-04" item_id2="MI-06-04" kind="major" include_exclude="include" match_type="range" icd_start="F20.0" icd_end="F20.9" sort="1"/>
+    <map map_id="M060401" item_id="MI-06-04" item_id2="MI-06-04" kind="major" include_exclude="include" match_type="range" icd_start="F25.0" icd_end="F25.9" sort="2"/>
+    <map map_id="M060500" item_id="MI-06-05" item_id2="MI-06-05" kind="major" include_exclude="include" match_type="range" icd_start="F30.10" icd_end="F30.13" sort="1"/>
+    <map map_id="M060501" item_id="MI-06-05" item_id2="MI-06-05" kind="major" include_exclude="include" match_type="range" icd_start="F30.2" icd_end="F30.9" sort="2"/>
+    <map map_id="M060502" item_id="MI-06-05" item_id2="MI-06-05" kind="major" include_exclude="include" match_type="range" icd_start="F31.0" icd_end="F31.9" sort="3"/>
+    <map map_id="M060503" item_id="MI-06-05" item_id2="MI-06-05" kind="major" include_exclude="include" match_type="range" icd_start="F32.2" icd_end="F32.5" sort="4"/>
+    <map map_id="M060504" item_id="MI-06-05" item_id2="MI-06-05" kind="major" include_exclude="include" match_type="range" icd_start="F33.2" icd_end="F33.9" sort="5"/>
+    <map map_id="M060600" item_id="MI-06-06" item_id2="MI-06-06" kind="major" include_exclude="include" match_type="exact" icd_start="F22"/>
+    <map map_id="M060700" item_id="MI-06-07" item_id2="MI-06-07-01" kind="major" include_exclude="include" match_type="exact" icd_start="F84.0"/>
+    <map map_id="M060701" item_id="MI-06-07" item_id2="MI-06-07-02" kind="major" include_exclude="include" match_type="exact" icd_start="F84.3"/>
+    <map map_id="M060702" item_id="MI-06-07" item_id2="MI-06-07-03" kind="major" include_exclude="include" match_type="exact" icd_start="F84.5" sort="1"/>
+    <map map_id="M060703" item_id="MI-06-07" item_id2="MI-06-07-03" kind="major" include_exclude="include" match_type="exact" icd_start="F84.8" sort="2"/>
+    <map map_id="M060800" item_id="MI-06-08" item_id2="MI-06-07-04" kind="major" include_exclude="include" match_type="exact" icd_start="F84.9"/>
+    <map map_id="M070100" item_id="MI-07-01" item_id2="MI-07-01" kind="major" include_exclude="include" match_type="range" icd_start="E00.0" icd_end="E00.9" sort="1"/>
+    <map map_id="M070101" item_id="MI-07-01" item_id2="MI-07-01" kind="major" include_exclude="include" match_type="exact" icd_start="E03.0" sort="2"/>
+    <map map_id="M070102" item_id="MI-07-01" item_id2="MI-07-01" kind="major" include_exclude="include" match_type="exact" icd_start="E03.1" sort="3"/>
+    <map map_id="M070200" item_id="MI-07-02" item_id2="MI-07-02" kind="major" include_exclude="include" match_type="range" icd_start="E10.10" icd_end="E10.9"/>
+    <map map_id="M070300" item_id="MI-07-03" item_id2="MI-07-03" kind="major" include_exclude="include" match_type="exact" icd_start="E23.2"/>
+    <map map_id="M070400" item_id="MI-07-04" item_id2="MI-07-04" kind="major" include_exclude="include" match_type="range" icd_start="E25.0" icd_end="E25.9"/>
+    <map map_id="M070500" item_id="MI-07-05" item_id2="MI-07-05" kind="major" include_exclude="include" match_type="range" icd_start="E70.0" icd_end="E71.2" sort="1"/>
+    <map map_id="M070501" item_id="MI-07-05" item_id2="MI-07-05" kind="major" include_exclude="include" match_type="range" icd_start="E72.00" icd_end="E72.51" sort="2"/>
+    <map map_id="M070502" item_id="MI-07-05" item_id2="MI-07-05" kind="major" include_exclude="include" match_type="exact" icd_start="E72.59" sort="3"/>
+    <map map_id="M070503" item_id="MI-07-05" item_id2="MI-07-05" kind="major" include_exclude="include" match_type="exact" icd_start="E72.8" sort="4"/>
+    <map map_id="M070504" item_id="MI-07-05" item_id2="MI-07-05" kind="major" include_exclude="include" match_type="exact" icd_start="E72.9" sort="5"/>
+    <map map_id="M070600" item_id="MI-07-06" item_id2="MI-07-06" kind="major" include_exclude="include" match_type="range" icd_start="E74.00" icd_end="E74.09"/>
+    <map map_id="M070700" item_id="MI-07-07" item_id2="MI-07-07" kind="major" include_exclude="include" match_type="range" icd_start="E74.20" icd_end="E74.29"/>
+    <map map_id="M070800" item_id="MI-07-08" item_id2="MI-07-08" kind="major" include_exclude="include" match_type="exact" icd_start="E78.1"/>
+    <map map_id="M070900" item_id="MI-07-09" item_id2="MI-07-09" kind="major" include_exclude="include" match_type="exact" icd_start="E88.1"/>
+    <map map_id="M071000" item_id="MI-07-10" item_id2="MI-07-10" kind="major" include_exclude="include" match_type="range" icd_start="E75.21" icd_end="E75.22" sort="1"/>
+    <map map_id="M071001" item_id="MI-07-10" item_id2="MI-07-10" kind="major" include_exclude="include" match_type="range" icd_start="E75.240" icd_end="E75.249" sort="2"/>
+    <map map_id="M071002" item_id="MI-07-10" item_id2="MI-07-10" kind="major" include_exclude="include" match_type="exact" icd_start="E75.3" sort="3"/>
+    <map map_id="M071003" item_id="MI-07-10" item_id2="MI-07-10" kind="major" include_exclude="include" match_type="range" icd_start="E77.0" icd_end="E77.9" sort="4"/>
+    <map map_id="M071100" item_id="MI-07-11" item_id2="MI-07-11" kind="major" include_exclude="include" match_type="exact" icd_start="E75.6" sort="1"/>
+    <map map_id="M071101" item_id="MI-07-11" item_id2="MI-07-11" kind="major" include_exclude="include" match_type="exact" icd_start="E78.70" sort="2"/>
+    <map map_id="M071102" item_id="MI-07-11" item_id2="MI-07-11" kind="major" include_exclude="include" match_type="exact" icd_start="E78.9" sort="3"/>
+    <map map_id="M071200" item_id="MI-07-12" item_id2="MI-07-12" kind="major" include_exclude="include" match_type="range" icd_start="E83.00" icd_end="E83.09"/>
+    <map map_id="M071300" item_id="MI-07-13" item_id2="MI-07-13" kind="major" include_exclude="include" match_type="exact" icd_start="E20.1" sort="1"/>
+    <map map_id="M071301" item_id="MI-07-13" item_id2="MI-07-13" kind="major" include_exclude="include" match_type="range" icd_start="E83.50" icd_end="E83.59" sort="2"/>
+    <map map_id="M071302" item_id="MI-07-13" item_id2="MI-07-13" kind="major" include_exclude="include" match_type="exact" icd_start="E83.81" sort="3"/>
+    <map map_id="M071400" item_id="MI-07-14" item_id2="MI-07-14" kind="major" include_exclude="include" match_type="range" icd_start="D81.30" icd_end="D81.39" sort="1"/>
+    <map map_id="M071401" item_id="MI-07-14" item_id2="MI-07-14" kind="major" include_exclude="include" match_type="exact" icd_start="D81.5" sort="2"/>
+    <map map_id="M071402" item_id="MI-07-14" item_id2="MI-07-14" kind="major" include_exclude="include" match_type="range" icd_start="E79.1" icd_end="E79.9" sort="3"/>
+    <map map_id="M071500" item_id="MI-07-15" item_id2="MI-07-15" kind="major" include_exclude="include" match_type="range" icd_start="E76.01" icd_end="E76.9"/>
+    <map map_id="M071600" item_id="MI-07-16" item_id2="MI-07-16" kind="major" include_exclude="include" match_type="range" icd_start="E71.310" icd_end="E71.548" sort="1"/>
+    <map map_id="M071601" item_id="MI-07-16" item_id2="MI-07-16" kind="major" include_exclude="include" match_type="exact" icd_start="E80.3" sort="2"/>
+    <map map_id="M071602" item_id="MI-07-16" item_id2="MI-07-16" kind="major" include_exclude="include" match_type="range" icd_start="E88.40" icd_end="E88.89" sort="3"/>
+    <map map_id="M071603" item_id="MI-07-16" item_id2="MI-07-16" kind="major" include_exclude="include" match_type="range" icd_start="H49.811" icd_end="H49.819" sort="4"/>
+    <map map_id="M071700" item_id="MI-07-17" item_id2="MI-07-17" kind="major" include_exclude="include" match_type="exact" icd_start="E88.9"/>
+    <map map_id="M080100" item_id="MI-08-01" item_id2="MI-08-01" kind="major" include_exclude="include" match_type="range" icd_start="Q00.0" icd_end="Q00.2"/>
+    <map map_id="M080200" item_id="MI-08-02" item_id2="MI-08-02" kind="major" include_exclude="include" match_type="exact" icd_start="G90.1" sort="1"/>
+    <map map_id="M080201" item_id="MI-08-02" item_id2="MI-08-02" kind="major" include_exclude="include" match_type="range" icd_start="Q01.0" icd_end="Q04.9" sort="2"/>
+    <map map_id="M080202" item_id="MI-08-02" item_id2="MI-08-02" kind="major" include_exclude="include" match_type="range" icd_start="Q06.0" icd_end="Q06.9" sort="3"/>
+    <map map_id="M080203" item_id="MI-08-02" item_id2="MI-08-02" kind="major" include_exclude="include" match_type="exact" icd_start="Q07.8" sort="4"/>
+    <map map_id="M080204" item_id="MI-08-02" item_id2="MI-08-02" kind="major" include_exclude="include" match_type="exact" icd_start="Q07.9" sort="5"/>
+    <map map_id="M080300" item_id="MI-08-03" item_id2="MI-08-03" kind="major" include_exclude="include" match_type="range" icd_start="Q20.0" icd_end="Q24.9"/>
+    <map map_id="M080400" item_id="MI-08-04" item_id2="MI-08-04" kind="major" include_exclude="include" match_type="range" icd_start="Q25.0" icd_end="Q28.9"/>
+    <map map_id="M080500" item_id="MI-08-05" item_id2="MI-08-05" kind="major" include_exclude="include" match_type="exact" icd_start="Q33.0"/>
+    <map map_id="M080600" item_id="MI-08-06" item_id2="MI-08-06" kind="major" include_exclude="include" match_type="exact" icd_start="Q33.3" sort="1"/>
+    <map map_id="M080601" item_id="MI-08-06" item_id2="MI-08-06" kind="major" include_exclude="include" match_type="exact" icd_start="Q33.6" sort="2"/>
+    <map map_id="M080700" item_id="MI-08-07" item_id2="MI-08-07" kind="major" include_exclude="include" match_type="exact" icd_start="Q33.8" sort="1"/>
+    <map map_id="M080701" item_id="MI-08-07" item_id2="MI-08-07" kind="major" include_exclude="include" match_type="exact" icd_start="Q33.9" sort="2"/>
+    <map map_id="M080800" item_id="MI-08-08" item_id2="MI-08-08" kind="major" include_exclude="include" match_type="range" icd_start="Q41.0" icd_end="Q45.9"/>
+    <map map_id="M080900" item_id="MI-08-09" item_id2="MI-08-09" kind="major" include_exclude="include" match_type="range" icd_start="Q60.0" icd_end="Q60.6"/>
+    <map map_id="M081000" item_id="MI-08-10" item_id2="MI-08-10" kind="major" include_exclude="include" match_type="range" icd_start="Q61.00" icd_end="Q61.9"/>
+    <map map_id="M081100" item_id="MI-08-11" item_id2="MI-08-11" kind="major" include_exclude="include" match_type="range" icd_start="Q62.0" icd_end="Q62.39"/>
+    <map map_id="M081200" item_id="MI-08-12" item_id2="MI-08-12" kind="major" include_exclude="include" match_type="range" icd_start="Q63.0" icd_end="Q63.9"/>
+    <map map_id="M081300" item_id="MI-08-13" item_id2="MI-08-13" kind="major" include_exclude="include" match_type="range" icd_start="Q77.0" icd_end="Q77.2" sort="1"/>
+    <map map_id="M081301" item_id="MI-08-13" item_id2="MI-08-13" kind="major" include_exclude="include" match_type="exact" icd_start="Q77.4" sort="2"/>
+    <map map_id="M081302" item_id="MI-08-13" item_id2="MI-08-13" kind="major" include_exclude="include" match_type="exact" icd_start="Q77.5" sort="3"/>
+    <map map_id="M081303" item_id="MI-08-13" item_id2="MI-08-13" kind="major" include_exclude="include" match_type="range" icd_start="Q77.7" icd_end="Q77.9" sort="4"/>
+    <map map_id="M081304" item_id="MI-08-13" item_id2="MI-08-13" kind="major" include_exclude="include" match_type="exact" icd_start="Q78.4" sort="5"/>
+    <map map_id="M081400" item_id="MI-08-14" item_id2="MI-08-14" kind="major" include_exclude="include" match_type="range" icd_start="Q90.0" icd_end="Q99.1" sort="1"/>
+    <map map_id="M081401" item_id="MI-08-14" item_id2="MI-08-14" kind="major" include_exclude="include" match_type="exact" icd_start="Q99.8" sort="2"/>
+    <map map_id="M081402" item_id="MI-08-14" item_id2="MI-08-14" kind="major" include_exclude="include" match_type="exact" icd_start="Q99.9" sort="3"/>
+    <map map_id="M081500" item_id="MI-08-15" item_id2="MI-08-15" kind="major" include_exclude="include" match_type="range" icd_start="Q35.1" icd_end="Q35.7" sort="1"/>
+    <map map_id="M081501" item_id="MI-08-15" item_id2="MI-08-15" kind="major" include_exclude="include" match_type="range" icd_start="Q36.0" icd_end="Q37.9" sort="2"/>
+    <map map_id="M090100" item_id="MI-09-01" item_id2="MI-09-01" kind="major" include_exclude="include" match_type="range" icd_start="T31.20" icd_end="T31.99" sort="1"/>
+    <map map_id="M090101" item_id="MI-09-01" item_id2="MI-09-01" kind="major" include_exclude="include" match_type="range" icd_start="T32.20" icd_end="T32.99" sort="2"/>
+    <map map_id="M090200" item_id="MI-09-02" item_id2="MI-09-02-01" kind="major" include_exclude="include" match_type="range" icd_start="T26.00XA" icd_end="T26.92XA" seventh="A"/>
+    <map map_id="M090201" item_id="MI-09-02" item_id2="MI-09-02-02" kind="major" include_exclude="include" match_type="range" icd_start="T20.30XA" icd_end="T20.39XA" seventh="A" sort="1"/>
+    <map map_id="M090202" item_id="MI-09-02" item_id2="MI-09-02-02" kind="major" include_exclude="include" match_type="range" icd_start="T20.70XA" icd_end="T20.79XA" seventh="A" sort="2"/>
+    <map map_id="M100200" item_id="MI-10-02" item_id2="MI-10-02-01" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.0"/>
+    <map map_id="M100201" item_id="MI-10-02" item_id2="MI-10-02-02" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.1"/>
+    <map map_id="M100202" item_id="MI-10-02" item_id2="MI-10-02-03" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.2"/>
+    <map map_id="M100203" item_id="MI-10-02" item_id2="MI-10-02-04" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.4"/>
+    <map map_id="M100204" item_id="MI-10-02" item_id2="MI-10-02-05" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.81" sort="1"/>
+    <map map_id="M100205" item_id="MI-10-02" item_id2="MI-10-02-05" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.84" sort="2"/>
+    <map map_id="M100206" item_id="MI-10-02" item_id2="MI-10-02-06" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.83"/>
+    <map map_id="M100207" item_id="MI-10-02" item_id2="MI-10-02-07" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.82"/>
+    <map map_id="M100208" item_id="MI-10-02" item_id2="MI-10-02-08" kind="major" include_exclude="include" match_type="range" icd_start="T86.10" icd_end="T86.19"/>
+    <map map_id="M100209" item_id="MI-10-02" item_id2="MI-10-02-09" kind="major" include_exclude="include" match_type="range" icd_start="T86.40" icd_end="T86.49"/>
+    <map map_id="M100210" item_id="MI-10-02" item_id2="MI-10-02-10" kind="major" include_exclude="include" match_type="range" icd_start="T86.20" icd_end="T86.23" sort="1"/>
+    <map map_id="M100211" item_id="MI-10-02" item_id2="MI-10-02-10" kind="major" include_exclude="include" match_type="range" icd_start="T86.290" icd_end="T86.298" sort="2"/>
+    <map map_id="M100212" item_id="MI-10-02" item_id2="MI-10-02-11" kind="major" include_exclude="include" match_type="range" icd_start="T86.810" icd_end="T86.819"/>
+    <map map_id="M100213" item_id="MI-10-02" item_id2="MI-10-02-12" kind="major" include_exclude="include" match_type="range" icd_start="T86.00" icd_end="T86.09"/>
+    <map map_id="M100214" item_id="MI-10-02" item_id2="MI-10-02-13" kind="major" include_exclude="include" match_type="range" icd_start="T86.890" icd_end="T86.899"/>
+    <map map_id="M100215" item_id="MI-10-02" item_id2="MI-10-02-14" kind="major" include_exclude="include" match_type="range" icd_start="T86.850" icd_end="T86.859"/>
+    <map map_id="M110100" item_id="MI-11-01" item_id2="MI-11-01" kind="major" include_exclude="include" match_type="range" icd_start="A80.0" icd_end="A80.2" sort="1"/>
+    <map map_id="M110101" item_id="MI-11-01" item_id2="MI-11-01" kind="major" include_exclude="include" match_type="range" icd_start="A80.30" icd_end="A80.39" sort="2"/>
+    <map map_id="M110200" item_id="MI-11-02" item_id2="MI-11-02" kind="major" include_exclude="include" match_type="range" icd_start="G80.0" icd_end="G80.2" sort="1"/>
+    <map map_id="M110201" item_id="MI-11-02" item_id2="MI-11-02" kind="major" include_exclude="include" match_type="range" icd_start="G80.4" icd_end="G80.9" sort="2"/>
+    <map map_id="M110300" item_id="MI-11-03" item_id2="MI-11-03" kind="major" include_exclude="include" match_type="range" icd_start="G82.20" icd_end="G82.54" sort="1">
+      <note>需 + (B91 or G14)</note>
+    </map>
+    <map map_id="M110301" item_id="MI-11-03" item_id2="MI-11-03" kind="major" include_exclude="include" match_type="range" icd_start="G83.0" icd_end="G83.9" sort="2">
+      <note>需 + (B91 or G14)</note>
+    </map>
+    <map map_id="M110302" item_id="MI-11-03" item_id2="MI-11-03" kind="major" include_exclude="include" match_type="exact" icd_start="B91" sort="3">
+      <note>需 + (G82.20-G82.54 or G83.0-G83.9)</note>
+    </map>
+    <map map_id="M110303" item_id="MI-11-03" item_id2="MI-11-03" kind="major" include_exclude="include" match_type="exact" icd_start="G14" sort="4">
+      <note>需 + (G82.20-G82.54 or G83.0-G83.9)</note>
+    </map>
+    <map map_id="M120100" item_id="MI-12-01" item_id2="MI-12-01" kind="major" include_exclude="include" match_type="prefix" icd_start="T07"/>
+    <map map_id="M130100" item_id="MI-13-01" item_id2="MI-13-01" kind="major" include_exclude="include" match_type="exact" icd_start="Z99.11"/>
+    <map map_id="M140100" item_id="MI-14-01" item_id2="MI-14-01" kind="major" include_exclude="include" match_type="exact" icd_start="E41"/>
+    <map map_id="M140200" item_id="MI-14-02" item_id2="MI-14-02" kind="major" include_exclude="include" match_type="exact" icd_start="E43"/>
+    <map map_id="M150100" item_id="MI-15-01" item_id2="MI-15-01" kind="major" include_exclude="include" match_type="exact" icd_start="T70.3XXA"/>
+    <map map_id="M150200" item_id="MI-15-02" item_id2="MI-15-02" kind="major" include_exclude="include" match_type="exact" icd_start="T79.0XXA"/>
+    <map map_id="M160100" item_id="MI-16-01" item_id2="MI-16-01" kind="major" include_exclude="include" match_type="exact" icd_start="G70.00" sort="1"/>
+    <map map_id="M160101" item_id="MI-16-01" item_id2="MI-16-01" kind="major" include_exclude="include" match_type="exact" icd_start="G70.01" sort="2"/>
+    <map map_id="M170100" item_id="MI-17-01" item_id2="MI-17-01" kind="major" include_exclude="include" match_type="exact" icd_start="D80.1" sort="1"/>
+    <map map_id="M170101" item_id="MI-17-01" item_id2="MI-17-01" kind="major" include_exclude="include" match_type="exact" icd_start="D80.6" sort="2"/>
+    <map map_id="M170102" item_id="MI-17-01" item_id2="MI-17-01" kind="major" include_exclude="include" match_type="exact" icd_start="D80.8" sort="3"/>
+    <map map_id="M170103" item_id="MI-17-01" item_id2="MI-17-01" kind="major" include_exclude="include" match_type="exact" icd_start="D80.9" sort="4"/>
+    <map map_id="M170200" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" match_type="range" icd_start="D81.0" icd_end="D81.2" sort="1"/>
+    <map map_id="M170201" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" match_type="exact" icd_start="D81.4" sort="2"/>
+    <map map_id="M170202" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" match_type="exact" icd_start="D81.6" sort="3"/>
+    <map map_id="M170203" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" match_type="exact" icd_start="D81.7" sort="4"/>
+    <map map_id="M170204" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" match_type="exact" icd_start="D81.82" sort="5"/>
+    <map map_id="M170205" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" match_type="exact" icd_start="D81.89" sort="6"/>
+    <map map_id="M170206" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" match_type="exact" icd_start="D81.9" sort="7"/>
+    <map map_id="M170300" item_id="MI-17-03" item_id2="MI-17-03" kind="major" include_exclude="include" match_type="range" icd_start="D82.0" icd_end="D82.9"/>
+    <map map_id="M170400" item_id="MI-17-04" item_id2="MI-17-04" kind="major" include_exclude="include" match_type="range" icd_start="D83.0" icd_end="D83.9"/>
+    <map map_id="M170500" item_id="MI-17-05" item_id2="MI-17-05" kind="major" include_exclude="include" match_type="range" icd_start="D84.0" icd_end="D84.9"/>
+    <map map_id="M180100" item_id="MI-18-01" item_id2="MI-18-01" kind="major" include_exclude="include" match_type="range" icd_start="S12.000A" icd_end="S12.9XXA" seventh="A" sort="1">
+      <note>需 + (S14.101A-S14.159A or S24.101A-S24.159A or S34.101A-34.139A)</note>
+    </map>
+    <map map_id="M180101" item_id="MI-18-01" item_id2="MI-18-01" kind="major" include_exclude="include" match_type="range" icd_start="S14.101A" icd_end="S14.159A" seventh="A" sort="2">
+      <note>需 + (S12.000A-S12.XXXA)</note>
+    </map>
+    <map map_id="M180102" item_id="MI-18-01" item_id2="MI-18-01" kind="major" include_exclude="include" match_type="range" icd_start="S24.101A" icd_end="S24.159A" seventh="A" sort="3">
+      <note>需 + (S12.000A-S12.XXXA)</note>
+    </map>
+    <map map_id="M180103" item_id="MI-18-01" item_id2="MI-18-01" kind="major" include_exclude="include" match_type="range" icd_start="S34.101A" icd_end="S34.139A" seventh="A" sort="4">
+      <note>需 + (S12.000A-S12.XXXA)</note>
+    </map>
+    <map map_id="M180200" item_id="MI-18-02" item_id2="MI-18-02" kind="major" include_exclude="include" match_type="range" icd_start="S14.101A" icd_end="S14.159A" seventh="A" sort="1"/>
+    <map map_id="M180201" item_id="MI-18-02" item_id2="MI-18-02" kind="major" include_exclude="include" match_type="range" icd_start="S24.101A" icd_end="S24.159A" seventh="A" sort="2"/>
+    <map map_id="M180202" item_id="MI-18-02" item_id2="MI-18-02" kind="major" include_exclude="include" match_type="range" icd_start="S34.101A" icd_end="S34.139A" seventh="A" sort="3"/>
+    <map map_id="M180300" item_id="MI-18-03" item_id2="MI-18-03" kind="major" include_exclude="include" match_type="exact" icd_start="G32.0" sort="1"/>
+    <map map_id="M180301" item_id="MI-18-03" item_id2="MI-18-03" kind="major" include_exclude="include" match_type="exact" icd_start="G95.0" sort="2"/>
+    <map map_id="M180302" item_id="MI-18-03" item_id2="MI-18-03" kind="major" include_exclude="include" match_type="range" icd_start="G95.11" icd_end="G95.89" sort="3"/>
+    <map map_id="M180303" item_id="MI-18-03" item_id2="MI-18-03" kind="major" include_exclude="include" match_type="exact" icd_start="G95.9" sort="4"/>
+    <map map_id="M180304" item_id="MI-18-03" item_id2="MI-18-03" kind="major" include_exclude="include" match_type="exact" icd_start="G99.2" sort="5"/>
+    <map map_id="M190100" item_id="MI-19-01" item_id2="MI-19-01" kind="major" include_exclude="include" match_type="exact" icd_start="J60"/>
+    <map map_id="M190200" item_id="MI-19-02" item_id2="MI-19-02" kind="major" include_exclude="include" match_type="exact" icd_start="J61"/>
+    <map map_id="M190300" item_id="MI-19-03" item_id2="MI-19-03" kind="major" include_exclude="include" match_type="exact" icd_start="J62.0" sort="1"/>
+    <map map_id="M190301" item_id="MI-19-03" item_id2="MI-19-03" kind="major" include_exclude="include" match_type="exact" icd_start="J62.8" sort="2"/>
+    <map map_id="M190400" item_id="MI-19-04" item_id2="MI-19-04" kind="major" include_exclude="include" match_type="range" icd_start="J63.0" icd_end="J63.6"/>
+    <map map_id="M190500" item_id="MI-19-05" item_id2="MI-19-05" kind="major" include_exclude="include" match_type="exact" icd_start="J64" sort="1"/>
+    <map map_id="M190501" item_id="MI-19-05" item_id2="MI-19-05" kind="major" include_exclude="include" match_type="exact" icd_start="J65" sort="2"/>
+    <map map_id="M200100" item_id="MI-20-01" item_id2="MI-20-01" kind="major" include_exclude="include" match_type="range" icd_start="I60.00" icd_end="I60.9"/>
+    <map map_id="M200200" item_id="MI-20-02" item_id2="MI-20-02" kind="major" include_exclude="include" match_type="range" icd_start="I61.0" icd_end="I62.9"/>
+    <map map_id="M200300" item_id="MI-20-03" item_id2="MI-20-03" kind="major" include_exclude="include" match_type="range" icd_start="I63.00" icd_end="I63.9" sort="1"/>
+    <map map_id="M200301" item_id="MI-20-03" item_id2="MI-20-03" kind="major" include_exclude="include" match_type="range" icd_start="P91.821" icd_end="P91.822" sort="2"/>
+    <map map_id="M200302" item_id="MI-20-03" item_id2="MI-20-03" kind="major" include_exclude="include" match_type="range" icd_start="P91.823" icd_end="P91.829" sort="3"/>
+    <map map_id="M200400" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="range" icd_start="G45.0" icd_end="G45.2" sort="1"/>
+    <map map_id="M200401" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="range" icd_start="G45.4" icd_end="G46.8" sort="2"/>
+    <map map_id="M200402" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="range" icd_start="I67.0" icd_end="I67.2" sort="3"/>
+    <map map_id="M200403" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="range" icd_start="I67.4" icd_end="I67.7" sort="4"/>
+    <map map_id="M200404" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I67.81" sort="5"/>
+    <map map_id="M200405" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I67.82" sort="6"/>
+    <map map_id="M200406" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="range" icd_start="I67.841" icd_end="I67.848" sort="7"/>
+    <map map_id="M200407" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I67.850" sort="8"/>
+    <map map_id="M200408" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I67.858" sort="9"/>
+    <map map_id="M200409" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I67.89" sort="10"/>
+    <map map_id="M200410" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I67.9" sort="11"/>
+    <map map_id="M200411" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I68.0" sort="12"/>
+    <map map_id="M200412" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I68.8" sort="13"/>
+    <map map_id="M210100" item_id="MI-21-01" item_id2="MI-21-01" kind="major" include_exclude="include" match_type="prefix" icd_start="G35"/>
+    <map map_id="M220100" item_id="MI-22-01" item_id2="MI-22-01" kind="major" include_exclude="include" match_type="range" icd_start="G71.00" icd_end="G71.29"/>
+    <map map_id="M230100" item_id="MI-23-01" item_id2="MI-23-01" kind="major" include_exclude="include" match_type="range" icd_start="Q81.0" icd_end="Q81.9" sort="1"/>
+    <map map_id="M230101" item_id="MI-23-01" item_id2="MI-23-01" kind="major" include_exclude="include" match_type="exact" icd_start="Q82.8" sort="2"/>
+    <map map_id="M230102" item_id="MI-23-01" item_id2="MI-23-01" kind="major" include_exclude="include" match_type="exact" icd_start="Q82.9" sort="3"/>
+    <map map_id="M230200" item_id="MI-23-02" item_id2="MI-23-02" kind="major" include_exclude="include" match_type="exact" icd_start="Q84.9"/>
+    <map map_id="M230300" item_id="MI-23-03" item_id2="MI-23-03" kind="major" include_exclude="include" match_type="range" icd_start="Q80.0" icd_end="Q80.9"/>
+    <map map_id="M240100" item_id="MI-24-01" item_id2="MI-24-01" kind="major" include_exclude="include" match_type="range" icd_start="A30.0" icd_end="A30.9"/>
+    <map map_id="M250100" item_id="MI-25-01" item_id2="MI-25-01" kind="major" include_exclude="include" match_type="range" icd_start="K70.2" icd_end="K70.31" sort="1"/>
+    <map map_id="M250101" item_id="MI-25-01" item_id2="MI-25-01" kind="major" include_exclude="include" match_type="range" icd_start="K74.1" icd_end="K74.69" sort="2"/>
+    <map map_id="M260100" item_id="MI-26-01" item_id2="MI-26-01" kind="major" include_exclude="include" match_type="exact" icd_start="P07.10"/>
+    <map map_id="M260200" item_id="MI-26-02" item_id2="MI-26-02" kind="major" include_exclude="include" match_type="exact" icd_start="P07.20"/>
+    <map map_id="M270100" item_id="MI-27-01" item_id2="MI-27-01" kind="major" include_exclude="include" match_type="exact" icd_start="T57.0X1A" sort="1"/>
+    <map map_id="M270101" item_id="MI-27-01" item_id2="MI-27-01" kind="major" include_exclude="include" match_type="exact" icd_start="T57.0X2A" sort="2"/>
+    <map map_id="M270102" item_id="MI-27-01" item_id2="MI-27-01" kind="major" include_exclude="include" match_type="exact" icd_start="T57.0X3A" sort="3"/>
+    <map map_id="M270103" item_id="MI-27-01" item_id2="MI-27-01" kind="major" include_exclude="include" match_type="exact" icd_start="T57.0X4A" sort="4"/>
+    <map map_id="M280100" item_id="MI-28-01" item_id2="MI-28-01" kind="major" include_exclude="include" match_type="range" icd_start="G12.20" icd_end="G12.29"/>
+    <map map_id="M290100" item_id="MI-29-01" item_id2="MI-29-01" kind="major" include_exclude="include" match_type="range" icd_start="A81.00" icd_end="T81.09"/>
+    <map map_id="RA010100" item_id="RD-A01-01" item_id2="RD-A01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.20"/>
+    <map map_id="RA010200" item_id="RD-A01-02" item_id2="RD-A01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.23"/>
+    <map map_id="RA010300" item_id="RD-A01-03" item_id2="RD-A01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.29"/>
+    <map map_id="RA010400" item_id="RD-A01-04" item_id2="RD-A01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.4"/>
+    <map map_id="RA010500" item_id="RD-A01-05" item_id2="RD-A01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.4"/>
+    <map map_id="RA020100" item_id="RD-A02-01" item_id2="RD-A02-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.9" sort="1"/>
+    <map map_id="RA020101" item_id="RD-A02-01" item_id2="RD-A02-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.9" sort="2"/>
+    <map map_id="RA020102" item_id="RD-A02-01" item_id2="RD-A02-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.10" sort="3"/>
+    <map map_id="RA020103" item_id="RD-A02-01" item_id2="RD-A02-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.89" sort="4"/>
+    <map map_id="RA020200" item_id="RD-A02-02" item_id2="RD-A02-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.11"/>
+    <map map_id="RA020300" item_id="RD-A02-03" item_id2="RD-A02-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.19"/>
+    <map map_id="RA020400" item_id="RD-A02-04" item_id2="RD-A02-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.51"/>
+    <map map_id="RA020500" item_id="RD-A02-05" item_id2="RD-A02-05" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.0"/>
+    <map map_id="RA020600" item_id="RD-A02-06" item_id2="RD-A02-06" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.1"/>
+    <map map_id="RA020700" item_id="RD-A02-07" item_id2="RD-A02-07" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.21"/>
+    <map map_id="RA020800" item_id="RD-A02-08" item_id2="RD-A02-08" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.0"/>
+    <map map_id="RA020900" item_id="RD-A02-09" item_id2="RD-A02-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.118"/>
+    <map map_id="RA021000" item_id="RD-A02-10" item_id2="RD-A02-10" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.110"/>
+    <map map_id="RA021100" item_id="RD-A02-11" item_id2="RD-A02-11" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.3" sort="1">
+      <note>type I</note>
+    </map>
+    <map map_id="RA021101" item_id="RD-A02-11" item_id2="RD-A02-11" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.313" sort="2">
+      <note>typeII</note>
+    </map>
+    <map map_id="RA021200" item_id="RD-A02-12" item_id2="RD-A02-12" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.121"/>
+    <map map_id="RA021300" item_id="RD-A02-13" item_id2="RD-A02-13" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.120"/>
+    <map map_id="RA021400" item_id="RD-A02-14" item_id2="RD-A02-14" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.118"/>
+    <map map_id="RA021500" item_id="RD-A02-15" item_id2="RD-A02-15" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.31" sort="1">
+      <note>需 + E70.0</note>
+    </map>
+    <map map_id="RA021501" item_id="RD-A02-15" item_id2="RD-A02-15" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.0" sort="2">
+      <note>需 + E74.31</note>
+    </map>
+    <map map_id="RA021600" item_id="RD-A02-16" item_id2="RD-A02-16" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.3"/>
+    <map map_id="RA021700" item_id="RD-A02-17" item_id2="RD-A02-17" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.41"/>
+    <map map_id="RA021800" item_id="RD-A02-18" item_id2="RD-A02-18" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.19"/>
+    <map map_id="RA021900" item_id="RD-A02-19" item_id2="RD-A02-19" kind="rare" include_exclude="include" match_type="exact" icd_start="D81.819"/>
+    <map map_id="RA022000" item_id="RD-A02-20" item_id2="RD-A02-20" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.59"/>
+    <map map_id="RA022100" item_id="RD-A02-21" item_id2="RD-A02-21" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.9"/>
+    <map map_id="RA022200" item_id="RD-A02-22" item_id2="RD-A02-22" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.20"/>
+    <map map_id="RA022300" item_id="RD-A02-23" item_id2="RD-A02-23" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.120" sort="1">
+      <note>需 + E72.11</note>
+    </map>
+    <map map_id="RA022301" item_id="RD-A02-23" item_id2="RD-A02-23" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.11" sort="2">
+      <note>需 + E71.120</note>
+    </map>
+    <map map_id="RA022400" item_id="RD-A02-24" item_id2="RD-A02-24" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.53"/>
+    <map map_id="RA022500" item_id="RD-A02-25" item_id2="RD-A02-25" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.29"/>
+    <map map_id="RA030100" item_id="RD-A03-01" item_id2="RD-A03-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.22"/>
+    <map map_id="RA030200" item_id="RD-A03-02" item_id2="RD-A03-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.19" sort="1">
+      <note>GM1</note>
+    </map>
+    <map map_id="RA030201" item_id="RD-A03-02" item_id2="RD-A03-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.00" sort="2">
+      <note>GM2</note>
+    </map>
+    <map map_id="RA030300" item_id="RD-A03-03" item_id2="RD-A03-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.21"/>
+    <map map_id="RA030400" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.240" sort="1">
+      <note>Type A</note>
+    </map>
+    <map map_id="RA030401" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.241" sort="2">
+      <note>Type B</note>
+    </map>
+    <map map_id="RA030402" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.242" sort="3">
+      <note>Type C</note>
+    </map>
+    <map map_id="RA030403" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.243" sort="4">
+      <note>Type D</note>
+    </map>
+    <map map_id="RA030404" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.244" sort="5">
+      <note>Type A/B</note>
+    </map>
+    <map map_id="RA030405" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.248" sort="6">
+      <note>other</note>
+    </map>
+    <map map_id="RA030406" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.249" sort="7">
+      <note>unspecified</note>
+    </map>
+    <map map_id="RA030500" item_id="RD-A03-05" item_id2="RD-A03-05" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.25"/>
+    <map map_id="RA030600" item_id="RD-A03-06" item_id2="RD-A03-06" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.23"/>
+    <map map_id="RA030700" item_id="RD-A03-07" item_id2="RD-A03-07" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.5"/>
+    <map map_id="RA030800" item_id="RD-A03-08" item_id2="RD-A03-08" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.4"/>
+    <map map_id="RA030900" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.01" sort="1">
+      <note>Type 1</note>
+    </map>
+    <map map_id="RA030901" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.02" sort="2">
+      <note>Type 1</note>
+    </map>
+    <map map_id="RA030902" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.03" sort="3">
+      <note>Type 1</note>
+    </map>
+    <map map_id="RA030903" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.1" sort="4">
+      <note>Type 2</note>
+    </map>
+    <map map_id="RA030904" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.210" sort="5">
+      <note>other</note>
+    </map>
+    <map map_id="RA030905" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.211" sort="6">
+      <note>other</note>
+    </map>
+    <map map_id="RA030906" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.219" sort="7">
+      <note>other</note>
+    </map>
+    <map map_id="RA030907" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.22" sort="8">
+      <note>other</note>
+    </map>
+    <map map_id="RA030908" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.29" sort="9">
+      <note>other</note>
+    </map>
+    <map map_id="RA030909" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.3" sort="10">
+      <note>unspecified</note>
+    </map>
+    <map map_id="RA031000" item_id="RD-A03-10" item_id2="RD-A03-10" kind="rare" include_exclude="include" match_type="exact" icd_start="E77.1"/>
+    <map map_id="RA031100" item_id="RD-A03-11" item_id2="RD-A03-11" kind="rare" include_exclude="include" match_type="exact" icd_start="E77.1"/>
+    <map map_id="RA031200" item_id="RD-A03-12" item_id2="RD-A03-12" kind="rare" include_exclude="include" match_type="exact" icd_start="E77.1" sort="1">
+      <note>Type I</note>
+    </map>
+    <map map_id="RA031201" item_id="RD-A03-12" item_id2="RD-A03-12" kind="rare" include_exclude="include" match_type="exact" icd_start="E77.0" sort="2">
+      <note>Type II/III</note>
+    </map>
+    <map map_id="RA031202" item_id="RD-A03-12" item_id2="RD-A03-12" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.11" sort="3">
+      <note>Type IV</note>
+    </map>
+    <map map_id="RA031300" item_id="RD-A03-13" item_id2="RD-A03-13" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.4"/>
+    <map map_id="RA031400" item_id="RD-A03-14" item_id2="RD-A03-14" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.26"/>
+    <map map_id="RA040100" item_id="RD-A04-01" item_id2="RD-A04-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.21"/>
+    <map map_id="RA040200" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.09" sort="1">
+      <note>Type 0</note>
+    </map>
+    <map map_id="RA040201" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.01" sort="2">
+      <note>Type I</note>
+    </map>
+    <map map_id="RA040202" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.02" sort="3">
+      <note>Type II</note>
+    </map>
+    <map map_id="RA040203" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.03" sort="4">
+      <note>Type III</note>
+    </map>
+    <map map_id="RA040204" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.09" sort="5">
+      <note>Type IV</note>
+    </map>
+    <map map_id="RA040205" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.04" sort="6">
+      <note>Type V</note>
+    </map>
+    <map map_id="RA040206" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.09" sort="7">
+      <note>Type VI-XI</note>
+    </map>
+    <map map_id="RA040207" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.01" sort="8">
+      <note>Von Gierke's</note>
+    </map>
+    <map map_id="RA040300" item_id="RD-A04-03" item_id2="RD-A04-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.810"/>
+    <map map_id="RA040400" item_id="RD-A04-04" item_id2="RD-A04-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.89"/>
+    <map map_id="RA050100" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.30" sort="1"/>
+    <map map_id="RA050101" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.310" sort="2"/>
+    <map map_id="RA050102" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.311" sort="3"/>
+    <map map_id="RA050103" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.312" sort="4"/>
+    <map map_id="RA050104" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.313" sort="5"/>
+    <map map_id="RA050105" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.314" sort="6"/>
+    <map map_id="RA050106" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.318" sort="7"/>
+    <map map_id="RA050107" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.32" sort="8"/>
+    <map map_id="RA050108" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.39" sort="9"/>
+    <map map_id="RA050200" item_id="RD-A05-02" item_id2="RD-A05-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.41"/>
+    <map map_id="RA050300" item_id="RD-A05-03" item_id2="RD-A05-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.311"/>
+    <map map_id="RA050400" item_id="RD-A05-04" item_id2="RD-A05-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.312"/>
+    <map map_id="RA060100" item_id="RD-A06-01" item_id2="RD-A06-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E88.40"/>
+    <map map_id="RA060200" item_id="RD-A06-02" item_id2="RD-A06-02" kind="rare" include_exclude="include" match_type="exact" icd_start="H49.811" sort="1"/>
+    <map map_id="RA060201" item_id="RD-A06-02" item_id2="RD-A06-02" kind="rare" include_exclude="include" match_type="exact" icd_start="H49.812" sort="2"/>
+    <map map_id="RA060202" item_id="RD-A06-02" item_id2="RD-A06-02" kind="rare" include_exclude="include" match_type="exact" icd_start="H49.813" sort="3"/>
+    <map map_id="RA060203" item_id="RD-A06-02" item_id2="RD-A06-02" kind="rare" include_exclude="include" match_type="exact" icd_start="H49.819" sort="4"/>
+    <map map_id="RA060300" item_id="RD-A06-03" item_id2="RD-A06-03" kind="rare" include_exclude="include" match_type="exact" icd_start="G31.82"/>
+    <map map_id="RA060400" item_id="RD-A06-04" item_id2="RD-A06-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E88.41"/>
+    <map map_id="RA060500" item_id="RD-A06-05" item_id2="RD-A06-05" kind="rare" include_exclude="include" match_type="exact" icd_start="E88.49"/>
+    <map map_id="RA060600" item_id="RD-A06-06" item_id2="RD-A06-06" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.4"/>
+    <map map_id="RA060700" item_id="RD-A06-07" item_id2="RD-A06-07" kind="rare" include_exclude="include" match_type="exact" icd_start="E78.71"/>
+    <map map_id="RA060800" item_id="RD-A06-08" item_id2="RD-A06-08" kind="rare" include_exclude="include" match_type="exact" icd_start="H47.22"/>
+    <map map_id="RA070100" item_id="RD-A07-01" item_id2="RD-A07-01" kind="rare" include_exclude="include" match_type="exact" icd_start="D81.810"/>
+    <map map_id="RA080100" item_id="RD-A08-01" item_id2="RD-A08-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E78.01"/>
+    <map map_id="RA080200" item_id="RD-A08-02" item_id2="RD-A08-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E78.3"/>
+    <map map_id="RA080300" item_id="RD-A08-03" item_id2="RD-A08-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E78.00" sort="1"/>
+    <map map_id="RA080301" item_id="RD-A08-03" item_id2="RD-A08-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E78.01" sort="2"/>
+    <map map_id="RA080400" item_id="RD-A08-04" item_id2="RD-A08-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E88.1"/>
+    <map map_id="RA080500" item_id="RD-A08-05" item_id2="RD-A08-05" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.5"/>
+    <map map_id="RA090100" item_id="RD-A09-01" item_id2="RD-A09-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E83.01"/>
+    <map map_id="RA090200" item_id="RD-A09-02" item_id2="RD-A09-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E83.09"/>
+    <map map_id="RA090300" item_id="RD-A09-03" item_id2="RD-A09-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E61.5"/>
+    <map map_id="RA100100" item_id="RD-A10-01" item_id2="RD-A10-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.510"/>
+    <map map_id="RA100200" item_id="RD-A10-02" item_id2="RD-A10-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.511" sort="1"/>
+    <map map_id="RA100201" item_id="RD-A10-02" item_id2="RD-A10-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.520" sort="2"/>
+    <map map_id="RA100202" item_id="RD-A10-02" item_id2="RD-A10-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.521" sort="3"/>
+    <map map_id="RA100203" item_id="RD-A10-02" item_id2="RD-A10-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.528" sort="4"/>
+    <map map_id="RA100204" item_id="RD-A10-02" item_id2="RD-A10-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.529" sort="5"/>
+    <map map_id="RA100300" item_id="RD-A10-03" item_id2="RD-A10-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.540"/>
+    <map map_id="RA110100" item_id="RD-A11-01" item_id2="RD-A11-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E80.20" sort="1"/>
+    <map map_id="RA110101" item_id="RD-A11-01" item_id2="RD-A11-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E80.21" sort="2"/>
+    <map map_id="RA110102" item_id="RD-A11-01" item_id2="RD-A11-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E80.29" sort="3"/>
+    <map map_id="RA110200" item_id="RD-A11-02" item_id2="RD-A11-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E79.1"/>
+    <map map_id="RA110300" item_id="RD-A11-03" item_id2="RD-A11-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.19"/>
+    <map map_id="RA110400" item_id="RD-A11-04" item_id2="RD-A11-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E77.8"/>
+    <map map_id="RA110500" item_id="RD-A11-05" item_id2="RD-A11-05" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.52"/>
+    <map map_id="RA110600" item_id="RD-A11-06" item_id2="RD-A11-06" kind="rare" include_exclude="include" match_type="exact" icd_start="E83.39" sort="1"/>
+    <map map_id="RA110601" item_id="RD-A11-06" item_id2="RD-A11-06" kind="rare" include_exclude="include" match_type="exact" icd_start="E83.31" sort="2"/>
+    <map map_id="RA110700" item_id="RD-A11-07" item_id2="RD-A11-07" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.19"/>
+    <map map_id="RA110800" item_id="RD-A11-08" item_id2="RD-A11-08" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.8"/>
+    <map map_id="RA110900" item_id="RD-A11-09" item_id2="RD-A11-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E51.8"/>
+    <map map_id="RB010100" item_id="RD-B01-01" item_id2="RD-B01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="G35" sort="1"/>
+    <map map_id="RB010101" item_id="RD-B01-01" item_id2="RD-B01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="G36.0" sort="2"/>
+    <map map_id="RB010200" item_id="RD-B01-02" item_id2="RD-B01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="G12.21"/>
+    <map map_id="RB010300" item_id="RD-B01-03" item_id2="RD-B01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="G11.3"/>
+    <map map_id="RB010400" item_id="RD-B01-04" item_id2="RD-B01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="G10"/>
+    <map map_id="RB010500" item_id="RD-B01-05" item_id2="RD-B01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="F84.2"/>
+    <map map_id="RB010600" item_id="RD-B01-06" item_id2="RD-B01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="G12.0" sort="1"/>
+    <map map_id="RB010601" item_id="RD-B01-06" item_id2="RD-B01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="G12.1" sort="2"/>
+    <map map_id="RB010700" item_id="RD-B01-07" item_id2="RD-B01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="G11.9"/>
+    <map map_id="RB010800" item_id="RD-B01-08" item_id2="RD-B01-08" kind="rare" include_exclude="include" match_type="exact" icd_start="Q85.1"/>
+    <map map_id="RB010900" item_id="RD-B01-09" item_id2="RD-B01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="L74.4"/>
+    <map map_id="RB011000" item_id="RD-B01-10" item_id2="RD-B01-10" kind="rare" include_exclude="include" match_type="exact" icd_start="Q85.02"/>
+    <map map_id="RB011100" item_id="RD-B01-11" item_id2="RD-B01-11" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.29"/>
+    <map map_id="RB011200" item_id="RD-B01-12" item_id2="RD-B01-12" kind="rare" include_exclude="include" match_type="exact" icd_start="G25.82"/>
+    <map map_id="RB011300" item_id="RD-B01-13" item_id2="RD-B01-13" kind="rare" include_exclude="include" match_type="exact" icd_start="G11.4"/>
+    <map map_id="RB011400" item_id="RD-B01-14" item_id2="RD-B01-14" kind="rare" include_exclude="include" match_type="exact" icd_start="Q04.3"/>
+    <map map_id="RB011500" item_id="RD-B01-15" item_id2="RD-B01-15" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.29"/>
+    <map map_id="RB011600" item_id="RD-B01-16" item_id2="RD-B01-16" kind="rare" include_exclude="include" match_type="exact" icd_start="G60.0"/>
+    <map map_id="RB011700" item_id="RD-B01-17" item_id2="RD-B01-17" kind="rare" include_exclude="include" match_type="exact" icd_start="G12.20" sort="1"/>
+    <map map_id="RB011701" item_id="RD-B01-17" item_id2="RD-B01-17" kind="rare" include_exclude="include" match_type="exact" icd_start="G12.24" sort="2"/>
+    <map map_id="RB011702" item_id="RD-B01-17" item_id2="RD-B01-17" kind="rare" include_exclude="include" match_type="exact" icd_start="G12.29" sort="3"/>
+    <map map_id="RB011800" item_id="RD-B01-18" item_id2="RD-B01-18" kind="rare" include_exclude="include" match_type="exact" icd_start="E85.1"/>
+    <map map_id="RB011900" item_id="RD-B01-19" item_id2="RD-B01-19" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
+    <map map_id="RB012000" item_id="RD-B01-20" item_id2="RD-B01-20" kind="rare" include_exclude="include" match_type="exact" icd_start="Q97.8" sort="1"/>
+    <map map_id="RB012001" item_id="RD-B01-20" item_id2="RD-B01-20" kind="rare" include_exclude="include" match_type="exact" icd_start="Q98.8" sort="2"/>
+    <map map_id="RB012100" item_id="RD-B01-21" item_id2="RD-B01-21" kind="rare" include_exclude="include" match_type="exact" icd_start="G31.89"/>
+    <map map_id="RB012200" item_id="RD-B01-22" item_id2="RD-B01-22" kind="rare" include_exclude="include" match_type="exact" icd_start="Q99.8"/>
+    <map map_id="RB012300" item_id="RD-B01-23" item_id2="RD-B01-23" kind="rare" include_exclude="include" match_type="exact" icd_start="G40.833" sort="1"/>
+    <map map_id="RB012301" item_id="RD-B01-23" item_id2="RD-B01-23" kind="rare" include_exclude="include" match_type="exact" icd_start="G40.834" sort="2"/>
+    <map map_id="RB012400" item_id="RD-B01-24" item_id2="RD-B01-24" kind="rare" include_exclude="include" match_type="exact" icd_start="G37.8"/>
+    <map map_id="RB012500" item_id="RD-B01-25" item_id2="RD-B01-25" kind="rare" include_exclude="include" match_type="exact" icd_start="G23.0"/>
+    <map map_id="RB012600" item_id="RD-B01-26" item_id2="RD-B01-26" kind="rare" include_exclude="include" match_type="exact" icd_start="G23.0"/>
+    <map map_id="RB012700" item_id="RD-B01-27" item_id2="RD-B01-27" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
+    <map map_id="RB012800" item_id="RD-B01-28" item_id2="RD-B01-28" kind="rare" include_exclude="include" match_type="exact" icd_start="G23.0"/>
+    <map map_id="RB012900" item_id="RD-B01-29" item_id2="RD-B01-29" kind="rare" include_exclude="include" match_type="exact" icd_start="G12.2"/>
+    <map map_id="RB013000" item_id="RD-B01-30" item_id2="RD-B01-30" kind="rare" include_exclude="include" match_type="exact" icd_start="G47.35"/>
+    <map map_id="RB013100" item_id="RD-B01-31" item_id2="RD-B01-31" kind="rare" include_exclude="include" match_type="exact" icd_start="Q85.8"/>
+    <map map_id="RB013200" item_id="RD-B01-32" item_id2="RD-B01-32" kind="rare" include_exclude="include" match_type="exact" icd_start="F78.A9"/>
+    <map map_id="RB013300" item_id="RD-B01-33" item_id2="RD-B01-33" kind="rare" include_exclude="include" match_type="exact" icd_start="G25.5"/>
+    <map map_id="RC010100" item_id="RD-C01-01" item_id2="RD-C01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q28.8"/>
+    <map map_id="RC010200" item_id="RD-C01-02" item_id2="RD-C01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E84.9"/>
+    <map map_id="RC010300" item_id="RD-C01-03" item_id2="RD-C01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="I27.0"/>
+    <map map_id="RC010400" item_id="RD-C01-04" item_id2="RD-C01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.2"/>
+    <map map_id="RC010500" item_id="RD-C01-05" item_id2="RD-C01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.09"/>
+    <map map_id="RC010600" item_id="RD-C01-06" item_id2="RD-C01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="I78.0"/>
+    <map map_id="RC010700" item_id="RD-C01-07" item_id2="RD-C01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="Q77.2"/>
+    <map map_id="RD010100" item_id="RD-D01-01" item_id2="RD-D01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="K83.1"/>
+    <map map_id="RD010200" item_id="RD-D01-02" item_id2="RD-D01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E78.70"/>
+    <map map_id="RD010300" item_id="RD-D01-03" item_id2="RD-D01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E88.01"/>
+    <map map_id="RD010400" item_id="RD-D01-04" item_id2="RD-D01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="Q43.8"/>
+    <map map_id="RD010500" item_id="RD-D01-05" item_id2="RD-D01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="Q44.7"/>
+    <map map_id="RD010600" item_id="RD-D01-06" item_id2="RD-D01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q89.7"/>
+    <map map_id="RE010100" item_id="RD-E01-01" item_id2="RD-E01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.03"/>
+    <map map_id="RE010200" item_id="RD-E01-02" item_id2="RD-E01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E26.81"/>
+    <map map_id="RE010300" item_id="RD-E01-03" item_id2="RD-E01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="Q61.19"/>
+    <map map_id="RE010400" item_id="RD-E01-04" item_id2="RD-E01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.81"/>
+    <map map_id="RF010100" item_id="RD-F01-01" item_id2="RD-F01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q81.0" sort="1"/>
+    <map map_id="RF010101" item_id="RD-F01-01" item_id2="RD-F01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q81.1" sort="2"/>
+    <map map_id="RF010102" item_id="RD-F01-01" item_id2="RD-F01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q81.2" sort="3"/>
+    <map map_id="RF010103" item_id="RD-F01-01" item_id2="RD-F01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q81.8" sort="4"/>
+    <map map_id="RF010104" item_id="RD-F01-01" item_id2="RD-F01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q81.9" sort="5"/>
+    <map map_id="RF010200" item_id="RD-F01-02" item_id2="RD-F01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="Q80.2"/>
+    <map map_id="RF010300" item_id="RD-F01-03" item_id2="RD-F01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="Q80.2"/>
+    <map map_id="RF010400" item_id="RD-F01-04" item_id2="RD-F01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="Q80.4"/>
+    <map map_id="RF010500" item_id="RD-F01-05" item_id2="RD-F01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="Q80.3"/>
+    <map map_id="RF010600" item_id="RD-F01-06" item_id2="RD-F01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q82.4"/>
+    <map map_id="RF010700" item_id="RD-F01-07" item_id2="RD-F01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="Q82.8"/>
+    <map map_id="RF010800" item_id="RD-F01-08" item_id2="RD-F01-08" kind="rare" include_exclude="include" match_type="exact" icd_start="Q82.8"/>
+    <map map_id="RF010900" item_id="RD-F01-09" item_id2="RD-F01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="Q82.8"/>
+    <map map_id="RF011000" item_id="RD-F01-10" item_id2="RD-F01-10" kind="rare" include_exclude="include" match_type="exact" icd_start="Q82.8"/>
+    <map map_id="RF011100" item_id="RD-F01-11" item_id2="RD-F01-11" kind="rare" include_exclude="include" match_type="exact" icd_start="Q82.3"/>
+    <map map_id="RG010100" item_id="RD-G01-01" item_id2="RD-G01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.01"/>
+    <map map_id="RG010200" item_id="RD-G01-02" item_id2="RD-G01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.21"/>
+    <map map_id="RG010300" item_id="RD-G01-03" item_id2="RD-G01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.13"/>
+    <map map_id="RG010400" item_id="RD-G01-04" item_id2="RD-G01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.11"/>
+    <map map_id="RG010500" item_id="RD-G01-05" item_id2="RD-G01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.02"/>
+    <map map_id="RG010600" item_id="RD-G01-06" item_id2="RD-G01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.220"/>
+    <map map_id="RG010700" item_id="RD-G01-07" item_id2="RD-G01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.01"/>
+    <map map_id="RG010800" item_id="RD-G01-08" item_id2="RD-G01-08" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
+    <map map_id="RG010900" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.031" sort="1"/>
+    <map map_id="RG010901" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.032" sort="2"/>
+    <map map_id="RG010902" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.033" sort="3"/>
+    <map map_id="RG010903" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.0340" sort="4"/>
+    <map map_id="RG010904" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.0341" sort="5"/>
+    <map map_id="RG010905" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.0342" sort="6"/>
+    <map map_id="RG010906" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.0349" sort="7"/>
+    <map map_id="RG010907" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.035" sort="8"/>
+    <map map_id="RG010908" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.038" sort="9"/>
+    <map map_id="RG010909" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.039" sort="10"/>
+    <map map_id="RG011000" item_id="RD-G01-10" item_id2="RD-G01-10" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.09"/>
+    <map map_id="RG011100" item_id="RD-G01-11" item_id2="RD-G01-11" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.29"/>
+    <map map_id="RG011200" item_id="RD-G01-12" item_id2="RD-G01-12" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.29"/>
+    <map map_id="RG011300" item_id="RD-G01-13" item_id2="RD-G01-13" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.00" sort="1"/>
+    <map map_id="RG011301" item_id="RD-G01-13" item_id2="RD-G01-13" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.09" sort="2"/>
+    <map map_id="RG011400" item_id="RD-G01-14" item_id2="RD-G01-14" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.8"/>
+    <map map_id="RG011500" item_id="RD-G01-15" item_id2="RD-G01-15" kind="rare" include_exclude="include" match_type="exact" icd_start="D69.8"/>
+    <map map_id="RH010100" item_id="RD-H01-01" item_id2="RD-H01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q77.4"/>
+    <map map_id="RH010200" item_id="RD-H01-02" item_id2="RD-H01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="Q78.0"/>
+    <map map_id="RH010300" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.0" sort="1"/>
+    <map map_id="RH010301" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.1" sort="2"/>
+    <map map_id="RH010302" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.811" sort="3"/>
+    <map map_id="RH010303" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.812" sort="4"/>
+    <map map_id="RH010304" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.819" sort="5"/>
+    <map map_id="RH010305" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.821" sort="6"/>
+    <map map_id="RH010306" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.822" sort="7"/>
+    <map map_id="RH010307" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.829" sort="8"/>
+    <map map_id="RH010308" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.831" sort="9"/>
+    <map map_id="RH010309" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.832" sort="10"/>
+    <map map_id="RH010310" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.839" sort="11"/>
+    <map map_id="RH010311" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.841" sort="12"/>
+    <map map_id="RH010312" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.842" sort="13"/>
+    <map map_id="RH010313" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.849" sort="14"/>
+    <map map_id="RH010314" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.851" sort="15"/>
+    <map map_id="RH010315" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.852" sort="16"/>
+    <map map_id="RH010316" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.859" sort="17"/>
+    <map map_id="RH010317" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.861" sort="18"/>
+    <map map_id="RH010318" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.862" sort="19"/>
+    <map map_id="RH010319" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.869" sort="20"/>
+    <map map_id="RH010320" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.871" sort="21"/>
+    <map map_id="RH010321" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.872" sort="22"/>
+    <map map_id="RH010322" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.879" sort="23"/>
+    <map map_id="RH010323" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.88" sort="24"/>
+    <map map_id="RH010324" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.89" sort="25"/>
+    <map map_id="RH010325" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.9" sort="26"/>
+    <map map_id="RH010400" item_id="RD-H01-04" item_id2="RD-H01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="Q74.0"/>
+    <map map_id="RH010500" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.10" sort="1"/>
+    <map map_id="RH010501" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.111" sort="2"/>
+    <map map_id="RH010502" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.112" sort="3"/>
+    <map map_id="RH010503" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.119" sort="4"/>
+    <map map_id="RH010504" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.121" sort="5"/>
+    <map map_id="RH010505" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.122" sort="6"/>
+    <map map_id="RH010506" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.129" sort="7"/>
+    <map map_id="RH010507" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.131" sort="8"/>
+    <map map_id="RH010508" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.132" sort="9"/>
+    <map map_id="RH010509" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.139" sort="10"/>
+    <map map_id="RH010510" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.141" sort="11"/>
+    <map map_id="RH010511" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.142" sort="12"/>
+    <map map_id="RH010512" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.143" sort="13"/>
+    <map map_id="RH010513" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.144" sort="14"/>
+    <map map_id="RH010514" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.145" sort="15"/>
+    <map map_id="RH010515" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.146" sort="16"/>
+    <map map_id="RH010516" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.151" sort="17"/>
+    <map map_id="RH010517" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.152" sort="18"/>
+    <map map_id="RH010518" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.159" sort="19"/>
+    <map map_id="RH010519" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.161" sort="20"/>
+    <map map_id="RH010520" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.162" sort="21"/>
+    <map map_id="RH010521" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.169" sort="22"/>
+    <map map_id="RH010522" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.171" sort="23"/>
+    <map map_id="RH010523" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.172" sort="24"/>
+    <map map_id="RH010524" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.173" sort="25"/>
+    <map map_id="RH010525" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.174" sort="26"/>
+    <map map_id="RH010526" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.175" sort="27"/>
+    <map map_id="RH010527" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.176" sort="28"/>
+    <map map_id="RH010528" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.177" sort="29"/>
+    <map map_id="RH010529" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.178" sort="30"/>
+    <map map_id="RH010530" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.179" sort="31"/>
+    <map map_id="RH010531" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.18" sort="32"/>
+    <map map_id="RH010532" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.19" sort="33"/>
+    <map map_id="RH010600" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q71.60" sort="1"/>
+    <map map_id="RH010601" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q71.61" sort="2"/>
+    <map map_id="RH010602" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q71.62" sort="3"/>
+    <map map_id="RH010603" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q71.63" sort="4"/>
+    <map map_id="RH010604" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q72.70" sort="5"/>
+    <map map_id="RH010605" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q72.71" sort="6"/>
+    <map map_id="RH010606" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q72.72" sort="7"/>
+    <map map_id="RH010607" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q72.73" sort="8"/>
+    <map map_id="RH010700" item_id="RD-H01-07" item_id2="RD-H01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="Q78.2"/>
+    <map map_id="RH010800" item_id="RD-H01-08" item_id2="RD-H01-08" kind="rare" include_exclude="include" match_type="exact" icd_start="Q77.8"/>
+    <map map_id="RH010900" item_id="RD-H01-09" item_id2="RD-H01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="Q78.3"/>
+    <map map_id="RH011000" item_id="RD-H01-10" item_id2="RD-H01-10" kind="rare" include_exclude="include" match_type="exact" icd_start="Q78.8"/>
+    <map map_id="RH011100" item_id="RD-H01-11" item_id2="RD-H01-11" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
+    <map map_id="RH011200" item_id="RD-H01-12" item_id2="RD-H01-12" kind="rare" include_exclude="include" match_type="exact" icd_start="Q75.1"/>
+    <map map_id="RH011300" item_id="RD-H01-13" item_id2="RD-H01-13" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
+    <map map_id="RI010100" item_id="RD-I01-01" item_id2="RD-I01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q79.63"/>
+    <map map_id="RJ010100" item_id="RD-J01-01" item_id2="RD-J01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="D56.0" sort="1"/>
+    <map map_id="RJ010101" item_id="RD-J01-01" item_id2="RD-J01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="D56.1" sort="2"/>
+    <map map_id="RJ010200" item_id="RD-J01-02" item_id2="RD-J01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="D69.1"/>
+    <map map_id="RJ010300" item_id="RD-J01-03" item_id2="RD-J01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="D68.59"/>
+    <map map_id="RJ010400" item_id="RD-J01-04" item_id2="RD-J01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="D59.5"/>
+    <map map_id="RJ010500" item_id="RD-J01-05" item_id2="RD-J01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M31.19"/>
+    <map map_id="RK010100" item_id="RD-K01-01" item_id2="RD-K01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="D71"/>
+    <map map_id="RK010200" item_id="RD-K01-02" item_id2="RD-K01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="D82.4"/>
+    <map map_id="RK010300" item_id="RD-K01-03" item_id2="RD-K01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="D80.0"/>
+    <map map_id="RK010400" item_id="RD-K01-04" item_id2="RD-K01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="D82.0"/>
+    <map map_id="RK010500" item_id="RD-K01-05" item_id2="RD-K01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="D81.0" sort="1"/>
+    <map map_id="RK010501" item_id="RD-K01-05" item_id2="RD-K01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="D81.1" sort="2"/>
+    <map map_id="RK010502" item_id="RD-K01-05" item_id2="RD-K01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="D81.2" sort="3"/>
+    <map map_id="RK010503" item_id="RD-K01-05" item_id2="RD-K01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="D81.31" sort="4"/>
+    <map map_id="RK010504" item_id="RD-K01-05" item_id2="RD-K01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="D81.9" sort="5"/>
+    <map map_id="RK010600" item_id="RD-K01-06" item_id2="RD-K01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="D84.1"/>
+    <map map_id="RK010700" item_id="RD-K01-07" item_id2="RD-K01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="E31.0"/>
+    <map map_id="RK010800" item_id="RD-K01-08" item_id2="RD-K01-08" kind="rare" include_exclude="include" match_type="exact" icd_start="D80.5"/>
+    <map map_id="RK010900" item_id="RD-K01-09" item_id2="RD-K01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="D84.89"/>
+    <map map_id="RK011000" item_id="RD-K01-10" item_id2="RD-K01-10" kind="rare" include_exclude="include" match_type="exact" icd_start="D84.1"/>
+    <map map_id="RK011100" item_id="RD-K01-11" item_id2="RD-K01-11" kind="rare" include_exclude="include" match_type="exact" icd_start="Q80.8"/>
+    <map map_id="RK011200" item_id="RD-K01-12" item_id2="RD-K01-12" kind="rare" include_exclude="include" match_type="exact" icd_start="D59.32" sort="1"/>
+    <map map_id="RK011201" item_id="RD-K01-12" item_id2="RD-K01-12" kind="rare" include_exclude="include" match_type="exact" icd_start="D59.39" sort="2"/>
+    <map map_id="RL010100" item_id="RD-L01-01" item_id2="RD-L01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.1"/>
+    <map map_id="RL010200" item_id="RD-L01-02" item_id2="RD-L01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E20.1"/>
+    <map map_id="RL010300" item_id="RD-L01-03" item_id2="RD-L01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E83.31"/>
+    <map map_id="RL010400" item_id="RD-L01-04" item_id2="RD-L01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E34.321"/>
+    <map map_id="RL010500" item_id="RD-L01-05" item_id2="RD-L01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
+    <map map_id="RL010600" item_id="RD-L01-06" item_id2="RD-L01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
+    <map map_id="RL010700" item_id="RD-L01-07" item_id2="RD-L01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="E16.1"/>
+    <map map_id="RL010800" item_id="RD-L01-08" item_id2="RD-L01-08" kind="rare" include_exclude="include" match_type="exact" icd_start="E88.9"/>
+    <map map_id="RL010900" item_id="RD-L01-09" item_id2="RD-L01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="Q78.1"/>
+    <map map_id="RL011000" item_id="RD-L01-10" item_id2="RD-L01-10" kind="rare" include_exclude="include" match_type="exact" icd_start="Q99.8"/>
+    <map map_id="RL011100" item_id="RD-L01-11" item_id2="RD-L01-11" kind="rare" include_exclude="include" match_type="exact" icd_start="E27.49"/>
+    <map map_id="RL011200" item_id="RD-L01-12" item_id2="RD-L01-12" kind="rare" include_exclude="include" match_type="exact" icd_start="E83.32"/>
+    <map map_id="RL011300" item_id="RD-L01-13" item_id2="RD-L01-13" kind="rare" include_exclude="include" match_type="exact" icd_start="Q89.1"/>
+    <map map_id="RL011400" item_id="RD-L01-14" item_id2="RD-L01-14" kind="rare" include_exclude="include" match_type="exact" icd_start="E23.0"/>
+    <map map_id="RL011500" item_id="RD-L01-15" item_id2="RD-L01-15" kind="rare" include_exclude="include" match_type="exact" icd_start="P70.2"/>
+    <map map_id="RL011600" item_id="RD-L01-16" item_id2="RD-L01-16" kind="rare" include_exclude="include" match_type="exact" icd_start="Q89.8"/>
+    <map map_id="RM010100" item_id="RD-M01-01" item_id2="RD-M01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.19"/>
+    <map map_id="RM010200" item_id="RD-M01-02" item_id2="RD-M01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
+    <map map_id="RM010300" item_id="RD-M01-03" item_id2="RD-M01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
+    <map map_id="RM010400" item_id="RD-M01-04" item_id2="RD-M01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E78.72"/>
+    <map map_id="RM010500" item_id="RD-M01-05" item_id2="RD-M01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="Q74.8"/>
+    <map map_id="RM010600" item_id="RD-M01-06" item_id2="RD-M01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.3"/>
+    <map map_id="RM010700" item_id="RD-M01-07" item_id2="RD-M01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
+    <map map_id="RM010800" item_id="RD-M01-08" item_id2="RD-M01-08" kind="rare" include_exclude="include" match_type="exact" icd_start="Q79.8"/>
+    <map map_id="RM010900" item_id="RD-M01-09" item_id2="RD-M01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.19"/>
+    <map map_id="RM011000" item_id="RD-M01-10" item_id2="RD-M01-10" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
+    <map map_id="RM011100" item_id="RD-M01-11" item_id2="RD-M01-11" kind="rare" include_exclude="include" match_type="exact" icd_start="Q89.8"/>
+    <map map_id="RM011200" item_id="RD-M01-12" item_id2="RD-M01-12" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
+    <map map_id="RM011300" item_id="RD-M01-13" item_id2="RD-M01-13" kind="rare" include_exclude="include" match_type="exact" icd_start="Q77.3"/>
+    <map map_id="RM011400" item_id="RD-M01-14" item_id2="RD-M01-14" kind="rare" include_exclude="include" match_type="exact" icd_start="Q75.4"/>
+    <map map_id="RM011500" item_id="RD-M01-15" item_id2="RD-M01-15" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
+    <map map_id="RM011600" item_id="RD-M01-16" item_id2="RD-M01-16" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.2"/>
+    <map map_id="RM011700" item_id="RD-M01-17" item_id2="RD-M01-17" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
+    <map map_id="RM011800" item_id="RD-M01-18" item_id2="RD-M01-18" kind="rare" include_exclude="include" match_type="exact" icd_start="Q13.4"/>
+    <map map_id="RM011900" item_id="RD-M01-19" item_id2="RD-M01-19" kind="rare" include_exclude="include" match_type="exact" icd_start="Q75.4"/>
+    <map map_id="RM012000" item_id="RD-M01-20" item_id2="RD-M01-20" kind="rare" include_exclude="include" match_type="exact" icd_start="Q89.8"/>
+    <map map_id="RM012100" item_id="RD-M01-21" item_id2="RD-M01-21" kind="rare" include_exclude="include" match_type="exact" icd_start="Q99.8" sort="1"/>
+    <map map_id="RM012101" item_id="RD-M01-21" item_id2="RD-M01-21" kind="rare" include_exclude="include" match_type="exact" icd_start="F84.8" sort="2"/>
+    <map map_id="RM012102" item_id="RD-M01-21" item_id2="RD-M01-21" kind="rare" include_exclude="include" match_type="exact" icd_start="F78" sort="3"/>
+    <map map_id="RM012200" item_id="RD-M01-22" item_id2="RD-M01-22" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
+    <map map_id="RM012300" item_id="RD-M01-23" item_id2="RD-M01-23" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
+    <map map_id="RM012400" item_id="RD-M01-24" item_id2="RD-M01-24" kind="rare" include_exclude="include" match_type="exact" icd_start="Q89.8"/>
+    <map map_id="RM012500" item_id="RD-M01-25" item_id2="RD-M01-25" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
+    <map map_id="RM012600" item_id="RD-M01-26" item_id2="RD-M01-26" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.5"/>
+    <map map_id="RM012700" item_id="RD-M01-27" item_id2="RD-M01-27" kind="rare" include_exclude="include" match_type="exact" icd_start="E88.1"/>
+    <map map_id="RM012800" item_id="RD-M01-28" item_id2="RD-M01-28" kind="rare" include_exclude="include" match_type="exact" icd_start="Q83.51"/>
+    <map map_id="RM012900" item_id="RD-M01-29" item_id2="RD-M01-29" kind="rare" include_exclude="include" match_type="exact" icd_start="D82.1"/>
+    <map map_id="RM013000" item_id="RD-M01-30" item_id2="RD-M01-30" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.11"/>
+    <map map_id="RM013100" item_id="RD-M01-31" item_id2="RD-M01-31" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
+    <map map_id="RM013200" item_id="RD-M01-32" item_id2="RD-M01-32" kind="rare" include_exclude="include" match_type="exact" icd_start="Q93.88"/>
+    <map map_id="RM013300" item_id="RD-M01-33" item_id2="RD-M01-33" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.2"/>
+    <map map_id="RM013400" item_id="RD-M01-34" item_id2="RD-M01-34" kind="rare" include_exclude="include" match_type="exact" icd_start="Q93.82"/>
+    <map map_id="RM013500" item_id="RD-M01-35" item_id2="RD-M01-35" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
+    <map map_id="RM013600" item_id="RD-M01-36" item_id2="RD-M01-36" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.3"/>
+    <map map_id="RM013700" item_id="RD-M01-37" item_id2="RD-M01-37" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
+    <map map_id="RM013800" item_id="RD-M01-38" item_id2="RD-M01-38" kind="rare" include_exclude="include" match_type="exact" icd_start="E34.8"/>
+    <map map_id="RM013900" item_id="RD-M01-39" item_id2="RD-M01-39" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.19"/>
+    <map map_id="RM014000" item_id="RD-M01-40" item_id2="RD-M01-40" kind="rare" include_exclude="include" match_type="exact" icd_start="Q04.3"/>
+    <map map_id="RN010100" item_id="RD-N01-01" item_id2="RD-N01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="H35.50"/>
+    <map map_id="RN010200" item_id="RD-N01-02" item_id2="RD-N01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="H35.50"/>
+    <map map_id="RN010300" item_id="RD-N01-03" item_id2="RD-N01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="H35.50"/>
+  </code_maps>
+</mird>
