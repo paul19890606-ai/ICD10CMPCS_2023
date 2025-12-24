@@ -445,6 +445,30 @@
       border-left:5px solid #f97316;
     }
     .tabular-detail-card.rule-7th .tabular-detail-title{ color:#c2410c; }
+
+    .tabular-detail-card.rule-policy-major{
+      background:#f5f0ff;
+      border:1px solid rgba(91,33,182,0.22);
+      border-left:5px solid #7c3aed;
+    }
+    .tabular-detail-card.rule-policy-major .tabular-detail-title{ color:#5b21b6; }
+
+    .tabular-detail-card.rule-policy-rare{
+      background:#fff7ed;
+      border:1px solid rgba(146,64,14,0.20);
+      border-left:5px solid #f97316;
+    }
+    .tabular-detail-card.rule-policy-rare .tabular-detail-title{ color:#92400e; }
+
+    .mird-subdesc{
+      margin-top:4px;
+      font-size:12px;
+      line-height:1.4;
+    }
+    .mird-subdesc.en{ color:#555; }
+.mird-subdesc.note{ color:#1e40af; }
+.mird-subdesc.seventh{ color:#1e40af; }
+
 .tabular-detail-title {
       font-weight: 600;
       margin-bottom: 4px;
@@ -570,6 +594,9 @@
     .rule-tag.excludes1{ background:#fdecea; color:#b42318; border-color: rgba(180,35,24,0.25); }
     .rule-tag.excludes2{ background:#fff1f0; color:#a8071a; border-color: rgba(168,7,26,0.22); }
     .rule-tag.seventh{ background:#fff4e5; color:#8a4b00; border-color: rgba(138,75,0,0.25); }
+
+    .rule-tag.policy-major{ background:#ede9fe; color:#5b21b6; border-color: rgba(91,33,182,0.25); }
+    .rule-tag.policy-rare{ background:#fffbeb; color:#92400e; border-color: rgba(146,64,14,0.22); }
 .modal-code-row .desc {
       color: #1f2933;
       flex: 1;
@@ -2548,6 +2575,267 @@ const statusIndex = document.getElementById("statusIndex");
       tabular: "https://raw.githubusercontent.com/paul19890606-ai/ICD10_NewProject_V2/refs/heads/main/icd10cm_tabular_2023.xml",
     };
 
+    // ===== 重大傷病 / 罕見疾病（MIRD）=====
+    // 以自訂 XML（非 Excel 的 SpreadsheetML）載入規則：
+    // https://raw.githubusercontent.com/paul19890606-ai/ICD10CMPCS_2023/refs/heads/main/MIRD_OK_custom.xml
+    const POLICY_MIRD_URL = "https://raw.githubusercontent.com/paul19890606-ai/ICD10CMPCS_2023/refs/heads/main/MIRD_OK_custom.xml";
+
+    let mirdItemsById = new Map();     // item_id -> {kind, item_name_zh, item_name_en, validity_years}
+    let mirdMaps = [];                // list of mapping rows
+    let mirdLoaded = false;
+
+    function icdCompact(code){
+      return (normalizeCodeDash(code) || "").toUpperCase().replace(/\./g,"").replace(/-/g,"");
+    }
+    function icdSortable(code){
+      // Stable-ish lexical comparable key for ICD-10-CM codes (A00.0 style)
+      const c = icdCompact(code);
+      if (!c) return "";
+      const letter = c.charAt(0);
+      const d2 = (c.slice(1,3) || "").padEnd(2,"0");
+      const rest = (c.slice(3) || "").padEnd(4,"0"); // pad for consistent comparison
+      return `${letter}${d2}${rest}`;
+    }
+    function icdInRange(code, start, end){
+      const k = icdSortable(code);
+      const ks = icdSortable(start);
+      const ke = icdSortable(end);
+      if(!k || !ks || !ke) return false;
+      return k >= ks && k <= ke;
+    }
+    function mirdRuleMatchesCode(rule, code){
+      const mt = (rule.match_type || "").toLowerCase();
+      const c = icdCompact(code);
+      const s = icdCompact(rule.icd_start || rule.icdStart || "");
+      const e = icdCompact(rule.icd_end || rule.icdEnd || "");
+      if(!c || !s) return false;
+      if(mt === "exact"){
+        return c === s;
+      }
+      if(mt === "prefix"){
+        return c.startsWith(s);
+      }
+      if(mt === "range"){
+        if(!e) return false;
+
+        // Strict match for full codes
+        if (icdInRange(c, s, e)) return true;
+
+        // Fallback: if the displayed code is a prefix/incomplete code (e.g., "S12.0"),
+        // determine whether its possible completions overlap the [start,end] interval.
+        // This allows surfacing the '重大/罕病' badge at non-leaf nodes.
+        const len = Math.max(s.length, e.length);
+        const sKey = s.padEnd(len, "0");
+        const eKey = e.padEnd(len, "Z");
+        const cLow = c.padEnd(len, "0");
+        const cHigh = c.padEnd(len, "Z");
+        return (cHigh >= sKey) && (cLow <= eKey);
+      }
+      return false;
+    }
+
+    function getMirdMatchesForCode(code){
+      // returns {major:boolean, rare:boolean, items:[{item, maps:[map..]}], byKind:{major:[],rare:[]}}
+      const hitsByItem = new Map(); // item_id -> {item, maps:[]}
+      const codeStr = normalizeCodeDash(code);
+
+      // 1) collect include hits
+      mirdMaps.forEach((m) => {
+        if ((m.include_exclude || "").toLowerCase() !== "include") return;
+        if (!mirdRuleMatchesCode(m, codeStr)) return;
+        const id = m.item_id || m.itemId || "";
+        if (!id) return;
+        if (!hitsByItem.has(id)) {
+          hitsByItem.set(id, { item: mirdItemsById.get(id) || null, maps: [] });
+        }
+        hitsByItem.get(id).maps.push(m);
+      });
+
+      // 2) apply excludes per item
+      const finalItems = [];
+      hitsByItem.forEach((obj, id) => {
+        const excluded = mirdMaps.some((m) => {
+          if ((m.include_exclude || "").toLowerCase() !== "exclude") return false;
+          const mid = m.item_id || m.itemId || "";
+          if (mid !== id) return false;
+          return mirdRuleMatchesCode(m, codeStr);
+        });
+        if (!excluded) finalItems.push({ item_id: id, item: obj.item, maps: obj.maps });
+      });
+
+      const byKind = { major: [], rare: [] };
+      finalItems.forEach((x) => {
+        const kind = ((x.item && x.item.kind) || x.maps[0]?.kind || "").toLowerCase();
+        if (kind === "rare") byKind.rare.push(x);
+        else if (kind === "major") byKind.major.push(x);
+      });
+
+      return {
+        major: byKind.major.length > 0,
+        rare: byKind.rare.length > 0,
+        items: finalItems,
+        byKind
+      };
+    }
+
+    async function loadMirdPolicyXml(){
+      try{
+        const resp = await fetch(POLICY_MIRD_URL, {cache:"no-cache"});
+        if(!resp.ok) throw new Error("HTTP " + resp.status);
+        const text = await resp.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, "application/xml");
+        const err = doc.getElementsByTagName("parsererror")[0];
+        if(err) throw new Error("XML parse error");
+        mirdItemsById = new Map();
+        mirdMaps = [];
+
+        // items
+        const itemsRoot = doc.getElementsByTagName("policy_items")[0];
+        if(itemsRoot){
+          Array.from(itemsRoot.getElementsByTagName("item")).forEach((it) => {
+            const item_id = it.getAttribute("item_id") || it.getAttribute("id") || "";
+            if(!item_id) return;
+            const kind = (it.getAttribute("kind") || "").trim().toLowerCase();
+            const item_name_zh = normalizeText(it.getElementsByTagName("item_name_zh")[0]?.textContent || "");
+            const item_name_en = normalizeText(it.getElementsByTagName("item_name_en")[0]?.textContent || "");
+            const validity_years = normalizeText(it.getElementsByTagName("validity_years")[0]?.textContent || "");
+            mirdItemsById.set(item_id, { item_id, kind, item_name_zh, item_name_en, validity_years });
+          });
+        }
+
+        // maps
+        const mapsRoot = doc.getElementsByTagName("code_maps")[0];
+        if(mapsRoot){
+          Array.from(mapsRoot.getElementsByTagName("map")).forEach((mp) => {
+            const map_id = mp.getAttribute("map_id") || mp.getAttribute("id") || "";
+            const item_id = mp.getAttribute("item_id") || mp.getAttribute("itemId") || "";
+            if(!map_id || !item_id) return;
+            const kind = (mp.getAttribute("kind") || "").trim().toLowerCase();
+            const include_exclude = (mp.getAttribute("include_exclude") || mp.getAttribute("includeExclude") || "").trim().toLowerCase();
+            const match_type = (mp.getAttribute("match_type") || mp.getAttribute("matchType") || "").trim().toLowerCase();
+            const icd_start = (mp.getAttribute("icd_start") || mp.getAttribute("icdStart") || "").trim().toUpperCase();
+            const icd_end = (mp.getAttribute("icd_end") || mp.getAttribute("icdEnd") || "").trim().toUpperCase();
+            const sort = (mp.getAttribute("sort") || "").trim();
+
+            const desc_zh = normalizeText(mp.getElementsByTagName("desc_zh")[0]?.textContent || "");
+            const desc_en = normalizeText(mp.getElementsByTagName("desc_en")[0]?.textContent || "");
+
+            const item_id2 = (mp.getAttribute("item_id2") || "").trim();
+            const note = ((mp.getAttribute("note") || "") || normalizeText(mp.getElementsByTagName("note")[0]?.textContent || "")).trim();
+            const seventh = ((mp.getAttribute("seventh") || mp.getAttribute("7th") || "") || normalizeText(mp.getElementsByTagName("seventh")[0]?.textContent || "")).trim();
+
+            mirdMaps.push({ map_id, item_id, item_id2, kind, include_exclude, match_type, icd_start, icd_end, sort, note, seventh, desc_zh, desc_en });
+          });
+        }
+
+        // Stable sort: by item_id then numeric sort
+        mirdMaps.sort((a,b)=>{
+          const ai = a.item_id.localeCompare(b.item_id);
+          if(ai!==0) return ai;
+          const sa = parseInt(a.sort||"0",10);
+          const sb = parseInt(b.sort||"0",10);
+          return sa-sb;
+        });
+
+        mirdLoaded = true;
+      }catch(e){
+        console.error("MIRD load failed:", e);
+        mirdLoaded = false;
+      }
+    }
+
+    function buildMirdPolicyTagsHtml(code){
+      if(!mirdLoaded) return "";
+      const hit = getMirdMatchesForCode(code);
+      const tags = [];
+      if(hit.major) tags.push({text:"重大", cls:"policy-major"});
+      if(hit.rare) tags.push({text:"罕病", cls:"policy-rare"});
+      if(!tags.length) return "";
+      return `<span class="rule-tags">${tags.map(t=>`<span class="rule-tag ${t.cls}">${t.text}</span>`).join("")}</span>`;
+    }
+
+    function buildMirdPolicyDetailCardsHtml(code){
+      if(!mirdLoaded) return "";
+      const hit = getMirdMatchesForCode(code);
+      if(!hit.major && !hit.rare) return "";
+
+      function fmtValidity(v){
+        const vv = (v || "").trim().toUpperCase();
+        if(!vv) return "";
+        if(vv === "PERM" || vv === "PERMANENT") return "永久";
+        // assume years
+        return `${v}年`;
+      }
+
+      const cards = [];
+      const pushKind = (kind, titleText, cardCls) => {
+        const list = hit.byKind[kind] || [];
+        if(!list.length) return;
+        let h = `<div class="tabular-detail-card ${cardCls}">`;
+        h += `<div class="tabular-detail-title">${titleText}</div>`;
+        h += `<ul>`;
+        list.forEach((x)=>{
+          const it = x.item || {};
+          const itemCode = (it.item_id || x.item_id || "").trim();
+          const nameZh = it.item_name_zh || "";
+          const nameEn = it.item_name_en || "";
+          const val = fmtValidity(it.validity_years || "");
+          const headParts = [];
+          if (itemCode) headParts.push(itemCode);
+          if (nameZh) headParts.push(nameZh);
+          if (nameEn) headParts.push(nameEn);
+          if (val) headParts.push(`有效期限：${val}`);
+          h += `<li>${headParts.join(" / ")}`;
+
+          // Show mapping-level bilingual descriptions (dedup)
+          const dz = new Set();
+          const de = new Set();
+          (x.maps||[]).forEach((m)=>{
+            if(m.desc_zh) dz.add(m.desc_zh);
+            if(m.desc_en) de.add(m.desc_en);
+          });
+          const dzArr = Array.from(dz).filter(Boolean);
+          const deArr = Array.from(de).filter(Boolean);
+
+
+// Show mapping-level notes / 7th (dedup, skip empty)
+const dn = new Set();
+const ds7 = new Set();
+(x.maps||[]).forEach((m)=>{
+  if(m.note) dn.add(m.note);
+  if(m.seventh) ds7.add(m.seventh);
+});
+const dnArr = Array.from(dn).filter(Boolean);
+const ds7Arr = Array.from(ds7).filter(Boolean);
+
+          if(dzArr.length){
+            h += `<div class="mird-subdesc zh">${dzArr.map(s=>`• ${s}`).join("<br>")}</div>`;
+          }
+          if(deArr.length){
+            h += `<div class="mird-subdesc en">${deArr.map(s=>`• ${s}`).join("<br>")}</div>`;
+          }
+
+if(dnArr.length){
+  h += `<div class="mird-subdesc note">${dnArr.map(s=>`• ${s}`).join("<br>")}</div>`;
+}
+if(ds7Arr.length){
+  h += `<div class="mird-subdesc seventh">• 7th：${ds7Arr.join(", ")}</div>`;
+}
+          h += `</li>`;
+        });
+        h += `</ul></div>`;
+        cards.push(h);
+      };
+
+      pushKind("major", "重大傷病", "rule-policy-major");
+      pushKind("rare", "罕見疾病", "rule-policy-rare");
+
+      return cards.join("");
+    }
+
+
+
     function setDot(el, state) {
       if (el) el.dataset.state = state;
       // state: "loading" | "ok" | "error" | ""
@@ -2662,6 +2950,8 @@ async function loadXmlFromUrl(type, url, dotEl) {
       loadXmlFromUrl("external", CLOUD_XML_URLS.external, document.getElementById("dotExternal"));
       loadXmlFromUrl("drug", CLOUD_XML_URLS.drug, document.getElementById("dotDrug"));
       loadXmlFromUrl("tabular", CLOUD_XML_URLS.tabular, document.getElementById("dotTabular"));
+      // Load MIRD policy tags (重大/罕病)
+      loadMirdPolicyXml();
       // Build cart slot grids once
       if (cmGrid && pcsGrid) {
         cmInputs = buildSlotGrid(cmGrid, "cm");
@@ -3888,6 +4178,7 @@ allowed.forEach((ch) => {
       const sectionLine = parentSegments[1] || "";
 
       let html = "";
+
       if (chapterLine) {
         html += `<div class="modal-section-header">${chapterLine}</div>`;
       }
@@ -3933,6 +4224,10 @@ allowed.forEach((ch) => {
               .join("")}</span>`
           : "";
 
+        // Policy tags (重大/罕病) from MIRD_OK_custom.xml
+        const policyTagsHtml = buildMirdPolicyTagsHtml(e.code);
+        const allTagsHtml = (tagsHtml || "") + (policyTagsHtml || "");
+
         // Status priority:
         // - non-leaf codes are always disabled, even if a parent defines 7th-character rules
         // - leaf codes that require 7th are marked as need7
@@ -3946,7 +4241,7 @@ allowed.forEach((ch) => {
   <span class="${pillClass}">
     ${addBtnHtml}${copyBtnHtml}<span class="code" data-code="${e.code}">${e.code}</span>
   </span>`;
-        html += `<span class="desc-wrap"><span class="desc-text">${e.title || ""}</span>${tagsHtml}</span>`;
+        html += `<span class="desc-wrap"><span class="desc-text">${e.title || ""}</span>${allTagsHtml}</span>`;
         html += `</div>`;
       });
 
@@ -4177,6 +4472,9 @@ function buildBlock(tagName, titleText, titleClass, options) {
       }
 
       let html = "";
+
+      // 0) 重大傷病 / 罕見疾病（僅點選代碼後在「代碼注意事項」顯示）
+      html += buildMirdPolicyDetailCardsHtml(codeInputNorm) || "";
 
       // 1) 代碼本身直接掛在 diag 底下的 inclusionTerm：優先顯示
       const diagInclusionTerms = Array.from(targetDiag.children).filter(
