@@ -1981,723 +1981,635 @@ due to premature infants to have admission care within three months birth.</item
     </item>
   </policy_items>
   <code_maps>
-    <map map_id="M010100" item_id="MI-01-01" item_id2="MI-01-01" kind="major" include_exclude="include" match_type="prefix" icd_start="C73"/>
-    <map map_id="M010200" item_id="MI-01-02" item_id2="MI-01-02" kind="major" include_exclude="include" match_type="range" icd_start="C00.0" icd_end="C06.9" sort="1"/>
-    <map map_id="M010201" item_id="MI-01-02" item_id2="MI-01-02" kind="major" include_exclude="include" match_type="range" icd_start="C09.0" icd_end="C10.9" sort="2"/>
-    <map map_id="M010202" item_id="MI-01-02" item_id2="MI-01-02" kind="major" include_exclude="include" match_type="range" icd_start="C12" icd_end="C14.8" sort="3"/>
-    <map map_id="M010300" item_id="MI-01-03" item_id2="MI-01-03" kind="major" include_exclude="include" match_type="range" icd_start="C50.011" icd_end="C50.929"/>
-    <map map_id="M010400" item_id="MI-01-04" item_id2="MI-01-04" kind="major" include_exclude="include" match_type="range" icd_start="C53.0" icd_end="C53.9" sort="1"/>
-    <map map_id="M010401" item_id="MI-01-04" item_id2="MI-01-04" kind="major" include_exclude="include" match_type="prefix" icd_start="C55" sort="2"/>
-    <map map_id="M010500" item_id="MI-01-05" item_id2="MI-01-05" kind="major" include_exclude="include" match_type="range" icd_start="C00.0" icd_end="C96.9" sort="1"/>
-    <map map_id="M010501" item_id="MI-01-05" item_id2="MI-01-05" kind="major" include_exclude="exclude" match_type="prefix" icd_start="C73" sort="2"/>
-    <map map_id="M010502" item_id="MI-01-05" item_id2="MI-01-05" kind="major" include_exclude="exclude" match_type="exact" icd_start="C94.4" sort="3"/>
-    <map map_id="M010503" item_id="MI-01-05" item_id2="MI-01-05" kind="major" include_exclude="exclude" match_type="exact" icd_start="C94.6" sort="4"/>
-    <map map_id="M020100" item_id="MI-02-01" item_id2="MI-02-01" kind="major" include_exclude="include" match_type="prefix" icd_start="D66"/>
-    <map map_id="M020200" item_id="MI-02-02" item_id2="MI-02-02" kind="major" include_exclude="include" match_type="prefix" icd_start="D67"/>
-    <map map_id="M020300" item_id="MI-02-03" item_id2="MI-02-03" kind="major" include_exclude="include" match_type="exact" icd_start="D68.1"/>
-    <map map_id="M020400" item_id="MI-02-04" item_id2="MI-02-04" kind="major" include_exclude="include" match_type="exact" icd_start="D68.2"/>
-    <map map_id="M030100" item_id="MI-03-01" item_id2="MI-03-01" kind="major" include_exclude="include" match_type="range" icd_start="D55.0" icd_end="D58.9"/>
-    <map map_id="M030200" item_id="MI-03-02" item_id2="MI-03-02" kind="major" include_exclude="include" match_type="range" icd_start="D59.0" icd_end="D59.9"/>
-    <map map_id="M030300" item_id="MI-03-03" item_id2="MI-03-03" kind="major" include_exclude="include" match_type="exact" icd_start="D46.4" sort="1"/>
-    <map map_id="M030301" item_id="MI-03-03" item_id2="MI-03-03" kind="major" include_exclude="include" match_type="range" icd_start="D60.0" icd_end="D60.9" sort="2"/>
-    <map map_id="M030302" item_id="MI-03-03" item_id2="MI-03-03" kind="major" include_exclude="include" match_type="range" icd_start="D61.01" icd_end="D61.9" sort="3"/>
-    <map map_id="M040100" item_id="MI-04-01" item_id2="MI-04-01" kind="major" include_exclude="include" match_type="exact" icd_start="N18.5" sort="1"/>
-    <map map_id="M040101" item_id="MI-04-01" item_id2="MI-04-01" kind="major" include_exclude="include" match_type="exact" icd_start="N18.6" sort="2"/>
-    <map map_id="M040200" item_id="MI-04-02" item_id2="MI-04-02" kind="major" include_exclude="include" match_type="exact" icd_start="I12.0"/>
-    <map map_id="M040300" item_id="MI-04-03" item_id2="MI-04-03" kind="major" include_exclude="include" match_type="exact" icd_start="I13.11" sort="1"/>
-    <map map_id="M040301" item_id="MI-04-03" item_id2="MI-04-03" kind="major" include_exclude="include" match_type="exact" icd_start="I13.2" sort="2"/>
-    <map map_id="M050100" item_id="MI-05-01" item_id2="MI-05-01" kind="major" include_exclude="include" match_type="range" icd_start="M32.0" icd_end="M32.9"/>
-    <map map_id="M050200" item_id="MI-05-02" item_id2="MI-05-02" kind="major" include_exclude="include" match_type="range" icd_start="M34.0" icd_end="M34.9"/>
-    <map map_id="M050300" item_id="MI-05-03" item_id2="MI-05-03" kind="major" include_exclude="include" match_type="range" icd_start="M05.70" icd_end="M06.09" sort="1"/>
-    <map map_id="M050301" item_id="MI-05-03" item_id2="MI-05-03" kind="major" include_exclude="include" match_type="range" icd_start="M06.20" icd_end="M06.39" sort="2"/>
-    <map map_id="M050302" item_id="MI-05-03" item_id2="MI-05-03" kind="major" include_exclude="include" match_type="range" icd_start="M06.80" icd_end="M06.8A" sort="3"/>
-    <map map_id="M050303" item_id="MI-05-03" item_id2="MI-05-03" kind="major" include_exclude="include" match_type="exact" icd_start="M06.9" sort="4"/>
-    <map map_id="M050304" item_id="MI-05-03" item_id2="MI-05-03" kind="major" include_exclude="include" match_type="range" icd_start="M08.00" icd_end="M08.9A" sort="5"/>
-    <map map_id="M050400" item_id="MI-05-04" item_id2="MI-05-04" kind="major" include_exclude="include" match_type="range" icd_start="M33.20" icd_end="M33.29"/>
-    <map map_id="M050500" item_id="MI-05-05" item_id2="MI-05-05" kind="major" include_exclude="include" match_type="range" icd_start="M33.00" icd_end="M33.19" sort="1"/>
-    <map map_id="M050501" item_id="MI-05-05" item_id2="MI-05-05" kind="major" include_exclude="include" match_type="range" icd_start="M33.90" icd_end="M33.99" sort="2"/>
-    <map map_id="M050502" item_id="MI-05-05" item_id2="MI-05-05" kind="major" include_exclude="include" match_type="exact" icd_start="M36.0" sort="3"/>
-    <map map_id="M050600" item_id="MI-05-06" item_id2="MI-05-06-01" kind="major" include_exclude="include" match_type="exact" icd_start="M30.0" sort="1"/>
-    <map map_id="M050601" item_id="MI-05-06" item_id2="MI-05-06-01" kind="major" include_exclude="include" match_type="exact" icd_start="M30.2" sort="2"/>
-    <map map_id="M050602" item_id="MI-05-06" item_id2="MI-05-06-01" kind="major" include_exclude="include" match_type="exact" icd_start="M30.8" sort="3"/>
-    <map map_id="M050603" item_id="MI-05-06" item_id2="MI-05-06-02" kind="major" include_exclude="include" match_type="exact" icd_start="M31.0"/>
-    <map map_id="M050604" item_id="MI-05-06" item_id2="MI-05-06-03" kind="major" include_exclude="include" match_type="exact" icd_start="M31.30" sort="1"/>
-    <map map_id="M050605" item_id="MI-05-06" item_id2="MI-05-06-03" kind="major" include_exclude="include" match_type="exact" icd_start="M31.31" sort="2"/>
-    <map map_id="M050606" item_id="MI-05-06" item_id2="MI-05-06-04" kind="major" include_exclude="include" match_type="exact" icd_start="M31.5" sort="1"/>
-    <map map_id="M050607" item_id="MI-05-06" item_id2="MI-05-06-04" kind="major" include_exclude="include" match_type="exact" icd_start="M31.6" sort="2"/>
-    <map map_id="M050608" item_id="MI-05-06" item_id2="MI-05-06-05" kind="major" include_exclude="include" match_type="exact" icd_start="I73.1"/>
-    <map map_id="M050609" item_id="MI-05-06" item_id2="MI-05-06-06" kind="major" include_exclude="include" match_type="exact" icd_start="M31.4"/>
-    <map map_id="M050610" item_id="MI-05-06" item_id2="MI-05-06-07" kind="major" include_exclude="include" match_type="exact" icd_start="M35.2"/>
-    <map map_id="M050700" item_id="MI-05-07" item_id2="MI-05-07" kind="major" include_exclude="include" match_type="range" icd_start="L10.0" icd_end="L10.9"/>
-    <map map_id="M050800" item_id="MI-05-08" item_id2="MI-05-08" kind="major" include_exclude="include" match_type="range" icd_start="M35.00" icd_end="M35.0C"/>
-    <map map_id="M050900" item_id="MI-05-09" item_id2="MI-05-09" kind="major" include_exclude="include" match_type="range" icd_start="K50.00" icd_end="K50.919"/>
-    <map map_id="M051000" item_id="MI-05-10" item_id2="MI-05-10" kind="major" include_exclude="include" match_type="range" icd_start="K51.00" icd_end="K51.919"/>
-    <map map_id="M051100" item_id="MI-05-11" item_id2="MI-05-11" kind="major" include_exclude="include" match_type="exact" icd_start="M30.3"/>
-    <map map_id="M060100" item_id="MI-06-01" item_id2="MI-06-01" kind="major" include_exclude="include" match_type="range" icd_start="F01.A11" icd_end="F01.C4" sort="1"/>
-    <map map_id="M060101" item_id="MI-06-01" item_id2="MI-06-01" kind="major" include_exclude="include" match_type="range" icd_start="F03.A11" icd_end="F03.C4" sort="2"/>
-    <map map_id="M060200" item_id="MI-06-02" item_id2="MI-06-02" kind="major" include_exclude="include" match_type="exact" icd_start="F05"/>
-    <map map_id="M060300" item_id="MI-06-03" item_id2="MI-06-03" kind="major" include_exclude="include" match_type="range" icd_start="F02.A11" icd_end="F02.C4" sort="1"/>
-    <map map_id="M060301" item_id="MI-06-03" item_id2="MI-06-03" kind="major" include_exclude="include" match_type="exact" icd_start="F06.0" sort="2"/>
-    <map map_id="M060302" item_id="MI-06-03" item_id2="MI-06-03" kind="major" include_exclude="include" match_type="exact" icd_start="F06.1" sort="3"/>
-    <map map_id="M060303" item_id="MI-06-03" item_id2="MI-06-03" kind="major" include_exclude="include" match_type="exact" icd_start="F06.8" sort="4"/>
-    <map map_id="M060400" item_id="MI-06-04" item_id2="MI-06-04" kind="major" include_exclude="include" match_type="range" icd_start="F20.0" icd_end="F20.9" sort="1"/>
-    <map map_id="M060401" item_id="MI-06-04" item_id2="MI-06-04" kind="major" include_exclude="include" match_type="range" icd_start="F25.0" icd_end="F25.9" sort="2"/>
-    <map map_id="M060500" item_id="MI-06-05" item_id2="MI-06-05" kind="major" include_exclude="include" match_type="range" icd_start="F30.10" icd_end="F30.13" sort="1"/>
-    <map map_id="M060501" item_id="MI-06-05" item_id2="MI-06-05" kind="major" include_exclude="include" match_type="range" icd_start="F30.2" icd_end="F30.9" sort="2"/>
-    <map map_id="M060502" item_id="MI-06-05" item_id2="MI-06-05" kind="major" include_exclude="include" match_type="range" icd_start="F31.0" icd_end="F31.9" sort="3"/>
-    <map map_id="M060503" item_id="MI-06-05" item_id2="MI-06-05" kind="major" include_exclude="include" match_type="range" icd_start="F32.2" icd_end="F32.5" sort="4"/>
-    <map map_id="M060504" item_id="MI-06-05" item_id2="MI-06-05" kind="major" include_exclude="include" match_type="range" icd_start="F33.2" icd_end="F33.9" sort="5"/>
-    <map map_id="M060600" item_id="MI-06-06" item_id2="MI-06-06" kind="major" include_exclude="include" match_type="exact" icd_start="F22"/>
-    <map map_id="M060700" item_id="MI-06-07" item_id2="MI-06-07-01" kind="major" include_exclude="include" match_type="exact" icd_start="F84.0"/>
-    <map map_id="M060701" item_id="MI-06-07" item_id2="MI-06-07-02" kind="major" include_exclude="include" match_type="exact" icd_start="F84.3"/>
-    <map map_id="M060702" item_id="MI-06-07" item_id2="MI-06-07-03" kind="major" include_exclude="include" match_type="exact" icd_start="F84.5" sort="1"/>
-    <map map_id="M060703" item_id="MI-06-07" item_id2="MI-06-07-03" kind="major" include_exclude="include" match_type="exact" icd_start="F84.8" sort="2"/>
-    <map map_id="M060800" item_id="MI-06-08" item_id2="MI-06-07-04" kind="major" include_exclude="include" match_type="exact" icd_start="F84.9"/>
-    <map map_id="M070100" item_id="MI-07-01" item_id2="MI-07-01" kind="major" include_exclude="include" match_type="range" icd_start="E00.0" icd_end="E00.9" sort="1"/>
-    <map map_id="M070101" item_id="MI-07-01" item_id2="MI-07-01" kind="major" include_exclude="include" match_type="exact" icd_start="E03.0" sort="2"/>
-    <map map_id="M070102" item_id="MI-07-01" item_id2="MI-07-01" kind="major" include_exclude="include" match_type="exact" icd_start="E03.1" sort="3"/>
-    <map map_id="M070200" item_id="MI-07-02" item_id2="MI-07-02" kind="major" include_exclude="include" match_type="range" icd_start="E10.10" icd_end="E10.9"/>
-    <map map_id="M070300" item_id="MI-07-03" item_id2="MI-07-03" kind="major" include_exclude="include" match_type="exact" icd_start="E23.2"/>
-    <map map_id="M070400" item_id="MI-07-04" item_id2="MI-07-04" kind="major" include_exclude="include" match_type="range" icd_start="E25.0" icd_end="E25.9"/>
-    <map map_id="M070500" item_id="MI-07-05" item_id2="MI-07-05" kind="major" include_exclude="include" match_type="range" icd_start="E70.0" icd_end="E71.2" sort="1"/>
-    <map map_id="M070501" item_id="MI-07-05" item_id2="MI-07-05" kind="major" include_exclude="include" match_type="range" icd_start="E72.00" icd_end="E72.51" sort="2"/>
-    <map map_id="M070502" item_id="MI-07-05" item_id2="MI-07-05" kind="major" include_exclude="include" match_type="exact" icd_start="E72.59" sort="3"/>
-    <map map_id="M070503" item_id="MI-07-05" item_id2="MI-07-05" kind="major" include_exclude="include" match_type="exact" icd_start="E72.8" sort="4"/>
-    <map map_id="M070504" item_id="MI-07-05" item_id2="MI-07-05" kind="major" include_exclude="include" match_type="exact" icd_start="E72.9" sort="5"/>
-    <map map_id="M070600" item_id="MI-07-06" item_id2="MI-07-06" kind="major" include_exclude="include" match_type="range" icd_start="E74.00" icd_end="E74.09"/>
-    <map map_id="M070700" item_id="MI-07-07" item_id2="MI-07-07" kind="major" include_exclude="include" match_type="range" icd_start="E74.20" icd_end="E74.29"/>
-    <map map_id="M070800" item_id="MI-07-08" item_id2="MI-07-08" kind="major" include_exclude="include" match_type="exact" icd_start="E78.1"/>
-    <map map_id="M070900" item_id="MI-07-09" item_id2="MI-07-09" kind="major" include_exclude="include" match_type="exact" icd_start="E88.1"/>
-    <map map_id="M071000" item_id="MI-07-10" item_id2="MI-07-10" kind="major" include_exclude="include" match_type="range" icd_start="E75.21" icd_end="E75.22" sort="1"/>
-    <map map_id="M071001" item_id="MI-07-10" item_id2="MI-07-10" kind="major" include_exclude="include" match_type="range" icd_start="E75.240" icd_end="E75.249" sort="2"/>
-    <map map_id="M071002" item_id="MI-07-10" item_id2="MI-07-10" kind="major" include_exclude="include" match_type="exact" icd_start="E75.3" sort="3"/>
-    <map map_id="M071003" item_id="MI-07-10" item_id2="MI-07-10" kind="major" include_exclude="include" match_type="range" icd_start="E77.0" icd_end="E77.9" sort="4"/>
-    <map map_id="M071100" item_id="MI-07-11" item_id2="MI-07-11" kind="major" include_exclude="include" match_type="exact" icd_start="E75.6" sort="1"/>
-    <map map_id="M071101" item_id="MI-07-11" item_id2="MI-07-11" kind="major" include_exclude="include" match_type="exact" icd_start="E78.70" sort="2"/>
-    <map map_id="M071102" item_id="MI-07-11" item_id2="MI-07-11" kind="major" include_exclude="include" match_type="exact" icd_start="E78.9" sort="3"/>
-    <map map_id="M071200" item_id="MI-07-12" item_id2="MI-07-12" kind="major" include_exclude="include" match_type="range" icd_start="E83.00" icd_end="E83.09"/>
-    <map map_id="M071300" item_id="MI-07-13" item_id2="MI-07-13" kind="major" include_exclude="include" match_type="exact" icd_start="E20.1" sort="1"/>
-    <map map_id="M071301" item_id="MI-07-13" item_id2="MI-07-13" kind="major" include_exclude="include" match_type="range" icd_start="E83.50" icd_end="E83.59" sort="2"/>
-    <map map_id="M071302" item_id="MI-07-13" item_id2="MI-07-13" kind="major" include_exclude="include" match_type="exact" icd_start="E83.81" sort="3"/>
-    <map map_id="M071400" item_id="MI-07-14" item_id2="MI-07-14" kind="major" include_exclude="include" match_type="range" icd_start="D81.30" icd_end="D81.39" sort="1"/>
-    <map map_id="M071401" item_id="MI-07-14" item_id2="MI-07-14" kind="major" include_exclude="include" match_type="exact" icd_start="D81.5" sort="2"/>
-    <map map_id="M071402" item_id="MI-07-14" item_id2="MI-07-14" kind="major" include_exclude="include" match_type="range" icd_start="E79.1" icd_end="E79.9" sort="3"/>
-    <map map_id="M071500" item_id="MI-07-15" item_id2="MI-07-15" kind="major" include_exclude="include" match_type="range" icd_start="E76.01" icd_end="E76.9"/>
-    <map map_id="M071600" item_id="MI-07-16" item_id2="MI-07-16" kind="major" include_exclude="include" match_type="range" icd_start="E71.310" icd_end="E71.548" sort="1"/>
-    <map map_id="M071601" item_id="MI-07-16" item_id2="MI-07-16" kind="major" include_exclude="include" match_type="exact" icd_start="E80.3" sort="2"/>
-    <map map_id="M071602" item_id="MI-07-16" item_id2="MI-07-16" kind="major" include_exclude="include" match_type="range" icd_start="E88.40" icd_end="E88.89" sort="3"/>
-    <map map_id="M071603" item_id="MI-07-16" item_id2="MI-07-16" kind="major" include_exclude="include" match_type="range" icd_start="H49.811" icd_end="H49.819" sort="4"/>
-    <map map_id="M071700" item_id="MI-07-17" item_id2="MI-07-17" kind="major" include_exclude="include" match_type="exact" icd_start="E88.9"/>
-    <map map_id="M080100" item_id="MI-08-01" item_id2="MI-08-01" kind="major" include_exclude="include" match_type="range" icd_start="Q00.0" icd_end="Q00.2"/>
-    <map map_id="M080200" item_id="MI-08-02" item_id2="MI-08-02" kind="major" include_exclude="include" match_type="exact" icd_start="G90.1" sort="1"/>
-    <map map_id="M080201" item_id="MI-08-02" item_id2="MI-08-02" kind="major" include_exclude="include" match_type="range" icd_start="Q01.0" icd_end="Q04.9" sort="2"/>
-    <map map_id="M080202" item_id="MI-08-02" item_id2="MI-08-02" kind="major" include_exclude="include" match_type="range" icd_start="Q06.0" icd_end="Q06.9" sort="3"/>
-    <map map_id="M080203" item_id="MI-08-02" item_id2="MI-08-02" kind="major" include_exclude="include" match_type="exact" icd_start="Q07.8" sort="4"/>
-    <map map_id="M080204" item_id="MI-08-02" item_id2="MI-08-02" kind="major" include_exclude="include" match_type="exact" icd_start="Q07.9" sort="5"/>
-    <map map_id="M080300" item_id="MI-08-03" item_id2="MI-08-03" kind="major" include_exclude="include" match_type="range" icd_start="Q20.0" icd_end="Q24.9"/>
-    <map map_id="M080400" item_id="MI-08-04" item_id2="MI-08-04" kind="major" include_exclude="include" match_type="range" icd_start="Q25.0" icd_end="Q28.9"/>
-    <map map_id="M080500" item_id="MI-08-05" item_id2="MI-08-05" kind="major" include_exclude="include" match_type="exact" icd_start="Q33.0"/>
-    <map map_id="M080600" item_id="MI-08-06" item_id2="MI-08-06" kind="major" include_exclude="include" match_type="exact" icd_start="Q33.3" sort="1"/>
-    <map map_id="M080601" item_id="MI-08-06" item_id2="MI-08-06" kind="major" include_exclude="include" match_type="exact" icd_start="Q33.6" sort="2"/>
-    <map map_id="M080700" item_id="MI-08-07" item_id2="MI-08-07" kind="major" include_exclude="include" match_type="exact" icd_start="Q33.8" sort="1"/>
-    <map map_id="M080701" item_id="MI-08-07" item_id2="MI-08-07" kind="major" include_exclude="include" match_type="exact" icd_start="Q33.9" sort="2"/>
-    <map map_id="M080800" item_id="MI-08-08" item_id2="MI-08-08" kind="major" include_exclude="include" match_type="range" icd_start="Q41.0" icd_end="Q45.9"/>
-    <map map_id="M080900" item_id="MI-08-09" item_id2="MI-08-09" kind="major" include_exclude="include" match_type="range" icd_start="Q60.0" icd_end="Q60.6"/>
-    <map map_id="M081000" item_id="MI-08-10" item_id2="MI-08-10" kind="major" include_exclude="include" match_type="range" icd_start="Q61.00" icd_end="Q61.9"/>
-    <map map_id="M081100" item_id="MI-08-11" item_id2="MI-08-11" kind="major" include_exclude="include" match_type="range" icd_start="Q62.0" icd_end="Q62.39"/>
-    <map map_id="M081200" item_id="MI-08-12" item_id2="MI-08-12" kind="major" include_exclude="include" match_type="range" icd_start="Q63.0" icd_end="Q63.9"/>
-    <map map_id="M081300" item_id="MI-08-13" item_id2="MI-08-13" kind="major" include_exclude="include" match_type="range" icd_start="Q77.0" icd_end="Q77.2" sort="1"/>
-    <map map_id="M081301" item_id="MI-08-13" item_id2="MI-08-13" kind="major" include_exclude="include" match_type="exact" icd_start="Q77.4" sort="2"/>
-    <map map_id="M081302" item_id="MI-08-13" item_id2="MI-08-13" kind="major" include_exclude="include" match_type="exact" icd_start="Q77.5" sort="3"/>
-    <map map_id="M081303" item_id="MI-08-13" item_id2="MI-08-13" kind="major" include_exclude="include" match_type="range" icd_start="Q77.7" icd_end="Q77.9" sort="4"/>
-    <map map_id="M081304" item_id="MI-08-13" item_id2="MI-08-13" kind="major" include_exclude="include" match_type="exact" icd_start="Q78.4" sort="5"/>
-    <map map_id="M081400" item_id="MI-08-14" item_id2="MI-08-14" kind="major" include_exclude="include" match_type="range" icd_start="Q90.0" icd_end="Q99.1" sort="1"/>
-    <map map_id="M081401" item_id="MI-08-14" item_id2="MI-08-14" kind="major" include_exclude="include" match_type="exact" icd_start="Q99.8" sort="2"/>
-    <map map_id="M081402" item_id="MI-08-14" item_id2="MI-08-14" kind="major" include_exclude="include" match_type="exact" icd_start="Q99.9" sort="3"/>
-    <map map_id="M081500" item_id="MI-08-15" item_id2="MI-08-15" kind="major" include_exclude="include" match_type="range" icd_start="Q35.1" icd_end="Q35.7" sort="1"/>
-    <map map_id="M081501" item_id="MI-08-15" item_id2="MI-08-15" kind="major" include_exclude="include" match_type="range" icd_start="Q36.0" icd_end="Q37.9" sort="2"/>
-    <map map_id="M090100" item_id="MI-09-01" item_id2="MI-09-01" kind="major" include_exclude="include" match_type="range" icd_start="T31.20" icd_end="T31.99" sort="1"/>
-    <map map_id="M090101" item_id="MI-09-01" item_id2="MI-09-01" kind="major" include_exclude="include" match_type="range" icd_start="T32.20" icd_end="T32.99" sort="2"/>
-    <map map_id="M090200" item_id="MI-09-02" item_id2="MI-09-02-01" kind="major" include_exclude="include" match_type="range" icd_start="T26.00XA" icd_end="T26.92XA" seventh="A"/>
-    <map map_id="M090201" item_id="MI-09-02" item_id2="MI-09-02-02" kind="major" include_exclude="include" match_type="range" icd_start="T20.30XA" icd_end="T20.39XA" seventh="A" sort="1"/>
-    <map map_id="M090202" item_id="MI-09-02" item_id2="MI-09-02-02" kind="major" include_exclude="include" match_type="range" icd_start="T20.70XA" icd_end="T20.79XA" seventh="A" sort="2"/>
-    <map map_id="M100200" item_id="MI-10-02" item_id2="MI-10-02-01" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.0"/>
-    <map map_id="M100201" item_id="MI-10-02" item_id2="MI-10-02-02" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.1"/>
-    <map map_id="M100202" item_id="MI-10-02" item_id2="MI-10-02-03" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.2"/>
-    <map map_id="M100203" item_id="MI-10-02" item_id2="MI-10-02-04" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.4"/>
-    <map map_id="M100204" item_id="MI-10-02" item_id2="MI-10-02-05" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.81" sort="1"/>
-    <map map_id="M100205" item_id="MI-10-02" item_id2="MI-10-02-05" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.84" sort="2"/>
-    <map map_id="M100206" item_id="MI-10-02" item_id2="MI-10-02-06" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.83"/>
-    <map map_id="M100207" item_id="MI-10-02" item_id2="MI-10-02-07" kind="major" include_exclude="include" match_type="exact" icd_start="Z94.82"/>
-    <map map_id="M100208" item_id="MI-10-02" item_id2="MI-10-02-08" kind="major" include_exclude="include" match_type="range" icd_start="T86.10" icd_end="T86.19"/>
-    <map map_id="M100209" item_id="MI-10-02" item_id2="MI-10-02-09" kind="major" include_exclude="include" match_type="range" icd_start="T86.40" icd_end="T86.49"/>
-    <map map_id="M100210" item_id="MI-10-02" item_id2="MI-10-02-10" kind="major" include_exclude="include" match_type="range" icd_start="T86.20" icd_end="T86.23" sort="1"/>
-    <map map_id="M100211" item_id="MI-10-02" item_id2="MI-10-02-10" kind="major" include_exclude="include" match_type="range" icd_start="T86.290" icd_end="T86.298" sort="2"/>
-    <map map_id="M100212" item_id="MI-10-02" item_id2="MI-10-02-11" kind="major" include_exclude="include" match_type="range" icd_start="T86.810" icd_end="T86.819"/>
-    <map map_id="M100213" item_id="MI-10-02" item_id2="MI-10-02-12" kind="major" include_exclude="include" match_type="range" icd_start="T86.00" icd_end="T86.09"/>
-    <map map_id="M100214" item_id="MI-10-02" item_id2="MI-10-02-13" kind="major" include_exclude="include" match_type="range" icd_start="T86.890" icd_end="T86.899"/>
-    <map map_id="M100215" item_id="MI-10-02" item_id2="MI-10-02-14" kind="major" include_exclude="include" match_type="range" icd_start="T86.850" icd_end="T86.859"/>
-    <map map_id="M110100" item_id="MI-11-01" item_id2="MI-11-01" kind="major" include_exclude="include" match_type="range" icd_start="A80.0" icd_end="A80.2" sort="1"/>
-    <map map_id="M110101" item_id="MI-11-01" item_id2="MI-11-01" kind="major" include_exclude="include" match_type="range" icd_start="A80.30" icd_end="A80.39" sort="2"/>
-    <map map_id="M110200" item_id="MI-11-02" item_id2="MI-11-02" kind="major" include_exclude="include" match_type="range" icd_start="G80.0" icd_end="G80.2" sort="1"/>
-    <map map_id="M110201" item_id="MI-11-02" item_id2="MI-11-02" kind="major" include_exclude="include" match_type="range" icd_start="G80.4" icd_end="G80.9" sort="2"/>
-    <map map_id="M110300" item_id="MI-11-03" item_id2="MI-11-03" kind="major" include_exclude="include" match_type="range" icd_start="G82.20" icd_end="G82.54" sort="1">
-      <note>需 + (B91 or G14)</note>
-    </map>
-    <map map_id="M110301" item_id="MI-11-03" item_id2="MI-11-03" kind="major" include_exclude="include" match_type="range" icd_start="G83.0" icd_end="G83.9" sort="2">
-      <note>需 + (B91 or G14)</note>
-    </map>
-    <map map_id="M110302" item_id="MI-11-03" item_id2="MI-11-03" kind="major" include_exclude="include" match_type="exact" icd_start="B91" sort="3">
-      <note>需 + (G82.20-G82.54 or G83.0-G83.9)</note>
-    </map>
-    <map map_id="M110303" item_id="MI-11-03" item_id2="MI-11-03" kind="major" include_exclude="include" match_type="exact" icd_start="G14" sort="4">
-      <note>需 + (G82.20-G82.54 or G83.0-G83.9)</note>
-    </map>
-    <map map_id="M120100" item_id="MI-12-01" item_id2="MI-12-01" kind="major" include_exclude="include" match_type="prefix" icd_start="T07"/>
-    <map map_id="M130100" item_id="MI-13-01" item_id2="MI-13-01" kind="major" include_exclude="include" match_type="exact" icd_start="Z99.11"/>
-    <map map_id="M140100" item_id="MI-14-01" item_id2="MI-14-01" kind="major" include_exclude="include" match_type="exact" icd_start="E41"/>
-    <map map_id="M140200" item_id="MI-14-02" item_id2="MI-14-02" kind="major" include_exclude="include" match_type="exact" icd_start="E43"/>
-    <map map_id="M150100" item_id="MI-15-01" item_id2="MI-15-01" kind="major" include_exclude="include" match_type="exact" icd_start="T70.3XXA"/>
-    <map map_id="M150200" item_id="MI-15-02" item_id2="MI-15-02" kind="major" include_exclude="include" match_type="exact" icd_start="T79.0XXA"/>
-    <map map_id="M160100" item_id="MI-16-01" item_id2="MI-16-01" kind="major" include_exclude="include" match_type="exact" icd_start="G70.00" sort="1"/>
-    <map map_id="M160101" item_id="MI-16-01" item_id2="MI-16-01" kind="major" include_exclude="include" match_type="exact" icd_start="G70.01" sort="2"/>
-    <map map_id="M170100" item_id="MI-17-01" item_id2="MI-17-01" kind="major" include_exclude="include" match_type="exact" icd_start="D80.1" sort="1"/>
-    <map map_id="M170101" item_id="MI-17-01" item_id2="MI-17-01" kind="major" include_exclude="include" match_type="exact" icd_start="D80.6" sort="2"/>
-    <map map_id="M170102" item_id="MI-17-01" item_id2="MI-17-01" kind="major" include_exclude="include" match_type="exact" icd_start="D80.8" sort="3"/>
-    <map map_id="M170103" item_id="MI-17-01" item_id2="MI-17-01" kind="major" include_exclude="include" match_type="exact" icd_start="D80.9" sort="4"/>
-    <map map_id="M170200" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" match_type="range" icd_start="D81.0" icd_end="D81.2" sort="1"/>
-    <map map_id="M170201" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" match_type="exact" icd_start="D81.4" sort="2"/>
-    <map map_id="M170202" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" match_type="exact" icd_start="D81.6" sort="3"/>
-    <map map_id="M170203" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" match_type="exact" icd_start="D81.7" sort="4"/>
-    <map map_id="M170204" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" match_type="exact" icd_start="D81.82" sort="5"/>
-    <map map_id="M170205" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" match_type="exact" icd_start="D81.89" sort="6"/>
-    <map map_id="M170206" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" match_type="exact" icd_start="D81.9" sort="7"/>
-    <map map_id="M170300" item_id="MI-17-03" item_id2="MI-17-03" kind="major" include_exclude="include" match_type="range" icd_start="D82.0" icd_end="D82.9"/>
-    <map map_id="M170400" item_id="MI-17-04" item_id2="MI-17-04" kind="major" include_exclude="include" match_type="range" icd_start="D83.0" icd_end="D83.9"/>
-    <map map_id="M170500" item_id="MI-17-05" item_id2="MI-17-05" kind="major" include_exclude="include" match_type="range" icd_start="D84.0" icd_end="D84.9"/>
-    <map map_id="M180100" item_id="MI-18-01" item_id2="MI-18-01" kind="major" include_exclude="include" match_type="range" icd_start="S12.000A" icd_end="S12.9XXA" seventh="A" sort="1">
-      <note>需 + (S14.101A-S14.159A or S24.101A-S24.159A or S34.101A-34.139A)</note>
-    </map>
-    <map map_id="M180101" item_id="MI-18-01" item_id2="MI-18-01" kind="major" include_exclude="include" match_type="range" icd_start="S14.101A" icd_end="S14.159A" seventh="A" sort="2">
-      <note>需 + (S12.000A-S12.XXXA)</note>
-    </map>
-    <map map_id="M180102" item_id="MI-18-01" item_id2="MI-18-01" kind="major" include_exclude="include" match_type="range" icd_start="S24.101A" icd_end="S24.159A" seventh="A" sort="3">
-      <note>需 + (S12.000A-S12.XXXA)</note>
-    </map>
-    <map map_id="M180103" item_id="MI-18-01" item_id2="MI-18-01" kind="major" include_exclude="include" match_type="range" icd_start="S34.101A" icd_end="S34.139A" seventh="A" sort="4">
-      <note>需 + (S12.000A-S12.XXXA)</note>
-    </map>
-    <map map_id="M180200" item_id="MI-18-02" item_id2="MI-18-02" kind="major" include_exclude="include" match_type="range" icd_start="S14.101A" icd_end="S14.159A" seventh="A" sort="1"/>
-    <map map_id="M180201" item_id="MI-18-02" item_id2="MI-18-02" kind="major" include_exclude="include" match_type="range" icd_start="S24.101A" icd_end="S24.159A" seventh="A" sort="2"/>
-    <map map_id="M180202" item_id="MI-18-02" item_id2="MI-18-02" kind="major" include_exclude="include" match_type="range" icd_start="S34.101A" icd_end="S34.139A" seventh="A" sort="3"/>
-    <map map_id="M180300" item_id="MI-18-03" item_id2="MI-18-03" kind="major" include_exclude="include" match_type="exact" icd_start="G32.0" sort="1"/>
-    <map map_id="M180301" item_id="MI-18-03" item_id2="MI-18-03" kind="major" include_exclude="include" match_type="exact" icd_start="G95.0" sort="2"/>
-    <map map_id="M180302" item_id="MI-18-03" item_id2="MI-18-03" kind="major" include_exclude="include" match_type="range" icd_start="G95.11" icd_end="G95.89" sort="3"/>
-    <map map_id="M180303" item_id="MI-18-03" item_id2="MI-18-03" kind="major" include_exclude="include" match_type="exact" icd_start="G95.9" sort="4"/>
-    <map map_id="M180304" item_id="MI-18-03" item_id2="MI-18-03" kind="major" include_exclude="include" match_type="exact" icd_start="G99.2" sort="5"/>
-    <map map_id="M190100" item_id="MI-19-01" item_id2="MI-19-01" kind="major" include_exclude="include" match_type="exact" icd_start="J60"/>
-    <map map_id="M190200" item_id="MI-19-02" item_id2="MI-19-02" kind="major" include_exclude="include" match_type="exact" icd_start="J61"/>
-    <map map_id="M190300" item_id="MI-19-03" item_id2="MI-19-03" kind="major" include_exclude="include" match_type="exact" icd_start="J62.0" sort="1"/>
-    <map map_id="M190301" item_id="MI-19-03" item_id2="MI-19-03" kind="major" include_exclude="include" match_type="exact" icd_start="J62.8" sort="2"/>
-    <map map_id="M190400" item_id="MI-19-04" item_id2="MI-19-04" kind="major" include_exclude="include" match_type="range" icd_start="J63.0" icd_end="J63.6"/>
-    <map map_id="M190500" item_id="MI-19-05" item_id2="MI-19-05" kind="major" include_exclude="include" match_type="exact" icd_start="J64" sort="1"/>
-    <map map_id="M190501" item_id="MI-19-05" item_id2="MI-19-05" kind="major" include_exclude="include" match_type="exact" icd_start="J65" sort="2"/>
-    <map map_id="M200100" item_id="MI-20-01" item_id2="MI-20-01" kind="major" include_exclude="include" match_type="range" icd_start="I60.00" icd_end="I60.9"/>
-    <map map_id="M200200" item_id="MI-20-02" item_id2="MI-20-02" kind="major" include_exclude="include" match_type="range" icd_start="I61.0" icd_end="I62.9"/>
-    <map map_id="M200300" item_id="MI-20-03" item_id2="MI-20-03" kind="major" include_exclude="include" match_type="range" icd_start="I63.00" icd_end="I63.9" sort="1"/>
-    <map map_id="M200301" item_id="MI-20-03" item_id2="MI-20-03" kind="major" include_exclude="include" match_type="range" icd_start="P91.821" icd_end="P91.822" sort="2"/>
-    <map map_id="M200302" item_id="MI-20-03" item_id2="MI-20-03" kind="major" include_exclude="include" match_type="range" icd_start="P91.823" icd_end="P91.829" sort="3"/>
-    <map map_id="M200400" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="range" icd_start="G45.0" icd_end="G45.2" sort="1"/>
-    <map map_id="M200401" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="range" icd_start="G45.4" icd_end="G46.8" sort="2"/>
-    <map map_id="M200402" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="range" icd_start="I67.0" icd_end="I67.2" sort="3"/>
-    <map map_id="M200403" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="range" icd_start="I67.4" icd_end="I67.7" sort="4"/>
-    <map map_id="M200404" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I67.81" sort="5"/>
-    <map map_id="M200405" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I67.82" sort="6"/>
-    <map map_id="M200406" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="range" icd_start="I67.841" icd_end="I67.848" sort="7"/>
-    <map map_id="M200407" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I67.850" sort="8"/>
-    <map map_id="M200408" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I67.858" sort="9"/>
-    <map map_id="M200409" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I67.89" sort="10"/>
-    <map map_id="M200410" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I67.9" sort="11"/>
-    <map map_id="M200411" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I68.0" sort="12"/>
-    <map map_id="M200412" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" match_type="exact" icd_start="I68.8" sort="13"/>
-    <map map_id="M210100" item_id="MI-21-01" item_id2="MI-21-01" kind="major" include_exclude="include" match_type="prefix" icd_start="G35"/>
-    <map map_id="M220100" item_id="MI-22-01" item_id2="MI-22-01" kind="major" include_exclude="include" match_type="range" icd_start="G71.00" icd_end="G71.29"/>
-    <map map_id="M230100" item_id="MI-23-01" item_id2="MI-23-01" kind="major" include_exclude="include" match_type="range" icd_start="Q81.0" icd_end="Q81.9" sort="1"/>
-    <map map_id="M230101" item_id="MI-23-01" item_id2="MI-23-01" kind="major" include_exclude="include" match_type="exact" icd_start="Q82.8" sort="2"/>
-    <map map_id="M230102" item_id="MI-23-01" item_id2="MI-23-01" kind="major" include_exclude="include" match_type="exact" icd_start="Q82.9" sort="3"/>
-    <map map_id="M230200" item_id="MI-23-02" item_id2="MI-23-02" kind="major" include_exclude="include" match_type="exact" icd_start="Q84.9"/>
-    <map map_id="M230300" item_id="MI-23-03" item_id2="MI-23-03" kind="major" include_exclude="include" match_type="range" icd_start="Q80.0" icd_end="Q80.9"/>
-    <map map_id="M240100" item_id="MI-24-01" item_id2="MI-24-01" kind="major" include_exclude="include" match_type="range" icd_start="A30.0" icd_end="A30.9"/>
-    <map map_id="M250100" item_id="MI-25-01" item_id2="MI-25-01" kind="major" include_exclude="include" match_type="range" icd_start="K70.2" icd_end="K70.31" sort="1"/>
-    <map map_id="M250101" item_id="MI-25-01" item_id2="MI-25-01" kind="major" include_exclude="include" match_type="range" icd_start="K74.1" icd_end="K74.69" sort="2"/>
-    <map map_id="M260100" item_id="MI-26-01" item_id2="MI-26-01" kind="major" include_exclude="include" match_type="exact" icd_start="P07.10"/>
-    <map map_id="M260200" item_id="MI-26-02" item_id2="MI-26-02" kind="major" include_exclude="include" match_type="exact" icd_start="P07.20"/>
-    <map map_id="M270100" item_id="MI-27-01" item_id2="MI-27-01" kind="major" include_exclude="include" match_type="exact" icd_start="T57.0X1A" sort="1"/>
-    <map map_id="M270101" item_id="MI-27-01" item_id2="MI-27-01" kind="major" include_exclude="include" match_type="exact" icd_start="T57.0X2A" sort="2"/>
-    <map map_id="M270102" item_id="MI-27-01" item_id2="MI-27-01" kind="major" include_exclude="include" match_type="exact" icd_start="T57.0X3A" sort="3"/>
-    <map map_id="M270103" item_id="MI-27-01" item_id2="MI-27-01" kind="major" include_exclude="include" match_type="exact" icd_start="T57.0X4A" sort="4"/>
-    <map map_id="M280100" item_id="MI-28-01" item_id2="MI-28-01" kind="major" include_exclude="include" match_type="range" icd_start="G12.20" icd_end="G12.29"/>
-    <map map_id="M290100" item_id="MI-29-01" item_id2="MI-29-01" kind="major" include_exclude="include" match_type="range" icd_start="A81.00" icd_end="T81.09"/>
-    <map map_id="RA010100" item_id="RD-A01-01" item_id2="RD-A01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.20"/>
-    <map map_id="RA010200" item_id="RD-A01-02" item_id2="RD-A01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.23"/>
-    <map map_id="RA010300" item_id="RD-A01-03" item_id2="RD-A01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.29"/>
-    <map map_id="RA010400" item_id="RD-A01-04" item_id2="RD-A01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.4"/>
-    <map map_id="RA010500" item_id="RD-A01-05" item_id2="RD-A01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.4"/>
-    <map map_id="RA020100" item_id="RD-A02-01" item_id2="RD-A02-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.9" sort="1"/>
-    <map map_id="RA020101" item_id="RD-A02-01" item_id2="RD-A02-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.9" sort="2"/>
-    <map map_id="RA020102" item_id="RD-A02-01" item_id2="RD-A02-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.10" sort="3"/>
-    <map map_id="RA020103" item_id="RD-A02-01" item_id2="RD-A02-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.89" sort="4"/>
-    <map map_id="RA020200" item_id="RD-A02-02" item_id2="RD-A02-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.11"/>
-    <map map_id="RA020300" item_id="RD-A02-03" item_id2="RD-A02-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.19"/>
-    <map map_id="RA020400" item_id="RD-A02-04" item_id2="RD-A02-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.51"/>
-    <map map_id="RA020500" item_id="RD-A02-05" item_id2="RD-A02-05" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.0"/>
-    <map map_id="RA020600" item_id="RD-A02-06" item_id2="RD-A02-06" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.1"/>
-    <map map_id="RA020700" item_id="RD-A02-07" item_id2="RD-A02-07" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.21"/>
-    <map map_id="RA020800" item_id="RD-A02-08" item_id2="RD-A02-08" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.0"/>
-    <map map_id="RA020900" item_id="RD-A02-09" item_id2="RD-A02-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.118"/>
-    <map map_id="RA021000" item_id="RD-A02-10" item_id2="RD-A02-10" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.110"/>
-    <map map_id="RA021100" item_id="RD-A02-11" item_id2="RD-A02-11" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.3" sort="1">
-      <note>type I</note>
-    </map>
-    <map map_id="RA021101" item_id="RD-A02-11" item_id2="RD-A02-11" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.313" sort="2">
-      <note>typeII</note>
-    </map>
-    <map map_id="RA021200" item_id="RD-A02-12" item_id2="RD-A02-12" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.121"/>
-    <map map_id="RA021300" item_id="RD-A02-13" item_id2="RD-A02-13" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.120"/>
-    <map map_id="RA021400" item_id="RD-A02-14" item_id2="RD-A02-14" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.118"/>
-    <map map_id="RA021500" item_id="RD-A02-15" item_id2="RD-A02-15" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.31" sort="1">
-      <note>需 + E70.0</note>
-    </map>
-    <map map_id="RA021501" item_id="RD-A02-15" item_id2="RD-A02-15" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.0" sort="2">
-      <note>需 + E74.31</note>
-    </map>
-    <map map_id="RA021600" item_id="RD-A02-16" item_id2="RD-A02-16" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.3"/>
-    <map map_id="RA021700" item_id="RD-A02-17" item_id2="RD-A02-17" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.41"/>
-    <map map_id="RA021800" item_id="RD-A02-18" item_id2="RD-A02-18" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.19"/>
-    <map map_id="RA021900" item_id="RD-A02-19" item_id2="RD-A02-19" kind="rare" include_exclude="include" match_type="exact" icd_start="D81.819"/>
-    <map map_id="RA022000" item_id="RD-A02-20" item_id2="RD-A02-20" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.59"/>
-    <map map_id="RA022100" item_id="RD-A02-21" item_id2="RD-A02-21" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.9"/>
-    <map map_id="RA022200" item_id="RD-A02-22" item_id2="RD-A02-22" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.20"/>
-    <map map_id="RA022300" item_id="RD-A02-23" item_id2="RD-A02-23" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.120" sort="1">
-      <note>需 + E72.11</note>
-    </map>
-    <map map_id="RA022301" item_id="RD-A02-23" item_id2="RD-A02-23" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.11" sort="2">
-      <note>需 + E71.120</note>
-    </map>
-    <map map_id="RA022400" item_id="RD-A02-24" item_id2="RD-A02-24" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.53"/>
-    <map map_id="RA022500" item_id="RD-A02-25" item_id2="RD-A02-25" kind="rare" include_exclude="include" match_type="exact" icd_start="E70.29"/>
-    <map map_id="RA030100" item_id="RD-A03-01" item_id2="RD-A03-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.22"/>
-    <map map_id="RA030200" item_id="RD-A03-02" item_id2="RD-A03-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.19" sort="1">
-      <note>GM1</note>
-    </map>
-    <map map_id="RA030201" item_id="RD-A03-02" item_id2="RD-A03-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.00" sort="2">
-      <note>GM2</note>
-    </map>
-    <map map_id="RA030300" item_id="RD-A03-03" item_id2="RD-A03-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.21"/>
-    <map map_id="RA030400" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.240" sort="1">
-      <note>Type A</note>
-    </map>
-    <map map_id="RA030401" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.241" sort="2">
-      <note>Type B</note>
-    </map>
-    <map map_id="RA030402" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.242" sort="3">
-      <note>Type C</note>
-    </map>
-    <map map_id="RA030403" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.243" sort="4">
-      <note>Type D</note>
-    </map>
-    <map map_id="RA030404" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.244" sort="5">
-      <note>Type A/B</note>
-    </map>
-    <map map_id="RA030405" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.248" sort="6">
-      <note>other</note>
-    </map>
-    <map map_id="RA030406" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.249" sort="7">
-      <note>unspecified</note>
-    </map>
-    <map map_id="RA030500" item_id="RD-A03-05" item_id2="RD-A03-05" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.25"/>
-    <map map_id="RA030600" item_id="RD-A03-06" item_id2="RD-A03-06" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.23"/>
-    <map map_id="RA030700" item_id="RD-A03-07" item_id2="RD-A03-07" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.5"/>
-    <map map_id="RA030800" item_id="RD-A03-08" item_id2="RD-A03-08" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.4"/>
-    <map map_id="RA030900" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.01" sort="1">
-      <note>Type 1</note>
-    </map>
-    <map map_id="RA030901" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.02" sort="2">
-      <note>Type 1</note>
-    </map>
-    <map map_id="RA030902" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.03" sort="3">
-      <note>Type 1</note>
-    </map>
-    <map map_id="RA030903" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.1" sort="4">
-      <note>Type 2</note>
-    </map>
-    <map map_id="RA030904" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.210" sort="5">
-      <note>other</note>
-    </map>
-    <map map_id="RA030905" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.211" sort="6">
-      <note>other</note>
-    </map>
-    <map map_id="RA030906" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.219" sort="7">
-      <note>other</note>
-    </map>
-    <map map_id="RA030907" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.22" sort="8">
-      <note>other</note>
-    </map>
-    <map map_id="RA030908" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.29" sort="9">
-      <note>other</note>
-    </map>
-    <map map_id="RA030909" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E76.3" sort="10">
-      <note>unspecified</note>
-    </map>
-    <map map_id="RA031000" item_id="RD-A03-10" item_id2="RD-A03-10" kind="rare" include_exclude="include" match_type="exact" icd_start="E77.1"/>
-    <map map_id="RA031100" item_id="RD-A03-11" item_id2="RD-A03-11" kind="rare" include_exclude="include" match_type="exact" icd_start="E77.1"/>
-    <map map_id="RA031200" item_id="RD-A03-12" item_id2="RD-A03-12" kind="rare" include_exclude="include" match_type="exact" icd_start="E77.1" sort="1">
-      <note>Type I</note>
-    </map>
-    <map map_id="RA031201" item_id="RD-A03-12" item_id2="RD-A03-12" kind="rare" include_exclude="include" match_type="exact" icd_start="E77.0" sort="2">
-      <note>Type II/III</note>
-    </map>
-    <map map_id="RA031202" item_id="RD-A03-12" item_id2="RD-A03-12" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.11" sort="3">
-      <note>Type IV</note>
-    </map>
-    <map map_id="RA031300" item_id="RD-A03-13" item_id2="RD-A03-13" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.4"/>
-    <map map_id="RA031400" item_id="RD-A03-14" item_id2="RD-A03-14" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.26"/>
-    <map map_id="RA040100" item_id="RD-A04-01" item_id2="RD-A04-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.21"/>
-    <map map_id="RA040200" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.09" sort="1">
-      <note>Type 0</note>
-    </map>
-    <map map_id="RA040201" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.01" sort="2">
-      <note>Type I</note>
-    </map>
-    <map map_id="RA040202" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.02" sort="3">
-      <note>Type II</note>
-    </map>
-    <map map_id="RA040203" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.03" sort="4">
-      <note>Type III</note>
-    </map>
-    <map map_id="RA040204" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.09" sort="5">
-      <note>Type IV</note>
-    </map>
-    <map map_id="RA040205" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.04" sort="6">
-      <note>Type V</note>
-    </map>
-    <map map_id="RA040206" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.09" sort="7">
-      <note>Type VI-XI</note>
-    </map>
-    <map map_id="RA040207" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.01" sort="8">
-      <note>Von Gierke's</note>
-    </map>
-    <map map_id="RA040300" item_id="RD-A04-03" item_id2="RD-A04-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.810"/>
-    <map map_id="RA040400" item_id="RD-A04-04" item_id2="RD-A04-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.89"/>
-    <map map_id="RA050100" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.30" sort="1"/>
-    <map map_id="RA050101" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.310" sort="2"/>
-    <map map_id="RA050102" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.311" sort="3"/>
-    <map map_id="RA050103" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.312" sort="4"/>
-    <map map_id="RA050104" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.313" sort="5"/>
-    <map map_id="RA050105" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.314" sort="6"/>
-    <map map_id="RA050106" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.318" sort="7"/>
-    <map map_id="RA050107" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.32" sort="8"/>
-    <map map_id="RA050108" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.39" sort="9"/>
-    <map map_id="RA050200" item_id="RD-A05-02" item_id2="RD-A05-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.41"/>
-    <map map_id="RA050300" item_id="RD-A05-03" item_id2="RD-A05-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.311"/>
-    <map map_id="RA050400" item_id="RD-A05-04" item_id2="RD-A05-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.312"/>
-    <map map_id="RA060100" item_id="RD-A06-01" item_id2="RD-A06-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E88.40"/>
-    <map map_id="RA060200" item_id="RD-A06-02" item_id2="RD-A06-02" kind="rare" include_exclude="include" match_type="exact" icd_start="H49.811" sort="1"/>
-    <map map_id="RA060201" item_id="RD-A06-02" item_id2="RD-A06-02" kind="rare" include_exclude="include" match_type="exact" icd_start="H49.812" sort="2"/>
-    <map map_id="RA060202" item_id="RD-A06-02" item_id2="RD-A06-02" kind="rare" include_exclude="include" match_type="exact" icd_start="H49.813" sort="3"/>
-    <map map_id="RA060203" item_id="RD-A06-02" item_id2="RD-A06-02" kind="rare" include_exclude="include" match_type="exact" icd_start="H49.819" sort="4"/>
-    <map map_id="RA060300" item_id="RD-A06-03" item_id2="RD-A06-03" kind="rare" include_exclude="include" match_type="exact" icd_start="G31.82"/>
-    <map map_id="RA060400" item_id="RD-A06-04" item_id2="RD-A06-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E88.41"/>
-    <map map_id="RA060500" item_id="RD-A06-05" item_id2="RD-A06-05" kind="rare" include_exclude="include" match_type="exact" icd_start="E88.49"/>
-    <map map_id="RA060600" item_id="RD-A06-06" item_id2="RD-A06-06" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.4"/>
-    <map map_id="RA060700" item_id="RD-A06-07" item_id2="RD-A06-07" kind="rare" include_exclude="include" match_type="exact" icd_start="E78.71"/>
-    <map map_id="RA060800" item_id="RD-A06-08" item_id2="RD-A06-08" kind="rare" include_exclude="include" match_type="exact" icd_start="H47.22"/>
-    <map map_id="RA070100" item_id="RD-A07-01" item_id2="RD-A07-01" kind="rare" include_exclude="include" match_type="exact" icd_start="D81.810"/>
-    <map map_id="RA080100" item_id="RD-A08-01" item_id2="RD-A08-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E78.01"/>
-    <map map_id="RA080200" item_id="RD-A08-02" item_id2="RD-A08-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E78.3"/>
-    <map map_id="RA080300" item_id="RD-A08-03" item_id2="RD-A08-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E78.00" sort="1"/>
-    <map map_id="RA080301" item_id="RD-A08-03" item_id2="RD-A08-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E78.01" sort="2"/>
-    <map map_id="RA080400" item_id="RD-A08-04" item_id2="RD-A08-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E88.1"/>
-    <map map_id="RA080500" item_id="RD-A08-05" item_id2="RD-A08-05" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.5"/>
-    <map map_id="RA090100" item_id="RD-A09-01" item_id2="RD-A09-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E83.01"/>
-    <map map_id="RA090200" item_id="RD-A09-02" item_id2="RD-A09-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E83.09"/>
-    <map map_id="RA090300" item_id="RD-A09-03" item_id2="RD-A09-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E61.5"/>
-    <map map_id="RA100100" item_id="RD-A10-01" item_id2="RD-A10-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.510"/>
-    <map map_id="RA100200" item_id="RD-A10-02" item_id2="RD-A10-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.511" sort="1"/>
-    <map map_id="RA100201" item_id="RD-A10-02" item_id2="RD-A10-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.520" sort="2"/>
-    <map map_id="RA100202" item_id="RD-A10-02" item_id2="RD-A10-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.521" sort="3"/>
-    <map map_id="RA100203" item_id="RD-A10-02" item_id2="RD-A10-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.528" sort="4"/>
-    <map map_id="RA100204" item_id="RD-A10-02" item_id2="RD-A10-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.529" sort="5"/>
-    <map map_id="RA100300" item_id="RD-A10-03" item_id2="RD-A10-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.540"/>
-    <map map_id="RA110100" item_id="RD-A11-01" item_id2="RD-A11-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E80.20" sort="1"/>
-    <map map_id="RA110101" item_id="RD-A11-01" item_id2="RD-A11-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E80.21" sort="2"/>
-    <map map_id="RA110102" item_id="RD-A11-01" item_id2="RD-A11-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E80.29" sort="3"/>
-    <map map_id="RA110200" item_id="RD-A11-02" item_id2="RD-A11-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E79.1"/>
-    <map map_id="RA110300" item_id="RD-A11-03" item_id2="RD-A11-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.19"/>
-    <map map_id="RA110400" item_id="RD-A11-04" item_id2="RD-A11-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E77.8"/>
-    <map map_id="RA110500" item_id="RD-A11-05" item_id2="RD-A11-05" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.52"/>
-    <map map_id="RA110600" item_id="RD-A11-06" item_id2="RD-A11-06" kind="rare" include_exclude="include" match_type="exact" icd_start="E83.39" sort="1"/>
-    <map map_id="RA110601" item_id="RD-A11-06" item_id2="RD-A11-06" kind="rare" include_exclude="include" match_type="exact" icd_start="E83.31" sort="2"/>
-    <map map_id="RA110700" item_id="RD-A11-07" item_id2="RD-A11-07" kind="rare" include_exclude="include" match_type="exact" icd_start="E71.19"/>
-    <map map_id="RA110800" item_id="RD-A11-08" item_id2="RD-A11-08" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.8"/>
-    <map map_id="RA110900" item_id="RD-A11-09" item_id2="RD-A11-09" kind="rare" include_exclude="include" match_type="exact" icd_start="E51.8"/>
-    <map map_id="RB010100" item_id="RD-B01-01" item_id2="RD-B01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="G35" sort="1"/>
-    <map map_id="RB010101" item_id="RD-B01-01" item_id2="RD-B01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="G36.0" sort="2"/>
-    <map map_id="RB010200" item_id="RD-B01-02" item_id2="RD-B01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="G12.21"/>
-    <map map_id="RB010300" item_id="RD-B01-03" item_id2="RD-B01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="G11.3"/>
-    <map map_id="RB010400" item_id="RD-B01-04" item_id2="RD-B01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="G10"/>
-    <map map_id="RB010500" item_id="RD-B01-05" item_id2="RD-B01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="F84.2"/>
-    <map map_id="RB010600" item_id="RD-B01-06" item_id2="RD-B01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="G12.0" sort="1"/>
-    <map map_id="RB010601" item_id="RD-B01-06" item_id2="RD-B01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="G12.1" sort="2"/>
-    <map map_id="RB010700" item_id="RD-B01-07" item_id2="RD-B01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="G11.9"/>
-    <map map_id="RB010800" item_id="RD-B01-08" item_id2="RD-B01-08" kind="rare" include_exclude="include" match_type="exact" icd_start="Q85.1"/>
-    <map map_id="RB010900" item_id="RD-B01-09" item_id2="RD-B01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="L74.4"/>
-    <map map_id="RB011000" item_id="RD-B01-10" item_id2="RD-B01-10" kind="rare" include_exclude="include" match_type="exact" icd_start="Q85.02"/>
-    <map map_id="RB011100" item_id="RD-B01-11" item_id2="RD-B01-11" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.29"/>
-    <map map_id="RB011200" item_id="RD-B01-12" item_id2="RD-B01-12" kind="rare" include_exclude="include" match_type="exact" icd_start="G25.82"/>
-    <map map_id="RB011300" item_id="RD-B01-13" item_id2="RD-B01-13" kind="rare" include_exclude="include" match_type="exact" icd_start="G11.4"/>
-    <map map_id="RB011400" item_id="RD-B01-14" item_id2="RD-B01-14" kind="rare" include_exclude="include" match_type="exact" icd_start="Q04.3"/>
-    <map map_id="RB011500" item_id="RD-B01-15" item_id2="RD-B01-15" kind="rare" include_exclude="include" match_type="exact" icd_start="E75.29"/>
-    <map map_id="RB011600" item_id="RD-B01-16" item_id2="RD-B01-16" kind="rare" include_exclude="include" match_type="exact" icd_start="G60.0"/>
-    <map map_id="RB011700" item_id="RD-B01-17" item_id2="RD-B01-17" kind="rare" include_exclude="include" match_type="exact" icd_start="G12.20" sort="1"/>
-    <map map_id="RB011701" item_id="RD-B01-17" item_id2="RD-B01-17" kind="rare" include_exclude="include" match_type="exact" icd_start="G12.24" sort="2"/>
-    <map map_id="RB011702" item_id="RD-B01-17" item_id2="RD-B01-17" kind="rare" include_exclude="include" match_type="exact" icd_start="G12.29" sort="3"/>
-    <map map_id="RB011800" item_id="RD-B01-18" item_id2="RD-B01-18" kind="rare" include_exclude="include" match_type="exact" icd_start="E85.1"/>
-    <map map_id="RB011900" item_id="RD-B01-19" item_id2="RD-B01-19" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
-    <map map_id="RB012000" item_id="RD-B01-20" item_id2="RD-B01-20" kind="rare" include_exclude="include" match_type="exact" icd_start="Q97.8" sort="1"/>
-    <map map_id="RB012001" item_id="RD-B01-20" item_id2="RD-B01-20" kind="rare" include_exclude="include" match_type="exact" icd_start="Q98.8" sort="2"/>
-    <map map_id="RB012100" item_id="RD-B01-21" item_id2="RD-B01-21" kind="rare" include_exclude="include" match_type="exact" icd_start="G31.89"/>
-    <map map_id="RB012200" item_id="RD-B01-22" item_id2="RD-B01-22" kind="rare" include_exclude="include" match_type="exact" icd_start="Q99.8"/>
-    <map map_id="RB012300" item_id="RD-B01-23" item_id2="RD-B01-23" kind="rare" include_exclude="include" match_type="exact" icd_start="G40.833" sort="1"/>
-    <map map_id="RB012301" item_id="RD-B01-23" item_id2="RD-B01-23" kind="rare" include_exclude="include" match_type="exact" icd_start="G40.834" sort="2"/>
-    <map map_id="RB012400" item_id="RD-B01-24" item_id2="RD-B01-24" kind="rare" include_exclude="include" match_type="exact" icd_start="G37.8"/>
-    <map map_id="RB012500" item_id="RD-B01-25" item_id2="RD-B01-25" kind="rare" include_exclude="include" match_type="exact" icd_start="G23.0"/>
-    <map map_id="RB012600" item_id="RD-B01-26" item_id2="RD-B01-26" kind="rare" include_exclude="include" match_type="exact" icd_start="G23.0"/>
-    <map map_id="RB012700" item_id="RD-B01-27" item_id2="RD-B01-27" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
-    <map map_id="RB012800" item_id="RD-B01-28" item_id2="RD-B01-28" kind="rare" include_exclude="include" match_type="exact" icd_start="G23.0"/>
-    <map map_id="RB012900" item_id="RD-B01-29" item_id2="RD-B01-29" kind="rare" include_exclude="include" match_type="exact" icd_start="G12.2"/>
-    <map map_id="RB013000" item_id="RD-B01-30" item_id2="RD-B01-30" kind="rare" include_exclude="include" match_type="exact" icd_start="G47.35"/>
-    <map map_id="RB013100" item_id="RD-B01-31" item_id2="RD-B01-31" kind="rare" include_exclude="include" match_type="exact" icd_start="Q85.8"/>
-    <map map_id="RB013200" item_id="RD-B01-32" item_id2="RD-B01-32" kind="rare" include_exclude="include" match_type="exact" icd_start="F78.A9"/>
-    <map map_id="RB013300" item_id="RD-B01-33" item_id2="RD-B01-33" kind="rare" include_exclude="include" match_type="exact" icd_start="G25.5"/>
-    <map map_id="RC010100" item_id="RD-C01-01" item_id2="RD-C01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q28.8"/>
-    <map map_id="RC010200" item_id="RD-C01-02" item_id2="RD-C01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E84.9"/>
-    <map map_id="RC010300" item_id="RD-C01-03" item_id2="RD-C01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="I27.0"/>
-    <map map_id="RC010400" item_id="RD-C01-04" item_id2="RD-C01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.2"/>
-    <map map_id="RC010500" item_id="RD-C01-05" item_id2="RD-C01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="E74.09"/>
-    <map map_id="RC010600" item_id="RD-C01-06" item_id2="RD-C01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="I78.0"/>
-    <map map_id="RC010700" item_id="RD-C01-07" item_id2="RD-C01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="Q77.2"/>
-    <map map_id="RD010100" item_id="RD-D01-01" item_id2="RD-D01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="K83.1"/>
-    <map map_id="RD010200" item_id="RD-D01-02" item_id2="RD-D01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E78.70"/>
-    <map map_id="RD010300" item_id="RD-D01-03" item_id2="RD-D01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E88.01"/>
-    <map map_id="RD010400" item_id="RD-D01-04" item_id2="RD-D01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="Q43.8"/>
-    <map map_id="RD010500" item_id="RD-D01-05" item_id2="RD-D01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="Q44.7"/>
-    <map map_id="RD010600" item_id="RD-D01-06" item_id2="RD-D01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q89.7"/>
-    <map map_id="RE010100" item_id="RD-E01-01" item_id2="RD-E01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="E72.03"/>
-    <map map_id="RE010200" item_id="RD-E01-02" item_id2="RD-E01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E26.81"/>
-    <map map_id="RE010300" item_id="RD-E01-03" item_id2="RD-E01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="Q61.19"/>
-    <map map_id="RE010400" item_id="RD-E01-04" item_id2="RD-E01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.81"/>
-    <map map_id="RF010100" item_id="RD-F01-01" item_id2="RD-F01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q81.0" sort="1"/>
-    <map map_id="RF010101" item_id="RD-F01-01" item_id2="RD-F01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q81.1" sort="2"/>
-    <map map_id="RF010102" item_id="RD-F01-01" item_id2="RD-F01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q81.2" sort="3"/>
-    <map map_id="RF010103" item_id="RD-F01-01" item_id2="RD-F01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q81.8" sort="4"/>
-    <map map_id="RF010104" item_id="RD-F01-01" item_id2="RD-F01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q81.9" sort="5"/>
-    <map map_id="RF010200" item_id="RD-F01-02" item_id2="RD-F01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="Q80.2"/>
-    <map map_id="RF010300" item_id="RD-F01-03" item_id2="RD-F01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="Q80.2"/>
-    <map map_id="RF010400" item_id="RD-F01-04" item_id2="RD-F01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="Q80.4"/>
-    <map map_id="RF010500" item_id="RD-F01-05" item_id2="RD-F01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="Q80.3"/>
-    <map map_id="RF010600" item_id="RD-F01-06" item_id2="RD-F01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q82.4"/>
-    <map map_id="RF010700" item_id="RD-F01-07" item_id2="RD-F01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="Q82.8"/>
-    <map map_id="RF010800" item_id="RD-F01-08" item_id2="RD-F01-08" kind="rare" include_exclude="include" match_type="exact" icd_start="Q82.8"/>
-    <map map_id="RF010900" item_id="RD-F01-09" item_id2="RD-F01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="Q82.8"/>
-    <map map_id="RF011000" item_id="RD-F01-10" item_id2="RD-F01-10" kind="rare" include_exclude="include" match_type="exact" icd_start="Q82.8"/>
-    <map map_id="RF011100" item_id="RD-F01-11" item_id2="RD-F01-11" kind="rare" include_exclude="include" match_type="exact" icd_start="Q82.3"/>
-    <map map_id="RG010100" item_id="RD-G01-01" item_id2="RD-G01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.01"/>
-    <map map_id="RG010200" item_id="RD-G01-02" item_id2="RD-G01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.21"/>
-    <map map_id="RG010300" item_id="RD-G01-03" item_id2="RD-G01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.13"/>
-    <map map_id="RG010400" item_id="RD-G01-04" item_id2="RD-G01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.11"/>
-    <map map_id="RG010500" item_id="RD-G01-05" item_id2="RD-G01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.02"/>
-    <map map_id="RG010600" item_id="RD-G01-06" item_id2="RD-G01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.220"/>
-    <map map_id="RG010700" item_id="RD-G01-07" item_id2="RD-G01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.01"/>
-    <map map_id="RG010800" item_id="RD-G01-08" item_id2="RD-G01-08" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
-    <map map_id="RG010900" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.031" sort="1"/>
-    <map map_id="RG010901" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.032" sort="2"/>
-    <map map_id="RG010902" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.033" sort="3"/>
-    <map map_id="RG010903" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.0340" sort="4"/>
-    <map map_id="RG010904" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.0341" sort="5"/>
-    <map map_id="RG010905" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.0342" sort="6"/>
-    <map map_id="RG010906" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.0349" sort="7"/>
-    <map map_id="RG010907" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.035" sort="8"/>
-    <map map_id="RG010908" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.038" sort="9"/>
-    <map map_id="RG010909" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.039" sort="10"/>
-    <map map_id="RG011000" item_id="RD-G01-10" item_id2="RD-G01-10" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.09"/>
-    <map map_id="RG011100" item_id="RD-G01-11" item_id2="RD-G01-11" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.29"/>
-    <map map_id="RG011200" item_id="RD-G01-12" item_id2="RD-G01-12" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.29"/>
-    <map map_id="RG011300" item_id="RD-G01-13" item_id2="RD-G01-13" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.00" sort="1"/>
-    <map map_id="RG011301" item_id="RD-G01-13" item_id2="RD-G01-13" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.09" sort="2"/>
-    <map map_id="RG011400" item_id="RD-G01-14" item_id2="RD-G01-14" kind="rare" include_exclude="include" match_type="exact" icd_start="G71.8"/>
-    <map map_id="RG011500" item_id="RD-G01-15" item_id2="RD-G01-15" kind="rare" include_exclude="include" match_type="exact" icd_start="D69.8"/>
-    <map map_id="RH010100" item_id="RD-H01-01" item_id2="RD-H01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q77.4"/>
-    <map map_id="RH010200" item_id="RD-H01-02" item_id2="RD-H01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="Q78.0"/>
-    <map map_id="RH010300" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.0" sort="1"/>
-    <map map_id="RH010301" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.1" sort="2"/>
-    <map map_id="RH010302" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.811" sort="3"/>
-    <map map_id="RH010303" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.812" sort="4"/>
-    <map map_id="RH010304" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.819" sort="5"/>
-    <map map_id="RH010305" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.821" sort="6"/>
-    <map map_id="RH010306" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.822" sort="7"/>
-    <map map_id="RH010307" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.829" sort="8"/>
-    <map map_id="RH010308" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.831" sort="9"/>
-    <map map_id="RH010309" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.832" sort="10"/>
-    <map map_id="RH010310" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.839" sort="11"/>
-    <map map_id="RH010311" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.841" sort="12"/>
-    <map map_id="RH010312" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.842" sort="13"/>
-    <map map_id="RH010313" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.849" sort="14"/>
-    <map map_id="RH010314" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.851" sort="15"/>
-    <map map_id="RH010315" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.852" sort="16"/>
-    <map map_id="RH010316" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.859" sort="17"/>
-    <map map_id="RH010317" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.861" sort="18"/>
-    <map map_id="RH010318" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.862" sort="19"/>
-    <map map_id="RH010319" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.869" sort="20"/>
-    <map map_id="RH010320" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.871" sort="21"/>
-    <map map_id="RH010321" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.872" sort="22"/>
-    <map map_id="RH010322" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.879" sort="23"/>
-    <map map_id="RH010323" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.88" sort="24"/>
-    <map map_id="RH010324" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.89" sort="25"/>
-    <map map_id="RH010325" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="M88.9" sort="26"/>
-    <map map_id="RH010400" item_id="RD-H01-04" item_id2="RD-H01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="Q74.0"/>
-    <map map_id="RH010500" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.10" sort="1"/>
-    <map map_id="RH010501" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.111" sort="2"/>
-    <map map_id="RH010502" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.112" sort="3"/>
-    <map map_id="RH010503" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.119" sort="4"/>
-    <map map_id="RH010504" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.121" sort="5"/>
-    <map map_id="RH010505" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.122" sort="6"/>
-    <map map_id="RH010506" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.129" sort="7"/>
-    <map map_id="RH010507" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.131" sort="8"/>
-    <map map_id="RH010508" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.132" sort="9"/>
-    <map map_id="RH010509" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.139" sort="10"/>
-    <map map_id="RH010510" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.141" sort="11"/>
-    <map map_id="RH010511" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.142" sort="12"/>
-    <map map_id="RH010512" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.143" sort="13"/>
-    <map map_id="RH010513" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.144" sort="14"/>
-    <map map_id="RH010514" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.145" sort="15"/>
-    <map map_id="RH010515" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.146" sort="16"/>
-    <map map_id="RH010516" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.151" sort="17"/>
-    <map map_id="RH010517" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.152" sort="18"/>
-    <map map_id="RH010518" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.159" sort="19"/>
-    <map map_id="RH010519" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.161" sort="20"/>
-    <map map_id="RH010520" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.162" sort="21"/>
-    <map map_id="RH010521" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.169" sort="22"/>
-    <map map_id="RH010522" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.171" sort="23"/>
-    <map map_id="RH010523" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.172" sort="24"/>
-    <map map_id="RH010524" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.173" sort="25"/>
-    <map map_id="RH010525" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.174" sort="26"/>
-    <map map_id="RH010526" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.175" sort="27"/>
-    <map map_id="RH010527" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.176" sort="28"/>
-    <map map_id="RH010528" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.177" sort="29"/>
-    <map map_id="RH010529" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.178" sort="30"/>
-    <map map_id="RH010530" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.179" sort="31"/>
-    <map map_id="RH010531" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.18" sort="32"/>
-    <map map_id="RH010532" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M61.19" sort="33"/>
-    <map map_id="RH010600" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q71.60" sort="1"/>
-    <map map_id="RH010601" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q71.61" sort="2"/>
-    <map map_id="RH010602" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q71.62" sort="3"/>
-    <map map_id="RH010603" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q71.63" sort="4"/>
-    <map map_id="RH010604" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q72.70" sort="5"/>
-    <map map_id="RH010605" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q72.71" sort="6"/>
-    <map map_id="RH010606" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q72.72" sort="7"/>
-    <map map_id="RH010607" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q72.73" sort="8"/>
-    <map map_id="RH010700" item_id="RD-H01-07" item_id2="RD-H01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="Q78.2"/>
-    <map map_id="RH010800" item_id="RD-H01-08" item_id2="RD-H01-08" kind="rare" include_exclude="include" match_type="exact" icd_start="Q77.8"/>
-    <map map_id="RH010900" item_id="RD-H01-09" item_id2="RD-H01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="Q78.3"/>
-    <map map_id="RH011000" item_id="RD-H01-10" item_id2="RD-H01-10" kind="rare" include_exclude="include" match_type="exact" icd_start="Q78.8"/>
-    <map map_id="RH011100" item_id="RD-H01-11" item_id2="RD-H01-11" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
-    <map map_id="RH011200" item_id="RD-H01-12" item_id2="RD-H01-12" kind="rare" include_exclude="include" match_type="exact" icd_start="Q75.1"/>
-    <map map_id="RH011300" item_id="RD-H01-13" item_id2="RD-H01-13" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
-    <map map_id="RI010100" item_id="RD-I01-01" item_id2="RD-I01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q79.63"/>
-    <map map_id="RJ010100" item_id="RD-J01-01" item_id2="RD-J01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="D56.0" sort="1"/>
-    <map map_id="RJ010101" item_id="RD-J01-01" item_id2="RD-J01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="D56.1" sort="2"/>
-    <map map_id="RJ010200" item_id="RD-J01-02" item_id2="RD-J01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="D69.1"/>
-    <map map_id="RJ010300" item_id="RD-J01-03" item_id2="RD-J01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="D68.59"/>
-    <map map_id="RJ010400" item_id="RD-J01-04" item_id2="RD-J01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="D59.5"/>
-    <map map_id="RJ010500" item_id="RD-J01-05" item_id2="RD-J01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="M31.19"/>
-    <map map_id="RK010100" item_id="RD-K01-01" item_id2="RD-K01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="D71"/>
-    <map map_id="RK010200" item_id="RD-K01-02" item_id2="RD-K01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="D82.4"/>
-    <map map_id="RK010300" item_id="RD-K01-03" item_id2="RD-K01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="D80.0"/>
-    <map map_id="RK010400" item_id="RD-K01-04" item_id2="RD-K01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="D82.0"/>
-    <map map_id="RK010500" item_id="RD-K01-05" item_id2="RD-K01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="D81.0" sort="1"/>
-    <map map_id="RK010501" item_id="RD-K01-05" item_id2="RD-K01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="D81.1" sort="2"/>
-    <map map_id="RK010502" item_id="RD-K01-05" item_id2="RD-K01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="D81.2" sort="3"/>
-    <map map_id="RK010503" item_id="RD-K01-05" item_id2="RD-K01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="D81.31" sort="4"/>
-    <map map_id="RK010504" item_id="RD-K01-05" item_id2="RD-K01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="D81.9" sort="5"/>
-    <map map_id="RK010600" item_id="RD-K01-06" item_id2="RD-K01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="D84.1"/>
-    <map map_id="RK010700" item_id="RD-K01-07" item_id2="RD-K01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="E31.0"/>
-    <map map_id="RK010800" item_id="RD-K01-08" item_id2="RD-K01-08" kind="rare" include_exclude="include" match_type="exact" icd_start="D80.5"/>
-    <map map_id="RK010900" item_id="RD-K01-09" item_id2="RD-K01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="D84.89"/>
-    <map map_id="RK011000" item_id="RD-K01-10" item_id2="RD-K01-10" kind="rare" include_exclude="include" match_type="exact" icd_start="D84.1"/>
-    <map map_id="RK011100" item_id="RD-K01-11" item_id2="RD-K01-11" kind="rare" include_exclude="include" match_type="exact" icd_start="Q80.8"/>
-    <map map_id="RK011200" item_id="RD-K01-12" item_id2="RD-K01-12" kind="rare" include_exclude="include" match_type="exact" icd_start="D59.32" sort="1"/>
-    <map map_id="RK011201" item_id="RD-K01-12" item_id2="RD-K01-12" kind="rare" include_exclude="include" match_type="exact" icd_start="D59.39" sort="2"/>
-    <map map_id="RL010100" item_id="RD-L01-01" item_id2="RD-L01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.1"/>
-    <map map_id="RL010200" item_id="RD-L01-02" item_id2="RD-L01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="E20.1"/>
-    <map map_id="RL010300" item_id="RD-L01-03" item_id2="RD-L01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="E83.31"/>
-    <map map_id="RL010400" item_id="RD-L01-04" item_id2="RD-L01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E34.321"/>
-    <map map_id="RL010500" item_id="RD-L01-05" item_id2="RD-L01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
-    <map map_id="RL010600" item_id="RD-L01-06" item_id2="RD-L01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
-    <map map_id="RL010700" item_id="RD-L01-07" item_id2="RD-L01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="E16.1"/>
-    <map map_id="RL010800" item_id="RD-L01-08" item_id2="RD-L01-08" kind="rare" include_exclude="include" match_type="exact" icd_start="E88.9"/>
-    <map map_id="RL010900" item_id="RD-L01-09" item_id2="RD-L01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="Q78.1"/>
-    <map map_id="RL011000" item_id="RD-L01-10" item_id2="RD-L01-10" kind="rare" include_exclude="include" match_type="exact" icd_start="Q99.8"/>
-    <map map_id="RL011100" item_id="RD-L01-11" item_id2="RD-L01-11" kind="rare" include_exclude="include" match_type="exact" icd_start="E27.49"/>
-    <map map_id="RL011200" item_id="RD-L01-12" item_id2="RD-L01-12" kind="rare" include_exclude="include" match_type="exact" icd_start="E83.32"/>
-    <map map_id="RL011300" item_id="RD-L01-13" item_id2="RD-L01-13" kind="rare" include_exclude="include" match_type="exact" icd_start="Q89.1"/>
-    <map map_id="RL011400" item_id="RD-L01-14" item_id2="RD-L01-14" kind="rare" include_exclude="include" match_type="exact" icd_start="E23.0"/>
-    <map map_id="RL011500" item_id="RD-L01-15" item_id2="RD-L01-15" kind="rare" include_exclude="include" match_type="exact" icd_start="P70.2"/>
-    <map map_id="RL011600" item_id="RD-L01-16" item_id2="RD-L01-16" kind="rare" include_exclude="include" match_type="exact" icd_start="Q89.8"/>
-    <map map_id="RM010100" item_id="RD-M01-01" item_id2="RD-M01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.19"/>
-    <map map_id="RM010200" item_id="RD-M01-02" item_id2="RD-M01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
-    <map map_id="RM010300" item_id="RD-M01-03" item_id2="RD-M01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
-    <map map_id="RM010400" item_id="RD-M01-04" item_id2="RD-M01-04" kind="rare" include_exclude="include" match_type="exact" icd_start="E78.72"/>
-    <map map_id="RM010500" item_id="RD-M01-05" item_id2="RD-M01-05" kind="rare" include_exclude="include" match_type="exact" icd_start="Q74.8"/>
-    <map map_id="RM010600" item_id="RD-M01-06" item_id2="RD-M01-06" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.3"/>
-    <map map_id="RM010700" item_id="RD-M01-07" item_id2="RD-M01-07" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
-    <map map_id="RM010800" item_id="RD-M01-08" item_id2="RD-M01-08" kind="rare" include_exclude="include" match_type="exact" icd_start="Q79.8"/>
-    <map map_id="RM010900" item_id="RD-M01-09" item_id2="RD-M01-09" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.19"/>
-    <map map_id="RM011000" item_id="RD-M01-10" item_id2="RD-M01-10" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
-    <map map_id="RM011100" item_id="RD-M01-11" item_id2="RD-M01-11" kind="rare" include_exclude="include" match_type="exact" icd_start="Q89.8"/>
-    <map map_id="RM011200" item_id="RD-M01-12" item_id2="RD-M01-12" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.0"/>
-    <map map_id="RM011300" item_id="RD-M01-13" item_id2="RD-M01-13" kind="rare" include_exclude="include" match_type="exact" icd_start="Q77.3"/>
-    <map map_id="RM011400" item_id="RD-M01-14" item_id2="RD-M01-14" kind="rare" include_exclude="include" match_type="exact" icd_start="Q75.4"/>
-    <map map_id="RM011500" item_id="RD-M01-15" item_id2="RD-M01-15" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
-    <map map_id="RM011600" item_id="RD-M01-16" item_id2="RD-M01-16" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.2"/>
-    <map map_id="RM011700" item_id="RD-M01-17" item_id2="RD-M01-17" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
-    <map map_id="RM011800" item_id="RD-M01-18" item_id2="RD-M01-18" kind="rare" include_exclude="include" match_type="exact" icd_start="Q13.4"/>
-    <map map_id="RM011900" item_id="RD-M01-19" item_id2="RD-M01-19" kind="rare" include_exclude="include" match_type="exact" icd_start="Q75.4"/>
-    <map map_id="RM012000" item_id="RD-M01-20" item_id2="RD-M01-20" kind="rare" include_exclude="include" match_type="exact" icd_start="Q89.8"/>
-    <map map_id="RM012100" item_id="RD-M01-21" item_id2="RD-M01-21" kind="rare" include_exclude="include" match_type="exact" icd_start="Q99.8" sort="1"/>
-    <map map_id="RM012101" item_id="RD-M01-21" item_id2="RD-M01-21" kind="rare" include_exclude="include" match_type="exact" icd_start="F84.8" sort="2"/>
-    <map map_id="RM012102" item_id="RD-M01-21" item_id2="RD-M01-21" kind="rare" include_exclude="include" match_type="exact" icd_start="F78" sort="3"/>
-    <map map_id="RM012200" item_id="RD-M01-22" item_id2="RD-M01-22" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
-    <map map_id="RM012300" item_id="RD-M01-23" item_id2="RD-M01-23" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
-    <map map_id="RM012400" item_id="RD-M01-24" item_id2="RD-M01-24" kind="rare" include_exclude="include" match_type="exact" icd_start="Q89.8"/>
-    <map map_id="RM012500" item_id="RD-M01-25" item_id2="RD-M01-25" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
-    <map map_id="RM012600" item_id="RD-M01-26" item_id2="RD-M01-26" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.5"/>
-    <map map_id="RM012700" item_id="RD-M01-27" item_id2="RD-M01-27" kind="rare" include_exclude="include" match_type="exact" icd_start="E88.1"/>
-    <map map_id="RM012800" item_id="RD-M01-28" item_id2="RD-M01-28" kind="rare" include_exclude="include" match_type="exact" icd_start="Q83.51"/>
-    <map map_id="RM012900" item_id="RD-M01-29" item_id2="RD-M01-29" kind="rare" include_exclude="include" match_type="exact" icd_start="D82.1"/>
-    <map map_id="RM013000" item_id="RD-M01-30" item_id2="RD-M01-30" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.11"/>
-    <map map_id="RM013100" item_id="RD-M01-31" item_id2="RD-M01-31" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
-    <map map_id="RM013200" item_id="RD-M01-32" item_id2="RD-M01-32" kind="rare" include_exclude="include" match_type="exact" icd_start="Q93.88"/>
-    <map map_id="RM013300" item_id="RD-M01-33" item_id2="RD-M01-33" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.2"/>
-    <map map_id="RM013400" item_id="RD-M01-34" item_id2="RD-M01-34" kind="rare" include_exclude="include" match_type="exact" icd_start="Q93.82"/>
-    <map map_id="RM013500" item_id="RD-M01-35" item_id2="RD-M01-35" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
-    <map map_id="RM013600" item_id="RD-M01-36" item_id2="RD-M01-36" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.3"/>
-    <map map_id="RM013700" item_id="RD-M01-37" item_id2="RD-M01-37" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.89"/>
-    <map map_id="RM013800" item_id="RD-M01-38" item_id2="RD-M01-38" kind="rare" include_exclude="include" match_type="exact" icd_start="E34.8"/>
-    <map map_id="RM013900" item_id="RD-M01-39" item_id2="RD-M01-39" kind="rare" include_exclude="include" match_type="exact" icd_start="Q87.19"/>
-    <map map_id="RM014000" item_id="RD-M01-40" item_id2="RD-M01-40" kind="rare" include_exclude="include" match_type="exact" icd_start="Q04.3"/>
-    <map map_id="RN010100" item_id="RD-N01-01" item_id2="RD-N01-01" kind="rare" include_exclude="include" match_type="exact" icd_start="H35.50"/>
-    <map map_id="RN010200" item_id="RD-N01-02" item_id2="RD-N01-02" kind="rare" include_exclude="include" match_type="exact" icd_start="H35.50"/>
-    <map map_id="RN010300" item_id="RD-N01-03" item_id2="RD-N01-03" kind="rare" include_exclude="include" match_type="exact" icd_start="H35.50"/>
+    <map map_id="M010100" item_id="MI-01-01" item_id2="MI-01-01" kind="major" include_exclude="include" icd_start="C73" match_type="prefix"/>
+    <map map_id="M010200" item_id="MI-01-02" item_id2="MI-01-02" kind="major" include_exclude="include" icd_start="C00.0" icd_end="C06.9" match_type="range" sort="1"/>
+    <map map_id="M010201" item_id="MI-01-02" item_id2="MI-01-02" kind="major" include_exclude="include" icd_start="C09.0" icd_end="C10.9" match_type="range" sort="2"/>
+    <map map_id="M010202" item_id="MI-01-02" item_id2="MI-01-02" kind="major" include_exclude="include" icd_start="C12" icd_end="C14.8" match_type="range" sort="3"/>
+    <map map_id="M010300" item_id="MI-01-03" item_id2="MI-01-03" kind="major" include_exclude="include" icd_start="C50.011" icd_end="C50.929" match_type="range"/>
+    <map map_id="M010400" item_id="MI-01-04" item_id2="MI-01-04" kind="major" include_exclude="include" icd_start="C53.0" icd_end="C53.9" match_type="range" sort="1"/>
+    <map map_id="M010401" item_id="MI-01-04" item_id2="MI-01-04" kind="major" include_exclude="include" icd_start="C55" match_type="prefix" sort="2"/>
+    <map map_id="M010500" item_id="MI-01-05" item_id2="MI-01-05" kind="major" include_exclude="include" icd_start="C00.0" icd_end="C96.9" match_type="range" sort="1"/>
+    <map map_id="M010501" item_id="MI-01-05" item_id2="MI-01-05" kind="major" include_exclude="exclude" icd_start="C73" match_type="prefix" sort="2"/>
+    <map map_id="M010502" item_id="MI-01-05" item_id2="MI-01-05" kind="major" include_exclude="exclude" icd_start="C94.4" match_type="exact" sort="3"/>
+    <map map_id="M010503" item_id="MI-01-05" item_id2="MI-01-05" kind="major" include_exclude="exclude" icd_start="C94.6" match_type="exact" sort="4"/>
+    <map map_id="M020100" item_id="MI-02-01" item_id2="MI-02-01" kind="major" include_exclude="include" icd_start="D66" match_type="prefix"/>
+    <map map_id="M020200" item_id="MI-02-02" item_id2="MI-02-02" kind="major" include_exclude="include" icd_start="D67" match_type="prefix"/>
+    <map map_id="M020300" item_id="MI-02-03" item_id2="MI-02-03" kind="major" include_exclude="include" icd_start="D68.1" match_type="exact"/>
+    <map map_id="M020400" item_id="MI-02-04" item_id2="MI-02-04" kind="major" include_exclude="include" icd_start="D68.2" match_type="exact"/>
+    <map map_id="M030100" item_id="MI-03-01" item_id2="MI-03-01" kind="major" include_exclude="include" icd_start="D55.0" icd_end="D58.9" match_type="range"/>
+    <map map_id="M030200" item_id="MI-03-02" item_id2="MI-03-02" kind="major" include_exclude="include" icd_start="D59.0" icd_end="D59.9" match_type="range"/>
+    <map map_id="M030300" item_id="MI-03-03" item_id2="MI-03-03" kind="major" include_exclude="include" icd_start="D46.4" match_type="exact" sort="1"/>
+    <map map_id="M030301" item_id="MI-03-03" item_id2="MI-03-03" kind="major" include_exclude="include" icd_start="D60.0" icd_end="D60.9" match_type="range" sort="2"/>
+    <map map_id="M030302" item_id="MI-03-03" item_id2="MI-03-03" kind="major" include_exclude="include" icd_start="D61.01" icd_end="D61.9" match_type="range" sort="3"/>
+    <map map_id="M040100" item_id="MI-04-01" item_id2="MI-04-01" kind="major" include_exclude="include" icd_start="N18.5" match_type="exact" sort="1"/>
+    <map map_id="M040101" item_id="MI-04-01" item_id2="MI-04-01" kind="major" include_exclude="include" icd_start="N18.6" match_type="exact" sort="2"/>
+    <map map_id="M040200" item_id="MI-04-02" item_id2="MI-04-02" kind="major" include_exclude="include" icd_start="I12.0" match_type="exact"/>
+    <map map_id="M040300" item_id="MI-04-03" item_id2="MI-04-03" kind="major" include_exclude="include" icd_start="I13.11" match_type="exact" sort="1"/>
+    <map map_id="M040301" item_id="MI-04-03" item_id2="MI-04-03" kind="major" include_exclude="include" icd_start="I13.2" match_type="exact" sort="2"/>
+    <map map_id="M050100" item_id="MI-05-01" item_id2="MI-05-01" kind="major" include_exclude="include" icd_start="M32.0" icd_end="M32.9" match_type="range"/>
+    <map map_id="M050200" item_id="MI-05-02" item_id2="MI-05-02" kind="major" include_exclude="include" icd_start="M34.0" icd_end="M34.9" match_type="range"/>
+    <map map_id="M050300" item_id="MI-05-03" item_id2="MI-05-03" kind="major" include_exclude="include" icd_start="M05.70" icd_end="M06.09" match_type="range" sort="1"/>
+    <map map_id="M050301" item_id="MI-05-03" item_id2="MI-05-03" kind="major" include_exclude="include" icd_start="M06.20" icd_end="M06.39" match_type="range" sort="2"/>
+    <map map_id="M050302" item_id="MI-05-03" item_id2="MI-05-03" kind="major" include_exclude="include" icd_start="M06.80" icd_end="M06.8A" match_type="range" sort="3"/>
+    <map map_id="M050303" item_id="MI-05-03" item_id2="MI-05-03" kind="major" include_exclude="include" icd_start="M06.9" match_type="exact" sort="4"/>
+    <map map_id="M050304" item_id="MI-05-03" item_id2="MI-05-03" kind="major" include_exclude="include" icd_start="M08.00" icd_end="M08.9A" match_type="range" sort="5"/>
+    <map map_id="M050400" item_id="MI-05-04" item_id2="MI-05-04" kind="major" include_exclude="include" icd_start="M33.20" icd_end="M33.29" match_type="range"/>
+    <map map_id="M050500" item_id="MI-05-05" item_id2="MI-05-05" kind="major" include_exclude="include" icd_start="M33.00" icd_end="M33.19" match_type="range" sort="1"/>
+    <map map_id="M050501" item_id="MI-05-05" item_id2="MI-05-05" kind="major" include_exclude="include" icd_start="M33.90" icd_end="M33.99" match_type="range" sort="2"/>
+    <map map_id="M050502" item_id="MI-05-05" item_id2="MI-05-05" kind="major" include_exclude="include" icd_start="M36.0" match_type="exact" sort="3"/>
+    <map map_id="M050600" item_id="MI-05-06" item_id2="MI-05-06-01" kind="major" include_exclude="include" icd_start="M30.0" match_type="exact" sort="1"/>
+    <map map_id="M050601" item_id="MI-05-06" item_id2="MI-05-06-01" kind="major" include_exclude="include" icd_start="M30.2" match_type="exact" sort="2"/>
+    <map map_id="M050602" item_id="MI-05-06" item_id2="MI-05-06-01" kind="major" include_exclude="include" icd_start="M30.8" match_type="exact" sort="3"/>
+    <map map_id="M050603" item_id="MI-05-06" item_id2="MI-05-06-02" kind="major" include_exclude="include" icd_start="M31.0" match_type="exact"/>
+    <map map_id="M050604" item_id="MI-05-06" item_id2="MI-05-06-03" kind="major" include_exclude="include" icd_start="M31.30" match_type="exact" sort="1"/>
+    <map map_id="M050605" item_id="MI-05-06" item_id2="MI-05-06-03" kind="major" include_exclude="include" icd_start="M31.31" match_type="exact" sort="2"/>
+    <map map_id="M050606" item_id="MI-05-06" item_id2="MI-05-06-04" kind="major" include_exclude="include" icd_start="M31.5" match_type="exact" sort="1"/>
+    <map map_id="M050607" item_id="MI-05-06" item_id2="MI-05-06-04" kind="major" include_exclude="include" icd_start="M31.6" match_type="exact" sort="2"/>
+    <map map_id="M050608" item_id="MI-05-06" item_id2="MI-05-06-05" kind="major" include_exclude="include" icd_start="I73.1" match_type="exact"/>
+    <map map_id="M050609" item_id="MI-05-06" item_id2="MI-05-06-06" kind="major" include_exclude="include" icd_start="M31.4" match_type="exact"/>
+    <map map_id="M050610" item_id="MI-05-06" item_id2="MI-05-06-07" kind="major" include_exclude="include" icd_start="M35.2" match_type="exact"/>
+    <map map_id="M050700" item_id="MI-05-07" item_id2="MI-05-07" kind="major" include_exclude="include" icd_start="L10.0" icd_end="L10.9" match_type="range"/>
+    <map map_id="M050800" item_id="MI-05-08" item_id2="MI-05-08" kind="major" include_exclude="include" icd_start="M35.00" icd_end="M35.0C" match_type="range"/>
+    <map map_id="M050900" item_id="MI-05-09" item_id2="MI-05-09" kind="major" include_exclude="include" icd_start="K50.00" icd_end="K50.919" match_type="range"/>
+    <map map_id="M051000" item_id="MI-05-10" item_id2="MI-05-10" kind="major" include_exclude="include" icd_start="K51.00" icd_end="K51.919" match_type="range"/>
+    <map map_id="M051100" item_id="MI-05-11" item_id2="MI-05-11" kind="major" include_exclude="include" icd_start="M30.3" match_type="exact"/>
+    <map map_id="M060100" item_id="MI-06-01" item_id2="MI-06-01" kind="major" include_exclude="include" icd_start="F01.A11" icd_end="F01.C4" match_type="range" sort="1"/>
+    <map map_id="M060101" item_id="MI-06-01" item_id2="MI-06-01" kind="major" include_exclude="include" icd_start="F03.A11" icd_end="F03.C4" match_type="range" sort="2"/>
+    <map map_id="M060200" item_id="MI-06-02" item_id2="MI-06-02" kind="major" include_exclude="include" icd_start="F05" match_type="exact"/>
+    <map map_id="M060300" item_id="MI-06-03" item_id2="MI-06-03" kind="major" include_exclude="include" icd_start="F02.A11" icd_end="F02.C4" match_type="range" sort="1"/>
+    <map map_id="M060301" item_id="MI-06-03" item_id2="MI-06-03" kind="major" include_exclude="include" icd_start="F06.0" match_type="exact" sort="2"/>
+    <map map_id="M060302" item_id="MI-06-03" item_id2="MI-06-03" kind="major" include_exclude="include" icd_start="F06.1" match_type="exact" sort="3"/>
+    <map map_id="M060303" item_id="MI-06-03" item_id2="MI-06-03" kind="major" include_exclude="include" icd_start="F06.8" match_type="exact" sort="4"/>
+    <map map_id="M060400" item_id="MI-06-04" item_id2="MI-06-04" kind="major" include_exclude="include" icd_start="F20.0" icd_end="F20.9" match_type="range" sort="1"/>
+    <map map_id="M060401" item_id="MI-06-04" item_id2="MI-06-04" kind="major" include_exclude="include" icd_start="F25.0" icd_end="F25.9" match_type="range" sort="2"/>
+    <map map_id="M060500" item_id="MI-06-05" item_id2="MI-06-05" kind="major" include_exclude="include" icd_start="F30.10" icd_end="F30.13" match_type="range" sort="1"/>
+    <map map_id="M060501" item_id="MI-06-05" item_id2="MI-06-05" kind="major" include_exclude="include" icd_start="F30.2" icd_end="F30.9" match_type="range" sort="2"/>
+    <map map_id="M060502" item_id="MI-06-05" item_id2="MI-06-05" kind="major" include_exclude="include" icd_start="F31.0" icd_end="F31.9" match_type="range" sort="3"/>
+    <map map_id="M060503" item_id="MI-06-05" item_id2="MI-06-05" kind="major" include_exclude="include" icd_start="F32.2" icd_end="F32.5" match_type="range" sort="4"/>
+    <map map_id="M060504" item_id="MI-06-05" item_id2="MI-06-05" kind="major" include_exclude="include" icd_start="F33.2" icd_end="F33.9" match_type="range" sort="5"/>
+    <map map_id="M060600" item_id="MI-06-06" item_id2="MI-06-06" kind="major" include_exclude="include" icd_start="F22" match_type="exact"/>
+    <map map_id="M060700" item_id="MI-06-07" item_id2="MI-06-07-01" kind="major" include_exclude="include" icd_start="F84.0" match_type="exact"/>
+    <map map_id="M060701" item_id="MI-06-07" item_id2="MI-06-07-02" kind="major" include_exclude="include" icd_start="F84.3" match_type="exact"/>
+    <map map_id="M060702" item_id="MI-06-07" item_id2="MI-06-07-03" kind="major" include_exclude="include" icd_start="F84.5" match_type="exact" sort="1"/>
+    <map map_id="M060703" item_id="MI-06-07" item_id2="MI-06-07-03" kind="major" include_exclude="include" icd_start="F84.8" match_type="exact" sort="2"/>
+    <map map_id="M060800" item_id="MI-06-08" item_id2="MI-06-07-04" kind="major" include_exclude="include" icd_start="F84.9" match_type="exact"/>
+    <map map_id="M070100" item_id="MI-07-01" item_id2="MI-07-01" kind="major" include_exclude="include" icd_start="E00.0" icd_end="E00.9" match_type="range" sort="1"/>
+    <map map_id="M070101" item_id="MI-07-01" item_id2="MI-07-01" kind="major" include_exclude="include" icd_start="E03.0" match_type="exact" sort="2"/>
+    <map map_id="M070102" item_id="MI-07-01" item_id2="MI-07-01" kind="major" include_exclude="include" icd_start="E03.1" match_type="exact" sort="3"/>
+    <map map_id="M070200" item_id="MI-07-02" item_id2="MI-07-02" kind="major" include_exclude="include" icd_start="E10.10" icd_end="E10.9" match_type="range"/>
+    <map map_id="M070300" item_id="MI-07-03" item_id2="MI-07-03" kind="major" include_exclude="include" icd_start="E23.2" match_type="exact"/>
+    <map map_id="M070400" item_id="MI-07-04" item_id2="MI-07-04" kind="major" include_exclude="include" icd_start="E25.0" icd_end="E25.9" match_type="range"/>
+    <map map_id="M070500" item_id="MI-07-05" item_id2="MI-07-05" kind="major" include_exclude="include" icd_start="E70.0" icd_end="E71.2" match_type="range" sort="1"/>
+    <map map_id="M070501" item_id="MI-07-05" item_id2="MI-07-05" kind="major" include_exclude="include" icd_start="E72.00" icd_end="E72.51" match_type="range" sort="2"/>
+    <map map_id="M070502" item_id="MI-07-05" item_id2="MI-07-05" kind="major" include_exclude="include" icd_start="E72.59" match_type="exact" sort="3"/>
+    <map map_id="M070503" item_id="MI-07-05" item_id2="MI-07-05" kind="major" include_exclude="include" icd_start="E72.8" match_type="exact" sort="4"/>
+    <map map_id="M070504" item_id="MI-07-05" item_id2="MI-07-05" kind="major" include_exclude="include" icd_start="E72.9" match_type="exact" sort="5"/>
+    <map map_id="M070600" item_id="MI-07-06" item_id2="MI-07-06" kind="major" include_exclude="include" icd_start="E74.00" icd_end="E74.09" match_type="range"/>
+    <map map_id="M070700" item_id="MI-07-07" item_id2="MI-07-07" kind="major" include_exclude="include" icd_start="E74.20" icd_end="E74.29" match_type="range"/>
+    <map map_id="M070800" item_id="MI-07-08" item_id2="MI-07-08" kind="major" include_exclude="include" icd_start="E78.1" match_type="exact"/>
+    <map map_id="M070900" item_id="MI-07-09" item_id2="MI-07-09" kind="major" include_exclude="include" icd_start="E88.1" match_type="exact"/>
+    <map map_id="M071000" item_id="MI-07-10" item_id2="MI-07-10" kind="major" include_exclude="include" icd_start="E75.21" icd_end="E75.22" match_type="range" sort="1"/>
+    <map map_id="M071001" item_id="MI-07-10" item_id2="MI-07-10" kind="major" include_exclude="include" icd_start="E75.240" icd_end="E75.249" match_type="range" sort="2"/>
+    <map map_id="M071002" item_id="MI-07-10" item_id2="MI-07-10" kind="major" include_exclude="include" icd_start="E75.3" match_type="exact" sort="3"/>
+    <map map_id="M071003" item_id="MI-07-10" item_id2="MI-07-10" kind="major" include_exclude="include" icd_start="E77.0" icd_end="E77.9" match_type="range" sort="4"/>
+    <map map_id="M071100" item_id="MI-07-11" item_id2="MI-07-11" kind="major" include_exclude="include" icd_start="E75.6" match_type="exact" sort="1"/>
+    <map map_id="M071101" item_id="MI-07-11" item_id2="MI-07-11" kind="major" include_exclude="include" icd_start="E78.70" match_type="exact" sort="2"/>
+    <map map_id="M071102" item_id="MI-07-11" item_id2="MI-07-11" kind="major" include_exclude="include" icd_start="E78.9" match_type="exact" sort="3"/>
+    <map map_id="M071200" item_id="MI-07-12" item_id2="MI-07-12" kind="major" include_exclude="include" icd_start="E83.00" icd_end="E83.09" match_type="range"/>
+    <map map_id="M071300" item_id="MI-07-13" item_id2="MI-07-13" kind="major" include_exclude="include" icd_start="E20.1" match_type="exact" sort="1"/>
+    <map map_id="M071301" item_id="MI-07-13" item_id2="MI-07-13" kind="major" include_exclude="include" icd_start="E83.50" icd_end="E83.59" match_type="range" sort="2"/>
+    <map map_id="M071302" item_id="MI-07-13" item_id2="MI-07-13" kind="major" include_exclude="include" icd_start="E83.81" match_type="exact" sort="3"/>
+    <map map_id="M071400" item_id="MI-07-14" item_id2="MI-07-14" kind="major" include_exclude="include" icd_start="D81.30" icd_end="D81.39" match_type="range" sort="1"/>
+    <map map_id="M071401" item_id="MI-07-14" item_id2="MI-07-14" kind="major" include_exclude="include" icd_start="D81.5" match_type="exact" sort="2"/>
+    <map map_id="M071402" item_id="MI-07-14" item_id2="MI-07-14" kind="major" include_exclude="include" icd_start="E79.1" icd_end="E79.9" match_type="range" sort="3"/>
+    <map map_id="M071500" item_id="MI-07-15" item_id2="MI-07-15" kind="major" include_exclude="include" icd_start="E76.01" icd_end="E76.9" match_type="range"/>
+    <map map_id="M071600" item_id="MI-07-16" item_id2="MI-07-16" kind="major" include_exclude="include" icd_start="E71.310" icd_end="E71.548" match_type="range" sort="1"/>
+    <map map_id="M071601" item_id="MI-07-16" item_id2="MI-07-16" kind="major" include_exclude="include" icd_start="E80.3" match_type="exact" sort="2"/>
+    <map map_id="M071602" item_id="MI-07-16" item_id2="MI-07-16" kind="major" include_exclude="include" icd_start="E88.40" icd_end="E88.89" match_type="range" sort="3"/>
+    <map map_id="M071603" item_id="MI-07-16" item_id2="MI-07-16" kind="major" include_exclude="include" icd_start="H49.811" icd_end="H49.819" match_type="range" sort="4"/>
+    <map map_id="M071700" item_id="MI-07-17" item_id2="MI-07-17" kind="major" include_exclude="include" icd_start="E88.9" match_type="exact"/>
+    <map map_id="M080100" item_id="MI-08-01" item_id2="MI-08-01" kind="major" include_exclude="include" icd_start="Q00.0" icd_end="Q00.2" match_type="range"/>
+    <map map_id="M080200" item_id="MI-08-02" item_id2="MI-08-02" kind="major" include_exclude="include" icd_start="G90.1" match_type="exact" sort="1"/>
+    <map map_id="M080201" item_id="MI-08-02" item_id2="MI-08-02" kind="major" include_exclude="include" icd_start="Q01.0" icd_end="Q04.9" match_type="range" sort="2"/>
+    <map map_id="M080202" item_id="MI-08-02" item_id2="MI-08-02" kind="major" include_exclude="include" icd_start="Q06.0" icd_end="Q06.9" match_type="range" sort="3"/>
+    <map map_id="M080203" item_id="MI-08-02" item_id2="MI-08-02" kind="major" include_exclude="include" icd_start="Q07.8" match_type="exact" sort="4"/>
+    <map map_id="M080204" item_id="MI-08-02" item_id2="MI-08-02" kind="major" include_exclude="include" icd_start="Q07.9" match_type="exact" sort="5"/>
+    <map map_id="M080300" item_id="MI-08-03" item_id2="MI-08-03" kind="major" include_exclude="include" icd_start="Q20.0" icd_end="Q24.9" match_type="range"/>
+    <map map_id="M080400" item_id="MI-08-04" item_id2="MI-08-04" kind="major" include_exclude="include" icd_start="Q25.0" icd_end="Q28.9" match_type="range"/>
+    <map map_id="M080500" item_id="MI-08-05" item_id2="MI-08-05" kind="major" include_exclude="include" icd_start="Q33.0" match_type="exact"/>
+    <map map_id="M080600" item_id="MI-08-06" item_id2="MI-08-06" kind="major" include_exclude="include" icd_start="Q33.3" match_type="exact" sort="1"/>
+    <map map_id="M080601" item_id="MI-08-06" item_id2="MI-08-06" kind="major" include_exclude="include" icd_start="Q33.6" match_type="exact" sort="2"/>
+    <map map_id="M080700" item_id="MI-08-07" item_id2="MI-08-07" kind="major" include_exclude="include" icd_start="Q33.8" match_type="exact" sort="1"/>
+    <map map_id="M080701" item_id="MI-08-07" item_id2="MI-08-07" kind="major" include_exclude="include" icd_start="Q33.9" match_type="exact" sort="2"/>
+    <map map_id="M080800" item_id="MI-08-08" item_id2="MI-08-08" kind="major" include_exclude="include" icd_start="Q41.0" icd_end="Q45.9" match_type="range"/>
+    <map map_id="M080900" item_id="MI-08-09" item_id2="MI-08-09" kind="major" include_exclude="include" icd_start="Q60.0" icd_end="Q60.6" match_type="range"/>
+    <map map_id="M081000" item_id="MI-08-10" item_id2="MI-08-10" kind="major" include_exclude="include" icd_start="Q61.00" icd_end="Q61.9" match_type="range"/>
+    <map map_id="M081100" item_id="MI-08-11" item_id2="MI-08-11" kind="major" include_exclude="include" icd_start="Q62.0" icd_end="Q62.39" match_type="range"/>
+    <map map_id="M081200" item_id="MI-08-12" item_id2="MI-08-12" kind="major" include_exclude="include" icd_start="Q63.0" icd_end="Q63.9" match_type="range"/>
+    <map map_id="M081300" item_id="MI-08-13" item_id2="MI-08-13" kind="major" include_exclude="include" icd_start="Q77.0" icd_end="Q77.2" match_type="range" sort="1"/>
+    <map map_id="M081301" item_id="MI-08-13" item_id2="MI-08-13" kind="major" include_exclude="include" icd_start="Q77.4" match_type="exact" sort="2"/>
+    <map map_id="M081302" item_id="MI-08-13" item_id2="MI-08-13" kind="major" include_exclude="include" icd_start="Q77.5" match_type="exact" sort="3"/>
+    <map map_id="M081303" item_id="MI-08-13" item_id2="MI-08-13" kind="major" include_exclude="include" icd_start="Q77.7" icd_end="Q77.9" match_type="range" sort="4"/>
+    <map map_id="M081304" item_id="MI-08-13" item_id2="MI-08-13" kind="major" include_exclude="include" icd_start="Q78.4" match_type="exact" sort="5"/>
+    <map map_id="M081400" item_id="MI-08-14" item_id2="MI-08-14" kind="major" include_exclude="include" icd_start="Q90.0" icd_end="Q99.1" match_type="range" sort="1"/>
+    <map map_id="M081401" item_id="MI-08-14" item_id2="MI-08-14" kind="major" include_exclude="include" icd_start="Q99.8" match_type="exact" sort="2"/>
+    <map map_id="M081402" item_id="MI-08-14" item_id2="MI-08-14" kind="major" include_exclude="include" icd_start="Q99.9" match_type="exact" sort="3"/>
+    <map map_id="M081500" item_id="MI-08-15" item_id2="MI-08-15" kind="major" include_exclude="include" icd_start="Q35.1" icd_end="Q35.7" match_type="range" sort="1"/>
+    <map map_id="M081501" item_id="MI-08-15" item_id2="MI-08-15" kind="major" include_exclude="include" icd_start="Q36.0" icd_end="Q37.9" match_type="range" sort="2"/>
+    <map map_id="M090100" item_id="MI-09-01" item_id2="MI-09-01" kind="major" include_exclude="include" icd_start="T31.20" icd_end="T31.99" match_type="range" sort="1"/>
+    <map map_id="M090101" item_id="MI-09-01" item_id2="MI-09-01" kind="major" include_exclude="include" icd_start="T32.20" icd_end="T32.99" match_type="range" sort="2"/>
+    <map map_id="M090200" item_id="MI-09-02" item_id2="MI-09-02-01" kind="major" include_exclude="include" icd_start="T26.00XA" icd_end="T26.92XA" match_type="range" seventh="A"/>
+    <map map_id="M090201" item_id="MI-09-02" item_id2="MI-09-02-02" kind="major" include_exclude="include" icd_start="T20.30XA" icd_end="T20.39XA" match_type="range" sort="1" seventh="A"/>
+    <map map_id="M090202" item_id="MI-09-02" item_id2="MI-09-02-02" kind="major" include_exclude="include" icd_start="T20.70XA" icd_end="T20.79XA" match_type="range" sort="2" seventh="A"/>
+    <map map_id="M100200" item_id="MI-10-02" item_id2="MI-10-02-01" kind="major" include_exclude="include" icd_start="Z94.0" match_type="exact"/>
+    <map map_id="M100201" item_id="MI-10-02" item_id2="MI-10-02-02" kind="major" include_exclude="include" icd_start="Z94.1" match_type="exact"/>
+    <map map_id="M100202" item_id="MI-10-02" item_id2="MI-10-02-03" kind="major" include_exclude="include" icd_start="Z94.2" match_type="exact"/>
+    <map map_id="M100203" item_id="MI-10-02" item_id2="MI-10-02-04" kind="major" include_exclude="include" icd_start="Z94.4" match_type="exact"/>
+    <map map_id="M100204" item_id="MI-10-02" item_id2="MI-10-02-05" kind="major" include_exclude="include" icd_start="Z94.81" match_type="exact" sort="1"/>
+    <map map_id="M100205" item_id="MI-10-02" item_id2="MI-10-02-05" kind="major" include_exclude="include" icd_start="Z94.84" match_type="exact" sort="2"/>
+    <map map_id="M100206" item_id="MI-10-02" item_id2="MI-10-02-06" kind="major" include_exclude="include" icd_start="Z94.83" match_type="exact"/>
+    <map map_id="M100207" item_id="MI-10-02" item_id2="MI-10-02-07" kind="major" include_exclude="include" icd_start="Z94.82" match_type="exact"/>
+    <map map_id="M100208" item_id="MI-10-02" item_id2="MI-10-02-08" kind="major" include_exclude="include" icd_start="T86.10" icd_end="T86.19" match_type="range"/>
+    <map map_id="M100209" item_id="MI-10-02" item_id2="MI-10-02-09" kind="major" include_exclude="include" icd_start="T86.40" icd_end="T86.49" match_type="range"/>
+    <map map_id="M100210" item_id="MI-10-02" item_id2="MI-10-02-10" kind="major" include_exclude="include" icd_start="T86.20" icd_end="T86.23" match_type="range" sort="1"/>
+    <map map_id="M100211" item_id="MI-10-02" item_id2="MI-10-02-10" kind="major" include_exclude="include" icd_start="T86.290" icd_end="T86.298" match_type="range" sort="2"/>
+    <map map_id="M100212" item_id="MI-10-02" item_id2="MI-10-02-11" kind="major" include_exclude="include" icd_start="T86.810" icd_end="T86.819" match_type="range"/>
+    <map map_id="M100213" item_id="MI-10-02" item_id2="MI-10-02-12" kind="major" include_exclude="include" icd_start="T86.00" icd_end="T86.09" match_type="range"/>
+    <map map_id="M100214" item_id="MI-10-02" item_id2="MI-10-02-13" kind="major" include_exclude="include" icd_start="T86.890" icd_end="T86.899" match_type="range"/>
+    <map map_id="M100215" item_id="MI-10-02" item_id2="MI-10-02-14" kind="major" include_exclude="include" icd_start="T86.850" icd_end="T86.859" match_type="range"/>
+    <map map_id="M110100" item_id="MI-11-01" item_id2="MI-11-01" kind="major" include_exclude="include" icd_start="A80.0" icd_end="A80.2" match_type="range" sort="1"/>
+    <map map_id="M110101" item_id="MI-11-01" item_id2="MI-11-01" kind="major" include_exclude="include" icd_start="A80.30" icd_end="A80.39" match_type="range" sort="2"/>
+    <map map_id="M110200" item_id="MI-11-02" item_id2="MI-11-02" kind="major" include_exclude="include" icd_start="G80.0" icd_end="G80.2" match_type="range" sort="1"/>
+    <map map_id="M110201" item_id="MI-11-02" item_id2="MI-11-02" kind="major" include_exclude="include" icd_start="G80.4" icd_end="G80.9" match_type="range" sort="2"/>
+    <map map_id="M110300" item_id="MI-11-03" item_id2="MI-11-03" kind="major" include_exclude="include" icd_start="G82.20" icd_end="G82.54" match_type="range" sort="1" note="需 + (B91 or G14)"/>
+    <map map_id="M110301" item_id="MI-11-03" item_id2="MI-11-03" kind="major" include_exclude="include" icd_start="G83.0" icd_end="G83.9" match_type="range" sort="2" note="需 + (B91 or G14)"/>
+    <map map_id="M110302" item_id="MI-11-03" item_id2="MI-11-03" kind="major" include_exclude="include" icd_start="B91" match_type="exact" sort="3" note="需 + (G82.20-G82.54 or G83.0-G83.9)"/>
+    <map map_id="M110303" item_id="MI-11-03" item_id2="MI-11-03" kind="major" include_exclude="include" icd_start="G14" match_type="exact" sort="4" note="需 + (G82.20-G82.54 or G83.0-G83.9)"/>
+    <map map_id="M120100" item_id="MI-12-01" item_id2="MI-12-01" kind="major" include_exclude="include" icd_start="T07" match_type="prefix"/>
+    <map map_id="M130100" item_id="MI-13-01" item_id2="MI-13-01" kind="major" include_exclude="include" icd_start="Z99.11" match_type="exact"/>
+    <map map_id="M140100" item_id="MI-14-01" item_id2="MI-14-01" kind="major" include_exclude="include" icd_start="E41" match_type="exact"/>
+    <map map_id="M140200" item_id="MI-14-02" item_id2="MI-14-02" kind="major" include_exclude="include" icd_start="E43" match_type="exact"/>
+    <map map_id="M150100" item_id="MI-15-01" item_id2="MI-15-01" kind="major" include_exclude="include" icd_start="T70.3XXA" match_type="exact"/>
+    <map map_id="M150200" item_id="MI-15-02" item_id2="MI-15-02" kind="major" include_exclude="include" icd_start="T79.0XXA" match_type="exact"/>
+    <map map_id="M160100" item_id="MI-16-01" item_id2="MI-16-01" kind="major" include_exclude="include" icd_start="G70.00" match_type="exact" sort="1"/>
+    <map map_id="M160101" item_id="MI-16-01" item_id2="MI-16-01" kind="major" include_exclude="include" icd_start="G70.01" match_type="exact" sort="2"/>
+    <map map_id="M170100" item_id="MI-17-01" item_id2="MI-17-01" kind="major" include_exclude="include" icd_start="D80.1" match_type="exact" sort="1"/>
+    <map map_id="M170101" item_id="MI-17-01" item_id2="MI-17-01" kind="major" include_exclude="include" icd_start="D80.6" match_type="exact" sort="2"/>
+    <map map_id="M170102" item_id="MI-17-01" item_id2="MI-17-01" kind="major" include_exclude="include" icd_start="D80.8" match_type="exact" sort="3"/>
+    <map map_id="M170103" item_id="MI-17-01" item_id2="MI-17-01" kind="major" include_exclude="include" icd_start="D80.9" match_type="exact" sort="4"/>
+    <map map_id="M170200" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" icd_start="D81.0" icd_end="D81.2" match_type="range" sort="1"/>
+    <map map_id="M170201" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" icd_start="D81.4" match_type="exact" sort="2"/>
+    <map map_id="M170202" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" icd_start="D81.6" match_type="exact" sort="3"/>
+    <map map_id="M170203" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" icd_start="D81.7" match_type="exact" sort="4"/>
+    <map map_id="M170204" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" icd_start="D81.82" match_type="exact" sort="5"/>
+    <map map_id="M170205" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" icd_start="D81.89" match_type="exact" sort="6"/>
+    <map map_id="M170206" item_id="MI-17-02" item_id2="MI-17-02" kind="major" include_exclude="include" icd_start="D81.9" match_type="exact" sort="7"/>
+    <map map_id="M170300" item_id="MI-17-03" item_id2="MI-17-03" kind="major" include_exclude="include" icd_start="D82.0" icd_end="D82.9" match_type="range"/>
+    <map map_id="M170400" item_id="MI-17-04" item_id2="MI-17-04" kind="major" include_exclude="include" icd_start="D83.0" icd_end="D83.9" match_type="range"/>
+    <map map_id="M170500" item_id="MI-17-05" item_id2="MI-17-05" kind="major" include_exclude="include" icd_start="D84.0" icd_end="D84.9" match_type="range"/>
+    <map map_id="M180100" item_id="MI-18-01" item_id2="MI-18-01" kind="major" include_exclude="include" icd_start="S12.000A" icd_end="S12.9XXA" match_type="range" sort="1" note="需 + (S14.101A-S14.159A or S24.101A-S24.159A or S34.101A-34.139A)" seventh="A"/>
+    <map map_id="M180101" item_id="MI-18-01" item_id2="MI-18-01" kind="major" include_exclude="include" icd_start="S14.101A" icd_end="S14.159A" match_type="range" sort="2" note="需 + (S12.000A-S12.XXXA)" seventh="A"/>
+    <map map_id="M180102" item_id="MI-18-01" item_id2="MI-18-01" kind="major" include_exclude="include" icd_start="S24.101A" icd_end="S24.159A" match_type="range" sort="3" note="需 + (S12.000A-S12.XXXA)" seventh="A"/>
+    <map map_id="M180103" item_id="MI-18-01" item_id2="MI-18-01" kind="major" include_exclude="include" icd_start="S34.101A" icd_end="S34.139A" match_type="range" sort="4" note="需 + (S12.000A-S12.XXXA)" seventh="A"/>
+    <map map_id="M180200" item_id="MI-18-02" item_id2="MI-18-02" kind="major" include_exclude="include" icd_start="S14.101A" icd_end="S14.159A" match_type="range" sort="1" seventh="A"/>
+    <map map_id="M180201" item_id="MI-18-02" item_id2="MI-18-02" kind="major" include_exclude="include" icd_start="S24.101A" icd_end="S24.159A" match_type="range" sort="2" seventh="A"/>
+    <map map_id="M180202" item_id="MI-18-02" item_id2="MI-18-02" kind="major" include_exclude="include" icd_start="S34.101A" icd_end="S34.139A" match_type="range" sort="3" seventh="A"/>
+    <map map_id="M180300" item_id="MI-18-03" item_id2="MI-18-03" kind="major" include_exclude="include" icd_start="G32.0" match_type="exact" sort="1"/>
+    <map map_id="M180301" item_id="MI-18-03" item_id2="MI-18-03" kind="major" include_exclude="include" icd_start="G95.0" match_type="exact" sort="2"/>
+    <map map_id="M180302" item_id="MI-18-03" item_id2="MI-18-03" kind="major" include_exclude="include" icd_start="G95.11" icd_end="G95.89" match_type="range" sort="3"/>
+    <map map_id="M180303" item_id="MI-18-03" item_id2="MI-18-03" kind="major" include_exclude="include" icd_start="G95.9" match_type="exact" sort="4"/>
+    <map map_id="M180304" item_id="MI-18-03" item_id2="MI-18-03" kind="major" include_exclude="include" icd_start="G99.2" match_type="exact" sort="5"/>
+    <map map_id="M190100" item_id="MI-19-01" item_id2="MI-19-01" kind="major" include_exclude="include" icd_start="J60" match_type="exact"/>
+    <map map_id="M190200" item_id="MI-19-02" item_id2="MI-19-02" kind="major" include_exclude="include" icd_start="J61" match_type="exact"/>
+    <map map_id="M190300" item_id="MI-19-03" item_id2="MI-19-03" kind="major" include_exclude="include" icd_start="J62.0" match_type="exact" sort="1"/>
+    <map map_id="M190301" item_id="MI-19-03" item_id2="MI-19-03" kind="major" include_exclude="include" icd_start="J62.8" match_type="exact" sort="2"/>
+    <map map_id="M190400" item_id="MI-19-04" item_id2="MI-19-04" kind="major" include_exclude="include" icd_start="J63.0" icd_end="J63.6" match_type="range"/>
+    <map map_id="M190500" item_id="MI-19-05" item_id2="MI-19-05" kind="major" include_exclude="include" icd_start="J64" match_type="exact" sort="1"/>
+    <map map_id="M190501" item_id="MI-19-05" item_id2="MI-19-05" kind="major" include_exclude="include" icd_start="J65" match_type="exact" sort="2"/>
+    <map map_id="M200100" item_id="MI-20-01" item_id2="MI-20-01" kind="major" include_exclude="include" icd_start="I60.00" icd_end="I60.9" match_type="range"/>
+    <map map_id="M200200" item_id="MI-20-02" item_id2="MI-20-02" kind="major" include_exclude="include" icd_start="I61.0" icd_end="I62.9" match_type="range"/>
+    <map map_id="M200300" item_id="MI-20-03" item_id2="MI-20-03" kind="major" include_exclude="include" icd_start="I63.00" icd_end="I63.9" match_type="range" sort="1"/>
+    <map map_id="M200301" item_id="MI-20-03" item_id2="MI-20-03" kind="major" include_exclude="include" icd_start="P91.821" icd_end="P91.822" match_type="range" sort="2"/>
+    <map map_id="M200302" item_id="MI-20-03" item_id2="MI-20-03" kind="major" include_exclude="include" icd_start="P91.823" icd_end="P91.829" match_type="range" sort="3"/>
+    <map map_id="M200400" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" icd_start="G45.0" icd_end="G45.2" match_type="range" sort="1"/>
+    <map map_id="M200401" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" icd_start="G45.4" icd_end="G46.8" match_type="range" sort="2"/>
+    <map map_id="M200402" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" icd_start="I67.0" icd_end="I67.2" match_type="range" sort="3"/>
+    <map map_id="M200403" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" icd_start="I67.4" icd_end="I67.7" match_type="range" sort="4"/>
+    <map map_id="M200404" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" icd_start="I67.81" match_type="exact" sort="5"/>
+    <map map_id="M200405" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" icd_start="I67.82" match_type="exact" sort="6"/>
+    <map map_id="M200406" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" icd_start="I67.841" icd_end="I67.848" match_type="range" sort="7"/>
+    <map map_id="M200407" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" icd_start="I67.850" match_type="exact" sort="8"/>
+    <map map_id="M200408" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" icd_start="I67.858" match_type="exact" sort="9"/>
+    <map map_id="M200409" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" icd_start="I67.89" match_type="exact" sort="10"/>
+    <map map_id="M200410" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" icd_start="I67.9" match_type="exact" sort="11"/>
+    <map map_id="M200411" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" icd_start="I68.0" match_type="exact" sort="12"/>
+    <map map_id="M200412" item_id="MI-20-04" item_id2="MI-20-04" kind="major" include_exclude="include" icd_start="I68.8" match_type="exact" sort="13"/>
+    <map map_id="M210100" item_id="MI-21-01" item_id2="MI-21-01" kind="major" include_exclude="include" icd_start="G35" match_type="prefix"/>
+    <map map_id="M220100" item_id="MI-22-01" item_id2="MI-22-01" kind="major" include_exclude="include" icd_start="G71.00" icd_end="G71.29" match_type="range"/>
+    <map map_id="M230100" item_id="MI-23-01" item_id2="MI-23-01" kind="major" include_exclude="include" icd_start="Q81.0" icd_end="Q81.9" match_type="range" sort="1"/>
+    <map map_id="M230101" item_id="MI-23-01" item_id2="MI-23-01" kind="major" include_exclude="include" icd_start="Q82.8" match_type="exact" sort="2"/>
+    <map map_id="M230102" item_id="MI-23-01" item_id2="MI-23-01" kind="major" include_exclude="include" icd_start="Q82.9" match_type="exact" sort="3"/>
+    <map map_id="M230200" item_id="MI-23-02" item_id2="MI-23-02" kind="major" include_exclude="include" icd_start="Q84.9" match_type="exact"/>
+    <map map_id="M230300" item_id="MI-23-03" item_id2="MI-23-03" kind="major" include_exclude="include" icd_start="Q80.0" icd_end="Q80.9" match_type="range"/>
+    <map map_id="M240100" item_id="MI-24-01" item_id2="MI-24-01" kind="major" include_exclude="include" icd_start="A30.0" icd_end="A30.9" match_type="range"/>
+    <map map_id="M250100" item_id="MI-25-01" item_id2="MI-25-01" kind="major" include_exclude="include" icd_start="K70.2" icd_end="K70.31" match_type="range" sort="1"/>
+    <map map_id="M250101" item_id="MI-25-01" item_id2="MI-25-01" kind="major" include_exclude="include" icd_start="K74.1" icd_end="K74.69" match_type="range" sort="2"/>
+    <map map_id="M260100" item_id="MI-26-01" item_id2="MI-26-01" kind="major" include_exclude="include" icd_start="P07.10" match_type="exact"/>
+    <map map_id="M260200" item_id="MI-26-02" item_id2="MI-26-02" kind="major" include_exclude="include" icd_start="P07.20" match_type="exact"/>
+    <map map_id="M270100" item_id="MI-27-01" item_id2="MI-27-01" kind="major" include_exclude="include" icd_start="T57.0X1A" match_type="exact" sort="1"/>
+    <map map_id="M270101" item_id="MI-27-01" item_id2="MI-27-01" kind="major" include_exclude="include" icd_start="T57.0X2A" match_type="exact" sort="2"/>
+    <map map_id="M270102" item_id="MI-27-01" item_id2="MI-27-01" kind="major" include_exclude="include" icd_start="T57.0X3A" match_type="exact" sort="3"/>
+    <map map_id="M270103" item_id="MI-27-01" item_id2="MI-27-01" kind="major" include_exclude="include" icd_start="T57.0X4A" match_type="exact" sort="4"/>
+    <map map_id="M280100" item_id="MI-28-01" item_id2="MI-28-01" kind="major" include_exclude="include" icd_start="G12.20" icd_end="G12.29" match_type="range"/>
+    <map map_id="M290100" item_id="MI-29-01" item_id2="MI-29-01" kind="major" include_exclude="include" icd_start="A81.00" icd_end="A81.09" match_type="range"/>
+    <map map_id="RA010100" item_id="RD-A01-01" item_id2="RD-A01-01" kind="rare" include_exclude="include" icd_start="E72.20" match_type="exact"/>
+    <map map_id="RA010200" item_id="RD-A01-02" item_id2="RD-A01-02" kind="rare" include_exclude="include" icd_start="E72.23" match_type="exact"/>
+    <map map_id="RA010300" item_id="RD-A01-03" item_id2="RD-A01-03" kind="rare" include_exclude="include" icd_start="E72.29" match_type="exact"/>
+    <map map_id="RA010400" item_id="RD-A01-04" item_id2="RD-A01-04" kind="rare" include_exclude="include" icd_start="E72.4" match_type="exact"/>
+    <map map_id="RA010500" item_id="RD-A01-05" item_id2="RD-A01-05" kind="rare" include_exclude="include" icd_start="E72.4" match_type="exact"/>
+    <map map_id="RA020100" item_id="RD-A02-01" item_id2="RD-A02-01" kind="rare" include_exclude="include" icd_start="E72.9" match_type="exact" sort="1"/>
+    <map map_id="RA020101" item_id="RD-A02-01" item_id2="RD-A02-01" kind="rare" include_exclude="include" icd_start="E70.9" match_type="exact" sort="2"/>
+    <map map_id="RA020102" item_id="RD-A02-01" item_id2="RD-A02-01" kind="rare" include_exclude="include" icd_start="E72.10" match_type="exact" sort="3"/>
+    <map map_id="RA020103" item_id="RD-A02-01" item_id2="RD-A02-01" kind="rare" include_exclude="include" icd_start="E72.89" match_type="exact" sort="4"/>
+    <map map_id="RA020200" item_id="RD-A02-02" item_id2="RD-A02-02" kind="rare" include_exclude="include" icd_start="E72.11" match_type="exact"/>
+    <map map_id="RA020300" item_id="RD-A02-03" item_id2="RD-A02-03" kind="rare" include_exclude="include" icd_start="E72.19" match_type="exact"/>
+    <map map_id="RA020400" item_id="RD-A02-04" item_id2="RD-A02-04" kind="rare" include_exclude="include" icd_start="E72.51" match_type="exact"/>
+    <map map_id="RA020500" item_id="RD-A02-05" item_id2="RD-A02-05" kind="rare" include_exclude="include" icd_start="E70.0" match_type="exact"/>
+    <map map_id="RA020600" item_id="RD-A02-06" item_id2="RD-A02-06" kind="rare" include_exclude="include" icd_start="E70.1" match_type="exact"/>
+    <map map_id="RA020700" item_id="RD-A02-07" item_id2="RD-A02-07" kind="rare" include_exclude="include" icd_start="E70.21" match_type="exact"/>
+    <map map_id="RA020800" item_id="RD-A02-08" item_id2="RD-A02-08" kind="rare" include_exclude="include" icd_start="E71.0" match_type="exact"/>
+    <map map_id="RA020900" item_id="RD-A02-09" item_id2="RD-A02-09" kind="rare" include_exclude="include" icd_start="E71.118" match_type="exact"/>
+    <map map_id="RA021000" item_id="RD-A02-10" item_id2="RD-A02-10" kind="rare" include_exclude="include" icd_start="E71.110" match_type="exact"/>
+    <map map_id="RA021100" item_id="RD-A02-11" item_id2="RD-A02-11" kind="rare" include_exclude="include" icd_start="E72.3" match_type="exact" sort="1" note="type I"/>
+    <map map_id="RA021101" item_id="RD-A02-11" item_id2="RD-A02-11" kind="rare" include_exclude="include" icd_start="E71.313" match_type="exact" sort="2" note="typeII"/>
+    <map map_id="RA021200" item_id="RD-A02-12" item_id2="RD-A02-12" kind="rare" include_exclude="include" icd_start="E71.121" match_type="exact"/>
+    <map map_id="RA021300" item_id="RD-A02-13" item_id2="RD-A02-13" kind="rare" include_exclude="include" icd_start="E71.120" match_type="exact"/>
+    <map map_id="RA021400" item_id="RD-A02-14" item_id2="RD-A02-14" kind="rare" include_exclude="include" icd_start="E71.118" match_type="exact"/>
+    <map map_id="RA021500" item_id="RD-A02-15" item_id2="RD-A02-15" kind="rare" include_exclude="include" icd_start="E74.31" match_type="exact" sort="1" note="需 + E70.0"/>
+    <map map_id="RA021501" item_id="RD-A02-15" item_id2="RD-A02-15" kind="rare" include_exclude="include" icd_start="E70.0" match_type="exact" sort="2" note="需 + E74.31"/>
+    <map map_id="RA021600" item_id="RD-A02-16" item_id2="RD-A02-16" kind="rare" include_exclude="include" icd_start="E72.3" match_type="exact"/>
+    <map map_id="RA021700" item_id="RD-A02-17" item_id2="RD-A02-17" kind="rare" include_exclude="include" icd_start="E70.41" match_type="exact"/>
+    <map map_id="RA021800" item_id="RD-A02-18" item_id2="RD-A02-18" kind="rare" include_exclude="include" icd_start="E71.19" match_type="exact"/>
+    <map map_id="RA021900" item_id="RD-A02-19" item_id2="RD-A02-19" kind="rare" include_exclude="include" icd_start="D81.819" match_type="exact"/>
+    <map map_id="RA022000" item_id="RD-A02-20" item_id2="RD-A02-20" kind="rare" include_exclude="include" icd_start="E72.59" match_type="exact"/>
+    <map map_id="RA022100" item_id="RD-A02-21" item_id2="RD-A02-21" kind="rare" include_exclude="include" icd_start="E70.9" match_type="exact"/>
+    <map map_id="RA022200" item_id="RD-A02-22" item_id2="RD-A02-22" kind="rare" include_exclude="include" icd_start="E70.20" match_type="exact"/>
+    <map map_id="RA022300" item_id="RD-A02-23" item_id2="RD-A02-23" kind="rare" include_exclude="include" icd_start="E71.120" match_type="exact" sort="1" note="需 + E72.11"/>
+    <map map_id="RA022301" item_id="RD-A02-23" item_id2="RD-A02-23" kind="rare" include_exclude="include" icd_start="E72.11" match_type="exact" sort="2" note="需 + E71.120"/>
+    <map map_id="RA022400" item_id="RD-A02-24" item_id2="RD-A02-24" kind="rare" include_exclude="include" icd_start="E72.53" match_type="exact"/>
+    <map map_id="RA022500" item_id="RD-A02-25" item_id2="RD-A02-25" kind="rare" include_exclude="include" icd_start="E70.29" match_type="exact"/>
+    <map map_id="RA030100" item_id="RD-A03-01" item_id2="RD-A03-01" kind="rare" include_exclude="include" icd_start="E75.22" match_type="exact"/>
+    <map map_id="RA030200" item_id="RD-A03-02" item_id2="RD-A03-02" kind="rare" include_exclude="include" icd_start="E75.19" match_type="exact" sort="1" note="GM1"/>
+    <map map_id="RA030201" item_id="RD-A03-02" item_id2="RD-A03-02" kind="rare" include_exclude="include" icd_start="E75.00" match_type="exact" sort="2" note="GM2"/>
+    <map map_id="RA030300" item_id="RD-A03-03" item_id2="RD-A03-03" kind="rare" include_exclude="include" icd_start="E75.21" match_type="exact"/>
+    <map map_id="RA030400" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" icd_start="E75.240" match_type="exact" sort="1" note="Type A"/>
+    <map map_id="RA030401" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" icd_start="E75.241" match_type="exact" sort="2" note="Type B"/>
+    <map map_id="RA030402" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" icd_start="E75.242" match_type="exact" sort="3" note="Type C"/>
+    <map map_id="RA030403" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" icd_start="E75.243" match_type="exact" sort="4" note="Type D"/>
+    <map map_id="RA030404" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" icd_start="E75.244" match_type="exact" sort="5" note="Type A/B"/>
+    <map map_id="RA030405" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" icd_start="E75.248" match_type="exact" sort="6" note="other"/>
+    <map map_id="RA030406" item_id="RD-A03-04" item_id2="RD-A03-04" kind="rare" include_exclude="include" icd_start="E75.249" match_type="exact" sort="7" note="unspecified"/>
+    <map map_id="RA030500" item_id="RD-A03-05" item_id2="RD-A03-05" kind="rare" include_exclude="include" icd_start="E75.25" match_type="exact"/>
+    <map map_id="RA030600" item_id="RD-A03-06" item_id2="RD-A03-06" kind="rare" include_exclude="include" icd_start="E75.23" match_type="exact"/>
+    <map map_id="RA030700" item_id="RD-A03-07" item_id2="RD-A03-07" kind="rare" include_exclude="include" icd_start="E75.5" match_type="exact"/>
+    <map map_id="RA030800" item_id="RD-A03-08" item_id2="RD-A03-08" kind="rare" include_exclude="include" icd_start="E72.4" match_type="exact"/>
+    <map map_id="RA030900" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" icd_start="E76.01" match_type="exact" sort="1" note="Type 1"/>
+    <map map_id="RA030901" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" icd_start="E76.02" match_type="exact" sort="2" note="Type 1"/>
+    <map map_id="RA030902" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" icd_start="E76.03" match_type="exact" sort="3" note="Type 1"/>
+    <map map_id="RA030903" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" icd_start="E76.1" match_type="exact" sort="4" note="Type 2"/>
+    <map map_id="RA030904" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" icd_start="E76.210" match_type="exact" sort="5" note="other"/>
+    <map map_id="RA030905" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" icd_start="E76.211" match_type="exact" sort="6" note="other"/>
+    <map map_id="RA030906" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" icd_start="E76.219" match_type="exact" sort="7" note="other"/>
+    <map map_id="RA030907" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" icd_start="E76.22" match_type="exact" sort="8" note="other"/>
+    <map map_id="RA030908" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" icd_start="E76.29" match_type="exact" sort="9" note="other"/>
+    <map map_id="RA030909" item_id="RD-A03-09" item_id2="RD-A03-09" kind="rare" include_exclude="include" icd_start="E76.3" match_type="exact" sort="10" note="unspecified"/>
+    <map map_id="RA031000" item_id="RD-A03-10" item_id2="RD-A03-10" kind="rare" include_exclude="include" icd_start="E77.1" match_type="exact"/>
+    <map map_id="RA031100" item_id="RD-A03-11" item_id2="RD-A03-11" kind="rare" include_exclude="include" icd_start="E77.1" match_type="exact"/>
+    <map map_id="RA031200" item_id="RD-A03-12" item_id2="RD-A03-12" kind="rare" include_exclude="include" icd_start="E77.1" match_type="exact" sort="1" note="Type I"/>
+    <map map_id="RA031201" item_id="RD-A03-12" item_id2="RD-A03-12" kind="rare" include_exclude="include" icd_start="E77.0" match_type="exact" sort="2" note="Type II/III"/>
+    <map map_id="RA031202" item_id="RD-A03-12" item_id2="RD-A03-12" kind="rare" include_exclude="include" icd_start="E75.11" match_type="exact" sort="3" note="Type IV"/>
+    <map map_id="RA031300" item_id="RD-A03-13" item_id2="RD-A03-13" kind="rare" include_exclude="include" icd_start="E75.4" match_type="exact"/>
+    <map map_id="RA031400" item_id="RD-A03-14" item_id2="RD-A03-14" kind="rare" include_exclude="include" icd_start="E75.26" match_type="exact"/>
+    <map map_id="RA040100" item_id="RD-A04-01" item_id2="RD-A04-01" kind="rare" include_exclude="include" icd_start="E74.21" match_type="exact"/>
+    <map map_id="RA040200" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" icd_start="E74.09" match_type="exact" sort="1" note="Type 0"/>
+    <map map_id="RA040201" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" icd_start="E74.01" match_type="exact" sort="2" note="Type I"/>
+    <map map_id="RA040202" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" icd_start="E74.02" match_type="exact" sort="3" note="Type II"/>
+    <map map_id="RA040203" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" icd_start="E74.03" match_type="exact" sort="4" note="Type III"/>
+    <map map_id="RA040204" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" icd_start="E74.09" match_type="exact" sort="5" note="Type IV"/>
+    <map map_id="RA040205" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" icd_start="E74.04" match_type="exact" sort="6" note="Type V"/>
+    <map map_id="RA040206" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" icd_start="E74.09" match_type="exact" sort="7" note="Type VI-XI"/>
+    <map map_id="RA040207" item_id="RD-A04-02" item_id2="RD-A04-02" kind="rare" include_exclude="include" icd_start="E74.01" match_type="exact" sort="8" note="Von Gierke's"/>
+    <map map_id="RA040300" item_id="RD-A04-03" item_id2="RD-A04-03" kind="rare" include_exclude="include" icd_start="E74.810" match_type="exact"/>
+    <map map_id="RA040400" item_id="RD-A04-04" item_id2="RD-A04-04" kind="rare" include_exclude="include" icd_start="E74.89" match_type="exact"/>
+    <map map_id="RA050100" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" icd_start="E71.30" match_type="exact" sort="1"/>
+    <map map_id="RA050101" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" icd_start="E71.310" match_type="exact" sort="2"/>
+    <map map_id="RA050102" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" icd_start="E71.311" match_type="exact" sort="3"/>
+    <map map_id="RA050103" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" icd_start="E71.312" match_type="exact" sort="4"/>
+    <map map_id="RA050104" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" icd_start="E71.313" match_type="exact" sort="5"/>
+    <map map_id="RA050105" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" icd_start="E71.314" match_type="exact" sort="6"/>
+    <map map_id="RA050106" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" icd_start="E71.318" match_type="exact" sort="7"/>
+    <map map_id="RA050107" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" icd_start="E71.32" match_type="exact" sort="8"/>
+    <map map_id="RA050108" item_id="RD-A05-01" item_id2="RD-A05-01" kind="rare" include_exclude="include" icd_start="E71.39" match_type="exact" sort="9"/>
+    <map map_id="RA050200" item_id="RD-A05-02" item_id2="RD-A05-02" kind="rare" include_exclude="include" icd_start="E71.41" match_type="exact"/>
+    <map map_id="RA050300" item_id="RD-A05-03" item_id2="RD-A05-03" kind="rare" include_exclude="include" icd_start="E71.311" match_type="exact"/>
+    <map map_id="RA050400" item_id="RD-A05-04" item_id2="RD-A05-04" kind="rare" include_exclude="include" icd_start="E71.312" match_type="exact"/>
+    <map map_id="RA060100" item_id="RD-A06-01" item_id2="RD-A06-01" kind="rare" include_exclude="include" icd_start="E88.40" match_type="exact"/>
+    <map map_id="RA060200" item_id="RD-A06-02" item_id2="RD-A06-02" kind="rare" include_exclude="include" icd_start="H49.811" match_type="exact" sort="1"/>
+    <map map_id="RA060201" item_id="RD-A06-02" item_id2="RD-A06-02" kind="rare" include_exclude="include" icd_start="H49.812" match_type="exact" sort="2"/>
+    <map map_id="RA060202" item_id="RD-A06-02" item_id2="RD-A06-02" kind="rare" include_exclude="include" icd_start="H49.813" match_type="exact" sort="3"/>
+    <map map_id="RA060203" item_id="RD-A06-02" item_id2="RD-A06-02" kind="rare" include_exclude="include" icd_start="H49.819" match_type="exact" sort="4"/>
+    <map map_id="RA060300" item_id="RD-A06-03" item_id2="RD-A06-03" kind="rare" include_exclude="include" icd_start="G31.82" match_type="exact"/>
+    <map map_id="RA060400" item_id="RD-A06-04" item_id2="RD-A06-04" kind="rare" include_exclude="include" icd_start="E88.41" match_type="exact"/>
+    <map map_id="RA060500" item_id="RD-A06-05" item_id2="RD-A06-05" kind="rare" include_exclude="include" icd_start="E88.49" match_type="exact"/>
+    <map map_id="RA060600" item_id="RD-A06-06" item_id2="RD-A06-06" kind="rare" include_exclude="include" icd_start="E74.4" match_type="exact"/>
+    <map map_id="RA060700" item_id="RD-A06-07" item_id2="RD-A06-07" kind="rare" include_exclude="include" icd_start="E78.71" match_type="exact"/>
+    <map map_id="RA060800" item_id="RD-A06-08" item_id2="RD-A06-08" kind="rare" include_exclude="include" icd_start="H47.22" match_type="exact"/>
+    <map map_id="RA070100" item_id="RD-A07-01" item_id2="RD-A07-01" kind="rare" include_exclude="include" icd_start="D81.810" match_type="exact"/>
+    <map map_id="RA080100" item_id="RD-A08-01" item_id2="RD-A08-01" kind="rare" include_exclude="include" icd_start="E78.01" match_type="exact"/>
+    <map map_id="RA080200" item_id="RD-A08-02" item_id2="RD-A08-02" kind="rare" include_exclude="include" icd_start="E78.3" match_type="exact"/>
+    <map map_id="RA080300" item_id="RD-A08-03" item_id2="RD-A08-03" kind="rare" include_exclude="include" icd_start="E78.00" match_type="exact" sort="1"/>
+    <map map_id="RA080301" item_id="RD-A08-03" item_id2="RD-A08-03" kind="rare" include_exclude="include" icd_start="E78.01" match_type="exact" sort="2"/>
+    <map map_id="RA080400" item_id="RD-A08-04" item_id2="RD-A08-04" kind="rare" include_exclude="include" icd_start="E88.1" match_type="exact"/>
+    <map map_id="RA080500" item_id="RD-A08-05" item_id2="RD-A08-05" kind="rare" include_exclude="include" icd_start="E75.5" match_type="exact"/>
+    <map map_id="RA090100" item_id="RD-A09-01" item_id2="RD-A09-01" kind="rare" include_exclude="include" icd_start="E83.01" match_type="exact"/>
+    <map map_id="RA090200" item_id="RD-A09-02" item_id2="RD-A09-02" kind="rare" include_exclude="include" icd_start="E83.09" match_type="exact"/>
+    <map map_id="RA090300" item_id="RD-A09-03" item_id2="RD-A09-03" kind="rare" include_exclude="include" icd_start="E61.5" match_type="exact"/>
+    <map map_id="RA100100" item_id="RD-A10-01" item_id2="RD-A10-01" kind="rare" include_exclude="include" icd_start="E71.510" match_type="exact"/>
+    <map map_id="RA100200" item_id="RD-A10-02" item_id2="RD-A10-02" kind="rare" include_exclude="include" icd_start="E71.511" match_type="exact" sort="1"/>
+    <map map_id="RA100201" item_id="RD-A10-02" item_id2="RD-A10-02" kind="rare" include_exclude="include" icd_start="E71.520" match_type="exact" sort="2"/>
+    <map map_id="RA100202" item_id="RD-A10-02" item_id2="RD-A10-02" kind="rare" include_exclude="include" icd_start="E71.521" match_type="exact" sort="3"/>
+    <map map_id="RA100203" item_id="RD-A10-02" item_id2="RD-A10-02" kind="rare" include_exclude="include" icd_start="E71.528" match_type="exact" sort="4"/>
+    <map map_id="RA100204" item_id="RD-A10-02" item_id2="RD-A10-02" kind="rare" include_exclude="include" icd_start="E71.529" match_type="exact" sort="5"/>
+    <map map_id="RA100300" item_id="RD-A10-03" item_id2="RD-A10-03" kind="rare" include_exclude="include" icd_start="E71.540" match_type="exact"/>
+    <map map_id="RA110100" item_id="RD-A11-01" item_id2="RD-A11-01" kind="rare" include_exclude="include" icd_start="E80.20" match_type="exact" sort="1"/>
+    <map map_id="RA110101" item_id="RD-A11-01" item_id2="RD-A11-01" kind="rare" include_exclude="include" icd_start="E80.21" match_type="exact" sort="2"/>
+    <map map_id="RA110102" item_id="RD-A11-01" item_id2="RD-A11-01" kind="rare" include_exclude="include" icd_start="E80.29" match_type="exact" sort="3"/>
+    <map map_id="RA110200" item_id="RD-A11-02" item_id2="RD-A11-02" kind="rare" include_exclude="include" icd_start="E79.1" match_type="exact"/>
+    <map map_id="RA110300" item_id="RD-A11-03" item_id2="RD-A11-03" kind="rare" include_exclude="include" icd_start="E72.19" match_type="exact"/>
+    <map map_id="RA110400" item_id="RD-A11-04" item_id2="RD-A11-04" kind="rare" include_exclude="include" icd_start="E77.8" match_type="exact"/>
+    <map map_id="RA110500" item_id="RD-A11-05" item_id2="RD-A11-05" kind="rare" include_exclude="include" icd_start="E72.52" match_type="exact"/>
+    <map map_id="RA110600" item_id="RD-A11-06" item_id2="RD-A11-06" kind="rare" include_exclude="include" icd_start="E83.39" match_type="exact" sort="1"/>
+    <map map_id="RA110601" item_id="RD-A11-06" item_id2="RD-A11-06" kind="rare" include_exclude="include" icd_start="E83.31" match_type="exact" sort="2"/>
+    <map map_id="RA110700" item_id="RD-A11-07" item_id2="RD-A11-07" kind="rare" include_exclude="include" icd_start="E71.19" match_type="exact"/>
+    <map map_id="RA110800" item_id="RD-A11-08" item_id2="RD-A11-08" kind="rare" include_exclude="include" icd_start="E72.8" match_type="exact"/>
+    <map map_id="RA110900" item_id="RD-A11-09" item_id2="RD-A11-09" kind="rare" include_exclude="include" icd_start="E51.8" match_type="exact"/>
+    <map map_id="RB010100" item_id="RD-B01-01" item_id2="RD-B01-01" kind="rare" include_exclude="include" icd_start="G35" match_type="exact" sort="1"/>
+    <map map_id="RB010101" item_id="RD-B01-01" item_id2="RD-B01-01" kind="rare" include_exclude="include" icd_start="G36.0" match_type="exact" sort="2"/>
+    <map map_id="RB010200" item_id="RD-B01-02" item_id2="RD-B01-02" kind="rare" include_exclude="include" icd_start="G12.21" match_type="exact"/>
+    <map map_id="RB010300" item_id="RD-B01-03" item_id2="RD-B01-03" kind="rare" include_exclude="include" icd_start="G11.3" match_type="exact"/>
+    <map map_id="RB010400" item_id="RD-B01-04" item_id2="RD-B01-04" kind="rare" include_exclude="include" icd_start="G10" match_type="exact"/>
+    <map map_id="RB010500" item_id="RD-B01-05" item_id2="RD-B01-05" kind="rare" include_exclude="include" icd_start="F84.2" match_type="exact"/>
+    <map map_id="RB010600" item_id="RD-B01-06" item_id2="RD-B01-06" kind="rare" include_exclude="include" icd_start="G12.0" match_type="exact" sort="1"/>
+    <map map_id="RB010601" item_id="RD-B01-06" item_id2="RD-B01-06" kind="rare" include_exclude="include" icd_start="G12.1" match_type="exact" sort="2"/>
+    <map map_id="RB010700" item_id="RD-B01-07" item_id2="RD-B01-07" kind="rare" include_exclude="include" icd_start="G11.9" match_type="exact"/>
+    <map map_id="RB010800" item_id="RD-B01-08" item_id2="RD-B01-08" kind="rare" include_exclude="include" icd_start="Q85.1" match_type="exact"/>
+    <map map_id="RB010900" item_id="RD-B01-09" item_id2="RD-B01-09" kind="rare" include_exclude="include" icd_start="L74.4" match_type="exact"/>
+    <map map_id="RB011000" item_id="RD-B01-10" item_id2="RD-B01-10" kind="rare" include_exclude="include" icd_start="Q85.02" match_type="exact"/>
+    <map map_id="RB011100" item_id="RD-B01-11" item_id2="RD-B01-11" kind="rare" include_exclude="include" icd_start="E75.29" match_type="exact"/>
+    <map map_id="RB011200" item_id="RD-B01-12" item_id2="RD-B01-12" kind="rare" include_exclude="include" icd_start="G25.82" match_type="exact"/>
+    <map map_id="RB011300" item_id="RD-B01-13" item_id2="RD-B01-13" kind="rare" include_exclude="include" icd_start="G11.4" match_type="exact"/>
+    <map map_id="RB011400" item_id="RD-B01-14" item_id2="RD-B01-14" kind="rare" include_exclude="include" icd_start="Q04.3" match_type="exact"/>
+    <map map_id="RB011500" item_id="RD-B01-15" item_id2="RD-B01-15" kind="rare" include_exclude="include" icd_start="E75.29" match_type="exact"/>
+    <map map_id="RB011600" item_id="RD-B01-16" item_id2="RD-B01-16" kind="rare" include_exclude="include" icd_start="G60.0" match_type="exact"/>
+    <map map_id="RB011700" item_id="RD-B01-17" item_id2="RD-B01-17" kind="rare" include_exclude="include" icd_start="G12.20" match_type="exact" sort="1"/>
+    <map map_id="RB011701" item_id="RD-B01-17" item_id2="RD-B01-17" kind="rare" include_exclude="include" icd_start="G12.24" match_type="exact" sort="2"/>
+    <map map_id="RB011702" item_id="RD-B01-17" item_id2="RD-B01-17" kind="rare" include_exclude="include" icd_start="G12.29" match_type="exact" sort="3"/>
+    <map map_id="RB011800" item_id="RD-B01-18" item_id2="RD-B01-18" kind="rare" include_exclude="include" icd_start="E85.1" match_type="exact"/>
+    <map map_id="RB011900" item_id="RD-B01-19" item_id2="RD-B01-19" kind="rare" include_exclude="include" icd_start="Q87.0" match_type="exact"/>
+    <map map_id="RB012000" item_id="RD-B01-20" item_id2="RD-B01-20" kind="rare" include_exclude="include" icd_start="Q97.8" match_type="exact" sort="1"/>
+    <map map_id="RB012001" item_id="RD-B01-20" item_id2="RD-B01-20" kind="rare" include_exclude="include" icd_start="Q98.8" match_type="exact" sort="2"/>
+    <map map_id="RB012100" item_id="RD-B01-21" item_id2="RD-B01-21" kind="rare" include_exclude="include" icd_start="G31.89" match_type="exact"/>
+    <map map_id="RB012200" item_id="RD-B01-22" item_id2="RD-B01-22" kind="rare" include_exclude="include" icd_start="Q99.8" match_type="exact"/>
+    <map map_id="RB012300" item_id="RD-B01-23" item_id2="RD-B01-23" kind="rare" include_exclude="include" icd_start="G40.833" match_type="exact" sort="1"/>
+    <map map_id="RB012301" item_id="RD-B01-23" item_id2="RD-B01-23" kind="rare" include_exclude="include" icd_start="G40.834" match_type="exact" sort="2"/>
+    <map map_id="RB012400" item_id="RD-B01-24" item_id2="RD-B01-24" kind="rare" include_exclude="include" icd_start="G37.8" match_type="exact"/>
+    <map map_id="RB012500" item_id="RD-B01-25" item_id2="RD-B01-25" kind="rare" include_exclude="include" icd_start="G23.0" match_type="exact"/>
+    <map map_id="RB012600" item_id="RD-B01-26" item_id2="RD-B01-26" kind="rare" include_exclude="include" icd_start="G23.0" match_type="exact"/>
+    <map map_id="RB012700" item_id="RD-B01-27" item_id2="RD-B01-27" kind="rare" include_exclude="include" icd_start="Q87.0" match_type="exact"/>
+    <map map_id="RB012800" item_id="RD-B01-28" item_id2="RD-B01-28" kind="rare" include_exclude="include" icd_start="G23.0" match_type="exact"/>
+    <map map_id="RB012900" item_id="RD-B01-29" item_id2="RD-B01-29" kind="rare" include_exclude="include" icd_start="G12.2" match_type="exact"/>
+    <map map_id="RB013000" item_id="RD-B01-30" item_id2="RD-B01-30" kind="rare" include_exclude="include" icd_start="G47.35" match_type="exact"/>
+    <map map_id="RB013100" item_id="RD-B01-31" item_id2="RD-B01-31" kind="rare" include_exclude="include" icd_start="Q85.8" match_type="exact"/>
+    <map map_id="RB013200" item_id="RD-B01-32" item_id2="RD-B01-32" kind="rare" include_exclude="include" icd_start="F78.A9" match_type="exact"/>
+    <map map_id="RB013300" item_id="RD-B01-33" item_id2="RD-B01-33" kind="rare" include_exclude="include" icd_start="G25.5" match_type="exact"/>
+    <map map_id="RC010100" item_id="RD-C01-01" item_id2="RD-C01-01" kind="rare" include_exclude="include" icd_start="Q28.8" match_type="exact"/>
+    <map map_id="RC010200" item_id="RD-C01-02" item_id2="RD-C01-02" kind="rare" include_exclude="include" icd_start="E84.9" match_type="exact"/>
+    <map map_id="RC010300" item_id="RD-C01-03" item_id2="RD-C01-03" kind="rare" include_exclude="include" icd_start="I27.0" match_type="exact"/>
+    <map map_id="RC010400" item_id="RD-C01-04" item_id2="RD-C01-04" kind="rare" include_exclude="include" icd_start="Q87.2" match_type="exact"/>
+    <map map_id="RC010500" item_id="RD-C01-05" item_id2="RD-C01-05" kind="rare" include_exclude="include" icd_start="E74.09" match_type="exact"/>
+    <map map_id="RC010600" item_id="RD-C01-06" item_id2="RD-C01-06" kind="rare" include_exclude="include" icd_start="I78.0" match_type="exact"/>
+    <map map_id="RC010700" item_id="RD-C01-07" item_id2="RD-C01-07" kind="rare" include_exclude="include" icd_start="Q77.2" match_type="exact"/>
+    <map map_id="RD010100" item_id="RD-D01-01" item_id2="RD-D01-01" kind="rare" include_exclude="include" icd_start="K83.1" match_type="exact"/>
+    <map map_id="RD010200" item_id="RD-D01-02" item_id2="RD-D01-02" kind="rare" include_exclude="include" icd_start="E78.70" match_type="exact"/>
+    <map map_id="RD010300" item_id="RD-D01-03" item_id2="RD-D01-03" kind="rare" include_exclude="include" icd_start="E88.01" match_type="exact"/>
+    <map map_id="RD010400" item_id="RD-D01-04" item_id2="RD-D01-04" kind="rare" include_exclude="include" icd_start="Q43.8" match_type="exact"/>
+    <map map_id="RD010500" item_id="RD-D01-05" item_id2="RD-D01-05" kind="rare" include_exclude="include" icd_start="Q44.7" match_type="exact"/>
+    <map map_id="RD010600" item_id="RD-D01-06" item_id2="RD-D01-06" kind="rare" include_exclude="include" icd_start="Q89.7" match_type="exact"/>
+    <map map_id="RE010100" item_id="RD-E01-01" item_id2="RD-E01-01" kind="rare" include_exclude="include" icd_start="E72.03" match_type="exact"/>
+    <map map_id="RE010200" item_id="RD-E01-02" item_id2="RD-E01-02" kind="rare" include_exclude="include" icd_start="E26.81" match_type="exact"/>
+    <map map_id="RE010300" item_id="RD-E01-03" item_id2="RD-E01-03" kind="rare" include_exclude="include" icd_start="Q61.19" match_type="exact"/>
+    <map map_id="RE010400" item_id="RD-E01-04" item_id2="RD-E01-04" kind="rare" include_exclude="include" icd_start="Q87.81" match_type="exact"/>
+    <map map_id="RF010100" item_id="RD-F01-01" item_id2="RD-F01-01" kind="rare" include_exclude="include" icd_start="Q81.0" match_type="exact" sort="1"/>
+    <map map_id="RF010101" item_id="RD-F01-01" item_id2="RD-F01-01" kind="rare" include_exclude="include" icd_start="Q81.1" match_type="exact" sort="2"/>
+    <map map_id="RF010102" item_id="RD-F01-01" item_id2="RD-F01-01" kind="rare" include_exclude="include" icd_start="Q81.2" match_type="exact" sort="3"/>
+    <map map_id="RF010103" item_id="RD-F01-01" item_id2="RD-F01-01" kind="rare" include_exclude="include" icd_start="Q81.8" match_type="exact" sort="4"/>
+    <map map_id="RF010104" item_id="RD-F01-01" item_id2="RD-F01-01" kind="rare" include_exclude="include" icd_start="Q81.9" match_type="exact" sort="5"/>
+    <map map_id="RF010200" item_id="RD-F01-02" item_id2="RD-F01-02" kind="rare" include_exclude="include" icd_start="Q80.2" match_type="exact"/>
+    <map map_id="RF010300" item_id="RD-F01-03" item_id2="RD-F01-03" kind="rare" include_exclude="include" icd_start="Q80.2" match_type="exact"/>
+    <map map_id="RF010400" item_id="RD-F01-04" item_id2="RD-F01-04" kind="rare" include_exclude="include" icd_start="Q80.4" match_type="exact"/>
+    <map map_id="RF010500" item_id="RD-F01-05" item_id2="RD-F01-05" kind="rare" include_exclude="include" icd_start="Q80.3" match_type="exact"/>
+    <map map_id="RF010600" item_id="RD-F01-06" item_id2="RD-F01-06" kind="rare" include_exclude="include" icd_start="Q82.4" match_type="exact"/>
+    <map map_id="RF010700" item_id="RD-F01-07" item_id2="RD-F01-07" kind="rare" include_exclude="include" icd_start="Q82.8" match_type="exact"/>
+    <map map_id="RF010800" item_id="RD-F01-08" item_id2="RD-F01-08" kind="rare" include_exclude="include" icd_start="Q82.8" match_type="exact"/>
+    <map map_id="RF010900" item_id="RD-F01-09" item_id2="RD-F01-09" kind="rare" include_exclude="include" icd_start="Q82.8" match_type="exact"/>
+    <map map_id="RF011000" item_id="RD-F01-10" item_id2="RD-F01-10" kind="rare" include_exclude="include" icd_start="Q82.8" match_type="exact"/>
+    <map map_id="RF011100" item_id="RD-F01-11" item_id2="RD-F01-11" kind="rare" include_exclude="include" icd_start="Q82.3" match_type="exact"/>
+    <map map_id="RG010100" item_id="RD-G01-01" item_id2="RD-G01-01" kind="rare" include_exclude="include" icd_start="G71.01" match_type="exact"/>
+    <map map_id="RG010200" item_id="RD-G01-02" item_id2="RD-G01-02" kind="rare" include_exclude="include" icd_start="G71.21" match_type="exact"/>
+    <map map_id="RG010300" item_id="RD-G01-03" item_id2="RD-G01-03" kind="rare" include_exclude="include" icd_start="G71.13" match_type="exact"/>
+    <map map_id="RG010400" item_id="RD-G01-04" item_id2="RD-G01-04" kind="rare" include_exclude="include" icd_start="G71.11" match_type="exact"/>
+    <map map_id="RG010500" item_id="RD-G01-05" item_id2="RD-G01-05" kind="rare" include_exclude="include" icd_start="G71.02" match_type="exact"/>
+    <map map_id="RG010600" item_id="RD-G01-06" item_id2="RD-G01-06" kind="rare" include_exclude="include" icd_start="G71.220" match_type="exact"/>
+    <map map_id="RG010700" item_id="RD-G01-07" item_id2="RD-G01-07" kind="rare" include_exclude="include" icd_start="G71.01" match_type="exact"/>
+    <map map_id="RG010800" item_id="RD-G01-08" item_id2="RD-G01-08" kind="rare" include_exclude="include" icd_start="Q87.0" match_type="exact"/>
+    <map map_id="RG010900" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" icd_start="G71.031" match_type="exact" sort="1"/>
+    <map map_id="RG010901" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" icd_start="G71.032" match_type="exact" sort="2"/>
+    <map map_id="RG010902" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" icd_start="G71.033" match_type="exact" sort="3"/>
+    <map map_id="RG010903" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" icd_start="G71.0340" match_type="exact" sort="4"/>
+    <map map_id="RG010904" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" icd_start="G71.0341" match_type="exact" sort="5"/>
+    <map map_id="RG010905" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" icd_start="G71.0342" match_type="exact" sort="6"/>
+    <map map_id="RG010906" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" icd_start="G71.0349" match_type="exact" sort="7"/>
+    <map map_id="RG010907" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" icd_start="G71.035" match_type="exact" sort="8"/>
+    <map map_id="RG010908" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" icd_start="G71.038" match_type="exact" sort="9"/>
+    <map map_id="RG010909" item_id="RD-G01-09" item_id2="RD-G01-09" kind="rare" include_exclude="include" icd_start="G71.039" match_type="exact" sort="10"/>
+    <map map_id="RG011000" item_id="RD-G01-10" item_id2="RD-G01-10" kind="rare" include_exclude="include" icd_start="G71.09" match_type="exact"/>
+    <map map_id="RG011100" item_id="RD-G01-11" item_id2="RD-G01-11" kind="rare" include_exclude="include" icd_start="G71.29" match_type="exact"/>
+    <map map_id="RG011200" item_id="RD-G01-12" item_id2="RD-G01-12" kind="rare" include_exclude="include" icd_start="G71.29" match_type="exact"/>
+    <map map_id="RG011300" item_id="RD-G01-13" item_id2="RD-G01-13" kind="rare" include_exclude="include" icd_start="G71.00" match_type="exact" sort="1"/>
+    <map map_id="RG011301" item_id="RD-G01-13" item_id2="RD-G01-13" kind="rare" include_exclude="include" icd_start="G71.09" match_type="exact" sort="2"/>
+    <map map_id="RG011400" item_id="RD-G01-14" item_id2="RD-G01-14" kind="rare" include_exclude="include" icd_start="G71.8" match_type="exact"/>
+    <map map_id="RG011500" item_id="RD-G01-15" item_id2="RD-G01-15" kind="rare" include_exclude="include" icd_start="D69.8" match_type="exact"/>
+    <map map_id="RH010100" item_id="RD-H01-01" item_id2="RD-H01-01" kind="rare" include_exclude="include" icd_start="Q77.4" match_type="exact"/>
+    <map map_id="RH010200" item_id="RD-H01-02" item_id2="RD-H01-02" kind="rare" include_exclude="include" icd_start="Q78.0" match_type="exact"/>
+    <map map_id="RH010300" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.0" match_type="exact" sort="1"/>
+    <map map_id="RH010301" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.1" match_type="exact" sort="2"/>
+    <map map_id="RH010302" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.811" match_type="exact" sort="3"/>
+    <map map_id="RH010303" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.812" match_type="exact" sort="4"/>
+    <map map_id="RH010304" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.819" match_type="exact" sort="5"/>
+    <map map_id="RH010305" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.821" match_type="exact" sort="6"/>
+    <map map_id="RH010306" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.822" match_type="exact" sort="7"/>
+    <map map_id="RH010307" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.829" match_type="exact" sort="8"/>
+    <map map_id="RH010308" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.831" match_type="exact" sort="9"/>
+    <map map_id="RH010309" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.832" match_type="exact" sort="10"/>
+    <map map_id="RH010310" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.839" match_type="exact" sort="11"/>
+    <map map_id="RH010311" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.841" match_type="exact" sort="12"/>
+    <map map_id="RH010312" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.842" match_type="exact" sort="13"/>
+    <map map_id="RH010313" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.849" match_type="exact" sort="14"/>
+    <map map_id="RH010314" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.851" match_type="exact" sort="15"/>
+    <map map_id="RH010315" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.852" match_type="exact" sort="16"/>
+    <map map_id="RH010316" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.859" match_type="exact" sort="17"/>
+    <map map_id="RH010317" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.861" match_type="exact" sort="18"/>
+    <map map_id="RH010318" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.862" match_type="exact" sort="19"/>
+    <map map_id="RH010319" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.869" match_type="exact" sort="20"/>
+    <map map_id="RH010320" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.871" match_type="exact" sort="21"/>
+    <map map_id="RH010321" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.872" match_type="exact" sort="22"/>
+    <map map_id="RH010322" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.879" match_type="exact" sort="23"/>
+    <map map_id="RH010323" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.88" match_type="exact" sort="24"/>
+    <map map_id="RH010324" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.89" match_type="exact" sort="25"/>
+    <map map_id="RH010325" item_id="RD-H01-03" item_id2="RD-H01-03" kind="rare" include_exclude="include" icd_start="M88.9" match_type="exact" sort="26"/>
+    <map map_id="RH010400" item_id="RD-H01-04" item_id2="RD-H01-04" kind="rare" include_exclude="include" icd_start="Q74.0" match_type="exact"/>
+    <map map_id="RH010500" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.10" match_type="exact" sort="1"/>
+    <map map_id="RH010501" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.111" match_type="exact" sort="2"/>
+    <map map_id="RH010502" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.112" match_type="exact" sort="3"/>
+    <map map_id="RH010503" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.119" match_type="exact" sort="4"/>
+    <map map_id="RH010504" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.121" match_type="exact" sort="5"/>
+    <map map_id="RH010505" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.122" match_type="exact" sort="6"/>
+    <map map_id="RH010506" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.129" match_type="exact" sort="7"/>
+    <map map_id="RH010507" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.131" match_type="exact" sort="8"/>
+    <map map_id="RH010508" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.132" match_type="exact" sort="9"/>
+    <map map_id="RH010509" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.139" match_type="exact" sort="10"/>
+    <map map_id="RH010510" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.141" match_type="exact" sort="11"/>
+    <map map_id="RH010511" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.142" match_type="exact" sort="12"/>
+    <map map_id="RH010512" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.143" match_type="exact" sort="13"/>
+    <map map_id="RH010513" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.144" match_type="exact" sort="14"/>
+    <map map_id="RH010514" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.145" match_type="exact" sort="15"/>
+    <map map_id="RH010515" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.146" match_type="exact" sort="16"/>
+    <map map_id="RH010516" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.151" match_type="exact" sort="17"/>
+    <map map_id="RH010517" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.152" match_type="exact" sort="18"/>
+    <map map_id="RH010518" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.159" match_type="exact" sort="19"/>
+    <map map_id="RH010519" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.161" match_type="exact" sort="20"/>
+    <map map_id="RH010520" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.162" match_type="exact" sort="21"/>
+    <map map_id="RH010521" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.169" match_type="exact" sort="22"/>
+    <map map_id="RH010522" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.171" match_type="exact" sort="23"/>
+    <map map_id="RH010523" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.172" match_type="exact" sort="24"/>
+    <map map_id="RH010524" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.173" match_type="exact" sort="25"/>
+    <map map_id="RH010525" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.174" match_type="exact" sort="26"/>
+    <map map_id="RH010526" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.175" match_type="exact" sort="27"/>
+    <map map_id="RH010527" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.176" match_type="exact" sort="28"/>
+    <map map_id="RH010528" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.177" match_type="exact" sort="29"/>
+    <map map_id="RH010529" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.178" match_type="exact" sort="30"/>
+    <map map_id="RH010530" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.179" match_type="exact" sort="31"/>
+    <map map_id="RH010531" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.18" match_type="exact" sort="32"/>
+    <map map_id="RH010532" item_id="RD-H01-05" item_id2="RD-H01-05" kind="rare" include_exclude="include" icd_start="M61.19" match_type="exact" sort="33"/>
+    <map map_id="RH010600" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" icd_start="Q71.60" match_type="exact" sort="1"/>
+    <map map_id="RH010601" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" icd_start="Q71.61" match_type="exact" sort="2"/>
+    <map map_id="RH010602" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" icd_start="Q71.62" match_type="exact" sort="3"/>
+    <map map_id="RH010603" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" icd_start="Q71.63" match_type="exact" sort="4"/>
+    <map map_id="RH010604" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" icd_start="Q72.70" match_type="exact" sort="5"/>
+    <map map_id="RH010605" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" icd_start="Q72.71" match_type="exact" sort="6"/>
+    <map map_id="RH010606" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" icd_start="Q72.72" match_type="exact" sort="7"/>
+    <map map_id="RH010607" item_id="RD-H01-06" item_id2="RD-H01-06" kind="rare" include_exclude="include" icd_start="Q72.73" match_type="exact" sort="8"/>
+    <map map_id="RH010700" item_id="RD-H01-07" item_id2="RD-H01-07" kind="rare" include_exclude="include" icd_start="Q78.2" match_type="exact"/>
+    <map map_id="RH010800" item_id="RD-H01-08" item_id2="RD-H01-08" kind="rare" include_exclude="include" icd_start="Q77.8" match_type="exact"/>
+    <map map_id="RH010900" item_id="RD-H01-09" item_id2="RD-H01-09" kind="rare" include_exclude="include" icd_start="Q78.3" match_type="exact"/>
+    <map map_id="RH011000" item_id="RD-H01-10" item_id2="RD-H01-10" kind="rare" include_exclude="include" icd_start="Q78.8" match_type="exact"/>
+    <map map_id="RH011100" item_id="RD-H01-11" item_id2="RD-H01-11" kind="rare" include_exclude="include" icd_start="Q87.89" match_type="exact"/>
+    <map map_id="RH011200" item_id="RD-H01-12" item_id2="RD-H01-12" kind="rare" include_exclude="include" icd_start="Q75.1" match_type="exact"/>
+    <map map_id="RH011300" item_id="RD-H01-13" item_id2="RD-H01-13" kind="rare" include_exclude="include" icd_start="Q87.0" match_type="exact"/>
+    <map map_id="RI010100" item_id="RD-I01-01" item_id2="RD-I01-01" kind="rare" include_exclude="include" icd_start="Q79.63" match_type="exact"/>
+    <map map_id="RJ010100" item_id="RD-J01-01" item_id2="RD-J01-01" kind="rare" include_exclude="include" icd_start="D56.0" match_type="exact" sort="1"/>
+    <map map_id="RJ010101" item_id="RD-J01-01" item_id2="RD-J01-01" kind="rare" include_exclude="include" icd_start="D56.1" match_type="exact" sort="2"/>
+    <map map_id="RJ010200" item_id="RD-J01-02" item_id2="RD-J01-02" kind="rare" include_exclude="include" icd_start="D69.1" match_type="exact"/>
+    <map map_id="RJ010300" item_id="RD-J01-03" item_id2="RD-J01-03" kind="rare" include_exclude="include" icd_start="D68.59" match_type="exact"/>
+    <map map_id="RJ010400" item_id="RD-J01-04" item_id2="RD-J01-04" kind="rare" include_exclude="include" icd_start="D59.5" match_type="exact"/>
+    <map map_id="RJ010500" item_id="RD-J01-05" item_id2="RD-J01-05" kind="rare" include_exclude="include" icd_start="M31.19" match_type="exact"/>
+    <map map_id="RK010100" item_id="RD-K01-01" item_id2="RD-K01-01" kind="rare" include_exclude="include" icd_start="D71" match_type="exact"/>
+    <map map_id="RK010200" item_id="RD-K01-02" item_id2="RD-K01-02" kind="rare" include_exclude="include" icd_start="D82.4" match_type="exact"/>
+    <map map_id="RK010300" item_id="RD-K01-03" item_id2="RD-K01-03" kind="rare" include_exclude="include" icd_start="D80.0" match_type="exact"/>
+    <map map_id="RK010400" item_id="RD-K01-04" item_id2="RD-K01-04" kind="rare" include_exclude="include" icd_start="D82.0" match_type="exact"/>
+    <map map_id="RK010500" item_id="RD-K01-05" item_id2="RD-K01-05" kind="rare" include_exclude="include" icd_start="D81.0" match_type="exact" sort="1"/>
+    <map map_id="RK010501" item_id="RD-K01-05" item_id2="RD-K01-05" kind="rare" include_exclude="include" icd_start="D81.1" match_type="exact" sort="2"/>
+    <map map_id="RK010502" item_id="RD-K01-05" item_id2="RD-K01-05" kind="rare" include_exclude="include" icd_start="D81.2" match_type="exact" sort="3"/>
+    <map map_id="RK010503" item_id="RD-K01-05" item_id2="RD-K01-05" kind="rare" include_exclude="include" icd_start="D81.31" match_type="exact" sort="4"/>
+    <map map_id="RK010504" item_id="RD-K01-05" item_id2="RD-K01-05" kind="rare" include_exclude="include" icd_start="D81.9" match_type="exact" sort="5"/>
+    <map map_id="RK010600" item_id="RD-K01-06" item_id2="RD-K01-06" kind="rare" include_exclude="include" icd_start="D84.1" match_type="exact"/>
+    <map map_id="RK010700" item_id="RD-K01-07" item_id2="RD-K01-07" kind="rare" include_exclude="include" icd_start="E31.0" match_type="exact"/>
+    <map map_id="RK010800" item_id="RD-K01-08" item_id2="RD-K01-08" kind="rare" include_exclude="include" icd_start="D80.5" match_type="exact"/>
+    <map map_id="RK010900" item_id="RD-K01-09" item_id2="RD-K01-09" kind="rare" include_exclude="include" icd_start="D84.89" match_type="exact"/>
+    <map map_id="RK011000" item_id="RD-K01-10" item_id2="RD-K01-10" kind="rare" include_exclude="include" icd_start="D84.1" match_type="exact"/>
+    <map map_id="RK011100" item_id="RD-K01-11" item_id2="RD-K01-11" kind="rare" include_exclude="include" icd_start="Q80.8" match_type="exact"/>
+    <map map_id="RK011200" item_id="RD-K01-12" item_id2="RD-K01-12" kind="rare" include_exclude="include" icd_start="D59.32" match_type="exact" sort="1"/>
+    <map map_id="RK011201" item_id="RD-K01-12" item_id2="RD-K01-12" kind="rare" include_exclude="include" icd_start="D59.39" match_type="exact" sort="2"/>
+    <map map_id="RL010100" item_id="RD-L01-01" item_id2="RD-L01-01" kind="rare" include_exclude="include" icd_start="Q87.1" match_type="exact"/>
+    <map map_id="RL010200" item_id="RD-L01-02" item_id2="RD-L01-02" kind="rare" include_exclude="include" icd_start="E20.1" match_type="exact"/>
+    <map map_id="RL010300" item_id="RD-L01-03" item_id2="RD-L01-03" kind="rare" include_exclude="include" icd_start="E83.31" match_type="exact"/>
+    <map map_id="RL010400" item_id="RD-L01-04" item_id2="RD-L01-04" kind="rare" include_exclude="include" icd_start="E34.321" match_type="exact"/>
+    <map map_id="RL010500" item_id="RD-L01-05" item_id2="RD-L01-05" kind="rare" include_exclude="include" icd_start="Q87.89" match_type="exact"/>
+    <map map_id="RL010600" item_id="RD-L01-06" item_id2="RD-L01-06" kind="rare" include_exclude="include" icd_start="Q87.89" match_type="exact"/>
+    <map map_id="RL010700" item_id="RD-L01-07" item_id2="RD-L01-07" kind="rare" include_exclude="include" icd_start="E16.1" match_type="exact"/>
+    <map map_id="RL010800" item_id="RD-L01-08" item_id2="RD-L01-08" kind="rare" include_exclude="include" icd_start="E88.9" match_type="exact"/>
+    <map map_id="RL010900" item_id="RD-L01-09" item_id2="RD-L01-09" kind="rare" include_exclude="include" icd_start="Q78.1" match_type="exact"/>
+    <map map_id="RL011000" item_id="RD-L01-10" item_id2="RD-L01-10" kind="rare" include_exclude="include" icd_start="Q99.8" match_type="exact"/>
+    <map map_id="RL011100" item_id="RD-L01-11" item_id2="RD-L01-11" kind="rare" include_exclude="include" icd_start="E27.49" match_type="exact"/>
+    <map map_id="RL011200" item_id="RD-L01-12" item_id2="RD-L01-12" kind="rare" include_exclude="include" icd_start="E83.32" match_type="exact"/>
+    <map map_id="RL011300" item_id="RD-L01-13" item_id2="RD-L01-13" kind="rare" include_exclude="include" icd_start="Q89.1" match_type="exact"/>
+    <map map_id="RL011400" item_id="RD-L01-14" item_id2="RD-L01-14" kind="rare" include_exclude="include" icd_start="E23.0" match_type="exact"/>
+    <map map_id="RL011500" item_id="RD-L01-15" item_id2="RD-L01-15" kind="rare" include_exclude="include" icd_start="P70.2" match_type="exact"/>
+    <map map_id="RL011600" item_id="RD-L01-16" item_id2="RD-L01-16" kind="rare" include_exclude="include" icd_start="Q89.8" match_type="exact"/>
+    <map map_id="RM010100" item_id="RD-M01-01" item_id2="RD-M01-01" kind="rare" include_exclude="include" icd_start="Q87.19" match_type="exact"/>
+    <map map_id="RM010200" item_id="RD-M01-02" item_id2="RD-M01-02" kind="rare" include_exclude="include" icd_start="Q87.89" match_type="exact"/>
+    <map map_id="RM010300" item_id="RD-M01-03" item_id2="RD-M01-03" kind="rare" include_exclude="include" icd_start="Q87.0" match_type="exact"/>
+    <map map_id="RM010400" item_id="RD-M01-04" item_id2="RD-M01-04" kind="rare" include_exclude="include" icd_start="E78.72" match_type="exact"/>
+    <map map_id="RM010500" item_id="RD-M01-05" item_id2="RD-M01-05" kind="rare" include_exclude="include" icd_start="Q74.8" match_type="exact"/>
+    <map map_id="RM010600" item_id="RD-M01-06" item_id2="RD-M01-06" kind="rare" include_exclude="include" icd_start="Q87.3" match_type="exact"/>
+    <map map_id="RM010700" item_id="RD-M01-07" item_id2="RD-M01-07" kind="rare" include_exclude="include" icd_start="Q87.0" match_type="exact"/>
+    <map map_id="RM010800" item_id="RD-M01-08" item_id2="RD-M01-08" kind="rare" include_exclude="include" icd_start="Q79.8" match_type="exact"/>
+    <map map_id="RM010900" item_id="RD-M01-09" item_id2="RD-M01-09" kind="rare" include_exclude="include" icd_start="Q87.19" match_type="exact"/>
+    <map map_id="RM011000" item_id="RD-M01-10" item_id2="RD-M01-10" kind="rare" include_exclude="include" icd_start="Q87.0" match_type="exact"/>
+    <map map_id="RM011100" item_id="RD-M01-11" item_id2="RD-M01-11" kind="rare" include_exclude="include" icd_start="Q89.8" match_type="exact"/>
+    <map map_id="RM011200" item_id="RD-M01-12" item_id2="RD-M01-12" kind="rare" include_exclude="include" icd_start="Q87.0" match_type="exact"/>
+    <map map_id="RM011300" item_id="RD-M01-13" item_id2="RD-M01-13" kind="rare" include_exclude="include" icd_start="Q77.3" match_type="exact"/>
+    <map map_id="RM011400" item_id="RD-M01-14" item_id2="RD-M01-14" kind="rare" include_exclude="include" icd_start="Q75.4" match_type="exact"/>
+    <map map_id="RM011500" item_id="RD-M01-15" item_id2="RD-M01-15" kind="rare" include_exclude="include" icd_start="Q87.89" match_type="exact"/>
+    <map map_id="RM011600" item_id="RD-M01-16" item_id2="RD-M01-16" kind="rare" include_exclude="include" icd_start="Q87.2" match_type="exact"/>
+    <map map_id="RM011700" item_id="RD-M01-17" item_id2="RD-M01-17" kind="rare" include_exclude="include" icd_start="Q87.89" match_type="exact"/>
+    <map map_id="RM011800" item_id="RD-M01-18" item_id2="RD-M01-18" kind="rare" include_exclude="include" icd_start="Q13.4" match_type="exact"/>
+    <map map_id="RM011900" item_id="RD-M01-19" item_id2="RD-M01-19" kind="rare" include_exclude="include" icd_start="Q75.4" match_type="exact"/>
+    <map map_id="RM012000" item_id="RD-M01-20" item_id2="RD-M01-20" kind="rare" include_exclude="include" icd_start="Q89.8" match_type="exact"/>
+    <map map_id="RM012100" item_id="RD-M01-21" item_id2="RD-M01-21" kind="rare" include_exclude="include" icd_start="Q99.8" match_type="exact" sort="1"/>
+    <map map_id="RM012101" item_id="RD-M01-21" item_id2="RD-M01-21" kind="rare" include_exclude="include" icd_start="F84.8" match_type="exact" sort="2"/>
+    <map map_id="RM012102" item_id="RD-M01-21" item_id2="RD-M01-21" kind="rare" include_exclude="include" icd_start="F78" match_type="exact" sort="3"/>
+    <map map_id="RM012200" item_id="RD-M01-22" item_id2="RD-M01-22" kind="rare" include_exclude="include" icd_start="Q87.89" match_type="exact"/>
+    <map map_id="RM012300" item_id="RD-M01-23" item_id2="RD-M01-23" kind="rare" include_exclude="include" icd_start="Q87.89" match_type="exact"/>
+    <map map_id="RM012400" item_id="RD-M01-24" item_id2="RD-M01-24" kind="rare" include_exclude="include" icd_start="Q89.8" match_type="exact"/>
+    <map map_id="RM012500" item_id="RD-M01-25" item_id2="RD-M01-25" kind="rare" include_exclude="include" icd_start="Q87.89" match_type="exact"/>
+    <map map_id="RM012600" item_id="RD-M01-26" item_id2="RD-M01-26" kind="rare" include_exclude="include" icd_start="Q87.5" match_type="exact"/>
+    <map map_id="RM012700" item_id="RD-M01-27" item_id2="RD-M01-27" kind="rare" include_exclude="include" icd_start="E88.1" match_type="exact"/>
+    <map map_id="RM012800" item_id="RD-M01-28" item_id2="RD-M01-28" kind="rare" include_exclude="include" icd_start="Q83.51" match_type="exact"/>
+    <map map_id="RM012900" item_id="RD-M01-29" item_id2="RD-M01-29" kind="rare" include_exclude="include" icd_start="D82.1" match_type="exact"/>
+    <map map_id="RM013000" item_id="RD-M01-30" item_id2="RD-M01-30" kind="rare" include_exclude="include" icd_start="Q87.11" match_type="exact"/>
+    <map map_id="RM013100" item_id="RD-M01-31" item_id2="RD-M01-31" kind="rare" include_exclude="include" icd_start="Q87.89" match_type="exact"/>
+    <map map_id="RM013200" item_id="RD-M01-32" item_id2="RD-M01-32" kind="rare" include_exclude="include" icd_start="Q93.88" match_type="exact"/>
+    <map map_id="RM013300" item_id="RD-M01-33" item_id2="RD-M01-33" kind="rare" include_exclude="include" icd_start="Q87.2" match_type="exact"/>
+    <map map_id="RM013400" item_id="RD-M01-34" item_id2="RD-M01-34" kind="rare" include_exclude="include" icd_start="Q93.82" match_type="exact"/>
+    <map map_id="RM013500" item_id="RD-M01-35" item_id2="RD-M01-35" kind="rare" include_exclude="include" icd_start="Q87.89" match_type="exact"/>
+    <map map_id="RM013600" item_id="RD-M01-36" item_id2="RD-M01-36" kind="rare" include_exclude="include" icd_start="Q87.3" match_type="exact"/>
+    <map map_id="RM013700" item_id="RD-M01-37" item_id2="RD-M01-37" kind="rare" include_exclude="include" icd_start="Q87.89" match_type="exact"/>
+    <map map_id="RM013800" item_id="RD-M01-38" item_id2="RD-M01-38" kind="rare" include_exclude="include" icd_start="E34.8" match_type="exact"/>
+    <map map_id="RM013900" item_id="RD-M01-39" item_id2="RD-M01-39" kind="rare" include_exclude="include" icd_start="Q87.19" match_type="exact"/>
+    <map map_id="RM014000" item_id="RD-M01-40" item_id2="RD-M01-40" kind="rare" include_exclude="include" icd_start="Q04.3" match_type="exact"/>
+    <map map_id="RN010100" item_id="RD-N01-01" item_id2="RD-N01-01" kind="rare" include_exclude="include" icd_start="H35.50" match_type="exact"/>
+    <map map_id="RN010200" item_id="RD-N01-02" item_id2="RD-N01-02" kind="rare" include_exclude="include" icd_start="H35.50" match_type="exact"/>
+    <map map_id="RN010300" item_id="RD-N01-03" item_id2="RD-N01-03" kind="rare" include_exclude="include" icd_start="H35.50" match_type="exact"/>
   </code_maps>
 </mird>
