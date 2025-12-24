@@ -4492,9 +4492,7 @@ function buildBlock(tagName, titleText, titleClass, options) {
         blockHtml += `</ul></div>`;
         html += blockHtml;
       }
-
       // 0) 重大傷病 / 罕見疾病（僅點選代碼後在「代碼注意事項」顯示）
-      html += buildMirdPolicyDetailCardsHtml(codeInputNorm) || "";
 
       // 2) 7th character 說明：sevenChrNote + sevenChrDef
       (function () {
@@ -4627,6 +4625,9 @@ function buildBlock(tagName, titleText, titleClass, options) {
       html += buildBlock("excludes2", "Excludes2", "ex2", {
         firstNoteAsIntro: false,
       }) || "";
+
+      // 重大/罕病（政策）— 一律排在 ICD 原生規則之後
+      html += buildMirdPolicyDetailCardsHtml(codeInputNorm) || "";
 
       if (!html) {
         detailDiv.innerHTML =
