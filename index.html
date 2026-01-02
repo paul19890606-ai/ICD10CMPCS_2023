@@ -3273,9 +3273,27 @@ async function loadXmlFromUrl(type, url, dotEl) {
       dataCountSpan.innerHTML = `<span class="pill">總筆數 ${total} 筆</span>`;
     }
 
+
+    // --- Search normalization helpers ---
+    // 目的：讓像 "HAND-FOOT" 這種包含連字號/標點的查詢，也能匹配到 XML 內的 "hand, foot" / "hand-foot" 等寫法。
+    // 注意：不移除 '.' 以避免 ICD 代碼（例如 E11.69）被拆碎。
+    function normalizeForSearch(str) {
+      return (str || "")
+        .toLowerCase()
+        .replace(/[’']/g, "")        // Graves' -> graves
+        .replace(/[,;:()\[\]{}]/g, " ")
+        .replace(/[\u2010\u2011\u2012\u2013\u2014\-\/]/g, " ") // 各種 dash/slash -> space
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+    function tokenizeQuery(query) {
+      const qn = normalizeForSearch(query);
+      if (!qn) return [];
+      // 以空白切 token；保留 '.' 以支援代碼搜尋
+      return qn.split(/\s+/).filter(Boolean);
+    }
     function preciseSearch(list, query) {
-      const q = (query || "").toLowerCase();
-      const tokens = q.split(/\s+/).filter(Boolean);
+      const tokens = tokenizeQuery(query);
       lastTokens = tokens;
       if (!tokens.length) return [];
 
