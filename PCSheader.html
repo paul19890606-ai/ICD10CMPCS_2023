@@ -1426,7 +1426,7 @@ function clearSelection(field) {
       if (!defLoaded || !label) return "";
       const map = definitionMaps[kind];
       if (!map) return "";
-      const key = label.trim();
+      const key = normalizeLabel(label);
       if (!map.has(key)) return "";
       return map.get(key);
     }
@@ -1717,6 +1717,39 @@ function clearSelection(field) {
     }
 
     // -------- Definitions XML 解析 --------
+
+    // === Normalize labels to avoid invisible whitespace mismatches ===
+    function normalizeLabel(s){
+      return String(s || "").replace(/\s+/g, " ").trim();
+    }
+
+    // === Merge definition details for duplicate titles (keep Includes if present) ===
+    function mergeDefinitionDetail(existing, incoming){
+      const a = String(existing || "").trim();
+      const b = String(incoming || "").trim();
+      if (!a) return b;
+      if (!b) return a;
+
+      // Prefer the one that contains Includes (PCS users need this)
+      const aHasInc = /\bIncludes:\b/.test(a);
+      const bHasInc = /\bIncludes:\b/.test(b);
+      if (bHasInc && !aHasInc) return b;
+      if (aHasInc && !bHasInc) return a;
+
+      // Otherwise, union unique lines preserving order
+      const out = [];
+      const seen = new Set();
+      for (const line of (a + "\n" + b).split(/\r?\n/)){
+        const t = line.trimEnd();
+        if (!t) continue;
+        const key = t.toLowerCase();
+        if (seen.has(key)) continue;
+        seen.add(key);
+        out.push(t);
+      }
+      return out.join("\n");
+    }
+
     function parseDefinitionsXml(xmlText) {
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xmlText, "application/xml");
@@ -1770,12 +1803,17 @@ function clearSelection(field) {
             }
 
             titleNodes.forEach((tNode) => {
-              const label = tNode.textContent.trim();
-              if (label && !definitionMaps[kind].has(label)) {
+              const label = normalizeLabel(tNode.textContent);
+              if (!label) return;
+
+              if (definitionMaps[kind].has(label)) {
+                const existing = definitionMaps[kind].get(label);
+                definitionMaps[kind].set(label, mergeDefinitionDetail(existing, detail));
+              } else {
                 definitionMaps[kind].set(label, detail);
               }
             });
-          });
+});
         });
       });
     }
@@ -2203,7 +2241,7 @@ function parseIndexXml(xmlText) {
           <td>
             ${
               apCode
-                ? `<label class="option-row"${bpTooltipAttr}>
+                ? `<label class="option-row">
                      <input type="radio" name="approach" value="${apCode}">
                      <span><span class="option-code highlight-code">${apCode}</span>${apText}</span>
                    </label>`
